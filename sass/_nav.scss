@@ -1,14 +1,18 @@
 $space_between_mobile_buttons: 15px;
 $nav_height: 51px;
 .navbar{
-	background: rgba($trib-blue2, .9);
+	background: rgba($trib-blue2, .92);
 	box-shadow: 0 2px 6px rgba(black, .35);
 }
 
 // Adjustments to the logo
-.navbar-brand{
-    padding: 15px 15px 15px 0;
-    width: 175px;
+.navbar > .container, 
+.navbar > .container-fluid {
+	.navbar-brand{
+		margin-left:0;
+	    padding: 15px 15px 15px 0;
+	    width: 175px;
+	}
 }
 
 
@@ -51,7 +55,6 @@ nav.navbar {min-height: $nav_height;}
 	margin:0;
 	padding:$space_between_mobile_buttons;
 	list-style-type: none;
-    background: darken($trib-blue2, 5%);
 
     li{
 		// padding-bottom:$space_between_mobile_buttons;
@@ -77,11 +80,11 @@ nav.navbar {min-height: $nav_height;}
 
 
 @media all and (min-width: $tablet-min-width){
-
+	
 }
 
 @media all and (min-width: $desktop-min-width){
-
+	
 	.nav-buttons-wrapper{
 		position:static;
 		opacity:1;
