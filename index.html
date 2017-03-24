@@ -8,7 +8,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
             {% include "_social_row.html" %}
             <h1 itemprop="headline">Welcome to Tarbell!</h1>
             <p>Brought to you by <span itemprop="author">the Chicago Tribune News Apps team</span></p>
@@ -16,11 +15,21 @@
         </div>
     </div>
     <div class="row">
-        <div itemprop="articleBody">
-            {{ lorem|markdown }}
-            {{ lorem|markdown }}
-            {{ lorem|markdown }}
-            {{ lorem|markdown }}
+        <div class="col-md-12">
+            <div itemprop="articleBody">
+                {{ lorem|markdown }}
+                {{ lorem|markdown }}
+            </div>
+        </div>
+    </div>
+</div>
+    {{ lorem|markdown }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                {{ lorem|markdown }}
+                {{ lorem|markdown }}
+            </div>
         </div>
     </div>
 </div>

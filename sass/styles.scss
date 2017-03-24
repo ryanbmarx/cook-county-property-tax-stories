@@ -6,11 +6,15 @@
 // Enables for Tribune colors, but is required for everything.
 @import 'base-variables';
 
-
+// Breakpoints
 $tablet-min-width:450px;
 $desktop-min-width:850px;
 
-$container-max-width: 600px;
+// Bootstrap variable adjustments 
+$container-tablet: 650px;
+$container-desktop: 650px;
+$container-large-desktop: 800px;
+
 
 
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
@@ -37,8 +41,8 @@ $container-max-width: 600px;
 
 // ---- BRING IN THE BOOTSTRAP ---------------------------------------------
 
-@import 'bootstrap-custom';
 
+@import 'bootstrap-custom';
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
 // @import 'ngux-visibility-toggles';
@@ -64,21 +68,16 @@ $container-max-width: 600px;
 
 // Basic scaffolding for the story
 .container{
-	max-width: $container-max-width;
-	margin: 0 auto;
+	// max-width: $container-max-width;
+	// margin: 0 auto;
 	background: #f0f0f0;
-	padding: 0 20px;
+	// padding: 0 20px;
 }
 
 @media all and (min-width: $tablet-min-width){
 
 }
 
-@media all and (min-width: $container-max-width){
-	// This query only address things that happen when the viewport is wider than the column
-	.container { padding:0; }
-
-}
 
 @media all and (min-width: $desktop-min-width){
 

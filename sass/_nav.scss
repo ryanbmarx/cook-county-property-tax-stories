@@ -1,30 +1,83 @@
+$space_between_mobile_buttons: 15px;
+$nav_height: 40px;
 .navbar-inverse{
-	background: rgba($trib-blue2, .9);
+	background: rgba($trib-blue2, .95);
 	box-shadow: 0 2px 6px rgba(black, .35);
 }
 
-.nav-buttons { display:none }
+// .nav-buttons { display:none }
+
+nav.navbar {min-height: $nav_height;}
 
 .navbar .navbar-toggle:hover, 
 .navbar .dropdown-toggle:hover, 
 .navbar .navbar-toggle:focus, 
 .navbar .dropdown-toggle:focus { background: rgba(black, .4); }
 
+.nav-buttons-wrapper{
+    // POSITIONING
+    position: absolute;
+    top: -700px;
+    opacity:0;
+    left: 0;
+    width: 100%;
+    transition:top 400ms ease, opacity 400ms ease;
+
+    &.nav-buttons-wrapper--active{
+    	top: $nav_height;
+    	opacity:1;
+    	transition:top 400ms ease, opacity 400ms ease;
+    }
+}
+.nav-buttons{
+	// STYLING
+	margin:0;
+	padding:$space_between_mobile_buttons;
+	list-style-type: none;
+    background: darken($trib-blue2, 5%);
+
+    li{
+		// padding-bottom:$space_between_mobile_buttons;
+		margin-bottom:$space_between_mobile_buttons;
+		// border-bottom:1px solid rgba(white, .5);
+		&:last-child {
+	 		// This strips the styling from the last menu item.
+			margin-bottom:0;
+			border-bottom:none;
+ 		}   
+    }
+}
+
+.nav-button{
+	@include sans-serif-text(14px, 1em);
+	color:white;
+	display:block;
+	text-align: center;
+    background: rgba(white,.2);
+    padding: 25px 0;
+    border-radius: 5px;
+}
+
+
 @media all and (min-width: $tablet-min-width){
 
 }
 
-@media all and (min-width: $container-max-width){
-	// This query only address things that happen when the viewport is wider than the column
-}
-
 @media all and (min-width: $desktop-min-width){
+
+	.nav-buttons-wrapper{
+		position:static;
+		opacity:1;
+
+	}
 	.nav-buttons{
 		// Align buttons
 		display: flex;
 		justify-content: center;
 		flex-wrap:wrap;
 		align-items:center;
+		padding:0;
+
 
 		// sizing, positioning
 		height: 100%;
@@ -33,24 +86,28 @@
     	top: 0;
     	left: 0;
 
+    	li{
+    		margin:0 15px 0 0;
+			height:100%;
+    		&:last-child{
+    			margin:0;
+    		}
+    	}
+
 	}
 
 	.nav-button{
-		@include sans-serif-text(14px, 1em);
-		color:white;
+		// @include sans-serif-text(14px, 1em);
+		// color:white;
 		padding:5px 10px;
-		background-color:rgba(white, .2);
+		background-color:rgba(white, .3);
 		text-decoration:none;
 		cursor:pointer;
-		border-radius:5px;
 		transition:150ms all ease;
-		margin-right:15px;
 		display: flex;
 		align-items:center;
-		height:95%;
-		&:last-child{
-			margin-right:none;
-		}
+		height:100%;
+		border-radius:0;
 
 		&:focus, &:hover{
 			color:black;
