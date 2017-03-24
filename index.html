@@ -19,13 +19,14 @@
 {% block content %}
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
 <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
+            {% include '_subtemplates/part1/_header-part1.html' %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            {% include "_social_row.html" %}
-            <h1 itemprop="headline">Welcome to Tarbell!</h1>
-            <p>Brought to you by <span itemprop="author">the Chicago Tribune News Apps team</span></p>
-            <p>Updated last <span itemprop="datePublished">July 15, 2014</span></p>
+            {# <h1 itemprop="headline">Welcome to Tarbell!</h1> #}
+            {# <p>Brought to you by <span itemprop="author">the Chicago Tribune News Apps team</span></p> #}
+            {# <p>Updated last <span itemprop="datePublished">July 15, 2014</span></p> #}
         </div>
     </div>
     <div class="row">
