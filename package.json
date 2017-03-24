@@ -34,6 +34,7 @@
   },
   "tribune": {},
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "pym.js": "^1.2.0"
   }
 }

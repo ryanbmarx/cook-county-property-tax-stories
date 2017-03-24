@@ -1,4 +1,4 @@
-
+var pym = require('pym.js');
 var boot = require('bootstrap.js');
 
 
@@ -10,5 +10,6 @@ function toggleMobileNavMenu(){
 }
 
 window.onload = function(){
+    var pymParent = new pym.Parent('lookup', 'http://graphics.chicagotribune.com/property-tax-assessments-map/lookup.html', {});
 
 }
