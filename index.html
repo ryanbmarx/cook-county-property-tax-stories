@@ -1,5 +1,19 @@
 {% extends "_base.html" %}
 
+{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
+    
+    <figure class="trib-pullquote">
+        <blockquote>{{ quote_text }}</blockquote>
+        {% if quote_attribution %}
+            <figcaption>
+                {{ quote_attribution }}
+                {% if quote_attribution_secondary %}<span>{{ quote_attribution_secondary }}</span>{% endif %}
+            </figcaption>
+        {% endif %}
+    </figure>
+    
+{% endmacro %}
+
 {% block nav %}{% include '_nav.html' %}{% endblock nav %}
 
 {% block content %}
@@ -18,13 +32,16 @@
         <div class="col-md-12">
             <div class='narrow-river' itemprop="articleBody">
                 {{ lorem|markdown }}
+                {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
+                {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
                 {{ lorem|markdown }}
             </div>
         </div>
     </div>
 </div>
-    {{ lorem|markdown }}
+
 <div class="container">
+<div id='lookup'></div>
     <div class="row">
         <div class="col-md-12">
             <div  class='narrow-river'>
@@ -38,7 +55,10 @@
 {% endblock content %}
 
 {% block library_css %}
-    {{ super() }}
+    {# <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/chicago-bootstrap.css"> #}
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    
 {% endblock %}
 
 {% block css %}
@@ -59,6 +79,7 @@
 
   {% block library_scripts %}
   <script src="js/vendor.min.js"></script>
+  {# <script src="js/pym.v1.min.js"></script> #}
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
   <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
