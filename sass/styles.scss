@@ -1,0 +1,85 @@
+// Bootstrap-sass documentation https://github.com/twbs/bootstrap-sass#d-npm--nodejs
+// ::Sass::Script::Value::Number.precision = [8, ::Sass::Script::Value::Number.precision].max
+
+
+
+// Enables for Tribune colors, but is required for everything.
+@import 'base-variables';
+
+
+$tablet-min-width:450px;
+$desktop-min-width:850px;
+
+$container-max-width: 600px;
+
+
+// ---- ADD MORE VARIABLES HERE ---------------------------------------------
+
+// Required for everything, too, but can be broken down into smaller explicit imports if desired. 
+@import 'base-mixins';
+// ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
+
+@mixin text_stroke(
+	$text-color:black, 
+	$stroke-color:white, 
+	$stroke-width:1px, 
+	$stroke-opacity:1,
+	$stroke-blur:0){
+	  
+
+  color:$text-color;
+  text-shadow:
+	#{0-$stroke-width} #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),  
+	$stroke-width #{0-$stroke-width} $stroke-blur rgba($stroke-color, $stroke-opacity),
+	#{0-$stroke-width} $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity),
+	$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
+}
+
+// ---- BRING IN THE BOOTSTRAP ---------------------------------------------
+
+@import 'bootstrap-custom';
+
+
+// ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
+// @import 'ngux-visibility-toggles';
+// @import 'trib-bulletbox';
+// @import 'trib-buttons';
+// @import 'trib-colors';
+// @import 'trib-images-charts';
+// @import 'trib-legends';
+// @import 'trib-skeleton';
+// @import 'trib-tables';
+// @import 'trib-timeline-basic';
+// @import 'trib-typography';
+// @import 'trib-utilities';
+
+
+// ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
+@import 'typography';
+@import 'nav';
+
+
+// ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
+
+
+// Basic scaffolding for the story
+.container{
+	max-width: $container-max-width;
+	margin: 0 auto;
+	background: #f0f0f0;
+	padding: 0 20px;
+}
+
+@media all and (min-width: $tablet-min-width){
+
+}
+
+@media all and (min-width: $container-max-width){
+	// This query only address things that happen when the viewport is wider than the column
+	.container { padding:0; }
+
+}
+
+@media all and (min-width: $desktop-min-width){
+
+}

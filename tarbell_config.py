@@ -42,9 +42,9 @@ DEFAULT_CONTEXT = {
    'OMNITURE': {   'domain': 'chicagotribune.com',
                     'section': 'news',
                     'sitename': 'Chicago Tribune',
-                    'subsection': 'local',
+                    'subsection': 'watchdog',
                     'subsubsection': '',
                     'type': 'dataproject'},
     'name': 'property-taxes-cook-county',
-    'title': 'Cook Co. Property taxes stories'
+    'title': 'Finding the faultlines of inequality in taxes'
 }

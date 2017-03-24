@@ -1,0 +1,62 @@
+.navbar-inverse{
+	background: rgba($trib-blue2, .9);
+	box-shadow: 0 2px 6px rgba(black, .35);
+}
+
+.nav-buttons { display:none }
+
+.navbar .navbar-toggle:hover, 
+.navbar .dropdown-toggle:hover, 
+.navbar .navbar-toggle:focus, 
+.navbar .dropdown-toggle:focus { background: rgba(black, .4); }
+
+@media all and (min-width: $tablet-min-width){
+
+}
+
+@media all and (min-width: $container-max-width){
+	// This query only address things that happen when the viewport is wider than the column
+}
+
+@media all and (min-width: $desktop-min-width){
+	.nav-buttons{
+		// Align buttons
+		display: flex;
+		justify-content: center;
+		flex-wrap:wrap;
+		align-items:center;
+
+		// sizing, positioning
+		height: 100%;
+		width: 100%;
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+
+	}
+
+	.nav-button{
+		@include sans-serif-text(14px, 1em);
+		color:white;
+		padding:5px 10px;
+		background-color:rgba(white, .2);
+		text-decoration:none;
+		cursor:pointer;
+		border-radius:5px;
+		transition:150ms all ease;
+		margin-right:15px;
+		display: flex;
+		align-items:center;
+		height:95%;
+		&:last-child{
+			margin-right:none;
+		}
+
+		&:focus, &:hover{
+			color:black;
+			background:white;
+			text-decoration:none;
+			transition:150ms all ease;
+		}
+	}
+}

@@ -12,17 +12,19 @@
     "type": "git",
     "url": ""
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Chicago Tribune News Applications",
   "license": "MIT",
   "devDependencies": {
-    "babelify": "^7.3.0",
+    "autoprefixer": "^6.7.7",
     "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "bootstrap-sass": "^3.3.7",
     "browserify": "^10.2.4",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.8.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.8.0",
     "grunt-sass": "^1.2.0",
     "minifyify": "^7.3.3",
     "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/"
@@ -30,5 +32,8 @@
   "browserify": {
     "debug": true
   },
-  "tribune": {}
+  "tribune": {},
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
 }
