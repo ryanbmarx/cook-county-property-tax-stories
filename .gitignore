@@ -7,4 +7,5 @@ node_modules
 css
 .ds_store
 app.min.js
+vendor.min.js
 *.map
