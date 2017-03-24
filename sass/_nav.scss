@@ -1,11 +1,16 @@
 $space_between_mobile_buttons: 15px;
-$nav_height: 40px;
+$nav_height: 51px;
 .navbar{
 	background: rgba($trib-blue2, .9);
 	box-shadow: 0 2px 6px rgba(black, .35);
 }
 
-// .nav-buttons { display:none }
+// Adjustments to the logo
+.navbar-brand{
+    padding: 15px 15px 15px 0;
+    width: 175px;
+}
+
 
 nav.navbar {min-height: $nav_height;}
 
@@ -14,19 +19,31 @@ nav.navbar {min-height: $nav_height;}
 .navbar .navbar-toggle:focus, 
 .navbar .dropdown-toggle:focus { background: rgba(black, .4); }
 
+// Adjustments to mobile nav button toggle
+.navbar-toggle {
+	border-color:white;
+    float: left;
+    margin-left: 15px;
+	.icon-bar{
+		background:white;
+	}
+}
+
+
 .nav-buttons-wrapper{
     // POSITIONING
     position: absolute;
     top: -700px;
     opacity:0;
-    left: 0;
+    top: $nav_height;
+    left: -100%;
     width: 100%;
-    transition:top 400ms ease, opacity 400ms ease;
+    transition:left 400ms ease, opacity 400ms ease;
 
     &.nav-buttons-wrapper--active{
-    	top: $nav_height;
+    	left:0;
     	opacity:1;
-    	transition:top 400ms ease, opacity 400ms ease;
+    	transition:left 400ms ease, opacity 400ms ease;
     }
 }
 .nav-buttons{
