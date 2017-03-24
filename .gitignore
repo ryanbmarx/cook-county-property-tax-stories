@@ -4,3 +4,7 @@
 *.swp
 node_modules
 .sass-cache
+css
+.ds_store
+app.min.js
+*.map
