@@ -37,6 +37,14 @@ $narrow-river-max-width: 700px;
 	$stroke-width $stroke-width $stroke-blur rgba($stroke-color, $stroke-opacity);
 }
 
+@mixin display-type($type){
+	@if $type == 'serif'{
+		font-family: 'Playfair Display', 'Georgia', serif;
+	} @else {
+		font-family: 'Arial', 'Helvetica', sans-serif;
+	}
+}
+
 // ---- BRING IN THE BOOTSTRAP ---------------------------------------------
 
 
@@ -59,6 +67,7 @@ $narrow-river-max-width: 700px;
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 @import 'typography';
 @import 'nav';
+@import 'pullquote';
 
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -68,7 +77,7 @@ $narrow-river-max-width: 700px;
 .narrow-river{
 	max-width: $narrow-river-max-width;
 	margin: 0 auto;
-	background: #f0f0f0;
+	// background: #f0f0f0;
 	// padding: 0 20px;
 }
 
