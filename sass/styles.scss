@@ -5,15 +5,13 @@
 
 // Enables for Tribune colors, but is required for everything.
 @import 'base-variables';
-
+@import 'bootstrap_custom_variables';
 // Breakpoints
 $tablet-min-width:450px;
 $desktop-min-width:850px;
 
-// Bootstrap variable adjustments 
-$container-tablet: 650px;
-$container-desktop: 650px;
-$container-large-desktop: 800px;
+$narrow-river-max-width: 700px;
+
 
 
 
@@ -42,7 +40,7 @@ $container-large-desktop: 800px;
 // ---- BRING IN THE BOOTSTRAP ---------------------------------------------
 
 
-@import 'bootstrap-custom';
+@import 'bootstrap_custom';
 
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
 // @import 'ngux-visibility-toggles';
@@ -67,9 +65,9 @@ $container-large-desktop: 800px;
 
 
 // Basic scaffolding for the story
-.container{
-	// max-width: $container-max-width;
-	// margin: 0 auto;
+.narrow-river{
+	max-width: $narrow-river-max-width;
+	margin: 0 auto;
 	background: #f0f0f0;
 	// padding: 0 20px;
 }
