@@ -2,7 +2,22 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
     
+  {% set page_url = 'http://' + ROOT_URL + '/' + PATH %}
     <figure class="trib-pullquote">
+        <ul class="social-menu">
+            <li>
+                <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={{ quote_text|urlencode }}">
+                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={{ quote_text|urlencode }}">
+                    <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Facebook</span>
+                </a>
+            </li>
+        </ul>
         <blockquote>{{ quote_text }}</blockquote>
         {% if quote_attribution %}
             <figcaption>
@@ -17,6 +32,7 @@
 {% block nav %}{% include '_nav.html' %}{% endblock nav %}
 
 {% block content %}
+
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
 <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
             {% include '_subtemplates/part1/_header-part1.html' %}
@@ -63,6 +79,7 @@
 {% endblock %}
 
 {% block css %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/6745e48e70.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 {% endblock %}
 
