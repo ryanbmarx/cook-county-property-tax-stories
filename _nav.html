@@ -17,18 +17,13 @@
         
           <div id='nav-buttons-wrapper' class='nav-buttons-wrapper'>
             <ul class='nav-buttons'>
+              {% for element in navbar_elements %}
               <li>
-                <a href='#' class='nav-button'>Part I</a>
+                <a href='{{ element.url }}' class='nav-button'>{{ element.prefix }}</a>
               </li>
-              <li>
-                <a href='#' class='nav-button'>Part II</a>
-              </li>
-              <li>
-                <a href='#' class='nav-button'>Part III</a>
-              </li>
+              {% endfor %}
             </ul>      
-            </div>
-
+          </div>
         </div>
     </div>
 </nav>
