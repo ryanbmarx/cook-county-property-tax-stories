@@ -21,8 +21,8 @@
         <blockquote>{{ quote_text }}</blockquote>
         {% if quote_attribution %}
             <figcaption>
-                {{ quote_attribution }}
-                {% if quote_attribution_secondary %}<span>{{ quote_attribution_secondary }}</span>{% endif %}
+                {{ quote_attribution|process_text() }}
+                {% if quote_attribution_secondary|process_text() %}<span>{{ quote_attribution_secondary|process_text() }}</span>{% endif %}
             </figcaption>
         {% endif %}
     </figure>
