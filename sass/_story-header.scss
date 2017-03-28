@@ -15,12 +15,24 @@
 	&__headline{
 		@include serif-text(60px, 1.5em);
 		@include display_type('serif');
+		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
+		// color:white;
 	}
 
 	&__subheadline{
 		@include serif-text(30px, 1.5em);
 		@include display_type('serif');
+		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
+		// color:white;
+	}
+	&__scrolling-icon{
+		@include bounce(2s);
+		color:white;
+		position:absolute;
+		left:50%;
+		top: 90vh;
 	}
 }
+

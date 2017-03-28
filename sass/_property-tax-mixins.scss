@@ -27,3 +27,43 @@
 		font-family: 'Arial', 'Helvetica', sans-serif;
 	}
 }
+
+// Bounce animation for the scrolling arrow in the headers, but could be used anywhere
+
+// @-webkit-keyframes bounce {
+//     0% { top: 0; }
+//     50% { top: -0.2em; }
+//     70% { top: -0.3em; }
+//     100% { top: 0; }
+// }
+// @-moz-keyframes bounce {
+//     0% { top: 0; }
+//     50% { top: -0.2em; }
+//     70% { top: -0.3em; }
+//     100% { top: 0; }
+// }
+// @-o-keyframes bounce {
+//     0% { top: 0; }
+//     50% { top: -0.2em; }
+//     70% { top: -0.3em; }
+//     100% { top: 0; }
+// }
+// @-ms-keyframes bounce {
+//     0% { top: 0; }
+//     50% { top: -0.2em; }
+//     70% { top: -0.3em; }
+//     100% { top: 0; }
+// }
+@keyframes bounce {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(0,-0.2em); }
+    70% { transform: translate(0,-0.3em); }
+    100% { transform: translate(0,0); }
+}
+
+@mixin bounce($time){
+  display: inline-block;
+  // position: relative;
+  animation: bounce $time infinite linear;
+}
+
