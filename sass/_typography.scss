@@ -9,8 +9,9 @@ font-family: 'Suranna', serif;
 
 
 p{
-	@include serif-text(15px, 1.6em);
-	margin: 0 0 18px 0;
+	@include serif();
+	// @include serif-text(15px, 1.6em);
+	// margin: 0 0 18px 0;
 }
 
 .text--exploded{
