@@ -2,9 +2,9 @@
 	background: url(http://fillmurray.com/1000/1000) center center no-repeat;
 	background-size:cover;
 	
-	height: 100vh;
-	height: calc(100vh - #{$nav_height});
-	min-height: 500px;
+	// height: 100vh;
+	// height: calc(100vh - #{$nav_height});
+	// min-height: 500px;
 
 	margin-bottom:25px;
 	display:flex;
@@ -28,8 +28,22 @@
 		width:100%;
 		// color:white;
 	}
-	&__scrolling-icon{
+	&__scrolling-icon{ display:none; }
+}
+
+@media all and (min-width: $tablet-min-width){
+	
+	.story-header{
+		background: url(http://fillmurray.com/1000/1000) center center no-repeat;
+		background-size:cover;
+		
+		height: 100vh;
+		height: calc(100vh - #{$nav_height});
+	}
+
+	.story-header__scrolling-icon{
 		@include bounce(2s);
+		display:block;
 		color:white;
 		position:absolute;
 		left:50%;
@@ -37,3 +51,7 @@
 	}
 }
 
+
+@media all and (min-width: $desktop-min-width){
+
+}
