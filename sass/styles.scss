@@ -11,7 +11,7 @@ $tablet-min-width:450px;
 $desktop-min-width:850px;
 
 $nav_height: 51px;
-$narrow-river-max-width: 700px;
+$narrow-river-max-width: 650px;
 
 
 
@@ -50,6 +50,7 @@ $narrow-river-max-width: 700px;
 @import 'story-header';
 @import 'social-menu';
 @import 'credits';
+@import 'graphic-embed';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 

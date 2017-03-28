@@ -48,7 +48,7 @@ nav.navbar {min-height: $nav_height;}
     left: -100%;
     width: 100%;
     transition:left 400ms ease, opacity 400ms ease;
-
+	background:$trib-blue2;
     &.nav-buttons-wrapper--active{
     	left:0;
     	opacity:1;

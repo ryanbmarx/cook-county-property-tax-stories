@@ -1,0 +1,21 @@
+$chart-margin:25px;
+.chart{
+	margin-top:$chart-margin;
+	margin-bottom:$chart-margin;
+	
+}
+
+
+
+@media all and (min-width: $tablet-min-width){
+	.chart--force-right{
+		width: 280px;
+		float: right;
+		margin: $chart-margin 0 $chart-margin $chart-margin;
+	}
+}
+
+
+@media all and (min-width: $desktop-min-width){
+
+}
