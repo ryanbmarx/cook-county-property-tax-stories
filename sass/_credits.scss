@@ -1,0 +1,84 @@
+.credits{
+	text-align:center;
+	background: rgba($trib-blue4, .5);
+	border-top: 4px solid $trib-blue2;
+	padding:25px;
+	margin-top:25px;
+
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+
+}
+
+.credits__header{
+	@include label5();
+	@include display-type('serif');
+	width:100%;
+	margin:0;
+}
+
+.credits__column{
+	width:280px;
+}
+
+
+.credits__people{
+	margin:20px 0 0 0; // This margin aligns it with the links padding spelled out below
+	padding:0;
+	width:100%;
+
+	dt{
+		@include agate();
+		font-weight: bold;
+		margin: 0 0 5px 0;
+	}
+
+	dd{
+		@include serif();
+		margin: 0 0 20px 0;
+	}
+}
+// Story links
+
+.credits__story-links{
+	list-style-type:none;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+.story-link{
+	padding:20px;
+	cursor:pointer;
+	border-radius:5px;
+	transition:all 150ms ease;
+
+	&:hover{
+		background:rgba(white, .9);
+		transition:all 150ms ease;
+		
+		&__description, &__prefix{
+			color:black;
+			text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
+		}
+	}
+	
+	&__link{
+		text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
+	}
+
+	&__prefix{
+		@include agate();
+		text-transform: uppercase;
+		font-weight:bold;
+		display:block;
+		color:black;
+	}
+
+	&__description{
+		@include serif();
+		margin-bottom:0;
+		color:black;
+	}
+}

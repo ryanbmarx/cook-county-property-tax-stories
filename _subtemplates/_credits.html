@@ -1,0 +1,33 @@
+{% macro add_people(role) %}
+	{% set people = "XX" %}
+	{%- for person in credits if person[role] == 1 -%}
+		{% if person.link %}
+			<a href="{{ person.link }}">{{ person.name }}</a>{% if not loop.last %}, {% endif %}
+		{% else %}
+			{{ person.name }}{% if not loop.last %}, {% endif %}
+		{% endif %}
+	{%- endfor -%}
+{% endmacro %}
+<section class='credits'>
+	<h2 class='credits__header'>{{ overall_project_title }}</h2>
+	<div class='credits__column credits__column--links'>
+		<ul class='credits__story-links'>
+			{%- for story in navbar_elements -%}
+				<li class='story-link'>
+					<a class='story-link__link' href="{{ story.url }}">
+						{% if story.prefix %}<span class='story-link__prefix'>{{ story.prefix }}</span>{% endif %}
+						<p class='story-link__description' href="{{ story.url }}">{{ story.description }}</p>
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</div>
+	<div class='credits__column credits__column--people'>
+		<dl class='credits__people'>
+		{%- for role in ['Reporting', 'Photo', 'Graphics', 'Story Design'] -%}
+			<dt>{{ role|upper }}</dt>	
+			<dd>{{ add_people(role) }}</dd>
+		{%- endfor -%}
+		</dl>
+	</div>
+</section>
