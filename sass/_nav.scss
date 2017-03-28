@@ -1,5 +1,11 @@
 $space_between_mobile_buttons: 15px;
 $nav_height: 51px;
+
+// Give the navbar space to exist without overlapping anything at the top of the page.
+body{
+	padding-top:$nav_height;
+}
+
 .navbar{
 	background: rgba($trib-blue2, .92);
 	box-shadow: 0 2px 6px rgba(black, .35);
