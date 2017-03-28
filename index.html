@@ -61,10 +61,22 @@
 </div>
 
 <div class="container">
-    <div id='lookup' class='graphic-embed' data-iframe-url='http://graphics.chicagotribune.com/property-tax-assessments-map/lookup.html'></div>
+    <div class='chart'>
+        <div id='lookup' class='graphic-embed' data-iframe-url='http://graphics.chicagotribune.com/property-tax-assessments-map/lookup.html'></div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class='river--narrow'>
+                {{ lorem|markdown }}
+                {{ lorem|markdown }}
+                <div class='chart'>
+                    <div id='appeals' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
+                </div>
+                {{ lorem|markdown }}
+                {{ lorem|markdown }}
+                <div class='chart chart--force-right'>
+                    <div id='demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
+                </div>
                 {{ lorem|markdown }}
                 {{ lorem|markdown }}
                 </div>
@@ -72,6 +84,7 @@
         </div>
     </div>
 </div>
+    
 {% include '_subtemplates/_credits.html' %}
 {% endblock content %}
 
@@ -98,6 +111,7 @@
 {% block scripts %}
     <script src="js/app.min.js"></script>
 {% endblock scripts %}
+
 
   {% block library_scripts %}
   <script src="js/vendor.min.js"></script>
