@@ -8,6 +8,7 @@
 		{% endif %}
 	{%- endfor -%}
 {% endmacro %}
+
 <section class='credits'>
 	<h2 class='credits__header'>{{ overall_project_title }}</h2>
 	<div class='credits__column credits__column--links'>
@@ -24,9 +25,9 @@
 	</div>
 	<div class='credits__column credits__column--people'>
 		<dl class='credits__people'>
-		{%- for role in ['Reporting', 'Photo', 'Graphics', 'Story Design'] -%}
+		{%- for role in ['Reporting', 'Photo', 'Graphics', 'Design'] -%}
 			<dt>{{ role|upper }}</dt>	
-			<dd>{{ add_people(role) }}</dd>
+			<dd>{{ add_people(role|upper) }}</dd>
 		{%- endfor -%}
 		</dl>
 	</div>
