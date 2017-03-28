@@ -3,6 +3,7 @@
 	background-size:cover;
 	
 	height: 100vh;
+	height: calc(100vh - #{$nav_height});
 	min-height: 500px;
 
 	margin-bottom:25px;
