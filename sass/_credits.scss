@@ -1,3 +1,4 @@
+$column_width: 280px;
 .credits{
 	text-align:center;
 	background: rgba($trib-blue4, .5);
@@ -15,17 +16,19 @@
 	@include label5();
 	@include display-type('serif');
 	width:100%;
-	margin:0;
+	margin:0 15px 0 0;
 }
 
 .credits__column{
-	width:280px;
+	width:$column_width;
 }
 
 
 .credits__people{
-	margin:20px 0 0 0; // This margin aligns it with the links padding spelled out below
-	padding:0;
+
+	margin:30px 0 0 0; // This margin aligns it with the links padding spelled out below
+	padding:30px 0 0 0;
+	border-top:1px solid $trib-blue2;
 	width:100%;
 
 	dt{
@@ -49,20 +52,20 @@
 }
 
 .story-link{
-	padding:20px;
-	cursor:pointer;
-	border-radius:5px;
-	transition:all 150ms ease;
+	padding:10px 0;
+	// cursor:pointer;
+	// border-radius:5px;
+	// transition:all 150ms ease;
 
-	&:hover{
-		background:rgba(white, .9);
-		transition:all 150ms ease;
+	// &:hover{
+	// 	background:rgba(white, .9);
+	// 	transition:all 150ms ease;
 		
-		&__description, &__prefix{
-			color:black;
-			text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
-		}
-	}
+	// 	&__description, &__prefix{
+	// 		color:black;
+	// 		text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
+	// 	}
+	// }
 	
 	&__link{
 		text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
@@ -82,3 +85,31 @@
 		color:black;
 	}
 }
+
+@media all and (min-width: #{($column_width + 20) * 2)}){
+	// When the window width is greater than the space needed for two columns and 20px gutters on container
+	.credits__people{
+		margin:20px 0 0 0; // This margin aligns it with the links padding spelled out below
+		padding:0;
+		border-top:none;
+	}
+
+	.story-link{
+		padding:20px;
+		cursor:pointer;
+		border-radius:5px;
+		transition:all 150ms ease;
+
+		&:hover{
+			background:rgba(white, .9);
+			transition:all 150ms ease;
+			
+			&__description, &__prefix{
+				color:black;
+				text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
+			}
+		}
+	}
+}
+// @media all and (min-width: $tablet-min-width){}
+// @media all and (min-width: $desktop-min-width){}
