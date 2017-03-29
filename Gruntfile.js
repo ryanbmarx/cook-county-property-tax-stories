@@ -7,8 +7,8 @@ module.exports = function(grunt) {
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
     'jquery',
-    'pym.js'
-    //'underscore'
+    'pym.js',
+    'in-view'
   ];
 
   config.browserify = {

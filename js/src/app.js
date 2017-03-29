@@ -1,6 +1,6 @@
 var pym = require('pym.js');
 var boot = require('bootstrap.js');
-
+import inView from 'in-view'
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
@@ -14,6 +14,13 @@ function removeSpinner(id){
     spinner.parentNode.removeChild(spinner);
 }   
 
+inView('#demographics')
+    .on('enter', function(){
+        console.log('demographics in the house');
+    })
+    .on('exit', el => {
+        console.log('demographics has left the building', el);
+    })
 window.onload = function(){
 
     // Enable all the pym graphics by collecting all the containers, then 
