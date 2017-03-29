@@ -6,6 +6,13 @@ var boot = require('bootstrap.js');
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
+// TODO: Lazyload pym
+
+function removeSpinner(id){
+    console.log(`Removing spinner from ${id}`);
+    const spinner = document.querySelector(`#${id} + .chart__spinner`);
+    spinner.parentNode.removeChild(spinner);
+}   
 
 window.onload = function(){
 
@@ -20,6 +27,7 @@ window.onload = function(){
                 pymUrl = container.dataset.iframeUrl;
 
         let temp = new pym.Parent(pymId, pymUrl, {});
+        temp.onMessage('childLoaded', removeSpinner(pymId) )
         pymParents.push(temp);
     }
 

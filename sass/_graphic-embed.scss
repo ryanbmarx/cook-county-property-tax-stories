@@ -2,10 +2,15 @@ $chart-margin:25px;
 .chart{
 	margin-top:$chart-margin;
 	margin-bottom:$chart-margin;
-	
+	position:relative;	
 }
 
-
+.chart__spinner{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin: -10px 0 0 -10px;
+}
 
 @media all and (min-width: $tablet-min-width){
 	.chart--force-right{
