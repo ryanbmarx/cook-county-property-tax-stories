@@ -1,0 +1,63 @@
+
+        <script type="text/javascript">
+            ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
+                // Page naming convention:
+                //  <site-slug>:<app-slug>:<path>:<datadesk-slug>-<page-slug>:<content-type>.
+                // Example:
+                //  lat:projects.latimes.com:local:data-pat-tillman:individualarticle.
+                //  (Don't miss the period at the end.)
+                {# pageName: 'ct:news:{{ object.slug }}:individualarticle.',#}
+                channel: 'news', // Path
+                server: 'www.chicagotribune.com', // Full domain
+                hier1: 'chicagotribune:news', // Path (with latimes prefix)
+                hier2: 'news', // Path (again)
+                prop1: 'D=pageName',
+                prop2: 'news', // Path (again!)
+                prop38: 'individualarticle', // Content type
+                eVar1: window.location.href, // This URL
+                eVar2: document.referrer, // The referring URL
+                prop57: 'D=c38',
+                eVar20: 'chicagotribune',
+                eVar21: 'D=c38',
+                eVar34: 'D=ch',
+                eVar35: 'D=pageName',
+                events: ''
+            });
+        </script>
+        <script src="http://www.chicagotribune.com/thirdpartyservice?path=/" async></script>
+
+
+{# 
+ // Copied from view-source:http://www.chicagotribune.com/news/ct-chicago-cop-dui-crash-met-20170329-story.html
+ trb.data.page.metrics = {
+    "list1":"Steve Schmadeke",
+    "byline":"Steve Schmadeke",
+    "sectionPath":"/news/",
+    "sectionName":"News",
+    "parentSectionName":"News",
+    "slug":"ct-chicago-cop-dui-crash-met-20170329",
+    "premiumContentLevel":"default",
+    "pubDate":"03-30-2017 09:02",
+    "pageTitle":"Woman struck by allegedly drunken off-duty cop relearns how to function",
+    "uid":"3906",
+    "pageNumber":"",
+    "owner":"Chicago Tribune",
+    "contentId":"92925041",
+    "marketCode":"chinews",
+    "siteName":"chicagotribune",
+    "individualPhotoID":"92925826",
+    "topicID":"",
+    "topic":"",
+    "contentType":"story",
+    "linkTrackingAction":"story",
+    "channel":"news",
+    "server":"www.chicagotribune.com",
+    "pageName":"ct:news:ct-chicago-cop-dui-crash-met-20170329:story.",
+    "topLevelSection":"news",
+    "siteHierarchy":"chicagotribune:news",
+    "globalHierachy":"news",
+    "site":"chicagotribune",
+    "siteAbbrv":"ct",
+    "omnitureAccountId":"tribnglobal",
+    "googleAnalytics":"UA-6459251-3"};
+ #}
