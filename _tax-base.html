@@ -1,0 +1,92 @@
+{% extends "_base.html" %}
+
+{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
+    
+  {% set page_url = 'http://' + ROOT_URL + '/' + PATH %}
+    <figure class="trib-pullquote">
+        <ul class="social-menu">
+            <li>
+                <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={{ quote_text|urlencode }}">
+                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={{ quote_text|urlencode }}">
+                    <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+                    <span class="hidden">Facebook</span>
+                </a>
+            </li>
+        </ul>
+        <blockquote>{{ quote_text }}</blockquote>
+        {% if quote_attribution %}
+            <figcaption>
+                {{ quote_attribution|process_text() }}
+                {% if quote_attribution_secondary|process_text() %}<span>{{ quote_attribution_secondary|process_text() }}</span>{% endif %}
+            </figcaption>
+        {% endif %}
+    </figure>
+    
+{% endmacro %}
+
+{% block nav %}{% include '_nav.html' %}{% endblock nav %}
+
+{% block bodyattrs %}
+    {{ super() }}
+    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
+    data-fixed-map=true
+{% endblock bodyattrs %}
+
+{% block content %}
+    {% block story %}{% endblock story %}
+    {% include '_subtemplates/_credits.html' %}
+{% endblock content %}
+
+{% block library_css %}
+    {# <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/chicago-bootstrap.css"> #}
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/6745e48e70.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+{% endblock %}
+
+{% block meta %}
+    {{ super() }}
+{% endblock meta %}
+
+{% block paywall %}
+    {# Empty this block out, possibly to be replaced with meter stuff #}
+{% endblock%}
+
+{% block scripts %}
+    <script src="js/app.min.js"></script>
+{% endblock scripts %}
+
+{% block chartbeat %}
+    {% include '_subtemplates/_chartbeat.html' %}
+{% endblock %}
+
+{% block omniture_scripts %}
+    {{ super() }}
+{% endblock omniture_scripts %}
+
+
+{% block omniture %}
+    {{ super() }}
+    {% include '_subtemplates/_omniture.html' %}
+{% endblock omniture %}
+
+
+  {% block library_scripts %}
+  <script src="js/vendor.min.js"></script>
+  {# <script src="js/pym.v1.min.js"></script> #}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
+  <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+  {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
+  {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
+  {% endblock %}

@@ -1,164 +1,81 @@
-{% extends "_base.html" %}
+{% extends "_tax-base.html" %}
 
-{% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
-    
-  {% set page_url = 'http://' + ROOT_URL + '/' + PATH %}
-    <figure class="trib-pullquote">
-        <ul class="social-menu">
-            <li>
-                <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={{ quote_text|urlencode }}">
-                    <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                    <span class="hidden">Twitter</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={{ quote_text|urlencode }}">
-                    <i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                    <span class="hidden">Facebook</span>
-                </a>
-            </li>
-        </ul>
-        <blockquote>{{ quote_text }}</blockquote>
-        {% if quote_attribution %}
-            <figcaption>
-                {{ quote_attribution|process_text() }}
-                {% if quote_attribution_secondary|process_text() %}<span>{{ quote_attribution_secondary|process_text() }}</span>{% endif %}
-            </figcaption>
-        {% endif %}
-    </figure>
-    
-{% endmacro %}
 
-{% block nav %}{% include '_nav.html' %}{% endblock nav %}
-
-{% block bodyattrs %}
-    {{ super() }}
-    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
-    data-fixed-map=true
-{% endblock bodyattrs %}
-
-{% block content %}
-
+{% block story %}
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
-<div class="advert top-ad" data-ad-type="leaderboard"></div> #}
-            {% include '_subtemplates/part1/_header-part1.html' %}
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            {# <h1 itemprop="headline">Welcome to Tarbell!</h1> #}
-            {# <p>Brought to you by <span itemprop="author">the Chicago Tribune News Apps team</span></p> #}
-            {# <p>Updated last <span itemprop="datePublished">July 15, 2014</span></p> #}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class='river--narrow' itemprop="articleBody">
-                <p>
-                    <span class='text--exploded'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-{#                 <div class='chart'>
-                    <div id='fairness' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property-tax-assessments-map/index.html'></div>
-                                 <div class='chart__spinner'>
-                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
+        <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
+        {% include '_subtemplates/part1/_header-part1.html' %}
+        <div class="container">
+                <div class="col-md-12">
+                    <div class='river--narrow' itemprop="articleBody">
+                        <p>
+                            <span class='text--exploded'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
+        {#                 <div class='chart'>
+                            <div id='fairness' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property-tax-assessments-map/index.html'></div>
+                                         <div class='chart__spinner'>
+                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div> #}
+                        {{ lorem|markdown }}
+                        {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
+                        {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
+                        {{ lorem|markdown }}
                     </div>
-                </div> #}
-                {{ lorem|markdown }}
-                {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
-                {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
-                {{ lorem|markdown }}
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="container">
-        <figure class='image'>
-                    <img src='http://www.trbimg.com/img-56042848/turbine/ct-chicago-tribune-sues-rahm-emanuel-met-20150924' alt='dd'/>
-                    <figcaption>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                    </figcaption>
-                </figure>
-    <div class="row">
-        <div class="col-md-12">
-            <div class='river--narrow'>
-                {{ lorem|markdown }}
+        <div class="container">
                 <figure class='image'>
-                    <img src='http://www.trbimg.com/img-585dab02/turbine/ct-rahm-emanuel-emails-tribune-dold-met-20161223' alt='dd'/>
-                    <figcaption>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                    </figcaption>
-                </figure>
-                {{ lorem|markdown }}
-                <div class='chart'>
-                          
-                    <div id='appeals' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
-                                 <div class='chart__spinner'>
-                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                {{ lorem|markdown }}
-                {{ lorem|markdown }}
-                <div class='chart chart--force-right'>
+                            <img src='http://www.trbimg.com/img-56042848/turbine/ct-chicago-tribune-sues-rahm-emanuel-met-20150924' alt='dd'/>
+                            <figcaption>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
+                            </figcaption>
+                        </figure>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class='river--narrow'>
+                        {{ lorem|markdown }}
+                        <figure class='image'>
+                            <img src='http://www.trbimg.com/img-585dab02/turbine/ct-rahm-emanuel-emails-tribune-dold-met-20161223' alt='dd'/>
+                            <figcaption>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
+                            </figcaption>
+                        </figure>
+                        {{ lorem|markdown }}
+                        <div class='chart'>
+                                  
+                            <div id='appeals' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
+                                         <div class='chart__spinner'>
+                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        {{ lorem|markdown }}
+                        {{ lorem|markdown }}
+                        <div class='chart chart--force-right'>
 
-                    <div id='demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
-                                 <div class='chart__spinner'>
-                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
+                            <div id='demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
+                                         <div class='chart__spinner'>
+                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        {{ lorem|markdown }}
+                            <figure class='image image--force-right'>
+                            <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>
+                            <figcaption>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
+                            </figcaption>
+                        </figure>
+                        {{ lorem|markdown }}
+                        </div>
                     </div>
-                </div>
-                {{ lorem|markdown }}
-                    <figure class='image image--force-right'>
-                    <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>
-                    <figcaption>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                    </figcaption>
-                </figure>
-                {{ lorem|markdown }}
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    
-{% include '_subtemplates/_credits.html' %}
-{% endblock content %}
-
-{% block library_css %}
-    {# <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/chicago-bootstrap.css"> #}
-    <link rel="stylesheet" type="text/css" href="css/base.css" />
-    
 {% endblock %}
-
-{% block css %}
-    <link rel="stylesheet" href="https://use.fontawesome.com/6745e48e70.css">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-{% endblock %}
-
-{% block meta %}
-    {{ super() }}
-{% endblock meta %}
-
-{% block paywall %}
-    {# Empty this block out, possibly to be replaced with meter stuff #}
-{% endblock%}
-
-{% block scripts %}
-    <script src="js/app.min.js"></script>
-{% endblock scripts %}
-
-
-  {% block library_scripts %}
-  <script src="js/vendor.min.js"></script>
-  {# <script src="js/pym.v1.min.js"></script> #}
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
-  <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
-  {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
-  {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
-  {% endblock %}
