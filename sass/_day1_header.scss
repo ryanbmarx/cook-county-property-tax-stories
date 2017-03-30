@@ -6,22 +6,42 @@
 	background:$header-bg-color;
 	position:relative;
 	margin-bottom:25px;
-    border-bottom: 45px solid $header-bg-color;
+
+    border-bottom: 45px solid $header-bg-color;// Yes, this is a hack, but padding would affect the map placement.
 }
+
+body[data-fixed-map='true']{
+	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
+	.map-wrapper{
+		position:fixed;
+		top:$nav_height + 10px ;
+		bottom:auto;
+		transition: top 300ms ease;
+	}
+
+	.text__blurb{
+		// Try to keep these pinned to the bottom of the map on mobile
+		position:fixed;
+	    top: 75%;
+	    padding: 10px;
+	}
+}
+
 
 .map-wrapper{
 	max-width: $map-width;
 	position:absolute;
 	top:auto;
-	bottom:0;		
-	left:50%;
-	margin-left: 0 - (.25 * $map-width);
+	bottom:0;	
+	left:0;	
+	width: 100%;
+	// left:50%;
+	// margin-left: 0 - (.25 * $map-width);
 	transition: top 300ms ease;
-
 }
 
 #map{
-	max-width: 100%;
+	width: 100%;
 	height:0;
 	padding-bottom:115%;
 	// background:#eee;
@@ -29,7 +49,7 @@
 
 .text-column{
 	max-width:320px;
-	margin-left: calc(50% - 220px);
+	// margin-left: calc(50% - 220px);
 
 }
 
@@ -40,10 +60,10 @@
 	transition: opacity 200ms ease;
 
 	&__blurb{
-		@include serif-text(30px, 1.4em, normal);
+		@include serif-text(15px, 1.4em, normal);
 		@include display_type('serif');
 		margin:0;
-		max-width:320px;
+		z-index: 100;
 	}
 	
 	&:last-child{
@@ -66,31 +86,76 @@
 	}
 }
 
-body[data-fixed-map='true']{
-	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
-	.map-wrapper{
-		position:fixed;
-		top:$nav_height + 10px ;
-		bottom:auto;
-		transition: top 300ms ease;
-	}
-
-	.text__blurb{
-		position:fixed;
-		top:250px;
-	}
-}
 
 
 @media all and (min-width: $tablet-min-width){
+	// 450px+
 
 }
 
 @media all and (min-width:#{$map-width}){
 	// When the screen is wider than the map.
-	#map{ width: $map-width; }
+	#map{
+		width: $map-width; 
+	}
+	
+	.text__blurb{
+		font-size:25px;
+	    max-width: 250px;
+	    padding: 0;
+	}
+
+	body[data-fixed-map='true']{
+		// When the map is sticky
+		.map-wrapper{
+			position:fixed;
+			top:$nav_height + 10px ;
+			bottom:auto;
+			left:auto;
+			right:0;
+			// transition: top 300ms ease;
+			margin-left: 0
+		}
+		
+		.text-column{
+			margin-left: 20px;
+		}
+
+		.text__blurb{
+			// Try to keep these pinned to the bottom of the map on mobile
+			top:250px;
+		}
+	}
+	
 }
 
 @media all and (min-width: $desktop-min-width){
+	// 850px+
+
+	.text__blurb{
+		// Display size bump
+		font-size:30px;
+		// Give the text more room to breathe
+		max-width: 320px;
+
+	}
+
+	body[data-fixed-map='true']{
+		// When the map is sticky
+		
+		.map-wrapper{
+			// Move map from far right to a quasi-centered placement.
+			top:$nav_height + 10px ;
+			bottom:auto;
+			left:50%;
+			right:auto;
+			margin-left: 0 - (.25 * $map-width);
+		}
+		
+		.text-column{
+			// TODO: Not sure this matters
+			margin-left: calc(50% - 220px);
+		}
+	}
 }
 	

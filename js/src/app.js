@@ -22,7 +22,7 @@ function removeSpinner(id){
 let didScroll = false;
 
 // Capture the dimenstions of the map. We continually will reference this to determine whether the header is in view or not
-const mapBox = document.querySelector('#day1-header .map-wrapper').getBoundingClientRect();
+const mapBox = document.querySelector('#day1-header-display .map-wrapper').getBoundingClientRect();
 
 window.onscroll = doThisStuffOnScroll;
 function doThisStuffOnScroll() { didScroll = true; }
@@ -30,7 +30,7 @@ function doThisStuffOnScroll() { didScroll = true; }
 setInterval(function() {
     if(didScroll) {
         didScroll = false;
-        const   header = document.querySelector('#day1-header'),
+        const   header = document.querySelector('#day1-header-display'),
                 headerBox = header.getBoundingClientRect();
 
         // console.log(mapBox.bottom, headerBox.bottom, mapBox.bottom >= headerBox.bottom );
