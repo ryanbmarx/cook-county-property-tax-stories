@@ -14,6 +14,7 @@ $nav_height: 51px;
 $narrow-river-max-width: 650px;
 $map-width: 600px;
 
+$header-bg-color:$trib-gray4;
 
 
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
@@ -51,104 +52,116 @@ $map-width: 600px;
 @import 'social-menu';
 @import 'credits';
 @import 'graphic-embed';
+@import 'day1_header';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
-#day1-header{
-	@include clearfix();
-	width:100%;
-	min-height:calc(100vh - 51px);
-	background:#eee;
-	position:relative;
+.byline{
+	@include river_narrow();
 	margin-bottom:25px;
 }
-
-.map-wrapper{
-	max-width: $map-width;
-	position:absolute;
-	top:auto;
-	bottom:0;		
-	left:50%;
-	margin-left: 0 - $map-width;
-	transition: top 300ms ease;
-
-
-	// &--fixed{
-	// 	position:fixed;
-	// 	top:$nav_height + 10px ;
-	// 	bottom:auto;
-	// 	transition: top 300ms ease;
-	// }
+.byline-name{
+	@include serif-text(18px, 1.3em, normal);
+	margin:0;
+}
+.byline-publisher{
+	@include sans-serif();
+	margin: 0 0 15px 0;
+}
+.byline-publish-date{
+	@include agate();
+	text-transform: uppercase;
+	display:block;
+	margin:0;
 }
 
-#map{
-	max-width: 100%;
-	height:0;
-	padding-bottom:115%;
-	// background:#eee;
-}
 
-.text-column{
-	display:none;
-	max-width:320px;
-	margin-left: calc(50% + 25px);
 
-}
+// #day1-header-display{
+// 	@include clearfix();
+// 	width:100%;
+// 	min-height:calc(100vh - 51px);
+// 	background:$header-bg-color;
+// 	position:relative;
+// 	margin-bottom:25px;
+//     border-bottom: 45px solid $header-bg-color;
+// }
 
-.text{
-	// border:1px solid black;
-	height:100vh;
-	opacity:0; 
-	transition: opacity 200ms ease;
+// .map-wrapper{
+// 	max-width: $map-width;
+// 	position:absolute;
+// 	top:auto;
+// 	bottom:0;		
+// 	left:50%;
+// 	margin-left: 0 - (.25 * $map-width);
+// 	transition: top 300ms ease;
 
-	&__blurb{
-		@include serif-text(30px, 1.4em, normal);
-		@include display_type('serif');
-		margin:0;
-		max-width:320px;
-	}
+// }
+
+// #map{
+// 	max-width: 100%;
+// 	height:0;
+// 	padding-bottom:115%;
+// 	// background:#eee;
+// }
+
+// .text-column{
+// 	max-width:320px;
+// 	margin-left: calc(50% - 220px);
+
+// }
+
+// .text{
+// 	// border:1px solid black;
+// 	height:100vh;
+// 	opacity:0; 
+// 	transition: opacity 200ms ease;
+
+// 	&__blurb{
+// 		@include serif-text(30px, 1.4em, normal);
+// 		@include display_type('serif');
+// 		margin:0;
+// 		max-width:320px;
+// 	}
 	
-	&:last-child{
-		height:150vh;
-	}
-}
-.text--visible{ 
-	opacity:1; 
-	transition: opacity 700ms ease;
-}
+// 	&:last-child{
+// 		height:150vh;
+// 	}
+// }
+// .text--visible{ 
+// 	opacity:1; 
+// 	transition: opacity 700ms ease;
+// }
 
-// SVG stuff
-.tract{
-	fill:white;
-	&.tract--highlight{
-		&.tract--over{ fill:$trib-red2; }
-		&.tract--under{ fill:$trib-blue2; }
-		&.tract--equal{ fill:black; }
-		&.tract--none{}
-	}
-}
+// // SVG stuff
+// .tract{
+// 	fill:white;
+// 	&.tract--highlight{
+// 		&.tract--over{ fill:$trib-red2; }
+// 		&.tract--under{ fill:$trib-blue2; }
+// 		&.tract--equal{ fill:black; }
+// 		&.tract--none{}
+// 	}
+// }
 
-body[data-fixed-map='true']{
-	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
-	.map-wrapper{
-		position:fixed;
-		top:$nav_height + 10px ;
-		bottom:auto;
-		transition: top 300ms ease;
-	}
+// body[data-fixed-map='true']{
+// 	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
+// 	.map-wrapper{
+// 		position:fixed;
+// 		top:$nav_height + 10px ;
+// 		bottom:auto;
+// 		transition: top 300ms ease;
+// 	}
 
-	.text__blurb{
-		position:fixed;
-		top:15vh;
-	}
-}
+// 	.text__blurb{
+// 		position:fixed;
+// 		top:250px;
+// 	}
+// }
 
 // Basic scaffolding for the story
 .river--narrow{
-	max-width: $narrow-river-max-width;
-	margin: 0 auto;
-	// background: #f0f0f0;
-	// padding: 0 20px;
+	@include river_narrow();
 }
 
 @media all and (min-width: $tablet-min-width){
@@ -156,10 +169,9 @@ body[data-fixed-map='true']{
 }
 
 @media all and (min-width:#{$map-width}){
-	#map{
-
-		width: $map-width;
-	}
+	// #map{
+	// 	width: $map-width;
+	// }
 }
 
 @media all and (min-width: $desktop-min-width){

@@ -1,0 +1,96 @@
+
+#day1-header-display{
+	@include clearfix();
+	width:100%;
+	min-height:calc(100vh - 51px);
+	background:$header-bg-color;
+	position:relative;
+	margin-bottom:25px;
+    border-bottom: 45px solid $header-bg-color;
+}
+
+.map-wrapper{
+	max-width: $map-width;
+	position:absolute;
+	top:auto;
+	bottom:0;		
+	left:50%;
+	margin-left: 0 - (.25 * $map-width);
+	transition: top 300ms ease;
+
+}
+
+#map{
+	max-width: 100%;
+	height:0;
+	padding-bottom:115%;
+	// background:#eee;
+}
+
+.text-column{
+	max-width:320px;
+	margin-left: calc(50% - 220px);
+
+}
+
+.text{
+	// border:1px solid black;
+	height:100vh;
+	opacity:0; 
+	transition: opacity 200ms ease;
+
+	&__blurb{
+		@include serif-text(30px, 1.4em, normal);
+		@include display_type('serif');
+		margin:0;
+		max-width:320px;
+	}
+	
+	&:last-child{
+		height:150vh;
+	}
+}
+.text--visible{ 
+	opacity:1; 
+	transition: opacity 700ms ease;
+}
+
+// SVG stuff
+.tract{
+	fill:white;
+	&.tract--highlight{
+		&.tract--over{ fill:$trib-red2; }
+		&.tract--under{ fill:$trib-blue2; }
+		&.tract--equal{ fill:black; }
+		&.tract--none{}
+	}
+}
+
+body[data-fixed-map='true']{
+	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
+	.map-wrapper{
+		position:fixed;
+		top:$nav_height + 10px ;
+		bottom:auto;
+		transition: top 300ms ease;
+	}
+
+	.text__blurb{
+		position:fixed;
+		top:250px;
+	}
+}
+
+
+@media all and (min-width: $tablet-min-width){
+
+}
+
+@media all and (min-width:#{$map-width}){
+	// When the screen is wider than the map.
+	#map{ width: $map-width; }
+}
+
+@media all and (min-width: $desktop-min-width){
+}
+	

@@ -31,6 +31,12 @@
 
 {% block nav %}{% include '_nav.html' %}{% endblock nav %}
 
+{% block bodyattrs %}
+    {{ super() }}
+    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
+    data-fixed-map=true
+{% endblock bodyattrs %}
+
 {% block content %}
 
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
@@ -53,14 +59,13 @@
                 </p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-                <div class='chart'>
-
+{#                 <div class='chart'>
                     <div id='fairness' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property-tax-assessments-map/index.html'></div>
                                  <div class='chart__spinner'>
                         <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                         <span class="sr-only">Loading...</span>
                     </div>
-                </div>
+                </div> #}
                 {{ lorem|markdown }}
                 {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
                 {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}

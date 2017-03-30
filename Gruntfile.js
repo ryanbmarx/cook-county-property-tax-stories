@@ -8,7 +8,10 @@ module.exports = function(grunt) {
   var VENDOR_LIBRARIES = [
     'jquery',
     'pym.js',
-    'in-view'
+    'in-view',
+    'd3',
+    'd3-pre',
+    'd3-queue'
   ];
 
   config.browserify = {
