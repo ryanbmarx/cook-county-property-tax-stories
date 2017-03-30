@@ -4,6 +4,29 @@
 Tarbell project configuration
 """
 
+from flask import Blueprint, g
+import datetime
+import xlrd.xldate
+
+blueprint = Blueprint('property-taxes-cook-county', __name__)
+
+@blueprint.app_template_filter('xldate_to_datetime')
+def xldate_to_datetime(xldate):
+    if isinstance(xldate, unicode):
+        retval = datetime.datetime.strptime(xldate, '%m/%d/%Y')
+    else:
+        retval = xlrd.xldate.xldate_as_datetime(xldate, 0)
+    return retval
+
+@blueprint.app_template_filter('format_date')
+def format_vote_date(date_to_format, format):
+    return date_to_format.strftime(format)
+
+@blueprint.app_template_filter('strip_whitespace')
+def strip_whitespace(text):
+    return text.replace(" ", "").replace(".","")
+
+
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
 

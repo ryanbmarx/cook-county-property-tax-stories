@@ -1,7 +1,50 @@
-<section class='story-header story-header--day1'>
+{# <section class='story-header story-header--day1'>
 	{% include "_social_row.html" %}
 	<h1 class='story-header__headline' itemprop="headline">Lorem ipsum dolor sit amet,</h1>
 	<h2 class='story-header__subheadline'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique sequi suscipit, aut aliquam soluta totameniam!</h2>
 	<i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
 
+</section> #}
+
+<section id='day1-header'>
+	<div id='day1-header-display'>
+		<div class='text-column'>
+			{%- for blurb in day1_header_blurbs|sort(attribute='order') if blurb.publish == 1  -%}
+				{% if blurb.tract_highlight %}
+					{% set highlight = "data-tract-highlight=" ~ blurb.tract_highlight  %}
+				{% else  %}
+					{% set highlight = "" %}
+				{% endif %}
+				<div class='text' {{ highlight }}>
+					<p class='text__blurb'><strong>({{ loop.index }})</strong> {{ blurb.blurb }}</p>
+				</div>
+			{%- endfor -%}
+		</div>
+		<div class='map-wrapper map-wrapper--fixed'>
+			<div id='map'></div>
+		</div>
+	</div>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-xs-12'>
+				{# <h1>{{ headlines.part1.headline|process_text() }}</h1> #}
+				<h1>{{ part1_headline|process_text() }}</h1>
+				<h2>{{ part1_dek|process_text() }}</h2>
+				
+<div class='byline'>
+	<p class='byline-name'><a itemprop="author" href="mailto:jgrotto@chicagotribune.com?subject=Regarding: {{ overall_project_title }}">Jason Grotto</a></p>
+	<p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
+	<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime }}</time>
+</div>
+
+
+			</div>
+		</div>
+	</div>
+
 </section>
+
+
+
+
+

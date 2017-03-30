@@ -21,7 +21,7 @@ p{
 
 h1{
 	// Should only be used once per page and only should be used as the main, hammerheadline
-	@include serif-text(90px, .9em, bold);
+	@include serif-text(50px, .9em, 700);
 	@include display_type('serif');
 	text-transform:uppercase;
 
@@ -29,8 +29,8 @@ h1{
 
 h2{
 	// Should only be used once per page and only should be used as the dek/subheadline
-	@include serif-text(45px, 1.3em, normal);
-			@include display_type('serif');
+	@include serif-text(20px, 1.3em, normal);
+	@include display_type('serif');
 
 }
 
