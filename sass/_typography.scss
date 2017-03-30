@@ -19,6 +19,28 @@ p{
     line-height: 3.3rem;
 }
 
+h1{
+	// Should only be used once per page and only should be used as the main, hammerheadline
+	@include serif-text(90px, .9em, bold);
+	@include display_type('serif');
+	text-transform:uppercase;
+
+}
+
+h2{
+	// Should only be used once per page and only should be used as the dek/subheadline
+	@include serif-text(45px, 1.3em, normal);
+			@include display_type('serif');
+
+}
+
+h3{
+	// These are story breakers and should remain the top-level header inside a story.
+	@include serif-text(30px, 1.3em, bold);
+			@include display_type('serif');
+
+	margin: 0 0 25px 0;
+}
 
 @media all and (min-width: $tablet-min-width){
 	p{
