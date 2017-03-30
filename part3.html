@@ -4,9 +4,8 @@
 {% block story %}
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
         <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
-
+{% include '_subtemplates/part3/_header-part3.html' %}
         <div class="advert top-ad" data-ad-type="leaderboard"></div>
-        {% include '_subtemplates/part1/_header-part1.html' %}
         <div class="container">
                 <div class="col-md-12">
                     <div class='river--narrow' itemprop="articleBody">
@@ -33,15 +32,17 @@
         </div>
 
         <div class="container">
-                <figure class='image'>
-                            <img src='http://www.trbimg.com/img-56042848/turbine/ct-chicago-tribune-sues-rahm-emanuel-met-20150924' alt='dd'/>
-                            <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                            </figcaption>
-                        </figure>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class='river--narrow'>
+                                <div class='chart'>     
+                <div id='assessment-levels' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/assessment-levels.html'></div>
+                <div class='chart__spinner'>
+                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
                         {{ lorem|markdown }}
                         <figure class='image'>
                             <img src='http://www.trbimg.com/img-585dab02/turbine/ct-rahm-emanuel-emails-tribune-dold-met-20161223' alt='dd'/>
@@ -52,7 +53,7 @@
                         {{ lorem|markdown }}
                         <div class='chart'>
                                   
-                            <div id='regressivity-by-year' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/regressivity-by-year.html'></div>
+                            <div id='appeals' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
                                          <div class='chart__spinner'>
                                 <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                                 <span class="sr-only">Loading...</span>
@@ -60,7 +61,14 @@
                         </div>
                         {{ lorem|markdown }}
                         {{ lorem|markdown }}
+                        <div class='chart chart--force-right'>
 
+                            <div id='demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
+                                         <div class='chart__spinner'>
+                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
                         {{ lorem|markdown }}
                             <figure class='image image--force-right'>
                             <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>
