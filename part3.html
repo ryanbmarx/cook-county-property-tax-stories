@@ -5,7 +5,7 @@
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
         <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
 {% include '_subtemplates/part3/_header-part3.html' %}
-        <div class="advert top-ad" data-ad-type="leaderboard"></div>
+        {# <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
         <div class="container">
                 <div class="col-md-12">
                     <div class='river--narrow' itemprop="articleBody">
@@ -14,14 +14,8 @@
                         </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-        {#                 <div class='chart'>
-                            <div id='fairness' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property-tax-assessments-map/index.html'></div>
-                                         <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div> #}
-                        <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
+
+                        {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div> #}
                         {{ lorem|markdown }}
                         {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
                         {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
@@ -36,13 +30,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class='river--narrow'>
-                                <div class='chart'>     
-                <div id='assessment-levels' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/assessment-levels.html'></div>
-                <div class='chart__spinner'>
-                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
+                    <h3>Ass. levels</h3>
+                    {{ add_chart('assessment-levels', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/assessment-levels.html') }}
                         {{ lorem|markdown }}
                         <figure class='image'>
                             <img src='http://www.trbimg.com/img-585dab02/turbine/ct-rahm-emanuel-emails-tribune-dold-met-20161223' alt='dd'/>
@@ -51,24 +40,14 @@
                             </figcaption>
                         </figure>
                         {{ lorem|markdown }}
-                        <div class='chart'>
-                                  
-                            <div id='appeals' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
-                                         <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                        {{ lorem|markdown }}
-                        {{ lorem|markdown }}
-                        <div class='chart chart--force-right'>
+                        <h3>appeals</h3>
+                        {{ add_chart('appeals', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html') }}
 
-                            <div id='demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
-                                         <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        {{ lorem|markdown }}
+                        {{ lorem|markdown }}
+                        <h3>demographcis</h3>
+                        {{ add_chart('demographics', 'chart--right', 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html') }}
+
                         {{ lorem|markdown }}
                             <figure class='image image--force-right'>
                             <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>

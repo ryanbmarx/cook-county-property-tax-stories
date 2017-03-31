@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
     'jquery',
-    'pym.js',
+    // 'pym.js',
     'in-view',
     'd3',
     'd3-pre',

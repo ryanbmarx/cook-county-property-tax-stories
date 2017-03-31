@@ -11,35 +11,20 @@
                         <p>
                             <span class='text--exploded'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
                         </p>
-                        <div class='chart'>     
-                            <div id='appeals-demographics' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html'></div>
-                            <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+
+                        {{ add_chart('appeals-demographics', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html') }}
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-        {#                 <div class='chart'>
-                            <div id='fairness' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property-tax-assessments-map/index.html'></div>
-                                         <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div> #}
-                        <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
+                        {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div> #}
                         {{ lorem|markdown }}
+
                         {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
                         {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
+                        
                         {{ lorem|markdown }}
-                        <div class='chart'>     
-                            <div id='appeals-map' class='graphic-embed' data-iframe-url='http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html'></div>
-                            <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        {{ add_chart('appeals-map', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsmap.html') }}
+
                     </div>
                 </div>
             </div>
@@ -63,22 +48,12 @@
                             </figcaption>
                         </figure>
                         {{ lorem|markdown }}
-                        <div class='chart'>     
-                            <div id='appeals-post-appeal' class='graphic-embed' data-iframe-url=' http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appeals-post-appeal.html'></div>
-                            <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        {{ add_chart('appeals-post-appeal', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appeals-post-appeal.html') }}
+
                         {{ lorem|markdown }}
                         {{ lorem|markdown }}
-                        <div class='chart'>
-                            <div id='appeals-by-year' class='graphic-embed' data-iframe-url=' http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appeals-by-year.html'></div>
-                             <div class='chart__spinner'>
-                                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        {{ add_chart('appeals-by-year', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appeals-by-year.html') }}
+
                         {{ lorem|markdown }}
                             <figure class='image image--force-right'>
                             <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>
