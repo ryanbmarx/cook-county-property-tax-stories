@@ -21,13 +21,13 @@ $chart-margin:25px;
 
 
 @media all and (min-width: $tablet-min-width){
-	.chart--force-right{
+	.chart--right{
 		width: 280px;
 		float: right;
 		margin: $chart-margin 0 $chart-margin $chart-margin;
 	}
 
-	.image--force-right{
+	.image--right{
 		max-width: 350px;
 		float: right;
 		margin: $chart-margin 0 $chart-margin $chart-margin;
