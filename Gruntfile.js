@@ -42,6 +42,27 @@ module.exports = function(grunt) {
           ]
         ]
       }
+    },
+    day1header: {
+      src: ['js/src/day1header.js'],
+      dest: 'js/day1header.min.js',
+      options: {
+        plugin: [
+          [
+            'minifyify', {
+              map: 'day1header.min.js.map',
+              output: './js/day1header.min.js.map'
+            }
+          ]
+        ],
+        transform: [
+          [
+            'babelify', {
+              presets: ['es2015']
+            }
+          ]
+        ]
+      }
     }
   };
 
@@ -87,7 +108,7 @@ module.exports = function(grunt) {
     },
     js: {
       files: ['js/src/**/*.js'],
-      tasks: ['browserify:app']
+      tasks: ['browserify:day1header', 'browserify:app']
     }
   };
 
