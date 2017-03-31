@@ -7,6 +7,7 @@ Tarbell project configuration
 from flask import Blueprint, g
 import datetime
 import xlrd.xldate
+import random
 
 blueprint = Blueprint('property-taxes-cook-county', __name__)
 
@@ -22,10 +23,19 @@ def xldate_to_datetime(xldate):
 def format_vote_date(date_to_format, format):
     return date_to_format.strftime(format)
 
-@blueprint.app_template_filter('strip_whitespace')
-def strip_whitespace(text):
-    return text.replace(" ", "").replace(".","")
+@blueprint.app_template_filter('get_video_ref')
+def get_video_ref(url):
+    """
+    plucks a needed reference # from the video url
+    """
+    retval = url.split("/")
+    ref_index = retval.index("videogallery") + 1
+    return retval[ref_index]
 
+@blueprint.app_template_filter('generate_id')
+def generate_id(number):
+    rando = random.random()
+    return "myExperience {}".format(rando)
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"

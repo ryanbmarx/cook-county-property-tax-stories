@@ -44,6 +44,46 @@
     </div>
 {% endmacro %}
 
+{% macro add_video(id, link_base_url, addon_class="") %}
+
+    {% if addon_class %}
+        {% set class = addon_class %}
+    {% else %}
+        {% set class = "" %}
+    {% endif %}
+    {# Randomstring for an id. #}
+    {% set id = id|generate_id %}
+    {% set video_player_ref = link_base_url|get_video_ref %}
+    
+    <div class='video {{ class }}'>
+        <object id='{{ id }}' class='BrightcoveExperience'>
+          <param name='bgcolor' value='#FFFFFF' />
+          <param name='wmode' value='transparent' />
+          <param name='autoStart' value='false' />
+          <param name='sectionName' value ='/news/watchdog' />
+          <param name='contentItemType' value ='embed' />
+          <param name='omnitureServer' value='' />
+          <param name='omnitureAcct' value='' />
+          {# <param name='width' value='500' /> #}
+          {# <param name='height' value='300' /> #}
+          <param name='playerID' value='3688749019001' />
+          <param name='playerKey' value='AQ~~,AAADW0fLtgE~,MIfKkt0NgAvSglhcwVIGmENcE3304kfQ' />
+          <param name='adServerURL' value='' />
+          <param name='additionalAdTargetingParams' value='' />
+          <param name='externalAds' value='true' />
+          <param name='linkBaseURL' value='{{ link_base_url }}' />
+          <param name='isVid' value='true' />
+          <param name='isUI' value='true' />
+          <param name='dynamicStreaming' value='true' />
+          <param name='showNoContentMessage' value='true' />
+          <param name='secureConnections' value='true' />
+          <param name='secureHTMLConnections' value='true' />
+          <param name='@videoPlayer' value='ref:{{ video_player_ref }}' />
+        </object>
+    </div>
+{% endmacro %}
+
+
 {% block nav %}{% include '_nav.html' %}{% endblock nav %}
 
 {% block bodyattrs %}
@@ -83,6 +123,7 @@
 
 {% block scripts %}
     <script src="js/app.min.js"></script>
+    <script type='text/javascript'>brightcove.createExperiences();</script>
 {% endblock scripts %}
 
 {% block chartbeat %}
@@ -106,6 +147,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
   <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+  <script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
   {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
   {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
   {% endblock %}
