@@ -31,11 +31,11 @@
 
         <div class="container">
                 <figure class='image'>
-                            <img src='http://www.trbimg.com/img-56042848/turbine/ct-chicago-tribune-sues-rahm-emanuel-met-20150924' alt='dd'/>
-                            <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                            </figcaption>
-                        </figure>
+                    <img src='http://www.trbimg.com/img-56042848/turbine/ct-chicago-tribune-sues-rahm-emanuel-met-20150924' alt='dd'/>
+                    <figcaption>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
+                    </figcaption>
+                </figure>
             <div class="row">
                 <div class="col-md-12">
                     <div class='river--narrow'>
@@ -64,5 +64,10 @@
                 </div>
             </div>
         </div>
-        <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
+
 {% endblock %}
