@@ -3,8 +3,8 @@ import getTribColors from'./getTribColors.js';
 var queue = require('d3-queue').queue;
 
 // https://github.com/fivethirtyeight/d3-pre
-var Prerender = require('d3-pre');
-var prerender = Prerender(d3);
+import Prerender from 'd3-pre';
+const  prerender = Prerender(d3);
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
