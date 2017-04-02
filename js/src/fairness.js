@@ -11,7 +11,7 @@ const  prerender = Prerender(d3);
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
-function mapScale(ratio){
+function valueMapScale(ratio){
 	// This is a super-simple custom scale. If the value is greater than 1, return a color. If it
 	// is less than 1, return a different color. If it is one, return white, or at least a very light grey;
 
@@ -27,6 +27,14 @@ function mapScale(ratio){
 		return 'black';
 	}
 	return 'yellow';
+}
+
+function valueMapAbove1(ratio){
+	return ratio > 1 ? getTribColors('trib-red2') : '#EFEFEF';
+}
+
+function valueMapBelow1(ratio){
+	return ratio < 1 ? getTribColors('trib-blue4') : '#EFEFEF';
 }
 
 class CookCountyMap{
@@ -50,16 +58,23 @@ class CookCountyMap{
 		 ];
 
  		const mapDataQueue = queue();
-
 		app.mapLayers.forEach(layer => {
 			mapDataQueue.defer(d3.json,layer.url);
 		});
 
 		mapDataQueue.awaitAll(app.drawMap.bind(app));
+
+		// Generate a scale for the effective tax rate.
+		const erateExtent = d3.extent(app.data.features, d => d.properties.mean);
+		console.log(erateExtent);
+		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
+		app.erateScale = d3.scaleQuantize()
+			.domain(erateExtent)
+			.range(erateColorRamp);
+
 	}
 
 	drawMap(){
-		// console.log(prerender);
 		prerender.start();
 
 		const 	app = this;
@@ -93,27 +108,69 @@ class CookCountyMap{
 			.scale(s)
 			.translate(t);
 
+/*
+// Get hold of your container
+var container = d3.select('#example');
+
+// Get hold of all the existing list items within the container
+var children = d3.selectAll('li');
+
+// Create a one-on-one mapping of the node with the data array.
+var updateSelection = children.data(multiples);
+*/
 		// Create a container for the tract data
 		const tracts = svg.append('g')
-			.classed('tracts', true);
+			.classed('tracts', true)
+			.selectAll('.tracts')
+			.data( app.data.features, d => d.properties.ratio1);
 
-		tracts.selectAll( "path" )
-				.data( app.data.features )
-			.enter()
-				.append( "path" )
-					.attr('data-name', d => d.properties.NAME10)
-					.attr('class', d => {
-						const ratio = d.properties.ratio1;
-						if (ratio > 1){
-							return 'tract tract--over';
-						} else if (ratio < 1 ){
-							return 'tract tract--under';
-						} else if (ratio == 1){
-							return 'tract tract--equal';
-						}
-						return 'tract tract--none';
-					})
-					.attr( "d", geoPath);
+		tracts.enter()
+			.append( "path" )
+				.attr('data-name', d => d.properties.NAME10)
+				.attr('data-erate', d => d.mean)
+				.attr('class', 'tract')
+				.attr( "d", geoPath)
+				.attr('fill', '#efefef')
+	}
+
+	highlightTracts(attribute, value){
+		const app = this;
+		// This method highlights specific tracts based on input. It's not super extensible. It's
+		// mostly a bespoke piece of code JUST for this project.
+		console.log(attribute, value);
+
+		const tracts = d3.selectAll('.tract')
+			.data(app.data.features, d => d['properties'][attribute])
+
+		if (attribute == 'ratio1') {			
+			// Depending on the value passed in, highlight the necessary tracts
+			if (value == 'under1') {
+				tracts
+					.transition()
+					.duration(app.options.transitionDuration)
+					.style('fill', d => valueMapBelow1(d.properties.ratio1));
+			} else if (value == 'over1') {
+				tracts
+					.transition()
+					.duration(app.options.transitionDuration)
+					.style('fill', d => valueMapAbove1(d.properties.ratio1));
+			} else if (value == 'all') {
+				tracts
+					.transition()
+					.duration(app.options.transitionDuration)
+					.style('fill', d => valueMapScale(d.properties.ratio1));
+			} else {
+				tracts
+					.transition()
+					.duration(app.options.transitionDuration)
+					.style('fill', '#EFEFEF');
+			}
+		} else if (attribute == 'erate'){
+			tracts
+				.transition()
+				.duration(app.options.transitionDuration)
+				.style('fill', d => app.erateScale(d.properties.ratio1));
+		}
 	}
 }
 

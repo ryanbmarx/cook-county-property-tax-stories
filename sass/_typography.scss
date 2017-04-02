@@ -26,14 +26,14 @@ h1{
 
 h2{
 	// Should only be used once per page and only should be used as the dek/subheadline
-	@include serif-text(20px, 1.3em, normal);
+	@include serif-text(23px, 1.3em, normal);
 	@include display_type('serif');
 
 }
 
 h3{
 	// These are story breakers and should remain the top-level header inside a story.
-	@include serif-text(30px, 1.3em, bold);
+	@include serif-text(20px, 1.3em, bold);
 	@include display_type('serif');
 
 	margin: 0 0 25px 0;
@@ -44,16 +44,24 @@ h3{
 		@include serif-text(18px, 1.5em);
 		margin: 0 0 25px 0;
 	}
-
+	
 	.text--exploded{
 	    font-size: 2.5rem;
 	    line-height: 4rem;	
 	}	
+
+	h3{
+		font-size:25px;
+	}
 }
 
 @media all and (min-width: $desktop-min-width){
 	.text--exploded{
 		font-size:2.1rem;
 	    line-height: 3.3rem;
+	}
+
+	h3{
+		font-size:30px;
 	}
 }

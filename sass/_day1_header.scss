@@ -1,12 +1,32 @@
+$day1header_max_width: 700px;
+$text_height: 100vh;
+$chart_width: ($day1header_max_width / 2) - 25px;
+$chart_height: $chart_width;
+
+
+.header-chart{
+	width:100%;
+	height: 50vh;
+	opacity:0;
+	transition: opacity 400ms ease;
+	
+	&.header-chart--visible{
+		opacity:1;
+		transition: opacity 400ms ease;
+	}
+}
 
 #day1-header-display{
 	@include clearfix();
 	width:100%;
+	max-width: $day1header_max_width;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
 	min-height:calc(100vh - 51px);
+	
 	background:$header-bg-color;
 	position:relative;
-	margin-bottom:25px;
-
     border-bottom: 45px solid $header-bg-color;// Yes, this is a hack, but padding would affect the map placement.
 }
 
@@ -47,19 +67,15 @@ body[data-fixed-map='true']{
 	// background:#eee;
 }
 
-.text-column{
-	max-width:320px;
-	// margin-left: calc(50% - 220px);
-
-}
-
 .text{
-	// border:1px solid black;
-	height:100vh;
+	// Each "text" is a single piece of scrolling text. It's height creates the scrolling.
+	border: 1px solid black;
+	height:$text_height;
 	opacity:0; 
 	transition: opacity 200ms ease;
 
 	&__blurb{
+		// The actual text within each thought. Each blurb that appears/disappears
 		@include serif-text(15px, 1.4em, normal);
 		@include display_type('serif');
 		margin:0;
@@ -77,12 +93,12 @@ body[data-fixed-map='true']{
 
 // SVG stuff
 .tract{
-	fill:white;
+	fill:rgba(white, .5);
 	&.tract--highlight{
-		&.tract--over{ fill:$trib-red2; }
-		&.tract--under{ fill:$trib-blue2; }
-		&.tract--equal{ fill:black; }
-		&.tract--none{}
+		// &.tract--over{ fill:$trib-red2; }
+		// &.tract--under{ fill:$trib-blue2; }
+		// &.tract--equal{ fill:black; }
+		// &.tract--none{}
 	}
 }
 
@@ -97,13 +113,17 @@ body[data-fixed-map='true']{
 	// When the screen is wider than the map.
 	#map{
 		width: $map-width; 
+		height: $map-width * 1.15;
+		max-height: calc(10vh - #{$nav_height});
+		overflow: hidden;
 	}
 	
 	.text__blurb{
-		font-size:25px;
+		font-size:23px;
 	    max-width: 250px;
 	    padding: 0;
 	}
+
 
 	body[data-fixed-map='true']{
 		// When the map is sticky
@@ -112,21 +132,37 @@ body[data-fixed-map='true']{
 			top:$nav_height + 10px ;
 			bottom:auto;
 			left:auto;
-			right:0;
-			// transition: top 300ms ease;
-			margin-left: 0
-		}
-		
-		.text-column{
-			margin-left: 20px;
+			right: calc(50% - #{$day1header_max_width / 2});
+			margin-left: 0;
 		}
 
 		.text__blurb{
 			// Try to keep these pinned to the bottom of the map on mobile
-			top:250px;
+			top:235px;
+			left:calc(50% - #{$day1header_max_width / 2});
+			max-width: $day1header_max_width / 2;
+		}
+
+		.text--full{
+			.text__blurb{
+				max-width: $day1header_max_width - 20px;
+				text-align:center;
+			}
 		}
 	}
 	
+
+	.header-chart{
+		width:$chart_width;
+		height: $chart_height;
+		opacity:0;
+		transition: opacity 400ms ease;
+
+		position:fixed;
+		top:calc(50% - #{$chart_height / 2});
+		left:calc(50% + 25px);
+	}
+
 }
 
 @media all and (min-width: $desktop-min-width){
@@ -143,19 +179,18 @@ body[data-fixed-map='true']{
 	body[data-fixed-map='true']{
 		// When the map is sticky
 		
-		.map-wrapper{
-			// Move map from far right to a quasi-centered placement.
-			top:$nav_height + 10px ;
-			bottom:auto;
-			left:50%;
-			right:auto;
-			margin-left: 0 - (.25 * $map-width);
-		}
+		// .map-wrapper{
+		// 	// Move map from far right to a quasi-centered placement.
+		// 	bottom:auto;
+		// 	left:50%;
+		// 	right:auto;
+		// 	margin-left: 0 - (.25 * $map-width);
+		// }
 		
-		.text-column{
-			// TODO: Not sure this matters
-			margin-left: calc(50% - 220px);
-		}
+		// .text-column{
+		// 	// TODO: Not sure this matters
+		// 	margin-left: calc(50% - 220px);
+		// }
 	}
 }
 	

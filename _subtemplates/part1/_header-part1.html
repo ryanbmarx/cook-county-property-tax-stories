@@ -1,5 +1,14 @@
+{% from '_tax-base.html' import keep_scrolling_icon as keep_scrolling_icon %}
+
 <section id='day1-header'>
 	<div id='day1-header-display'>
+		<div class='map-wrapper'>
+			<div id='map'></div>
+		</div>
+
+		<div id='income' class='header-chart'></div>
+		<div id='race' class='header-chart'></div>
+
 		<div class='text-column'>
 			{%- for blurb in day1_header_blurbs|sort(attribute='order') if blurb.publish == 1  -%}
 				{% if blurb.tract_highlight %}
@@ -7,15 +16,22 @@
 				{% else  %}
 				{% set highlight = "" %}
 				{% endif %}
-				<div class='text' {{ highlight }}>
-					<p class='text__blurb'><strong>({{ loop.index }})</strong> {{ blurb.blurb }}</p>
+				
+				{# This var will hold any classes specific to this item, set in the spreadsheet #}
+				{% set classes_to_add = "" %}
+				{% if blurb.width %}
+					{# If a different text width is desired, this is the class #}
+					{% set classes_to_add = classes_to_add + "text--" + blurb.width + " " %}
+				{% endif %}
+
+				<div id='blurb{{ blurb.order }}' class='text {{ classes_to_add }}'>
+					(#blurb{{ blurb.order }})
+					<p class='text__blurb'>(#blurb{{ blurb.order }}) {{ blurb.blurb|process_text }}</p>
 				</div>
 			{%- endfor -%}
-			<i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
 		</div>
-		<div class='map-wrapper'>
-			<div id='map'></div>
-		</div>
+
+		{{ keep_scrolling_icon() }}
 	</div>
 	<div class='container'>
 		<div class='row'>
