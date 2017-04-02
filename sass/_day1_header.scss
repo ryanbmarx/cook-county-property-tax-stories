@@ -59,7 +59,13 @@ body[data-fixed-map='true']{
 	width: 100%;
 	// left:50%;
 	// margin-left: 0 - (.25 * $map-width);
-	transition: top 300ms ease;
+	opacity:0; 
+	transition: opacity 700ms ease;
+
+	&.map-wrapper--visible{
+		opacity:1; 
+		transition: opacity 700ms ease;
+	}
 }
 
 #map{
@@ -103,19 +109,6 @@ body[data-fixed-map='true']{
 	opacity:1; 
 	transition: opacity 700ms ease;
 }
-
-// SVG stuff
-.tract{
-	// fill:rgba(white, .5);
-	&.tract--highlight{
-		// &.tract--over{ fill:$trib-red2; }
-		// &.tract--under{ fill:$trib-blue2; }
-		// &.tract--equal{ fill:black; }
-		// &.tract--none{}
-	}
-}
-
-
 
 @media all and (min-width: $tablet-min-width){
 	// 450px+

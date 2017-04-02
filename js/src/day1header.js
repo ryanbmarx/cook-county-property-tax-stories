@@ -124,7 +124,7 @@ window.onload = function(){
         xAttribute:'pctWhite',
         yAttribute:'effectiveTaxRate',
         transitionTime:150,
-        innerMargins:{top:0,right:0,bottom:40,left:60},
+        innerMargins:{top:10,right:0,bottom:40,left:60},
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
@@ -158,7 +158,7 @@ window.onload = function(){
         xAttribute:'medianIncome',
         yAttribute:'effectiveTaxRate',
         transitionTime:150,
-        innerMargins:{top:0,right:0,bottom:40,left:60},
+        innerMargins:{top:10,right:0,bottom:40,left:60},
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
@@ -225,15 +225,11 @@ window.onload = function(){
                     headerMap.highlightTracts('erate', 'whiz-bang-boom');
                 } else if (el.id == 'blurb100'){
                     // first hide the map
-                    d3.select('#map')
-                        .transition()
-                        .duration(transitionDuration)
-                        .style('opacity',0);
+                    document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
                     // Then fade in the income chart
                     document.querySelector('#race').classList.remove('header-chart--visible');
                     document.querySelector('#income').classList.add('header-chart--visible');
-
-                    
+   
                 } else if (el.id == 'blurb110'){
                     document.querySelector('#income').classList.remove('header-chart--visible');
                     document.querySelector('#race').classList.add('header-chart--visible');
