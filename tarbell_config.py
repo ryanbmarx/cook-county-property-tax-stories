@@ -41,7 +41,7 @@ def generate_id(number):
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
 
 # Exclude these files from publication
-EXCLUDES = ['*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
+EXCLUDES = ['node_scripts', '_storage','storage', '*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4
