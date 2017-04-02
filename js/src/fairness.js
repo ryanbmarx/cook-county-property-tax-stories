@@ -148,28 +148,28 @@ var updateSelection = children.data(multiples);
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.style('fill', d => valueMapBelow1(d.properties.ratio1));
+					.attr('fill', d => valueMapBelow1(d.properties.ratio1));
 			} else if (value == 'over1') {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.style('fill', d => valueMapAbove1(d.properties.ratio1));
+					.attr('fill', d => valueMapAbove1(d.properties.ratio1));
 			} else if (value == 'all') {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.style('fill', d => valueMapScale(d.properties.ratio1));
+					.attr('fill', d => valueMapScale(d.properties.ratio1));
 			} else {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.style('fill', '#EFEFEF');
+					.attr('fill', '#EFEFEF');
 			}
 		} else if (attribute == 'erate'){
 			tracts
 				.transition()
 				.duration(app.options.transitionDuration)
-				.style('fill', d => app.erateScale(d.properties.ratio1));
+				.attr('fill', d => app.erateScale(d.properties.mean));
 		}
 	}
 }
