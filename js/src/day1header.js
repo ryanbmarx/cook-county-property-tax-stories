@@ -78,12 +78,13 @@ const incomeData =  [
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
+
 // We'll use a variable to trigger our scroll events and use a setInterval to periodically check for scroll movement
 // This protexts page performance.
 let didScroll = false;
 
 // Capture the dimenstions of the map. We continually will reference this to determine whether the header is in view or not
-const mapBox = document.querySelector('#day1-header-display .map-wrapper').getBoundingClientRect();
+const lastBox = document.querySelector('#race').getBoundingClientRect();
 
 window.onscroll = doThisStuffOnScroll;
 function doThisStuffOnScroll() { didScroll = true; }
@@ -96,16 +97,16 @@ setInterval(function() {
 
         // console.log(mapBox.bottom, headerBox.bottom, mapBox.bottom >= headerBox.bottom );
 
-        if (mapBox.bottom >= headerBox.bottom) {
+        if (lastBox.bottom >= headerBox.bottom) {
             // If the header has scrolled to the bottom of the map, make the map not sticky by toggling
             // the data-* attribute on the <body>
 
-            // console.log('>>>>>>> make not stick');
+            console.log('>>>>>>> make not stick');
             document.querySelector('body').dataset.fixedMap = false;
          
         } else {
             // If the user has scrolled back up, then make the map fixed again.
-            // console.log('>>>>>>> make stick');
+            console.log('>>>>>>> make stick');
             document.querySelector('body').dataset.fixedMap = true;
         }
 
@@ -233,8 +234,10 @@ window.onload = function(){
                 } else if (el.id == 'blurb110'){
                     document.querySelector('#income').classList.remove('header-chart--visible');
                     document.querySelector('#race').classList.add('header-chart--visible');
-                } else if (el.id == 'blurb120'){
-                    console.log('hiding everything')
+                } else if (el.classList.contains('text--last')){
+                    document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+                    // document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+
                 }
             })
     })
