@@ -2,7 +2,8 @@ $day1header_max_width: 700px;
 $text_height: 100vh;
 $chart_width: ($day1header_max_width / 2) - 25px;
 $chart_height: $chart_width;
-
+$undervalued_color:$trib-blue2;
+$overvalued_color:$trib-red2;
 
 .header-chart{
 	width:100%;
@@ -44,6 +45,7 @@ body[data-fixed-map='true']{
 		position:fixed;
 	    top: 75%;
 	    padding: 10px;
+
 	}
 }
 
@@ -80,9 +82,20 @@ body[data-fixed-map='true']{
 		@include display_type('serif');
 		margin:0;
 		z-index: 100;
+			// Make sure the bold is bold enough in the display font.
+	    strong{
+	    	display: inline-block;
+	    	font-weight: 700;
+	    	&.undervalued{
+	    		color:$undervalued_color;
+	    	}
+	    	&.overvalued{
+	    		color:$overvalued_color;
+	    	}
+	    }
 	}
 	
-	&:last-child{
+	&:last-child, &:first-child{
 		height:150vh;
 	}
 }
@@ -93,7 +106,7 @@ body[data-fixed-map='true']{
 
 // SVG stuff
 .tract{
-	fill:rgba(white, .5);
+	// fill:rgba(white, .5);
 	&.tract--highlight{
 		// &.tract--over{ fill:$trib-red2; }
 		// &.tract--under{ fill:$trib-blue2; }
@@ -114,8 +127,11 @@ body[data-fixed-map='true']{
 	#map{
 		width: $map-width; 
 		height: $map-width * 1.15;
-		max-height: calc(10vh - #{$nav_height});
+		max-height: calc(100vh - #{$nav_height} - 15px);// Give it a little space below
+		// max-height: 100px;
+		// background:yellow;
 		overflow: hidden;
+		padding:0;
 	}
 	
 	.text__blurb{
@@ -141,6 +157,12 @@ body[data-fixed-map='true']{
 			top:235px;
 			left:calc(50% - #{$day1header_max_width / 2});
 			max-width: $day1header_max_width / 2;
+		}
+		#blurb120, #blurb110,#blurb100{
+			// These two blurbs need a little nudge up
+			.text__blurb{
+				top:150px;
+			}
 		}
 
 		.text--full{
@@ -170,7 +192,7 @@ body[data-fixed-map='true']{
 
 	.text__blurb{
 		// Display size bump
-		font-size:30px;
+		font-size:27px;
 		// Give the text more room to breathe
 		max-width: 320px;
 
