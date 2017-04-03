@@ -95,18 +95,15 @@ setInterval(function() {
         const   header = document.querySelector('#day1-header-display'),
                 headerBox = header.getBoundingClientRect();
 
-        // console.log(mapBox.bottom, headerBox.bottom, mapBox.bottom >= headerBox.bottom );
 
         if (lastBox.bottom >= headerBox.bottom) {
             // If the header has scrolled to the bottom of the map, make the map not sticky by toggling
             // the data-* attribute on the <body>
 
-            console.log('>>>>>>> make not stick');
             document.querySelector('body').dataset.fixedMap = false;
          
         } else {
             // If the user has scrolled back up, then make the map fixed again.
-            console.log('>>>>>>> make stick');
             document.querySelector('body').dataset.fixedMap = true;
         }
 
@@ -190,7 +187,7 @@ window.onload = function(){
 
 
     d3.json(`data/data.geojson`, (err, data) =>{
-        console.log(data);
+        // console.log(data);
         const transitionDuration = 400;
         const headerMap = new CookCountyMap({
             mapContainer: d3.select('#map'),
@@ -209,10 +206,7 @@ window.onload = function(){
 
                 // Now here are a list of specific code blocks for specific text blocks, identified by the 
                 // text block's id.
-                if (el.id == 'blurb20'){
-                    // console.log('EEEEEEEEE-RATE!');
-                    // headerMap.highlightTracts('erate', 'whiz-bang-boom');
-                } else if (el.id == 'blurb30'){
+                if (el.id == 'blurb30'){
                     headerMap.highlightTracts('ratio1', 'none');
                 } else if (el.id == 'blurb40'){
                     headerMap.highlightTracts('ratio1', 'over1');
@@ -221,7 +215,6 @@ window.onload = function(){
                 } else if (el.id == 'blurb60'){
                     headerMap.highlightTracts('ratio1', 'all');
                 } else if (el.id == 'blurb70'){
-                    console.log('showing erate map')
                     // TODO Fix this render
                     headerMap.highlightTracts('erate', 'whiz-bang-boom');
                 } else if (el.id == 'blurb100'){

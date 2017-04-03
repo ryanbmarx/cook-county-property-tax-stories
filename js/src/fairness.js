@@ -49,11 +49,11 @@ class CookCountyMap{
 		 app.mapLayers =[
 		 	{
 		 		id:'chicago',
-		 		url: '/data/chicago.geojson'
+		 		url: `http://${window.ROOT_URL}/data/chicago-boundary.geojson`
 		 	},
 		 	{
 		 		id:'cook',
-		 		url: '/data/cook-county.geojson'
+		 		url: `http://${window.ROOT_URL}/data/cook-county.geojson`
 		 	}
 		 ];
 
@@ -66,7 +66,6 @@ class CookCountyMap{
 
 		// Generate a scale for the effective tax rate.
 		const erateExtent = d3.extent(app.data.features, d => d.properties.mean);
-		console.log(erateExtent);
 		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
 		app.erateScale = d3.scaleQuantize()
 			.domain(erateExtent)
@@ -74,14 +73,20 @@ class CookCountyMap{
 
 	}
 
-	drawMap(){
+	drawMap(error){
+
 		prerender.start();
 
 		const 	app = this;
 		const 	containerBox = app.mapContainer.node().getBoundingClientRect(),
 				width = containerBox.width,
 				height = containerBox.height;
-		
+
+		// Insert our extra map layers/add-ons into the array 
+		for (var i=0; i < arguments[1].length; i++ ){
+			app.mapLayers[i].data = arguments[1][i];
+		}
+				
 		// Put the svg inside the passed container
 		const svg = app.mapContainer.append('svg')
 					.attr("width", width)
@@ -108,16 +113,6 @@ class CookCountyMap{
 			.scale(s)
 			.translate(t);
 
-/*
-// Get hold of your container
-var container = d3.select('#example');
-
-// Get hold of all the existing list items within the container
-var children = d3.selectAll('li');
-
-// Create a one-on-one mapping of the node with the data array.
-var updateSelection = children.data(multiples);
-*/
 		// Create a container for the tract data
 		const tracts = svg.append('g')
 			.classed('tracts', true)
@@ -130,14 +125,27 @@ var updateSelection = children.data(multiples);
 				.attr('data-erate', d => d.mean)
 				.attr('class', 'tract')
 				.attr( "d", geoPath)
-				.attr('fill', '#efefef')
+				.attr('fill', '#efefef');
+		
+		console.log(app.mapLayers);
+
+		svg.append('g')
+			.classed('chicago', true)
+			.selectAll('path')
+			.data(app.mapLayers[0].data.features)
+			.enter()
+				.append( "path" )
+				.attr( "d", geoPath)
+				.style('fill', 'transparent')
+				.style('stroke', getTribColors('trib-gray4'))
+				.style('stroke-width', 1);
+
 	}
 
 	highlightTracts(attribute, value){
 		const app = this;
 		// This method highlights specific tracts based on input. It's not super extensible. It's
 		// mostly a bespoke piece of code JUST for this project.
-		console.log(attribute, value);
 
 		const tracts = d3.selectAll('.tract')
 			.data(app.data.features, d => d['properties'][attribute])
