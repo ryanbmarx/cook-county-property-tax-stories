@@ -50,10 +50,6 @@ class CookCountyMap{
 		 	{
 		 		id:'chicago',
 		 		url: `http://${window.ROOT_URL}/data/chicago-boundary.geojson`
-		 	},
-		 	{
-		 		id:'cook',
-		 		url: `http://${window.ROOT_URL}/data/cook-county.geojson`
 		 	}
 		 ];
 
