@@ -5,6 +5,10 @@ $chart_height: $chart_width;
 $undervalued_color:$trib-blue2;
 $overvalued_color:$trib-red2;
 
+#day1-header{
+	background:$header-bg-color;
+}
+
 #day1-header-display{
 	@include clearfix();
 	width:100%;
