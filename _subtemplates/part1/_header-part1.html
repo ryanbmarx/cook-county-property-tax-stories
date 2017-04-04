@@ -30,7 +30,7 @@
 
 				<div id='blurb{{ blurb.order }}' class='text {{ classes_to_add }}'>
 					(#blurb{{ blurb.order }})
-					<p class='text__blurb'>(#blurb{{ blurb.order }}) {{ blurb.blurb|process_text }}</p>
+					<p class='text__blurb'>{{ blurb.blurb|process_text }}</p>
 				</div>
 			{%- endfor -%}
 		</div>
