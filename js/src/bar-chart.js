@@ -75,7 +75,13 @@ class barChart{
 		// ----------------------------------
 
 		const yMax = app.options.maxYValue ? app.options.maxYValue : d3.max(data, d => parseFloat(d["y"]));
-		const yMin = app.options.startAtZero == true ? 0 : d3.min(data, d => parseFloat(d["y"]));
+		let yMin;
+		if (app.options.yMin){
+			yMin = parseFloat(app.options.yMin);
+		} else {
+			yMin = d3.min(data, d => parseFloat(d["y"]));
+		}
+		console.log(yMin);
 		//Scale functions
 		//This is the y scale used to size and position the bars
 		const yScale = d3.scaleLinear()
@@ -85,15 +91,21 @@ class barChart{
 
 		//this y scale is used to generate the y axis because the coordinate system is flipped in svgs, which causes the axis to be reversed
 		const yScaleDisplay = d3.scaleLinear()
-			.domain([yMax,0])
+			.domain([yMax,yMin])
 			.nice()
 			.range([0,innerHeight]);
 
 		// Define the y axis and add a tick formatter if a format string is define in the options.
 		const yAxis = d3.axisLeft(yScaleDisplay);
+
+		// If the user has defined a # format string
 		if (app.options.formatStrings.yAxis){
 			const yFormatter = d3.format(app.options.formatStrings.yAxis);
 			yAxis.tickFormat(yFormatter)
+		}
+		// If the user has defined the desired # ticks ...
+		if (app.options.ticks.yAxis){
+			yAxis.ticks(app.options.ticks.yAxis);
 		}
 
 		// Make the x scale
@@ -107,6 +119,11 @@ class barChart{
 		if (app.options.formatStrings.xAxis){
 			const xFormatter = d3.format(app.options.formatStrings.xAxis);
 			xAxis.tickFormat(xFormatter)
+		}
+
+		// If the user has defined the desired # ticks ...
+		if (app.options.ticks.xAxis){
+			xAxis.ticks(app.options.ticks.xAxis);
 		}
 		if(app.options.chartType == "line"){
 			app.line = d3.line()
@@ -154,14 +171,15 @@ class barChart{
 				.duration(app.options.transitionTime)
 				.call(xAxis);
 		
-		if(app.options.chartType == "line"){
-			  chartInner.append("path")
+		if (app.options.chartType == "line"){
+			// if we prefer a line to a bar chart
+			chartInner.append("path")
 			      .datum(data)
 			      .attr("class", "line")
 			      .attr("d", app.line)
 			      .style('stroke', app.barColor)
-			      .style('stoke-width', 3)
-			      .style('fill', 'none');
+			      .style('stroke-width', app.options.lineWeight)
+			      .style('fill', 'transparent');
 
 		} else {
 
