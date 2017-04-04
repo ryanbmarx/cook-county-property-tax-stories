@@ -11,6 +11,48 @@ const  prerender = Prerender(d3);
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
+function buildErateLegend(ramp, containerID){
+	// Accepts an array of containers (as selection strings). It builds inside the first container
+	// then dupes the legend into the others.
+
+	// Select the first container, and append the wrapper div and list
+	const container = d3.select(containerID[0])
+		.append('div')
+		.classed('effective-tax-rate-legend', true)
+			.append('ul')
+			.classed('effective-tax-rate-legend__list', true)
+
+	// For each color in the provided ramp, append a list item that is exactly as wide as 100% / buckets
+	ramp.forEach((color, index) => {
+		console.log(index);
+		const bucket = container.append('li')
+			.classed('effective-tax-rate-legend__bucket', true)
+			.attr('style',`background-color:${color};width:${100 / ramp.length}%`)
+			
+			// If it is the first or last, append the proper text.
+			if (index == 0){
+				bucket.append('span')
+					.classed('effective-tax-rate-legend__text', true)
+					.html("&laquo; Smaller");
+			} else if (index == (ramp.length - 1)){
+				bucket.append('span')
+					.classed('effective-tax-rate-legend__text', true)
+					.html("Larger &raquo;");
+			}
+	})
+
+	// Store the HTML we just generated in the first container into a variable
+	const legend = d3.select(`${containerID[0]} .effective-tax-rate-legend`).html();
+	for (let i=1; i < containerID.length; i++){
+		// for all subsequent containers, just append a div and insert the legend
+		d3.select(containerID[i])
+			.append('div')
+			.classed('effective-tax-rate-legend', true)
+			.html(legend);
+	}
+
+}
+
 function valueMapScale(ratio){
 	// This is a super-simple custom scale. If the value is greater than 1, return a color. If it
 	// is less than 1, return a different color. If it is one, return white, or at least a very light grey;
@@ -66,7 +108,7 @@ class CookCountyMap{
 		app.erateScale = d3.scaleQuantile()
 			.domain(app.data.features.map(d => d.properties.mean))
 			.range(erateColorRamp);
-
+		buildErateLegend(erateColorRamp, ["#blurb70 .text__blurb", "#blurb80 .text__blurb", "#blurb90 .text__blurb"]);
 	}
 
 	drawMap(error){
@@ -134,7 +176,7 @@ class CookCountyMap{
 				.attr( "d", geoPath)
 				.style('fill', 'transparent')
 				.style('stroke', getTribColors('trib-gray4'))
-				.style('stroke-width', 1);
+				.style('stroke-width', 3);
 
 	}
 
