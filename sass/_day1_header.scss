@@ -68,14 +68,13 @@ $overvalued_color:$trib-red2;
 
 .text{
 	// Each "text" is a single piece of scrolling text. It's height creates the scrolling.
-	border: 1px solid black;
+	// border: 1px solid black;
 	height:$text_height;
 	opacity:0; 
 	transition: opacity 200ms ease;
-	
 	&.text--visible{ 
-	opacity:1; 
-	transition: opacity 700ms ease;
+		opacity:1; 
+		transition: opacity 700ms ease;
 	}
 
 	&__blurb{
