@@ -63,8 +63,8 @@ class CookCountyMap{
 		// Generate a scale for the effective tax rate.
 		const erateExtent = d3.extent(app.data.features, d => d.properties.mean);
 		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
-		app.erateScale = d3.scaleQuantize()
-			.domain(erateExtent)
+		app.erateScale = d3.scaleQuantile()
+			.domain(app.data.features.map(d => d.properties.mean))
 			.range(erateColorRamp);
 
 	}
