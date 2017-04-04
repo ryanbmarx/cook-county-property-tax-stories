@@ -149,7 +149,7 @@ window.onload = function(){
     // Make the two bar charts for later in the process
     const race = new barChart({
         root_url:window.ROOT_URL,
-        chartType:'bar',
+        chartType:'line',
         container:document.getElementById('race'),
         dataset:raceData,
         xAttribute:'pctWhite',
@@ -159,18 +159,17 @@ window.onload = function(){
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
-        startAtZero:true,
+        yMin:.0012,
+        lineWeight:3,
         formatStrings: {
             yAxis: ".2%",
             xAxis: ".0%"
         },
         maxYValue:false,
         showYAxis:true,
-        xTicks:{
-            // At these breakpoints, only run a tick every nth time. The value is the interval.
-            mobile:5,
-            tablet:2,
-            desktop:1
+        ticks:{
+            yAxis:5,
+            // xAxis:2
         },
         meta:{
             // headline:'White Population vs. Effective Tax Rate',
@@ -183,7 +182,7 @@ window.onload = function(){
 
     const income = new barChart({
         root_url:window.ROOT_URL,
-        chartType:'bar',
+        chartType:'line',
         container:document.getElementById('income'),
         dataset:incomeData,
         xAttribute:'medianIncome',
@@ -193,18 +192,17 @@ window.onload = function(){
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
-        startAtZero:true,
+        lineWeight:3,
+        yMin:.0012,
         formatStrings: {
             yAxis: ".2%",
             xAxis: "$.3s"
         },
         maxYValue:false,
         showYAxis:true,
-        xTicks:{
-            // At these breakpoints, only run a tick every nth time. The value is the interval.
-            mobile:5,
-            tablet:2,
-            desktop:1
+        ticks:{
+            yAxis:5,
+            // xAxis:2
         },
         meta:{
             // headline:'Income vs. Effective Tax Rate',
