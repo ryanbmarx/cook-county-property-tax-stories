@@ -110,7 +110,40 @@ setInterval(function() {
     }
 }, 100);
 
+function instructions(id, headerMap) {
+    if (id == 10){
+        // headerMap.highlightTracts('ratio1', 'none');
+        
+    } else if (id == 20){
+        
+    } else if (id == 30){
+        headerMap.highlightTracts('ratio1', 'none');
+    } else if (id == 40){
+        headerMap.highlightTracts('ratio1', 'over1');
+    } else if (id == 50){
+        headerMap.highlightTracts('ratio1', 'under1');
+    } else if (id == 60){
+        headerMap.highlightTracts('ratio1', 'all');
+    } else if (id == 70){
 
+        headerMap.highlightTracts('erate', 'whiz-bang-boom');
+    } else if (id == 100){
+        // first hide the map
+        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+        // Then fade in the income chart
+        document.querySelector('#race').classList.remove('header-chart--visible');
+        document.querySelector('#income').classList.add('header-chart--visible');
+
+    } else if (id == 110){
+        document.querySelector('#income').classList.remove('header-chart--visible');
+        document.querySelector('#race').classList.add('header-chart--visible');
+    }
+    //  else if (el.classList.contains('text--last')){
+    //     document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+    //     // document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+
+    // }
+}
 
 window.onload = function(){
     // Make the two bar charts for later in the process
@@ -204,34 +237,12 @@ window.onload = function(){
                 }
                 el.classList.add('text--visible');
 
-                // Now here are a list of specific code blocks for specific text blocks, identified by the 
-                // text block's id.
-                if (el.id == 'blurb30'){
-                    headerMap.highlightTracts('ratio1', 'none');
-                } else if (el.id == 'blurb40'){
-                    headerMap.highlightTracts('ratio1', 'over1');
-                } else if (el.id == 'blurb50'){
-                    headerMap.highlightTracts('ratio1', 'under1');
-                } else if (el.id == 'blurb60'){
-                    headerMap.highlightTracts('ratio1', 'all');
-                } else if (el.id == 'blurb70'){
-                    // TODO Fix this render
-                    headerMap.highlightTracts('erate', 'whiz-bang-boom');
-                } else if (el.id == 'blurb100'){
-                    // first hide the map
-                    document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-                    // Then fade in the income chart
-                    document.querySelector('#race').classList.remove('header-chart--visible');
-                    document.querySelector('#income').classList.add('header-chart--visible');
-   
-                } else if (el.id == 'blurb110'){
-                    document.querySelector('#income').classList.remove('header-chart--visible');
-                    document.querySelector('#race').classList.add('header-chart--visible');
-                } else if (el.classList.contains('text--last')){
-                    document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-                    // document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+                const id = parseInt(el.id.replace('blurb', ''));
+                instructions(id, headerMap);
 
-                }
+            }).on('exit', el =>{
+                // const id = parseInt(el.id.replace('blurb', ''));
+                // instructions((id-1), headerMap);
             })
     })
 }

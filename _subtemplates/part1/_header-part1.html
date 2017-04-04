@@ -27,10 +27,12 @@
 				{% if loop.last %}
 					{% set classes_to_add = classes_to_add + "text--last" %}
 				{% endif %}
-
+		
 				<div id='blurb{{ blurb.order }}' class='text {{ classes_to_add }}'>
 					(#blurb{{ blurb.order }})
-					<p class='text__blurb'>{{ blurb.blurb|process_text }}</p>
+					<div class='text__blurb-wrapper'>
+						<p class='text__blurb'>{{ blurb.blurb|process_text }}</p>
+					</div>
 				</div>
 			{%- endfor -%}
 		</div>

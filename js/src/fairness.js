@@ -117,7 +117,18 @@ class CookCountyMap{
 		const 	app = this;
 		const 	containerBox = app.mapContainer.node().getBoundingClientRect(),
 				width = containerBox.width,
-				height = containerBox.height;
+				height = containerBox.height,
+				top = ((window.innerHeight - height) / 2); // Vertically center under navbar
+
+		// Nudge the map down to the center
+		const mapWrapper = app.mapContainer.node().parentElement;
+		d3.select(mapWrapper).attr('style', `top: ${top}px;`);
+		// console.log(height / -2, marginTop, mapWrapper);	
+
+		// mapWrapper.style = {
+		// 	top: '50%',
+		// 	marginTop: marginTop
+		// };
 
 		// Insert our extra map layers/add-ons into the array 
 		for (var i=0; i < arguments[1].length; i++ ){
@@ -164,8 +175,6 @@ class CookCountyMap{
 				.attr( "d", geoPath)
 				.attr('fill', '#efefef');
 		
-		console.log(app.mapLayers);
-
 		svg.append('g')
 			.classed('chicago', true)
 			.selectAll('path')

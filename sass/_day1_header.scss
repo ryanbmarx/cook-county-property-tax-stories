@@ -3,7 +3,7 @@ $text_height: 100vh;
 $chart_width: ($day1header_max_width / 2) - 25px;
 $chart_height: $chart_width;
 $undervalued_color:$trib-blue2;
-$overvalued_color:$trib-red2;
+$overvalued_color:$trib-blue1;
 
 #day1-header{
 	background:$header-bg-color;
@@ -136,7 +136,7 @@ body[data-fixed-map='true']{
 	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
 	.map-wrapper{
 		position:fixed;
-		top:$nav_height + 10px ;
+		// top:$nav_height + 10px ;
 		bottom:auto;
 		transition: top 300ms ease;
 	}
@@ -176,7 +176,7 @@ body[data-fixed-map='true']{
 		// When the map is sticky
 		.map-wrapper{
 			position:fixed;
-			top:$nav_height + 10px ;
+			// top:$nav_height + 10px;
 			bottom:auto;
 			left:auto;
 			right: calc(50% - #{$day1header_max_width / 2});
@@ -193,10 +193,21 @@ body[data-fixed-map='true']{
 			left:calc(50% + 25px);
 		}
 
+		.text__blurb-wrapper{
+			height:100%;
+			display:flex;
+			align-items:center;
+
+			position:fixed;
+			top:0;
+			left:calc(50% - #{$day1header_max_width / 2});
+		}
+
 		.text__blurb{
 			// Try to keep these pinned to the bottom of the map on mobile
-			top:235px;
-			left:calc(50% - #{$day1header_max_width / 2});
+			// top:235px;
+			// left:calc(50% - #{$day1header_max_width / 2});
+			position:static;
 			max-width: $day1header_max_width / 2;
 		}
 		#blurb120, #blurb110,#blurb100{
