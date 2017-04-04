@@ -24,7 +24,6 @@ function buildErateLegend(ramp, containerID){
 
 	// For each color in the provided ramp, append a list item that is exactly as wide as 100% / buckets
 	ramp.forEach((color, index) => {
-		console.log(index);
 		const bucket = container.append('li')
 			.classed('effective-tax-rate-legend__bucket', true)
 			.attr('style',`background-color:${color};width:${100 / ramp.length}%`)
