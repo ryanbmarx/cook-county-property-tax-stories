@@ -149,7 +149,7 @@ window.onload = function(){
     // Make the two bar charts for later in the process
     const race = new barChart({
         root_url:window.ROOT_URL,
-        chartType:'line',
+        chartType:'filled-line',
         container:document.getElementById('race'),
         dataset:raceData,
         xAttribute:'pctWhite',
@@ -159,8 +159,8 @@ window.onload = function(){
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
-        yMin:.0012,
-        lineWeight:3,
+        yMin:.0013,
+        lineWeight:5,
         formatStrings: {
             yAxis: ".2%",
             xAxis: ".0%"
@@ -182,7 +182,7 @@ window.onload = function(){
 
     const income = new barChart({
         root_url:window.ROOT_URL,
-        chartType:'line',
+        chartType:'filled-line',
         container:document.getElementById('income'),
         dataset:incomeData,
         xAttribute:'medianIncome',
@@ -192,8 +192,8 @@ window.onload = function(){
         barPadding: 0.01,
         barFill:'trib_orange',
         barLabels:false,
-        lineWeight:3,
-        yMin:.0012,
+        lineWeight:5,
+        yMin:.0013,
         formatStrings: {
             yAxis: ".2%",
             xAxis: "$.3s"

@@ -1,5 +1,9 @@
 import * as d3 from 'd3';
-var getTribColor = require('./getTribColors.js');
+import * as _ from 'underscore';
+// const textures = require('textures');
+import textures from 'textures';
+const getTribColor = require('./getTribColors.js');
+// import * as d3-annotation from 'd3-svg-annotation';
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
@@ -9,20 +13,7 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 class barChart{
 	constructor(options){
-		// console.log('options: ', options)
-		/*
-		root_url:'{{ ROOT_URL }}',
-		container:document.getElementById('barchart'),
-		dataset:window.stations,
-		yAttribute:'numberOfTests',
-		xAttribute:'id',
-		transitionTime:0,
-		innerMargins:{top:15,right:0,bottom:40,left:40},
-		barPadding: 0.01
-		barFill
-		startAtZero
-		*/
-		let app = this;
+		const app = this;
 		app.options = options;
 		app._container = options.container
 		app.data = app.filterData(options.dataset);
@@ -81,7 +72,6 @@ class barChart{
 		} else {
 			yMin = d3.min(data, d => parseFloat(d["y"]));
 		}
-		console.log(yMin);
 		//Scale functions
 		//This is the y scale used to size and position the bars
 		const yScale = d3.scaleLinear()
@@ -125,11 +115,10 @@ class barChart{
 		if (app.options.ticks.xAxis){
 			xAxis.ticks(app.options.ticks.xAxis);
 		}
-		if(app.options.chartType == "line"){
+		if(app.options.chartType == "line" || app.options.chartType == "filled-line"){
 			app.line = d3.line()
 			    .x(d => xScale(d.x))
 			    .y(d => yScaleDisplay(d.y));
-			// console.log(line)
 		}
 
 
@@ -171,8 +160,32 @@ class barChart{
 				.duration(app.options.transitionTime)
 				.call(xAxis);
 		
-		if (app.options.chartType == "line"){
-			// if we prefer a line to a bar chart
+		if (app.options.chartType == "line" || app.options.chartType == "filled-line"){
+			if (app.options.chartType == "filled-line"){
+				// https://riccardoscalco.github.io/textures/
+				// This is the filled area
+				var t = textures.lines()
+					.size(4)
+					.strokeWidth(1)
+					.background(app.barColor)
+					.stroke('white');
+
+				svg.call(t);
+
+				const area = d3.area()
+				    .y0(innerHeight)
+				    .x(d => xScale(d.x))
+				    .y1(d => yScaleDisplay(d.y));
+
+				chartInner.append("path")
+				      .datum(data)
+				      .attr("class", "area")
+				      .attr("d", area)
+				      .style('fill', t.url())
+	  			      // .style('fill-opacity', .5);
+			}
+
+  			// if we prefer a line to a bar chart
 			chartInner.append("path")
 			      .datum(data)
 			      .attr("class", "line")
@@ -180,6 +193,80 @@ class barChart{
 			      .style('stroke', app.barColor)
 			      .style('stroke-width', app.options.lineWeight)
 			      .style('fill', 'transparent');
+
+
+			const annotations = svg.append("g")
+				.attr("class", "annotations")
+				.attr(`transform`,`translate(${ margin.left },${ margin.top})`);
+
+			const 	sortedData = _.sortBy(app.data, d => d.y),
+					firstAnnotation = sortedData[0],
+					lastAnnotation = sortedData[sortedData.length - 1],
+					circleRadius = 20;
+
+			// LABEL THE HIGHEST RATE
+			annotations.append('circle')
+				.attr('r', circleRadius)
+				.attr('cx', xScale(lastAnnotation.x))
+				.attr('cy', yScaleDisplay(lastAnnotation.y))
+				.style('stroke', 'black')
+				.style('stroke-width', 2)
+				.style('fill', 'transparent')
+
+			annotations.append('line')
+					.attr('x1', xScale(lastAnnotation.x))
+					.attr('y1', yScaleDisplay(lastAnnotation.y) + circleRadius)
+					.attr('x2', xScale(lastAnnotation.x))
+					.attr('y2', yScaleDisplay(lastAnnotation.y) + circleRadius + 50)
+					.style('stroke', 'black')
+					.style('stroke-width', 2);
+					
+			annotations.append('text')
+					.attr('x', xScale(lastAnnotation.x))
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + 55)
+					.attr('dy', '1em')
+					.attr('text-anchor', 'middle')
+					.text(lastAnnotation.y);
+
+			annotations.append('text')
+					.attr('x', xScale(lastAnnotation.x))
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + 55)
+					.attr('dy', '2.1em')
+					.attr('text-anchor', 'middle')
+					.text(lastAnnotation.x);
+
+			// LABEL THE LOWEST RATE
+			annotations.append('circle')
+				.attr('r', 20)
+				.attr('cx', xScale(firstAnnotation.x))
+				.attr('cy', yScaleDisplay(firstAnnotation.y))
+				.style('stroke', 'black')
+				.style('stroke-width', 2)
+				.style('fill', 'transparent')
+
+
+			annotations.append('line')
+					.attr('x1', xScale(firstAnnotation.x))
+					.attr('y1', yScaleDisplay(firstAnnotation.y) - circleRadius)
+					.attr('x2', xScale(firstAnnotation.x))
+					.attr('y2', yScaleDisplay(firstAnnotation.y) - circleRadius - 50)
+					.style('stroke', 'black')
+					.style('stroke-width', 2);
+
+			annotations.append('text')
+					.attr('x', xScale(firstAnnotation.x))
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - 55)
+					.attr('dy', '-2.1em')
+					.attr('text-anchor', 'middle')
+					.text(firstAnnotation.y);
+
+			annotations.append('text')
+					.attr('x', xScale(firstAnnotation.x))
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - 55)
+					.attr('dy', '-1em')
+					.attr('text-anchor', 'middle')
+					.text(firstAnnotation.x);
+
 
 		} else {
 
@@ -197,7 +284,6 @@ class barChart{
 					.attr("x", (d, i) => xScale(d['x']))
 					.attr("width", xScale.bandwidth())
 					.style("fill", app.barColor);
-				// console.log(app.options.barLabels);
 			    
 			    if (app.options.barLabels){
 					// ----------------------------------
