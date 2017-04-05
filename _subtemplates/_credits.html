@@ -13,13 +13,14 @@
 	<h2 class='credits__header'>{{ overall_project_title }}</h2>
 	<div class='credits__column credits__column--links'>
 		<ul class='credits__story-links'>
-			{%- for story in navbar_elements -%}
+			{%- for story in navbar_elements|sort(attribute='order') -%}
 				{% if story.part == part %}
 					{% set highlight_class = 'story-link--highlight'%}
 				{% else %}
 					{% set highlight_class = '' %}
 				{% endif %}
 				<li class='story-link {{ highlight_class }}'>
+					<span class='story-link__blinking-border'></span>
 					<a class='story-link__link' href="{{ story.url }}">
 						{% if story.prefix %}<span class='story-link__prefix'>{{ story.prefix }}</span>{% endif %}
 						<p class='story-link__description' {# href="{{ story.url }} #}">{{ part }}{{ story.description }}</p>
