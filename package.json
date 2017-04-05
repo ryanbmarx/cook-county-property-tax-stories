@@ -44,6 +44,7 @@
     "in-view": "^0.6.1",
     "jquery": "^3.2.1",
     "pym.js": "^1.2.0",
+    "smoothscroll-polyfill": "^0.3.4",
     "textures": "^1.0.5",
     "underscore": "^1.8.3"
   }
