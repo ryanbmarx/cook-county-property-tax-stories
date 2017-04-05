@@ -8,7 +8,7 @@
     "build": "grunt",
     "watch": "grunt watch",
     "prerender": "rm -rf _out && tarbell generate _out && d3-pre ./_out/index.html && d3-pre ./_out/part2.html && d3-pre ./_out/part3.html",
-    "publish": "tarbell publish production"
+    "publish": "tarbell publish"
   },
   "repository": {
     "type": "git",
