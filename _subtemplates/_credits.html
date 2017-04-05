@@ -14,10 +14,15 @@
 	<div class='credits__column credits__column--links'>
 		<ul class='credits__story-links'>
 			{%- for story in navbar_elements -%}
-				<li class='story-link'>
+				{% if story.part == part %}
+					{% set highlight_class = 'story-link--highlight'%}
+				{% else %}
+					{% set highlight_class = '' %}
+				{% endif %}
+				<li class='story-link {{ highlight_class }}'>
 					<a class='story-link__link' href="{{ story.url }}">
 						{% if story.prefix %}<span class='story-link__prefix'>{{ story.prefix }}</span>{% endif %}
-						<p class='story-link__description' href="{{ story.url }}">{{ story.description }}</p>
+						<p class='story-link__description' {# href="{{ story.url }} #}">{{ part }}{{ story.description }}</p>
 					</a>
 				</li>
 			{%- endfor -%}

@@ -101,6 +101,16 @@ $column_width: 280px;
 		transition:all 150ms ease;
 
 		&:hover{
+			background:rgba(white, .5);
+			transition:all 150ms ease;
+			
+			&__description, &__prefix{
+				color:black;
+				text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
+			}
+		}
+
+		&--highlight, &--highlight:hover {
 			background:rgba(white, .9);
 			transition:all 150ms ease;
 			
