@@ -11,7 +11,9 @@ module.exports = function(grunt) {
     'in-view',
     'd3',
     'd3-pre',
-    'd3-queue'
+    'd3-queue',
+    'd3-svg-annotation',
+    'textures'
   ];
 
   config.browserify = {
@@ -108,7 +110,7 @@ module.exports = function(grunt) {
     },
     js: {
       files: ['js/src/**/*.js'],
-      tasks: ['browserify:app','browserify:day1header']
+      tasks: ['browserify:app', 'browserify:day1header']
     }
   };
 
