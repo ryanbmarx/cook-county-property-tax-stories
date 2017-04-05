@@ -11,7 +11,8 @@ $tablet-min-width:450px;
 $desktop-min-width:850px;
 
 $nav_height: 51px;
-$narrow-river-max-width: 650px;
+$narrow-river-max-width-desktop: 650px;
+$narrow-river-max-width: 450px;
 $map-width: 600px;
 
 $header-bg-color:$trib-gray4;
@@ -57,7 +58,7 @@ $header-bg-color:$trib-gray4;
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
 .byline{
-	@include river_narrow();
+	@include river_narrow($narrow-river-max-width);
 	margin-bottom:25px;
 }
 .byline-name{
@@ -76,7 +77,7 @@ $header-bg-color:$trib-gray4;
 }
 
 .river--narrow{
-	@include river_narrow();
+	@include river_narrow($narrow-river-max-width);
 }
 
 .video{
@@ -91,8 +92,15 @@ $header-bg-color:$trib-gray4;
 	}
 }
 
-@media all and (min-width: $tablet-min-width){
+@media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
+	.river--narrow{
+		@include river_narrow($narrow-river-max-width-desktop);
+	}
 
+	.byline{
+		@include river_narrow($narrow-river-max-width-desktop);
+		margin-bottom:25px;
+	}
 }
 
 @media all and (min-width:#{$map-width}){

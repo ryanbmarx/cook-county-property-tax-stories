@@ -5,22 +5,21 @@ $chart_height: $chart_width;
 $undervalued_color:$trib-blue2;
 $overvalued_color:$trib-blue1;
 
-#day1-header{
-	background:$header-bg-color;
+.day1-header-background{ 
+	background:$header-bg-color; 
+	margin-bottom:50px;
 }
 
-#day1-header-display{
+.day1-header-display{
 	@include clearfix();
 	width:100%;
 	max-width: $day1header_max_width;
 	margin-left:auto;
 	margin-right:auto;
-	margin-bottom:25px;
+	// margin-bottom:25px;
 	min-height:calc(100vh - 51px);
-	
-	background:$header-bg-color;
 	position:relative;
-    border-bottom: 45px solid $header-bg-color;// Yes, this is a hack, but padding would affect the map placement.
+    // border-bottom: 45px solid $header-bg-color;// Yes, this is a hack, but padding would affect the map placement.
 }
 
 .header-chart{
@@ -68,7 +67,7 @@ $overvalued_color:$trib-blue1;
 
 .text{
 	// Each "text" is a single piece of scrolling text. It's height creates the scrolling.
-	// border: 1px solid black;
+	border: 1px solid black;
 	height:$text_height;
 	opacity:0; 
 	transition: opacity 200ms ease;
@@ -170,27 +169,43 @@ body[data-fixed-map='true']{
 	    padding: 0;
 	}
 
+	// For the final few, with the charts, we want the text to sit atop the chart.
+	#blurb100, #blurb110, #blurb120, #blurb130{
+		.text__blurb-wrapper{
+			height:45%;
+			align-items:flex-end;
+		}
+	}
+
+	// These are the placements. They are outside the sticky selector because the same offsets
+	// should exist when they are absolutely positioned (so they scroll away).
+	.map-wrapper{
+		bottom:auto;
+		left:auto;
+		right: calc(50% - #{$day1header_max_width / 2});
+		margin-left: 0;
+	}
+
+	.header-chart{
+		height: $chart_height;
+		transition: opacity 400ms ease;
+		left:calc(50% - #{($day1header_max_width / 2)});
+	    width: $day1header_max_width;
+		top: auto;
+		bottom: 50%;
+		margin-bottom: #{0 - $chart_height};
+	}
 
 
 	body[data-fixed-map='true']{
 		// When the map is sticky
 		.map-wrapper{
 			position:fixed;
-			// top:$nav_height + 10px;
-			bottom:auto;
-			left:auto;
-			right: calc(50% - #{$day1header_max_width / 2});
-			margin-left: 0;
 		}
 
 		.header-chart{
-			width:$chart_width;
-			height: $chart_height;
-			// opacity:0;
 			transition: opacity 400ms ease;
 			position:fixed;
-			top:calc(50% - #{$chart_height / 2});
-			left:calc(50% + 25px);
 		}
 
 		.text__blurb-wrapper{
@@ -205,8 +220,6 @@ body[data-fixed-map='true']{
 
 		.text__blurb{
 			// Try to keep these pinned to the bottom of the map on mobile
-			// top:235px;
-			// left:calc(50% - #{$day1header_max_width / 2});
 			position:static;
 			max-width: $day1header_max_width / 2;
 		}
@@ -216,7 +229,17 @@ body[data-fixed-map='true']{
 				top:150px;
 			}
 		}
+		// #blurb100, #blurb110, #blurb120, #blurb130{
+		// 	.text__blurb-wrapper{
+		// 		height:45%;
+		// 		align-items:flex-end;
+		// 	}
+		// }
 
+		#blurb120.text--visible{
+			// make it dramaticaly inch larger
+			// @include enlarge(100000ms);
+		}
 		.text--full{
 			.text__blurb{
 				max-width: $day1header_max_width - 20px;
@@ -233,9 +256,6 @@ body[data-fixed-map='true']{
 	.text__blurb{
 		// Display size bump
 		font-size:27px;
-		// Give the text more room to breathe
-		// max-width: 320px;
-
 	}
 }
 	

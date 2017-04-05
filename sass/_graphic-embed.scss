@@ -17,12 +17,9 @@ $chart-margin:25px;
 }
 
 
-
-
-
-@media all and (min-width: $tablet-min-width){
+@media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
 	.chart--right{
-		width: 280px;
+		width: 260px;
 		float: right;
 		margin: $chart-margin 0 $chart-margin $chart-margin;
 	}
@@ -31,8 +28,13 @@ $chart-margin:25px;
 		max-width: 350px;
 		float: right;
 		margin: $chart-margin 0 $chart-margin $chart-margin;
-
 	}
+}
+
+
+
+@media all and (min-width: $tablet-min-width){
+
 
 }
 
