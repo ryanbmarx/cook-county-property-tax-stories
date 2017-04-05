@@ -1,5 +1,5 @@
-var pym = require('pym.js');
-var boot = require('bootstrap.js');
+const pym = require('pym.js');
+const boot = require('bootstrap.js');
 
 // -------------------------------------------------------------------
 // THIS APP.JS ONLY IS FOR CODE NEEDED FOR ALL STORIES!
@@ -21,14 +21,17 @@ window.onload = function(){
     // Enable all the pym graphics by collecting all the containers, then 
     // instantiating each one after plucking the necessary details from the 
     // element's metadata
+    console.log('app.js window is onloaded');
     const pymContainers = document.querySelectorAll('.graphic-embed');
+    console.log(pymContainers);
     let pymParents = [];
     for (var container of pymContainers){
+        console.log(container);
         const   pymId = container.id,
                 pymUrl = container.dataset.iframeUrl;
 
         let temp = new pym.Parent(pymId, pymUrl, {});
-        temp.onMessage('childLoaded', removeSpinner(pymId) )
+        // temp.onMessage('childLoaded', removeSpinner(pymId) )
         pymParents.push(temp);
     }
 

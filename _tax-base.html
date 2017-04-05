@@ -41,10 +41,10 @@
     {% endif %}
     <div class='chart chart--{{ id }} {{ class }}'>      
         <div id='{{ id }}' class='graphic-embed' data-iframe-url='{{ url }}'></div>
-         <div class='chart__spinner'>
+{#          <div class='chart__spinner'>
             <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
             <span class="sr-only">Loading...</span>
-        </div>
+        </div> #}
     </div>
 {% endmacro %}
 
@@ -126,8 +126,8 @@
 {% endblock%}
 
 {% block scripts %}
-    <script src="js/app.min.js"></script>
-    <script type='text/javascript'>brightcove.createExperiences();</script>
+    <script src="http://{{ ROOT_URL }}/js/app.min.js"></script>
+    <script>brightcove.createExperiences();</script>
 {% endblock scripts %}
 
 {% block chartbeat %}
@@ -145,15 +145,15 @@
 {% endblock omniture %}
 
 
-  {% block library_scripts %}
-  <script type="text/javascript">
-    window.ROOT_URL = "{{ ROOT_URL }}";
-  </script>
-  <script src="js/vendor.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
-  <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
-  <script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
-  {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
-  {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
-  {% endblock %}
+{% block library_scripts %}
+<script type="text/javascript">
+  window.ROOT_URL = "{{ ROOT_URL }}";
+</script>
+<script src="js/vendor.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
+<script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
+{# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
+{# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
+{% endblock %}
