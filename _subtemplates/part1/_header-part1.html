@@ -1,7 +1,8 @@
 {% from '_tax-base.html' import keep_scrolling_icon as keep_scrolling_icon %}
 
 <section id='day1-header'>
-	<div id='day1-header-display'>
+	<div class='day1-header-background'>
+	<div id='day1-header-display' class='day1-header-display'>
 		<div class='map-wrapper map-wrapper--visible'>
 			<div id='map'></div>
 		</div>
@@ -39,12 +40,13 @@
 
 		{{ keep_scrolling_icon() }}
 	</div>
+	</div>
 	<div class='container'>
 		<div class='row'>
 			<div class='col-xs-12'>
 				{% include '_subtemplates/_social-row.html' %}
-				<h1>{{ part1_headline|process_text() }}</h1>
-				<h2>{{ part1_dek|process_text() }}</h2>				
+				<h1 class='main-headline'>{{ part1_headline|process_text() }}</h1>
+				<h2 class='main-subheadline'>{{ part1_dek|process_text() }}</h2>				
 				<div class='byline'>
 					<p class='byline-name'><a itemprop="author" href="mailto:jgrotto@chicagotribune.com?subject=Regarding: {{ overall_project_title }}">Jason Grotto</a></p>
 					<p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
