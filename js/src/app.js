@@ -17,13 +17,11 @@ function removeSpinner(id){
     spinner.parentNode.removeChild(spinner);
 }   
 
-window.onload = function(){
+function embedGraphics(){
     // Enable all the pym graphics by collecting all the containers, then 
     // instantiating each one after plucking the necessary details from the 
     // element's metadata
-    console.log('app.js window is onloaded');
     const pymContainers = document.querySelectorAll('.graphic-embed');
-    console.log(pymContainers);
     let pymParents = [];
     for (var container of pymContainers){
         console.log(container);
@@ -34,10 +32,13 @@ window.onload = function(){
         // temp.onMessage('childLoaded', removeSpinner(pymId) )
         pymParents.push(temp);
     }
-
-    // Hide/show the mobile navigation menu
-    document.getElementById('mobile-nav-toggle').addEventListener('click', function(e){
-    	const mobileNavButton = document.getElementById('nav-buttons-wrapper');
-    	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
-    });
 }
+
+// Hide/show the mobile navigation menu
+document.getElementById('mobile-nav-toggle').addEventListener('click', function(e){
+	const mobileNavButton = document.getElementById('nav-buttons-wrapper');
+	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
+});
+
+// Listen for the loaded event then run the pym stuff.
+window.addEventListener('load', function() {  embedGraphics(); }, false);
