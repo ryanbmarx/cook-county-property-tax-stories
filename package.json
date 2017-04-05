@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt",
     "watch": "grunt watch",
-    "prerender" : "rm -rf _out && tarbell generate _out && d3-pre ./_out/index.html && d3-pre ./_out/part2.html && d3-pre ./_out/part3.html"
+    "prerender": "rm -rf _out && tarbell generate _out && d3-pre ./_out/index.html && d3-pre ./_out/part2.html && d3-pre ./_out/part3.html"
   },
   "repository": {
     "type": "git",
@@ -40,8 +40,11 @@
     "d3": "^4.7.4",
     "d3-pre": "^1.3.0",
     "d3-queue": "^3.0.5",
+    "d3-svg-annotation": "^1.11.0",
     "in-view": "^0.6.1",
     "jquery": "^3.2.1",
-    "pym.js": "^1.2.0"
+    "pym.js": "^1.2.0",
+    "textures": "^1.0.5",
+    "underscore": "^1.8.3"
   }
 }
