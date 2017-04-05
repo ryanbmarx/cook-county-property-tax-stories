@@ -21,13 +21,16 @@ h1{
 	@include serif-text(50px, .9em, 700);
 	@include display_type('serif');
 	text-transform:uppercase;
-
+	text-align:center;
+	margin: 0 0 10px 0;
 }
 
 h2{
 	// Should only be used once per page and only should be used as the dek/subheadline
 	@include serif-text(23px, 1.3em, normal);
 	@include display_type('serif');
+	text-align:center;
+	margin: 20px 0;
 
 }
 
@@ -50,6 +53,10 @@ h3{
 	    line-height: 4rem;	
 	}	
 
+	h1{
+		font-size:60px;
+	}
+
 	h3{
 		font-size:25px;
 	}
@@ -59,6 +66,14 @@ h3{
 	.text--exploded{
 		font-size:2.1rem;
 	    line-height: 3.3rem;
+	}
+
+	h1{
+		font-size:85px;
+	}
+
+	h2{
+		font-size: 30px;
 	}
 
 	h3{
