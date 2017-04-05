@@ -43,13 +43,32 @@ def check_for_methods(methods, part):
         This filter returns true if the specififed story (part) has ANY methodologies in the spreadsheet. 
         If there are none, it returns false.
     """
-
     for method in methods:
-        print(method['part'] == part)
         if method['part'] == part:
             return True
     return False
 
+@blueprint.app_template_filter('get_up_next')
+def get_up_next(parts, current_part):
+    """
+        Takes the entire dict of story parts (day1, day2, etc.) and the current story part (part1, part2 , etc).
+        It finds the next story and stashes it inside the reval with it's own key. the rest of the parts
+        are put into retval['rest'] 
+        
+    """
+    retval = {}
+    for i in range(0, len(parts)):
+        if parts[i]['part'] == current_part:
+            try: 
+                retval['next'] = parts[i+1]
+                del parts[i+1]
+                retval['rest'] = parts
+                break
+            except IndexError:
+                # This exception exists incase there is no up next, in which case there would be an index error
+                retval['next'] = False
+                retval['rest'] = parts
+    return retval
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"

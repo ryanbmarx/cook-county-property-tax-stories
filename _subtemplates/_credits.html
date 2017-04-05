@@ -9,23 +9,25 @@
 	{%- endfor -%}
 {% endmacro %}
 
-<section class='credits'>
-	<h2 class='credits__header'>{{ overall_project_title }}</h2>
+<section id='credits' class='credits'>
+	<h2 class='credits__header'>{{ overall_project_title }}</h2>	
 	<div class='credits__column credits__column--links'>
 		<ul class='credits__story-links'>
+			{% set this_is_up_next = False %}
 			{%- for story in navbar_elements|sort(attribute='order') -%}
-				{% if story.part == part %}
-					{% set highlight_class = 'story-link--highlight'%}
+				{% if this_is_up_next %}
+					{% set class = 'story-link--next' %}
+					{% set this_is_up_next = False %}
 				{% else %}
-					{% set highlight_class = '' %}
+					{% set class = '' %}
 				{% endif %}
-				<li class='story-link {{ highlight_class }}'>
-					<span class='story-link__blinking-border'></span>
-					<a class='story-link__link' href="{{ story.url }}">
-						{% if story.prefix %}<span class='story-link__prefix'>{{ story.prefix }}</span>{% endif %}
-						<p class='story-link__description' {# href="{{ story.url }} #}">{{ part }}{{ story.description }}</p>
-					</a>
+
+				<li class='story-link {{ class }}'>
+					{% include '_subtemplates/_credits-list-item.html' %}
 				</li>
+				{% if story.part == part %}
+					{% set this_is_up_next = True %}
+				{% endif %}
 			{%- endfor -%}
 		</ul>
 	</div>
