@@ -17,7 +17,7 @@
         
           <div id='nav-buttons-wrapper' class='nav-buttons-wrapper'>
             <ul class='nav-buttons'>
-              {% for element in navbar_elements %}
+              {% for element in navbar_elements|sort(attribute='order') %}
                 {% if element.part == part %}
                   {% set highlight_class = 'nav-button--highlight'%}
                 {% else %}
