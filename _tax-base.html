@@ -104,8 +104,14 @@
     {% endblock story %}
 
     {% block methods scoped %}
-      {% include '_subtemplates/_methodologies.html' %}
+      {% set part = part %}
+      {% include '_subtemplates/_methodologies.html' %}      
     {% endblock methods %}
+    {% block credits scoped %}
+      {% set part = part %}
+      {% include '_subtemplates/_credits.html' %}      
+    {% endblock credits %}
+
 
 {% endblock content %}
 

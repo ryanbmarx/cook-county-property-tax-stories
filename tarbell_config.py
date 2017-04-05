@@ -37,6 +37,20 @@ def generate_id(number):
     rando = random.random()
     return "myExperience {}".format(rando)
 
+@blueprint.app_template_filter('check_for_methods')
+def check_for_methods(methods, part):
+    """
+        This filter returns true if the specififed story (part) has ANY methodologies in the spreadsheet. 
+        If there are none, it returns false.
+    """
+
+    for method in methods:
+        print(method['part'] == part)
+        if method['part'] == part:
+            return True
+    return False
+
+
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
 
