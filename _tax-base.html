@@ -102,7 +102,11 @@
         {# Story content will go here #}
         {# ################ #}
     {% endblock story %}
-    {% include '_subtemplates/_credits.html' %}
+
+    {% block methods scoped %}
+      {% include '_subtemplates/_methodologies.html' %}
+    {% endblock methods %}
+
 {% endblock content %}
 
 {% block library_css %}

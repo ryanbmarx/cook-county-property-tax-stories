@@ -1,0 +1,15 @@
+<section class='methodologies container'>
+    <div class='river--narrow'>
+        <h3 class='methodologies__header'>{{ methodologies_label }}</h3>
+        {% for method in methodologies if method.part == part %}
+            <div id="{{ method.id }}-methodology" class='methodology'>
+                {{ method.methodology|markdown }}
+                <a class='methodology__link' href="#{{ method.id }}">
+                    {# <i class="fa fa-hand-o-up" aria-hidden="true"></i> #}
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    Back to chart
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
