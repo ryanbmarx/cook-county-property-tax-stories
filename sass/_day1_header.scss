@@ -133,6 +133,11 @@ $overvalued_color:$trib-blue1;
 
 body[data-fixed-map='true']{
 	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
+	.blurb__id{
+		position: fixed;	
+		top:75px;
+		left:75px;
+	}
 	.map-wrapper{
 		position:fixed;
 		// top:$nav_height + 10px ;
