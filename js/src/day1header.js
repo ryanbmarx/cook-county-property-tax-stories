@@ -111,29 +111,40 @@ setInterval(function() {
 }, 100);
 
 function instructions(id, headerMap) {
+    console.log("showing", id);
     if (id == 10){
-        // headerMap.highlightTracts('ratio1', 'none');
-        headerMap.highlightTracts('ratio1', 'none');
+        // headerMap.highlightTracts('ratio', 'none');
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'none');
     } else if (id == 20){
-        headerMap.highlightTracts('ratio1', 'none');        
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'none');        
     } else if (id == 30){
-        headerMap.highlightTracts('ratio1', 'none');
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'none');
     } else if (id == 40){
-        headerMap.highlightTracts('ratio1', 'over1');
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'over1');
     } else if (id == 50){
-        headerMap.highlightTracts('ratio1', 'under1');
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'under1');
     } else if (id == 60){
-        headerMap.highlightTracts('ratio1', 'all');
+        console.log("Inside instructions for ", id);
+        headerMap.highlightTracts('ratio', 'all');
     } else if (id == 70){
+        console.log("Inside instructions for ", id);
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
     } else if (id == 80){
+        console.log("Inside instructions for ", id);
 
     } else if (id == 90){
+        console.log("Inside instructions for ", id);
         document.querySelector('.map-wrapper').classList.add('map-wrapper--visible');
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
         document.querySelector('#race').classList.remove('header-chart--visible');
         document.querySelector('#income').classList.remove('header-chart--visible');
     } else if (id == 100){
+        console.log("Inside instructions for ", id);
         // first hide the map
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
         // Then fade in the income chart
@@ -141,14 +152,14 @@ function instructions(id, headerMap) {
         document.querySelector('#income').classList.add('header-chart--visible');
 
     } else if (id == 110){
+        console.log("Inside instructions for ", id);
         document.querySelector('#income').classList.remove('header-chart--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
     } else if (id == 120){
+        console.log("Inside instructions for ", id);
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
     }
-
-
 }
 
 window.onload = function(){
@@ -223,7 +234,7 @@ window.onload = function(){
 
 
 
-    d3.json(`data/data.geojson`, (err, data) =>{
+    d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
         // console.log(data);
         const transitionDuration = 400;
         const headerMap = new CookCountyMap({
@@ -234,9 +245,11 @@ window.onload = function(){
 
         inView('.text')
             .on('enter', el => {
+                console.log(el.getBoundingClientRect().height);
                 // Switch out the text blurb by hiding the visible one then turning on the next one
                 // Start by selecting the current, visible panel.
                 const visible = document.querySelector('.text--visible');
+
                 if (visible != null) {
                     // Remove the visibility class if it is applied anywhere.
                     visible.classList.remove('text--visible')
