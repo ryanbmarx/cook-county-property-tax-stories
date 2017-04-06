@@ -6,6 +6,10 @@ var queue = require('d3-queue').queue;
 import Prerender from 'd3-pre';
 const  prerender = Prerender(d3);
 
+const 	aboveOneColor = getTribColors('trib-red2'),
+		otherColor = 'rgba(255,255,255,.45)',
+		belowOneColor = getTribColors('trib-blue4');
+
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
@@ -56,26 +60,20 @@ function valueMapScale(ratio){
 	// This is a super-simple custom scale. If the value is greater than 1, return a color. If it
 	// is less than 1, return a different color. If it is one, return white, or at least a very light grey;
 
-	const 	aboveOneColor = getTribColors('trib-red2'),
-			oneColor = getTribColors('trib-gray4'),
-			belowOneColor = getTribColors('trib-blue4');
-
 	if (ratio > 1){
 		return aboveOneColor
 	} else if (ratio < 1 ){
 		return belowOneColor
-	} else if (ratio == 1){
-		return 'black';
 	}
-	return 'yellow';
+	return otherColor;
 }
 
 function valueMapAbove1(ratio){
-	return ratio > 1 ? getTribColors('trib-red2') : '#EFEFEF';
+	return ratio > 1 ? aboveOneColor : otherColor;
 }
 
 function valueMapBelow1(ratio){
-	return ratio < 1 ? getTribColors('trib-blue4') : '#EFEFEF';
+	return ratio < 1 ? belowOneColor : otherColor;
 }
 
 class CookCountyMap{
@@ -102,10 +100,10 @@ class CookCountyMap{
 		mapDataQueue.awaitAll(app.drawMap.bind(app));
 
 		// Generate a scale for the effective tax rate.
-		const erateExtent = d3.extent(app.data.features, d => d.properties.mean);
+		const erateExtent = d3.extent(app.data.features, d => d.properties.erate);
 		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
 		app.erateScale = d3.scaleQuantile()
-			.domain(app.data.features.map(d => d.properties.mean))
+			.domain(app.data.features.map(d => d.properties.erate))
 			.range(erateColorRamp);
 		buildErateLegend(erateColorRamp, ["#blurb70 .text__blurb", "#blurb80 .text__blurb", "#blurb90 .text__blurb"]);
 	}
@@ -165,15 +163,14 @@ class CookCountyMap{
 		const tracts = svg.append('g')
 			.classed('tracts', true)
 			.selectAll('.tracts')
-			.data( app.data.features, d => d.properties.ratio1);
+			.data( app.data.features, d => d.properties.ratio);
 
 		tracts.enter()
 			.append( "path" )
-				.attr('data-name', d => d.properties.NAME10)
-				.attr('data-erate', d => d.mean)
+				.attr('data-name', d => d.properties.TRACT)
 				.attr('class', 'tract')
 				.attr( "d", geoPath)
-				.attr('fill', '#efefef');
+				.style('fill', otherColor);
 		
 		svg.append('g')
 			.classed('chicago', true)
@@ -194,36 +191,36 @@ class CookCountyMap{
 		// mostly a bespoke piece of code JUST for this project.
 
 		const tracts = d3.selectAll('.tract')
-			.data(app.data.features, d => d['properties'][attribute])
+			.data(app.data.features)
 
-		if (attribute == 'ratio1') {			
+		if (attribute == 'ratio') {			
 			// Depending on the value passed in, highlight the necessary tracts
 			if (value == 'under1') {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.attr('fill', d => valueMapBelow1(d.properties.ratio1));
+					.style('fill', d => valueMapBelow1(d.properties.ratio));
 			} else if (value == 'over1') {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.attr('fill', d => valueMapAbove1(d.properties.ratio1));
+					.style('fill', d => valueMapAbove1(d.properties.ratio));
 			} else if (value == 'all') {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.attr('fill', d => valueMapScale(d.properties.ratio1));
+					.style('fill', d => valueMapScale(d.properties.ratio));
 			} else {
 				tracts
 					.transition()
 					.duration(app.options.transitionDuration)
-					.attr('fill', '#EFEFEF');
+					.style('fill', otherColor);
 			}
 		} else if (attribute == 'erate'){
 			tracts
 				.transition()
 				.duration(app.options.transitionDuration)
-				.attr('fill', d => app.erateScale(d.properties.mean));
+				.style('fill', d => app.erateScale(d.properties.erate));
 		}
 	}
 }
