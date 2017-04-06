@@ -8,7 +8,9 @@
     "build": "grunt",
     "watch": "grunt watch",
     "prerender": "rm -rf _out && tarbell generate _out && d3-pre ./_out/index.html && d3-pre ./_out/part2.html && d3-pre ./_out/part3.html",
-    "publish": "tarbell publish"
+    "publish": "tarbell publish",
+    "downloadHeaderData": "node node_scripts/downloadCSV.js 'https://docs.google.com/spreadsheets/d/1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY/pub?gid=1093250361&single=true&output=csv' './_storage/day1header-data.csv'",
+    "generateHeaderGeojson":"node node_scripts/appendDataToGeojson.js _storage/day1header-data.csv tract2010 _storage/tracts-cook-county.geojson TRACT "
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "grunt-postcss": "^0.8.0",
     "grunt-sass": "^1.2.0",
     "minifyify": "^7.3.3",
+    "request": "^2.81.0",
     "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/"
   },
   "browserify": {
