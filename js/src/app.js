@@ -1,5 +1,7 @@
 const pym = require('pym.js');
 const boot = require('bootstrap.js');
+
+// http://iamdustan.com/smoothscroll/
 require('smoothscroll-polyfill').polyfill();
 
 // -------------------------------------------------------------------
