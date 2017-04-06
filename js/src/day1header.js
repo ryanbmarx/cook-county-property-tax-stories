@@ -113,9 +113,9 @@ setInterval(function() {
 function instructions(id, headerMap) {
     if (id == 10){
         // headerMap.highlightTracts('ratio1', 'none');
-        
+        headerMap.highlightTracts('ratio1', 'none');
     } else if (id == 20){
-        
+        headerMap.highlightTracts('ratio1', 'none');        
     } else if (id == 30){
         headerMap.highlightTracts('ratio1', 'none');
     } else if (id == 40){
@@ -125,8 +125,14 @@ function instructions(id, headerMap) {
     } else if (id == 60){
         headerMap.highlightTracts('ratio1', 'all');
     } else if (id == 70){
-
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
+    } else if (id == 80){
+
+    } else if (id == 90){
+        document.querySelector('.map-wrapper').classList.add('map-wrapper--visible');
+        headerMap.highlightTracts('erate', 'whiz-bang-boom');
+        document.querySelector('#race').classList.remove('header-chart--visible');
+        document.querySelector('#income').classList.remove('header-chart--visible');
     } else if (id == 100){
         // first hide the map
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
@@ -137,12 +143,12 @@ function instructions(id, headerMap) {
     } else if (id == 110){
         document.querySelector('#income').classList.remove('header-chart--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
+    } else if (id == 120){
+        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+        document.querySelector('#race').classList.add('header-chart--visible');
     }
-    //  else if (el.classList.contains('text--last')){
-    //     document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-    //     // document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
 
-    // }
+
 }
 
 window.onload = function(){
@@ -229,12 +235,16 @@ window.onload = function(){
         inView('.text')
             .on('enter', el => {
                 // Switch out the text blurb by hiding the visible one then turning on the next one
+                // Start by selecting the current, visible panel.
                 const visible = document.querySelector('.text--visible');
                 if (visible != null) {
+                    // Remove the visibility class if it is applied anywhere.
                     visible.classList.remove('text--visible')
                 }
+                // Add the visiblity class to the incoming panel.
                 el.classList.add('text--visible');
 
+                // Now call for the special instructions for that panel
                 const id = parseInt(el.id.replace('blurb', ''));
                 instructions(id, headerMap);
 
