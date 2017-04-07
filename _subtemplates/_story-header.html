@@ -1,3 +1,6 @@
+{% from '_tax-base.html' import ad as ad %}
+
+{{ ad('leaderboard', false) }}{# <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
 <section class='story-header story-header--day2'>
 	<div class='story-header__display'>
 		<h1 class='story-header__headline' itemprop="headline">
@@ -16,7 +19,7 @@
 					<div class='byline'>
 						<p class='byline-name'><a itemprop="author" href="mailto:jgrotto@chicagotribune.com?subject=Regarding: {{ overall_project_title }}">Jason Grotto</a></p>
 						<p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
-						<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime }}</time>
+						<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
 					</div>
 				</div>
 			</div>

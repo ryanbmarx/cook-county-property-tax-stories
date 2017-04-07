@@ -16,7 +16,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
 
-                        {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div> #}
+                        {{ ad("cube", 'right') }}
                         {{ lorem|markdown }}
                         {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
                         {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
@@ -40,6 +40,7 @@
                             </figcaption>
                         </figure>
                         {{ lorem|markdown }}
+                        {{ ad("cube", 'right') }}
                         {{ lorem|markdown }}
                         {{ lorem|markdown }}
                         {{ add_chart('appeals-demographics', 'chart--right', 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html') }}
@@ -51,6 +52,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
                             </figcaption>
                         </figure>
+                        {{ ad("cube", 'right') }}
                         {{ lorem|markdown }}
                         </div>
                     </div>

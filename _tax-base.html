@@ -1,5 +1,17 @@
 {% extends "_base.html" %}
 
+{% macro ad(type, alignment) %}
+    {% if alignment %}
+        {% set class = "advert--" + alignment%}
+    {% endif %}
+
+    {% if type == "cube" %}
+        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
+    {% elif type == "leaderboard" %}
+        <div class="advert" data-ad-type="leaderboard"></div>
+    {% endif %}
+{% endmacro %}
+
 {% macro keep_scrolling_icon() %}
   <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
 {% endmacro %}
