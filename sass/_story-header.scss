@@ -29,7 +29,21 @@
 		// color:white;
 	}
 	&__scrolling-icon{ display:none; }
+
+	.social-menu{
+		// This will stick the social buttons across the whitespace from the byline on mobile.
+		position:absolute;
+		top: 0;
+	    right: 30px;
+		justify-content:flex-end;	
+	}
+
+    
 }
+
+
+
+
 
 @media all and (min-width: $tablet-min-width){
 	
@@ -75,6 +89,7 @@
 		    right: 50%;
 		    right: calc(50% + 345px);
 	        z-index: 1000;
+	        justify-content:flex-start;
 			
 			li{
 				// display: flex;
