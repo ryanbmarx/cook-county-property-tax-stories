@@ -6,17 +6,23 @@ Tarbell project configuration
 
 from flask import Blueprint, g
 import datetime
-import xlrd.xldate
+# import xlrd.xldate
+import xlrd
 import random
+
 
 blueprint = Blueprint('property-taxes-cook-county', __name__)
 
 @blueprint.app_template_filter('xldate_to_datetime')
 def xldate_to_datetime(xldate):
+    return xldate
     if isinstance(xldate, unicode):
+        print('unicode!!')
         retval = datetime.datetime.strptime(xldate, '%m/%d/%Y')
     else:
+        print('Not unicode!!')
         retval = xlrd.xldate.xldate_as_datetime(xldate, 0)
+        # retval = xldate_as_tuple(xldate, 0)
     return retval
 
 @blueprint.app_template_filter('format_date')

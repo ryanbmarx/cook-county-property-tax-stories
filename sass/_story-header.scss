@@ -75,9 +75,10 @@
 @media all and (min-width: $desktop-min-width){
 	#day1-header, .story-header {
 
-			&__headline{
-		font-size:80px;
-	}
+		&__headline{
+			font-size:80px;
+		}
+		
 		.social-menu{
 			// Give the overall social shares a little different look on desktop. 
 			// These styles are extensions of the standard social shares, as seen 
