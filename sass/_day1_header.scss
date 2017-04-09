@@ -1,8 +1,8 @@
-$day1header_max_width: 700px;
-// $text_height: 100vh;
-// $chart_width: ($day1header_max_width / 2) - 25px;
-// $chart_height: $chart_width;
+// TODO: Why does last chart drop on slider end?
 
+
+
+$day1header_max_width: 700px;
 $undervalued_color:$trib-blue2;
 $overvalued_color:$trib-red2;
 
@@ -34,10 +34,9 @@ $overvalued_color:$trib-red2;
 	width: 100%;
 	max-width: $map-width;
 	position:absolute;
-	top:61px;
-	bottom:auto;	
-	left:calc(50% - #{$map-width / 2});
-	right:auto;
+	top:auto;
+	bottom:0;	
+	left:0;
 	opacity:0; 
 	transition: opacity 700ms ease;
 
@@ -45,14 +44,15 @@ $overvalued_color:$trib-red2;
 		opacity:1; 
 		transition: opacity 700ms ease;
 	}
+
+	#map{
+		width: 100%;
+		height:0;
+		padding-bottom:115%;
+	}
 }
 
-#map{
-	// background:white;
-	width: 100%;
-	height:0;
-	padding-bottom:115%;
-}
+
 
 // Mobile chart sizing and placement
 .header-chart{
@@ -65,7 +65,7 @@ $overvalued_color:$trib-red2;
 	
 	position:absolute;
 	top:auto;
-	left:calc(50% - #{$map-width / 2});
+	left:0;
 	bottom:5vh;	
 
 
@@ -81,8 +81,6 @@ $overvalued_color:$trib-red2;
 	width: 100%;
     height: 100vh; // fallback
     height: calc(100vh - #{$nav_height});
-    // overflow: visible;
-    // background:red;
 
 	// .swiper-pagination{
 	//     position: absolute;
@@ -101,7 +99,6 @@ $overvalued_color:$trib-red2;
 	// }
 }
 .swiper-slide{
-
 	&__inner{
 		height:100%;
 		display: flex;
@@ -115,10 +112,12 @@ $overvalued_color:$trib-red2;
 
 	&.swiper-slide--notch{
 		.swiper-slide__inner{
-			justify-content: flex-start;
+			// justify-content: flex-start;
+			align-items:flex-start;
+			align-content:flex-start;
 
 			.text__blurb{
-				max-width: 46%;
+				// max-width: 46%;
 			}
 		}
 	}
@@ -131,19 +130,10 @@ $overvalued_color:$trib-red2;
 			height: 45%;
 			align-items:flex-end;
 			align-content:flex-end;
-
-			.text__blurb{
-			// max-width: 46%;
-			}
 		}
 	}
 }
-#blurb120.animate .text__blurb{
-	@include enlarge(60s);
-	font-size: 50px;
-	line-height: 1.3em;
-	// transform: scale(.5);
-}
+
 
 #blurb0{
 	// The initial keep scrolling icons/instructions
@@ -189,10 +179,12 @@ $overvalued_color:$trib-red2;
 
 .text{
 	&__blurb{
-		@include serif-text(25px, 1.4em, normal);
+		@include serif-text(20px, 1.4em, normal);
 		@include display_type('serif');
 		margin:0;
 		z-index: 100;
+		max-width: 90%; // fallback
+		max-width: calc(100% - 30px);
 	}
 
 	strong.overvalued{
@@ -224,294 +216,39 @@ body[data-fixed-header=true]{
 }
 
 @media all and (min-width:#{$map-width}){
-	
+
+
+	.header-chart{
+		left:calc(50% - #{$map-width / 2});
+	}
+
+	.swiper-slide{
+		&.swiper-slide--notch{
+			.swiper-slide__inner{
+				justify-content: flex-start;
+
+				.text__blurb{ max-width: 46%; }
+			}
+		}
+	}
+	.map-wrapper{
+		left:calc(50% - #{$map-width / 2});
+		top:$nav_height + 10px;
+		bottom:auto;
+	}
+
+	.text__blurb{ font-size:27px; }
+
+	#blurb120.animate .text__blurb{
+		@include enlarge(60s);
+		font-size: 50px;
+		line-height: 1.3em;
+		// transform: scale(.5);
+	}
 }
 
 @media all and (min-width: $desktop-min-width){
 	// 850px+
 
-	.text__blurb{
-		// Display size bump
-		font-size:27px;
-	}
+
 }
-
-// .day1-header-display{
-// 	@include clearfix();
-// 	width:100%;
-// 	max-width: $day1header_max_width;
-// 	margin-left:auto;
-// 	margin-right:auto;
-// 	// margin-bottom:25px;
-// 	min-height:calc(100vh - 51px);
-// 	position:relative;
-//     // border-bottom: 45px solid $header-bg-color;// Yes, this is a hack, but padding would affect the map placement.
-// }
-
-// // Mobile chart sizing and placement
-// .header-chart{
-// 	width:100%;
-// 	height: 50vh;
-// 	opacity:0;
-// 	transition: opacity 400ms ease;
-	
-// 	position:absolute;
-// 	top:auto;
-// 	left:0;
-// 	bottom:0;	
-// 	// left: calc(50% + 25px);;
-// 	// right:auto;	
-
-// 	&.header-chart--visible{
-// 		opacity:1;
-// 		transition: opacity 400ms ease;
-// 	}
-// }
-
-// // Mobile map sizing and placement
-// .map-wrapper{
-// 	width: 100%;
-// 	max-width: $map-width;
-// 	position:absolute;
-// 	top:auto;
-// 	bottom:0;	
-// 	left:0;
-// 	right:auto;
-// 	opacity:0; 
-// 	transition: opacity 700ms ease;
-
-// 	&.map-wrapper--visible{
-// 		opacity:1; 
-// 		transition: opacity 700ms ease;
-// 	}
-// }
-
-// // #race, #income{
-// // 	left:0;
-// // }
-
-// #map{
-// 	width: 100%;
-// 	height:0;
-// 	padding-bottom:115%;
-// 	// background:#eee;
-// }
-
-// .text{
-// 	// Each "text" is a single piece of scrolling text. It's height creates the scrolling.
-// 	border: 1px solid black;
-// 	height:$text_height;
-// 	opacity:0; 
-// 	transition: opacity 200ms ease;
-// 	&.text--visible{ 
-// 		opacity:1; 
-// 		transition: opacity 700ms ease;
-// 	}
-
-// 	&__blurb{
-// 		// The actual text within each thought. Each blurb that appears/disappears
-// 		@include serif-text(15px, 1.4em, normal);
-// 		@include display_type('serif');
-// 		margin:0;
-// 		z-index: 100;
-		
-// 		// Make sure the bold is bold enough in the display font.
-// 	    strong{
-// 	    	display: inline-block;
-// 	    	font-weight: 700;
-// 	    	&.undervalued{
-// 	    		color:$undervalued_color;
-// 	    	}
-// 	    	&.overvalued{
-// 	    		color:$overvalued_color;
-// 	    	}
-// 	    }
-// 	}
-	
-// 	&:last-child, &:first-child{
-// 		height:150vh;
-// 	}
-// }
-
-// // erate legend
-// .effective-tax-rate-legend{
-// 	background:blue;
-// 	margin-top:15px;
-
-// 	&__list{
-// 		list-style-type:none;
-// 		margin:0;
-// 		padding:0;
-// 		display:flex;
-// 		justify-content:space-between;
-// 	}
-
-// 	&__bucket{
-// 		height: 20px;
-// 		display: flex;
-// 		align-items: center;
-// 		justify-content: center;
-
-// 		&:last-child{
-// 			// The darkest bucket/list item needs white text.
-// 			color:white;
-// 		}
-// 	}
-	
-// 	&__text{
-// 		@include agate();
-// 		font-weight:bold;
-// 	}
-// }
-
-// body[data-fixed-map='true']{
-// 	// When this data-* attribute is true, the story header will be fixed and fun. When it's not true, it will scroll away.
-// 	.blurb__id{
-// 		position: fixed;	
-// 		top:75px;
-// 		left:75px;
-// 	}
-// 	.map-wrapper{
-// 		position:fixed;
-// 		// top:$nav_height + 10px ;
-// 		bottom:auto;
-// 		transition: top 300ms ease;
-// 	}
-
-// 	.text__blurb{
-// 		// Try to keep these pinned to the bottom of the map on mobile
-// 		position:fixed;
-// 	    top: 75%;
-// 	    padding: 10px;
-
-// 		//
-// 		top: 30%;
-// 		max-width: 48%;
-// 		//
-
-// 	}
-	
-// 	// Make these blurbs full width and vertically centered-ish
-// 	#blurb10, #blurb20, #blurb30{
-// 		.text__blurb{
-// 			top: 40%;
-// 			// max-width: $map-width;
-// 		}
-// 	}
-// 	.header-chart{ }
-// }
-
-// @media all and (min-width:#{$map-width}){
-// 	// When the screen is wider than the map.
-// 	#map{
-// 		width: $map-width; 
-// 		height: $map-width * 1.15;
-// 		max-height: calc(100vh - #{$nav_height} - 15px);// Give it a little space below
-// 		// max-height: 100px;
-// 		// background:yellow;
-// 		overflow: hidden;
-// 		padding:0;
-// 	}
-	
-// 	.text__blurb{
-// 		font-size:23px;
-// 	    max-width: 250px;
-// 	    padding: 0;
-// 	}
-
-// 	// For the final few, with the charts, we want the text to sit atop the chart.
-// 	#blurb100, #blurb110, #blurb120, #blurb130{
-// 		.text__blurb-wrapper{
-// 			height:45%;
-// 			align-items:flex-end;
-// 		}
-// 	}
-
-// 	// These are the placements. They are outside the sticky selector because the same offsets
-// 	// should exist when they are absolutely positioned (so they scroll away).
-// 	.map-wrapper{
-// 		bottom:auto;
-// 		left:auto;
-// 		right: calc(50% - #{$day1header_max_width / 2});
-// 		margin-left: 0;
-// 	}
-
-// 	.header-chart{
-// 		height: $chart_height;
-// 		transition: opacity 400ms ease;
-// 		left:calc(50% - #{($day1header_max_width / 2)});
-// 	    width: $day1header_max_width;
-// 		top: auto;
-// 		bottom: 50%;
-// 		margin-bottom: #{0 - $chart_height};
-// 	}
-
-
-// 	body[data-fixed-map='true']{
-// 		// When the map is sticky
-// 		.map-wrapper{
-// 			position:fixed;
-// 		}
-// 		.effective-tax-rate-legend {
-// 			position: fixed;
-// 			left: 33.4%;
-// 			top: 35%;
-// 			width: 17.5%;
-// 		}
-
-// 		.header-chart{
-// 			transition: opacity 400ms ease;
-// 			position:fixed;
-// 		}
-
-// 		.text__blurb-wrapper{
-// 			height:100%;
-// 			display:flex;
-// 			align-items:center;
-
-// 			position:fixed;
-// 			top:0;
-// 			left:calc(50% - #{$day1header_max_width / 2});
-// 		}
-
-// 		.text__blurb{
-// 			// Try to keep these pinned to the bottom of the map on mobile
-// 			position:static;
-// 			max-width: $day1header_max_width / 2;
-// 		}
-// 		#blurb120, #blurb110,#blurb100{
-// 			// These two blurbs need a little nudge up
-// 			.text__blurb{
-// 				top:150px;
-// 			}
-// 		}
-// 		// #blurb100, #blurb110, #blurb120, #blurb130{
-// 		// 	.text__blurb-wrapper{
-// 		// 		height:45%;
-// 		// 		align-items:flex-end;
-// 		// 	}
-// 		// }
-
-// 		#blurb120.text--visible{
-// 			// make it dramaticaly inch larger
-// 			// @include enlarge(100000ms);
-// 		}
-// 		.text--full{
-// 			.text__blurb{
-// 				max-width: $day1header_max_width - 20px;
-// 				text-align:center;
-// 			}
-// 		}
-// 	}
-
-// }
-
-// @media all and (min-width: $desktop-min-width){
-// 	// 850px+
-
-// 	.text__blurb{
-// 		// Display size bump
-// 		font-size:27px;
-// 	}
-// }
-// 	
