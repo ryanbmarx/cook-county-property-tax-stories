@@ -6,14 +6,18 @@
     {% endif %}
 
     {% if type == "cube" %}
-        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
+        {# <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div> #}
     {% elif type == "leaderboard" %}
-        <div class="advert" data-ad-type="leaderboard"></div>
+        {# <div class="advert" data-ad-type="leaderboard"></div> #}
     {% endif %}
 {% endmacro %}
 
 {% macro keep_scrolling_icon() %}
-  <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
+  <div class='story-header__scrolling-icon'>
+    <span>{{ scrolling_icon_text }}</span>
+    <i class="fa fa-arrow-circle-down fa-2x" aria-hidden="true"></i>
+  </div>
+
 {% endmacro %}
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}

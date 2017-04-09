@@ -105,7 +105,7 @@ class CookCountyMap{
 		app.erateScale = d3.scaleQuantile()
 			.domain(app.data.features.map(d => d.properties.erate))
 			.range(erateColorRamp);
-		buildErateLegend(erateColorRamp, ["#blurb70 .text__blurb", "#blurb80 .text__blurb", "#blurb90 .text__blurb"]);
+		// buildErateLegend(erateColorRamp, ["#blurb70 .text__blurb", "#blurb80 .text__blurb", "#blurb90 .text__blurb"]);
 	}
 
 	drawMap(error){

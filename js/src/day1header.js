@@ -1,5 +1,6 @@
 var boot = require('bootstrap.js');
-import inView from 'in-view';
+import 'swiper';
+// import inView from 'in-view';
 import * as d3 from 'd3';
 import CookCountyMap from './fairness.js';
 import barChart from 'bar-chart.js';
@@ -79,36 +80,36 @@ NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 
-// We'll use a variable to trigger our scroll events and use a setInterval to periodically check for scroll movement
-// This protexts page performance.
-let didScroll = false;
+// // We'll use a variable to trigger our scroll events and use a setInterval to periodically check for scroll movement
+// // This protexts page performance.
+// let didScroll = false;
 
-// Capture the dimenstions of the map. We continually will reference this to determine whether the header is in view or not
-const lastBox = document.querySelector('#race').getBoundingClientRect();
+// // Capture the dimenstions of the map. We continually will reference this to determine whether the header is in view or not
+// const lastBox = document.querySelector('#race').getBoundingClientRect();
 
-window.onscroll = doThisStuffOnScroll;
-function doThisStuffOnScroll() { didScroll = true; }
+// window.onscroll = doThisStuffOnScroll;
+// function doThisStuffOnScroll() { didScroll = true; }
 
-setInterval(function() {
-    if(didScroll) {
-        didScroll = false;
-        const   header = document.querySelector('#day1-header-display'),
-                headerBox = header.getBoundingClientRect();
+// setInterval(function() {
+//     if(didScroll) {
+//         didScroll = false;
+//         const   header = document.querySelector('#day1-header-display'),
+//                 headerBox = header.getBoundingClientRect();
 
 
-        if (lastBox.bottom >= headerBox.bottom) {
-            // If the header has scrolled to the bottom of the map, make the map not sticky by toggling
-            // the data-* attribute on the <body>
+//         if (lastBox.bottom >= headerBox.bottom) {
+//             // If the header has scrolled to the bottom of the map, make the map not sticky by toggling
+//             // the data-* attribute on the <body>
 
-            document.querySelector('body').dataset.fixedMap = false;
+//             document.querySelector('body').dataset.fixedMap = false;
          
-        } else {
-            // If the user has scrolled back up, then make the map fixed again.
-            document.querySelector('body').dataset.fixedMap = true;
-        }
+//         } else {
+//             // If the user has scrolled back up, then make the map fixed again.
+//             document.querySelector('body').dataset.fixedMap = true;
+//         }
 
-    }
-}, 100);
+//     }
+// }, 100);
 
 function instructions(id, headerMap) {
     console.log("showing", id);
@@ -164,6 +165,12 @@ function instructions(id, headerMap) {
 
 window.onload = function(){
     // Make the two bar charts for later in the process
+    
+
+
+
+
+
     const race = new barChart({
         root_url:window.ROOT_URL,
         chartType:'filled-line',
@@ -242,28 +249,33 @@ window.onload = function(){
             data: data,
             transitionDuration: transitionDuration
         });    
+     
+        const mySwiper = new Swiper ('.swiper-container', {
+            // Optional parameters
+            direction: 'vertical',
+            speed:200,
+            loop: false,
 
-        inView('.text')
-            .on('enter', el => {
-                console.log(el.getBoundingClientRect().height);
-                // Switch out the text blurb by hiding the visible one then turning on the next one
-                // Start by selecting the current, visible panel.
-                const visible = document.querySelector('.text--visible');
+            // If we need pagination
+            pagination: '.swiper-pagination',
 
-                if (visible != null) {
-                    // Remove the visibility class if it is applied anywhere.
-                    visible.classList.remove('text--visible')
-                }
-                // Add the visiblity class to the incoming panel.
-                el.classList.add('text--visible');
+            // Navigation arrows
+            nextButton: '.swiper-button--next',
+            prevButton: '.swiper-button--prev',
+            paginationClickable: true,
+            keyboardControl:true,
+            onSlideChangeStart: function(){
+                const activeSlide = document.querySelector('.swiper-slide-active'),
+                        activeID = parseInt(activeSlide.id.replace('blurb', ''));
+                instructions(activeID, headerMap);
+                console.log('change', this, activeSlide, activeID);
 
-                // Now call for the special instructions for that panel
-                const id = parseInt(el.id.replace('blurb', ''));
-                instructions(id, headerMap);
+            }
+            // mousewheelControl:true,
+            // mousewheelForceToAxis:true
 
-            }).on('exit', el =>{
-                // const id = parseInt(el.id.replace('blurb', ''));
-                // instructions((id-1), headerMap);
-            })
-    })
+            // And if we need scrollbar
+            // scrollbar: '.swiper-scrollbar',
+        }); 
+    });  
 }
