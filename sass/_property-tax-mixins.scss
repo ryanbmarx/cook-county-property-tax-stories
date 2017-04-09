@@ -35,10 +35,17 @@
     100% { transform: translate(0,0); }
 }
 
-@mixin bounce($time){
+@keyframes bounce_reverse {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(0,0.2em); }
+    70% { transform: translate(0,0.3em); }
+    100% { transform: translate(0,0); }
+}
+
+@mixin bounce($time, $direction:bounce){
   display: inline-block;
   // position: relative;
-  animation: bounce $time infinite linear;
+  animation: $direction $time infinite linear;
 }
 
 @mixin river_narrow($max-width){
@@ -50,8 +57,8 @@
 }
 
 @keyframes enlarge{
-	0%{ transform:scale(1); }
-	100%{ transform:scale(3); }
+	0%{ transform:scale(.5); }
+	100%{ transform:scale(1); }
 }
 
 @mixin enlarge($time){

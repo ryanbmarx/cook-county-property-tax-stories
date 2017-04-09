@@ -158,6 +158,7 @@ function instructions(id, headerMap) {
         document.querySelector('#race').classList.add('header-chart--visible');
     } else if (id == 120){
         console.log("Inside instructions for ", id);
+        document.querySelector('#blurb120').classList.add('animate');
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
     }
@@ -165,12 +166,6 @@ function instructions(id, headerMap) {
 
 window.onload = function(){
     // Make the two bar charts for later in the process
-    
-
-
-
-
-
     const race = new barChart({
         root_url:window.ROOT_URL,
         chartType:'filled-line',
@@ -255,9 +250,14 @@ window.onload = function(){
             direction: 'vertical',
             speed:200,
             loop: false,
+            // effect:'flip',
+            // fade:{
+            //     crossfade:true
+            // },
 
             // If we need pagination
-            pagination: '.swiper-pagination',
+            // pagination: '.swiper-pagination',
+            // paginationType:'progress',
 
             // Navigation arrows
             nextButton: '.swiper-button--next',
@@ -270,7 +270,7 @@ window.onload = function(){
                 instructions(activeID, headerMap);
                 console.log('change', this, activeSlide, activeID);
 
-            }
+            },
             // mousewheelControl:true,
             // mousewheelForceToAxis:true
 

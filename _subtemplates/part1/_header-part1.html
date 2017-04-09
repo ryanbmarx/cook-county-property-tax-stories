@@ -3,7 +3,7 @@
 <section id='day1-header'>
 	<div class='day1-header-background'>
 	<div id='day1-header-display' class='day1-header-display'>
-		<div class='map-wrapper map-wrapper--visible'>
+	{# 	<div class='map-wrapper map-wrapper--visible'>
 			<div id='map'></div>
 		</div>
 
@@ -19,9 +19,8 @@
 				{% endif %}
 				
 				{# This var will hold any classes specific to this item, set in the spreadsheet #}
-				{% set classes_to_add = "" %}
+				{# {% set classes_to_add = "" %} 
 				{% if blurb.width %}
-					{# If a different text width is desired, this is the class #}
 					{% set classes_to_add = classes_to_add + "text--" + blurb.width + " " %}
 				{% endif %}
 
@@ -36,9 +35,52 @@
 					</div>
 				</div>
 			{%- endfor -%}
-		</div>
+		</div> #}
 
-		{{ keep_scrolling_icon() }}
+		<div class='map-wrapper map-wrapper--visible'>
+			<div id='map'></div>
+		</div>
+		<div id='income' class='header-chart'></div>
+		<div id='race' class='header-chart'></div>
+
+		<!-- Slider main container -->
+		<div class="swiper-container">
+			{# {{ keep_scrolling_icon() }} #}
+		    <!-- Additional required wrapper -->
+		    <div class="swiper-wrapper">
+		        <!-- Slides -->
+				<div id='blurb0' class='swiper-slide text'>
+						<div class='swiper-slide__inner'>
+							<i class="fa fa-2x fa-arrow-up" aria-hidden="true"></i>
+							<p class='text__blurb'>Click, tap, swipe or scroll to advance</p>
+							<i class="fa fa-2x fa-arrow-down" aria-hidden="true"></i>
+						</div>
+					</div>
+    			{%- for blurb in day1_header_blurbs|sort(attribute='order') if blurb.publish == 1  -%}
+					{% set classes_to_add = "" %} 
+					{% if blurb.width %}
+						{% set classes_to_add = classes_to_add + "swiper-slide--" + blurb.width + " " %}
+					{% endif %}
+					<div id='blurb{{ blurb.order }}' class='swiper-slide {{ classes_to_add }} text'>
+						<div class='swiper-slide__inner'>
+							<span class='blurb__id' style="display:block;width:100%;">(#blurb{{ blurb.order }})</span>
+							<p class='text__blurb'>{{ blurb.blurb|process_text }}</p>
+						</div>
+					</div>
+				{%- endfor -%}
+		    </div>
+
+		    {# <!-- If we need pagination --> #}
+		    <div class="swiper-pagination"></div>
+		    
+		    {# <!-- If we need navigation buttons --> #}
+		    <div class="swiper-button swiper-button--prev"></div>
+		    <div class="swiper-button swiper-button--next"></div>
+		    
+		    {# <!-- If we need scrollbar --> #}
+		    {# <div class="swiper-scrollbar"></div> #}
+
+		</div>
 	</div>
 	</div>
 	<div class='container'>
