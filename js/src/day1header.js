@@ -269,6 +269,10 @@ window.onload = function(){
                         activeID = parseInt(activeSlide.id.replace('blurb', ''));
                 instructions(activeID, headerMap);
                 console.log('change', this, activeSlide, activeID);
+                console.log(mySwiper.isEnd);
+                if (mySwiper.isEnd){
+                    document.querySelector('body').dataset.fixedHeader = "false"
+                }
 
             },
             // mousewheelControl:true,

@@ -63,8 +63,10 @@
 					{% endif %}
 					<div id='blurb{{ blurb.order }}' class='swiper-slide {{ classes_to_add }} text'>
 						<div class='swiper-slide__inner'>
-							<span class='blurb__id' style="display:block;width:100%;">(#blurb{{ blurb.order }})</span>
 							<p class='text__blurb'>{{ blurb.blurb|process_text }}</p>
+							{% if loop.last %}
+								<p class='text__last-message'>Scroll or swipe to continue</p>
+							{% endif %}
 						</div>
 					</div>
 				{%- endfor -%}
