@@ -115,18 +115,26 @@ class CookCountyMap{
 		const 	app = this;
 		const 	containerBox = app.mapContainer.node().getBoundingClientRect(),
 				width = containerBox.width,
-				height = containerBox.height,
-				top = ((window.innerHeight - height) / 2); // Vertically center under navbar
+				height = containerBox.height;
 
-		// Nudge the map down to the center
-		// const mapWrapper = app.mapContainer.node().parentElement;
+		// Nudge the map down to the center if we are one "desktop mode", which is 
+		// when the window is wider than the map-wrapper's maximum width, which, 
+		// at the time of this writing, is 600px;
+		const 	mapWrapper = app.mapContainer.node().parentElement,
+				mapMaxWidth = mapWrapper.style.maxWidth;
+		
+		if (window.innerWidth >= mapMaxWidth){
+			// const marginTop = mapWrapper.getBoundingClientRect().height / -2;
+			
+			console.log('wide', window.innerWidth, (height / -2));
+			console.log(mapWrapper, mapWrapper.style);
+			mapWrapper.style.top = '50%';
+			mapWrapper.style.marginTop = `${height / -2}px`;
+		}
 		// d3.select(mapWrapper).attr('style', `top: ${top}px;`);
 		// console.log(height / -2, marginTop, mapWrapper);	
-
-		// mapWrapper.style = {
-		// 	top: '50%',
-		// 	marginTop: marginTop
-		// };
+		console.log();
+		
 
 		// Insert our extra map layers/add-ons into the array 
 		for (var i=0; i < arguments[1].length; i++ ){

@@ -79,38 +79,6 @@ const incomeData =  [
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
-
-// // We'll use a variable to trigger our scroll events and use a setInterval to periodically check for scroll movement
-// // This protexts page performance.
-// let didScroll = false;
-
-// // Capture the dimenstions of the map. We continually will reference this to determine whether the header is in view or not
-// const lastBox = document.querySelector('#race').getBoundingClientRect();
-
-// window.onscroll = doThisStuffOnScroll;
-// function doThisStuffOnScroll() { didScroll = true; }
-
-// setInterval(function() {
-//     if(didScroll) {
-//         didScroll = false;
-//         const   header = document.querySelector('#day1-header-display'),
-//                 headerBox = header.getBoundingClientRect();
-
-
-//         if (lastBox.bottom >= headerBox.bottom) {
-//             // If the header has scrolled to the bottom of the map, make the map not sticky by toggling
-//             // the data-* attribute on the <body>
-
-//             document.querySelector('body').dataset.fixedMap = false;
-         
-//         } else {
-//             // If the user has scrolled back up, then make the map fixed again.
-//             document.querySelector('body').dataset.fixedMap = true;
-//         }
-
-//     }
-// }, 100);
-
 function instructions(id, headerMap) {
     console.log("showing", id);
     if (id == 10){
@@ -265,11 +233,10 @@ window.onload = function(){
             paginationClickable: true,
             keyboardControl:true,
             onSlideChangeStart: function(){
-                const activeSlide = document.querySelector('.swiper-slide-active'),
+                const   activeSlide = document.querySelector('.swiper-slide-active'),
                         activeID = parseInt(activeSlide.id.replace('blurb', ''));
+                
                 instructions(activeID, headerMap);
-                console.log('change', this, activeSlide, activeID);
-                console.log(mySwiper.isEnd);
                 if (mySwiper.isEnd){
                     document.querySelector('body').dataset.fixedHeader = "false"
                 }

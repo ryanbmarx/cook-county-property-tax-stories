@@ -113,8 +113,9 @@ $overvalued_color:$trib-red2;
 	&.swiper-slide--notch{
 		.swiper-slide__inner{
 			// justify-content: flex-start;
-			align-items:flex-start;
-			align-content:flex-start;
+			align-items:flex-end;
+			align-content:flex-end;
+		    height: 23%;
 
 			.text__blurb{
 				// max-width: 46%;
@@ -225,7 +226,11 @@ body[data-fixed-header=true]{
 	.swiper-slide{
 		&.swiper-slide--notch{
 			.swiper-slide__inner{
-				justify-content: flex-start;
+			justify-content: flex-start;
+			align-items:center;
+			align-content:center;
+		    height: 100%;
+
 
 				.text__blurb{ 
 					max-width: 46%; 
@@ -234,7 +239,7 @@ body[data-fixed-header=true]{
 			}
 		}
 	}
-	
+
 	.map-wrapper{
 		left:calc(50% - #{$map-width / 2});
 		top:$nav_height + 10px;
