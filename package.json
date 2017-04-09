@@ -10,7 +10,7 @@
     "prerender": "rm -rf _out && tarbell generate _out && d3-pre ./_out/index.html && d3-pre ./_out/part2.html && d3-pre ./_out/part3.html",
     "publish": "tarbell publish",
     "downloadHeaderData": "node node_scripts/downloadCSV.js 'https://docs.google.com/spreadsheets/d/1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY/pub?gid=1093250361&single=true&output=csv' './_storage/day1header-data.csv'",
-    "generateHeaderGeojson":"node node_scripts/appendDataToGeojson.js _storage/day1header-data.csv tract2010 _storage/tracts-cook-county.geojson TRACT "
+    "generateHeaderGeojson": "node node_scripts/appendDataToGeojson.js _storage/day1header-data.csv tract2010 _storage/tracts-cook-county.geojson TRACT "
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "jquery": "^3.2.1",
     "pym.js": "^1.2.0",
     "smoothscroll-polyfill": "^0.3.4",
+    "swiper": "^3.4.2",
     "textures": "^1.0.5",
     "underscore": "^1.8.3"
   }
