@@ -8,12 +8,13 @@ module.exports = function(grunt) {
   var VENDOR_LIBRARIES = [
     'jquery',
     // 'pym.js',
-    'in-view',
+    // 'in-view',
     'd3',
     'd3-pre',
     'd3-queue',
     'd3-svg-annotation',
-    'textures'
+    'textures',
+    'swiper'
   ];
 
   config.browserify = {
@@ -110,7 +111,7 @@ module.exports = function(grunt) {
     },
     js: {
       files: ['js/src/**/*.js'],
-      tasks: ['browserify:day1header']
+      tasks: ['browserify:day1header', 'browserify:app']
     }
   };
 
