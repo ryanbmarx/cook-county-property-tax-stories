@@ -119,8 +119,8 @@ class CookCountyMap{
 				top = ((window.innerHeight - height) / 2); // Vertically center under navbar
 
 		// Nudge the map down to the center
-		const mapWrapper = app.mapContainer.node().parentElement;
-		d3.select(mapWrapper).attr('style', `top: ${top}px;`);
+		// const mapWrapper = app.mapContainer.node().parentElement;
+		// d3.select(mapWrapper).attr('style', `top: ${top}px;`);
 		// console.log(height / -2, marginTop, mapWrapper);	
 
 		// mapWrapper.style = {

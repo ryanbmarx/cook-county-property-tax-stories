@@ -35,7 +35,7 @@ $overvalued_color:$trib-red2;
 	max-width: $map-width;
 	position:absolute;
 	top:auto;
-	bottom:0;	
+    bottom: 20px;
 	left:0;
 	opacity:0; 
 	transition: opacity 700ms ease;
@@ -118,6 +118,7 @@ $overvalued_color:$trib-red2;
 
 			.text__blurb{
 				// max-width: 46%;
+				margin-top:20px;
 			}
 		}
 	}
@@ -217,7 +218,6 @@ body[data-fixed-header=true]{
 
 @media all and (min-width:#{$map-width}){
 
-
 	.header-chart{
 		left:calc(50% - #{$map-width / 2});
 	}
@@ -227,10 +227,14 @@ body[data-fixed-header=true]{
 			.swiper-slide__inner{
 				justify-content: flex-start;
 
-				.text__blurb{ max-width: 46%; }
+				.text__blurb{ 
+					max-width: 46%; 
+					margin-top:0;
+				}
 			}
 		}
 	}
+	
 	.map-wrapper{
 		left:calc(50% - #{$map-width / 2});
 		top:$nav_height + 10px;

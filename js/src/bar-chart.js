@@ -5,6 +5,8 @@ import textures from 'textures';
 const getTribColor = require('./getTribColors.js');
 // import * as d3-annotation from 'd3-svg-annotation';
 
+// TODO: Make annotations smaller on mobile
+
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
