@@ -4,8 +4,8 @@ import * as _ from 'underscore';
 import textures from 'textures';
 const getTribColor = require('./getTribColors.js');
 
-import Prerender from 'd3-pre';
-const  prerender = Prerender(d3);
+// import Prerender from 'd3-pre';
+// const  prerender = Prerender(d3);
 // import * as d3-annotation from 'd3-svg-annotation';
 
 // TODO: Make annotations smaller on mobile
@@ -25,7 +25,6 @@ class barChart{
 		app.barColor = app.getColor(app.options.barFill);
 		app.meta = app.options.meta;
 
-		prerender.start();
 
 		app.initChart(app.data);
 	}
