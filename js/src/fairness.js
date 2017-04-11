@@ -3,8 +3,8 @@ import getTribColors from'./getTribColors.js';
 var queue = require('d3-queue').queue;
 
 // https://github.com/fivethirtyeight/d3-pre
-import Prerender from 'd3-pre';
-const  prerender = Prerender(d3);
+// import Prerender from 'd3-pre';
+// const  prerender = Prerender(d3);
 
 const 	aboveOneColor = getTribColors('trib-red2'),
 		otherColor = 'rgba(255,255,255,.45)',
@@ -20,7 +20,7 @@ function buildErateLegend(ramp, containerID){
 	// then dupes the legend into the others.
 
 	// Select the first container, and append the wrapper div and list
-	const container = d3.select(containerID[0])
+	const container = d3.select(containerID)
 		.append('div')
 		.classed('effective-tax-rate-legend', true)
 			.append('ul')
@@ -36,24 +36,13 @@ function buildErateLegend(ramp, containerID){
 			if (index == 0){
 				bucket.append('span')
 					.classed('effective-tax-rate-legend__text', true)
-					.html("&laquo; Smaller");
+					.html("&laquo; Lower rate");
 			} else if (index == (ramp.length - 1)){
 				bucket.append('span')
 					.classed('effective-tax-rate-legend__text', true)
-					.html("Larger &raquo;");
+					.html("Higher rate &raquo;");
 			}
 	})
-
-	// Store the HTML we just generated in the first container into a variable
-	const legend = d3.select(`${containerID[0]} .effective-tax-rate-legend`).html();
-	for (let i=1; i < containerID.length; i++){
-		// for all subsequent containers, just append a div and insert the legend
-		d3.select(containerID[i])
-			.append('div')
-			.classed('effective-tax-rate-legend', true)
-			.html(legend);
-	}
-
 }
 
 function valueMapScale(ratio){
@@ -78,6 +67,7 @@ function valueMapBelow1(ratio){
 
 class CookCountyMap{
 	constructor(options){
+
 		 const app = this;
 		 app.options = options;
 		 app.mapContainer = options.mapContainer;
@@ -105,12 +95,11 @@ class CookCountyMap{
 		app.erateScale = d3.scaleQuantile()
 			.domain(app.data.features.map(d => d.properties.erate))
 			.range(erateColorRamp);
-		// buildErateLegend(erateColorRamp, ["#blurb70 .text__blurb", "#blurb80 .text__blurb", "#blurb90 .text__blurb"]);
+		buildErateLegend(erateColorRamp, '#day1-header-display');
 	}
 
 	drawMap(error){
 
-		prerender.start();
 
 		const 	app = this;
 		const 	containerBox = app.mapContainer.node().getBoundingClientRect(),
@@ -121,19 +110,18 @@ class CookCountyMap{
 		// when the window is wider than the map-wrapper's maximum width, which, 
 		// at the time of this writing, is 600px;
 		const 	mapWrapper = app.mapContainer.node().parentElement,
-				mapMaxWidth = mapWrapper.style.maxWidth;
+				mapMaxWidth = 600;
 		
 		if (window.innerWidth >= mapMaxWidth){
-			// const marginTop = mapWrapper.getBoundingClientRect().height / -2;
-			
-			console.log('wide', window.innerWidth, (height / -2));
-			console.log(mapWrapper, mapWrapper.style);
+			// console.log('desktop');
 			mapWrapper.style.top = '50%';
 			mapWrapper.style.marginTop = `${height / -2}px`;
+		} else {
+			// console.log('mobile');
 		}
 		// d3.select(mapWrapper).attr('style', `top: ${top}px;`);
 		// console.log(height / -2, marginTop, mapWrapper);	
-		console.log();
+		
 		
 
 		// Insert our extra map layers/add-ons into the array 
