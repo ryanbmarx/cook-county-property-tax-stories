@@ -11,3 +11,5 @@ vendor.min.js
 *.map
 _out
 *.min.js
+out_parsed.txt
+out_text.html
