@@ -109,11 +109,11 @@
   {% include '_nav.html' %}
 {% endblock nav %}
 
-{% block bodyattrs %}
+{# {% block bodyattrs %}
     {{ super() }}
-    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
-    data-fixed-header=true
-{% endblock bodyattrs %}
+    This data attribute on the body tag will toggle the fixed state of the map and day1 story header 
+    data-fixed-header=false
+{% endblock bodyattrs %} #}
 
 {% block content %}
   
@@ -131,15 +131,14 @@
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
-
-
+    {% block comments %}
+      {% include '_subtemplates/_solid-opinion-comments.html'%}
+    {% endblock comments %}
+    <div data-trb-thirdpartynav></div>
 {% endblock content %}
 
 {% block library_css %}
-    {# <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="//media.apps.chicagotribune.com/bootstrap/v3.1.1/css/chicago-bootstrap.css"> #}
     <link rel="stylesheet" type="text/css" href="css/base.css" />
-    
 {% endblock %}
 
 {% block css %}
@@ -166,24 +165,28 @@
 
 {% block omniture_scripts %}
     {{ super() }}
+    <script src="http://www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script>
 {% endblock omniture_scripts %}
 
 
 {% block omniture %}
-{#     {{ super() }} #}
-    {% include '_subtemplates/_omniture.html' %}
 {% endblock omniture %}
 
-
 {% block library_scripts %}
-<script type="text/javascript">
-  window.ROOT_URL = "{{ ROOT_URL }}";
-</script>
-<script src="js/vendor.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  {% include '_subtemplates/_omniture_header_scripts.html' %}
 {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
-<script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
-<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
 {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
 {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
+<script src="js/vendor.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
+<script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
+<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script>
+<script type="text/javascript">
+  window.ROOT_URL = "{{ ROOT_URL }}";
+  (window.registration || (registration = [])).push('solidopinion');
+</script>
+
 {% endblock %}
