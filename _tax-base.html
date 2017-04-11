@@ -1,14 +1,15 @@
 {% extends "_base.html" %}
 
 {% macro ad(type, alignment) %}
+    {# returns an advert <div> with the proper alignment classes and data-* attributes to make it fit within this project. #}
     {% if alignment %}
         {% set class = "advert--" + alignment%}
     {% endif %}
 
     {% if type == "cube" %}
-        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
+        {# <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div> #}
     {% elif type == "leaderboard" %}
-        <div class="advert" data-ad-type="leaderboard"></div>
+        {# <div class="advert" data-ad-type="leaderboard"></div> #}
     {% endif %}
 {% endmacro %}
 
@@ -122,18 +123,17 @@
         {# Story content will go here #}
         {# ################ #}
     {% endblock story %}
-
-    {% block methods scoped %}
-      {% set part = part %}
-      {% include '_subtemplates/_methodologies.html' %}      
-    {% endblock methods %}
+    {% block comments %}
+      {% include '_subtemplates/_solid-opinion-comments.html'%}
+    {% endblock comments %}
     {% block credits scoped %}
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
-    {% block comments %}
-      {% include '_subtemplates/_solid-opinion-comments.html'%}
-    {% endblock comments %}
+    {% block methods scoped %}
+      {% set part = part %}
+      {% include '_subtemplates/_methodologies.html' %}      
+    {% endblock methods %}
     <div data-trb-thirdpartynav></div>
 {% endblock content %}
 
@@ -150,9 +150,7 @@
     {{ super() }}
 {% endblock meta %}
 
-{% block paywall %}
-    {# Empty this block out, possibly to be replaced with meter stuff #}
-{% endblock%}
+
 
 {% block scripts %}
     <script src="http://{{ ROOT_URL }}/js/app.min.js"></script>
@@ -177,16 +175,23 @@
 {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
 {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
 {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
-<script src="js/vendor.min.js"></script>
+
+{# For the bootstrap. Can this be removed? #}
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+{# For the adverts #}
 <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+
+{# For videos #}
 <script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
-<script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
+
+{# For comments #}
+{# <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
 <script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script>
+ #}
+{# For some of the JS I wrote, I need this. #}
 <script type="text/javascript">
   window.ROOT_URL = "{{ ROOT_URL }}";
-  (window.registration || (registration = [])).push('solidopinion');
 </script>
 
 {% endblock %}

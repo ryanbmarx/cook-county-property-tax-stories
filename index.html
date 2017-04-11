@@ -79,9 +79,12 @@
             </div>
         </div>
 {% endblock %}
+{% block library_scripts %}
+    {{ super() }}
+    <script src="js/vendor.min.js"></script>
+{% endblock library_scripts %}
 
 {% block scripts %}
     {{ super() }}
     <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
-
 {% endblock %}
