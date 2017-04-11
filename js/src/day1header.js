@@ -5,6 +5,11 @@ import * as d3 from 'd3';
 import CookCountyMap from './fairness.js';
 import barChart from 'bar-chart.js';
 
+// https://github.com/fivethirtyeight/d3-pre
+import Prerender from 'd3-pre';
+const  prerender = Prerender(d3);
+
+
 // These datasets are so small, might as well just stash them here.
 const raceData = [
     {
@@ -80,52 +85,52 @@ NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function instructions(id, headerMap) {
-    console.log("showing", id);
+    
     if (id == 10){
         // headerMap.highlightTracts('ratio', 'none');
-        console.log("Inside instructions for ", id);
+        
         headerMap.highlightTracts('ratio', 'none');
     } else if (id == 20){
-        console.log("Inside instructions for ", id);
+        
         headerMap.highlightTracts('ratio', 'none');        
     } else if (id == 30){
-        console.log("Inside instructions for ", id);
+        
         headerMap.highlightTracts('ratio', 'none');
     } else if (id == 40){
-        console.log("Inside instructions for ", id);
+        
         headerMap.highlightTracts('ratio', 'over1');
     } else if (id == 50){
-        console.log("Inside instructions for ", id);
+        
         headerMap.highlightTracts('ratio', 'under1');
     } else if (id == 60){
-        console.log("Inside instructions for ", id);
+        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('ratio', 'all');
     } else if (id == 70){
-        console.log("Inside instructions for ", id);
+        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
     } else if (id == 80){
-        console.log("Inside instructions for ", id);
+        
 
     } else if (id == 90){
-        console.log("Inside instructions for ", id);
         document.querySelector('.map-wrapper').classList.add('map-wrapper--visible');
+        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
         document.querySelector('#race').classList.remove('header-chart--visible');
         document.querySelector('#income').classList.remove('header-chart--visible');
     } else if (id == 100){
-        console.log("Inside instructions for ", id);
+
         // first hide the map
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
+        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
+        
         // Then fade in the income chart
         document.querySelector('#race').classList.remove('header-chart--visible');
         document.querySelector('#income').classList.add('header-chart--visible');
 
     } else if (id == 110){
-        console.log("Inside instructions for ", id);
         document.querySelector('#income').classList.remove('header-chart--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
     } else if (id == 120){
-        console.log("Inside instructions for ", id);
         document.querySelector('#blurb120').classList.add('animate');
         document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
         document.querySelector('#race').classList.add('header-chart--visible');
@@ -133,6 +138,8 @@ function instructions(id, headerMap) {
 }
 
 window.onload = function(){
+    prerender.start();
+
     // Make the two bar charts for later in the process
     const race = new barChart({
         root_url:window.ROOT_URL,
