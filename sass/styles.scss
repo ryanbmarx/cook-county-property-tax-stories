@@ -148,9 +148,37 @@ $header-bg-color:$trib-gray4;
 			}
 		}
 	}
+}
+
+// Comments tweaks
+
+.comments-wrapper{
+	border-bottom: 4px solid $trib-blue2;
+	padding:30px 0 15px 0;
+}
 
 
-	
+#comments-button{
+	@include sans-serif-text(14px, 1em, normal);
+	display:block;
+	padding: 15px 0;
+	margin: 0 auto 15px auto;
+	width: 100%;
+	max-width: 150px;
+	background:transparent;
+	border: 1px solid $trib-blue2;
+	border-radius: 10px;
+	transition: all 150ms ease;
+	&:hover, &:focus{
+		background: $trib-blue2;
+		color:white;
+		transition: all 150ms ease;
+	}
+}
+
+.trb_cm_so[data-role="cm_container"]{
+	max-height:0;
+	transition: max-height 400ms ease;
 }
 
 @media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){

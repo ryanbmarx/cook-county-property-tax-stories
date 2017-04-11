@@ -36,14 +36,22 @@ function embedGraphics(){
     }
 }
 
+// Init/activate comments
+document.getElementById('comments-button').addEventListener('click', function(e){
+    console.log('show me the comments');
+    document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
+    (window.registration || (registration = [])).push('solidopinion');
+}, false);
+
 // Hide/show the mobile navigation menu
 document.getElementById('mobile-nav-toggle').addEventListener('click', function(e){
 	const mobileNavButton = document.getElementById('nav-buttons-wrapper');
 	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
-});
+}, false);
 
 // Listen for the loaded event then run the pym stuff.
 window.addEventListener('load', function() {  embedGraphics(); }, false);
+
 
 // This make a smooth scroll between the charts and their methodologies (and back)
 // I'm using a polyfill found on npm

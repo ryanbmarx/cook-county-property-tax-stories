@@ -123,19 +123,23 @@
         {# Story content will go here #}
         {# ################ #}
     {% endblock story %}
-    {% block comments %}
-      {% include '_subtemplates/_solid-opinion-comments.html'%}
-    {% endblock comments %}
     {% block credits scoped %}
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
+    {% include '_subtemplates/_solid-opinion-comments.html'%}
     {% block methods scoped %}
       {% set part = part %}
       {% include '_subtemplates/_methodologies.html' %}      
     {% endblock methods %}
     <div data-trb-thirdpartynav></div>
 {% endblock content %}
+
+
+{% block comments %}
+      
+  {% endblock comments %}
+
 
 {% block library_css %}
     <link rel="stylesheet" type="text/css" href="css/base.css" />
