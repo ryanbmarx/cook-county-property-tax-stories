@@ -16,6 +16,8 @@ from clint.textui import colored
 import p2p
 from tarbell.utils import puts
 from tarbell.oauth import get_drive_api
+from tarbell.hooks import register_hook
+
 
 from collections import OrderedDict
 from jinja2 import Markup
@@ -470,4 +472,28 @@ DEFAULT_CONTEXT = {
     'name': 'property-taxes-cook-county',
     'title': 'Finding the faultlines of inequality in taxes'
 }
+
+# HOOKS = (
+#     get_drive_api_stuff,
+# )
+
+# for f in HOOKS:
+#     register_hook('preview')(f)
+
+
+# def get_drive_api_stuff():
+#     service = get_drive_api()
+#     try:
+#         docfile = service.files().get(fileId=DOC_KEY).execute()
+#         downloadurl = docfile['exportLinks']['text/html'] # export as 'text/html' instead of 'text/plain' if we want to parse links and styles
+#         resp, content = service._http.request(downloadurl)
+
+#         # write to file
+#         with open('out_drive.html', 'w+') as f:
+#             text = content.decode("utf-8-sig", errors='ignore') # get rid of BOM
+#             f.write(text.encode('utf8', 'replace')) # lol
+#         return text
+#     except errors.HttpError, error:
+#         print 'An error occurred: %s' % error
+
 DEFAULT_CONTEXT.update(**get_extra_context())
