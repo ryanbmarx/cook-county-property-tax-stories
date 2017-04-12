@@ -1,5 +1,13 @@
 {% extends "_base.html" %}
 
+{% macro add_photo(url, add_class, caption, alt) %}
+
+  <figure class='image {{ add_class }}'>
+    <img src='{{ url }}' alt='{{ alt }}'/>
+    <figcaption> {{ caption }}</figcaption>
+
+{% endmacro %}
+
 {% macro ad(type, alignment) %}
     {# returns an advert <div> with the proper alignment classes and data-* attributes to make it fit within this project. #}
     {% if alignment %}
@@ -184,10 +192,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 {# For the adverts #}
-<script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js"></script>
+<script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js" defer async></script>
 
 {# For videos #}
-<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js'></script>
+<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js' defer async></script>
 
 {# For comments #}
 <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
