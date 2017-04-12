@@ -143,7 +143,8 @@ class barChart{
 			.classed('chartInner', true)
 			.attr("width",innerWidth)
 			.attr("height",innerHeight)
-			.attr(`transform`,`translate(${margin.left},${margin.top})`);
+			// HACK ALERT
+			.attr(`transform`,`translate(${margin.left + 27},${margin.top})`);
 
 		// ----------------------------------
 		// APPEND <g> ELEMENTS FOR SCALES 
@@ -172,14 +173,15 @@ class barChart{
 				// https://riccardoscalco.github.io/textures/
 				// This is the filled area
 				var t = textures.lines()
-					.size(4)
+					.size(5)
 					.strokeWidth(1)
 					.background(app.barColor)
-					.stroke('white');
+					.stroke('#EBD4C1');
 
 				svg.call(t);
 
 				const area = d3.area()
+					// .curve(d3.curveBasis)
 				    .y0(innerHeight)
 				    .x(d => xScale(d.x))
 				    .y1(d => yScaleDisplay(d.y));
@@ -201,17 +203,33 @@ class barChart{
 			      .style('stroke-width', app.options.lineWeight)
 			      .style('fill', 'transparent');
 
-
 			const annotations = svg.append("g")
-				.attr("class", "annotations")
-				.attr(`transform`,`translate(${ margin.left },${ margin.top})`);
+				.classed("annotations", true)
+				.attr("width",innerWidth)
+				.attr("height",innerHeight)
+				// HACK ALERT
+				.attr(`transform`,`translate(${margin.left + 27},${margin.top})`);
 
 			const 	sortedData = _.sortBy(app.data, d => d.y),
 					firstAnnotation = sortedData[0],
 					lastAnnotation = sortedData[sortedData.length - 1],
-					circleRadius = 20;
+					circleRadius = 15,
+					erateFormatter = yAxis.tickFormat(),
+					xOffset = 5,
+					xAnnotationFormatterString = app.options.formatStrings.xAxis.indexOf('$') > -1 ? "$,.2f" : ".1%",
+					xAnnotationFormatter = d3.format(xAnnotationFormatterString),
+					lineLength = 55;
+
+			console.log(app.options.formatStrings.xAxis.indexOf('$'));
+
 
 			// LABEL THE HIGHEST RATE
+
+			// This is the label background
+			annotations.append('rect')
+				.classed('annotation__background', true)
+				.style('fill', 'rgba(255, 255, 255, .5)')
+
 			annotations.append('circle')
 				.attr('r', circleRadius)
 				.attr('cx', xScale(lastAnnotation.x))
@@ -228,23 +246,50 @@ class barChart{
 					.style('stroke', 'black')
 					.style('stroke-width', 2);
 					
-			annotations.append('text')
-					.attr('x', xScale(lastAnnotation.x))
-					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + 55)
-					.attr('dy', '1em')
-					.attr('text-anchor', 'middle')
-					.text(lastAnnotation.y);
 
 			annotations.append('text')
-					.attr('x', xScale(lastAnnotation.x))
-					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + 55)
-					.attr('dy', '2.1em')
-					.attr('text-anchor', 'middle')
-					.text(lastAnnotation.x);
+					.attr('x', xScale(lastAnnotation.x) - xOffset)
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + lineLength)
+					.attr('dy', '0.75em')
+					.attr('text-anchor', 'start')
+					.attr('font-weight', 'bold')
+					.text(`${app.options.meta.yAxisLabel}:`);
+
+			annotations.append('text')
+					.attr('x', xScale(lastAnnotation.x) - xOffset)
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + lineLength)
+					.attr('dy', '2em')
+					.attr('text-anchor', 'start')
+					.text(erateFormatter(lastAnnotation.y));
+
+			annotations.append('text')
+					.attr('x', xScale(lastAnnotation.x) - xOffset)
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + lineLength)
+					.attr('dy', '3.65em')
+					.attr('text-anchor', 'start')
+					.attr('font-weight', 'bold')
+					.text(`${app.options.meta.xAxisLabel}:`);
+
+			annotations.append('text')
+					.attr('x', xScale(lastAnnotation.x) - xOffset)
+					.attr('y', yScaleDisplay(lastAnnotation.y) + circleRadius + lineLength)
+					.attr('dy', '4.95em')
+					.attr('text-anchor', 'start')
+					.text(xAnnotationFormatter(lastAnnotation.x));
+
+			d3.select('.annotation__background')
+				.attr('x', function(){
+					return xScale(lastAnnotation.x) - 10;
+				})
+				.attr('y',function(){
+					return yScaleDisplay(lastAnnotation.y) - 10 + circleRadius + lineLength;
+				})
+				.attr('width',200)
+				.attr('height',100)
 
 			// LABEL THE LOWEST RATE
 			annotations.append('circle')
-				.attr('r', 20)
+				.attr('r', circleRadius)
 				.attr('cx', xScale(firstAnnotation.x))
 				.attr('cy', yScaleDisplay(firstAnnotation.y))
 				.style('stroke', 'black')
@@ -261,18 +306,34 @@ class barChart{
 					.style('stroke-width', 2);
 
 			annotations.append('text')
-					.attr('x', xScale(firstAnnotation.x))
-					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - 55)
-					.attr('dy', '-2.1em')
-					.attr('text-anchor', 'middle')
-					.text(firstAnnotation.y);
+					.attr('x', xScale(firstAnnotation.x) + xOffset)
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - lineLength)
+					.attr('dy', '-4.2em')
+					.attr('text-anchor', 'end')
+					.attr('font-weight', 'bold')
+					.text(`${app.options.meta.yAxisLabel}:`);
 
 			annotations.append('text')
-					.attr('x', xScale(firstAnnotation.x))
-					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - 55)
-					.attr('dy', '-1em')
-					.attr('text-anchor', 'middle')
-					.text(firstAnnotation.x);
+					.attr('x', xScale(firstAnnotation.x) + xOffset)
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - lineLength)
+					.attr('dy', '-2.9em')
+					.attr('text-anchor', 'end')
+					.text(erateFormatter(firstAnnotation.y));
+
+			annotations.append('text')
+					.attr('x', xScale(firstAnnotation.x) + xOffset)
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - lineLength)
+					.attr('dy', '-1.6em')
+					.attr('text-anchor', 'end')
+					.attr('font-weight', 'bold')
+					.text(`${app.options.meta.xAxisLabel}:`);
+
+			annotations.append('text')
+					.attr('x', xScale(firstAnnotation.x) + xOffset)
+					.attr('y', yScaleDisplay(firstAnnotation.y) - circleRadius - lineLength)
+					.attr('dy', '-.3em')
+					.attr('text-anchor', 'end')
+					.text(xAnnotationFormatter(firstAnnotation.x));
 
 
 		} else {
@@ -326,7 +387,7 @@ class barChart{
 					.attr('x', 0)
 					.attr('y', 0)
 					.attr('dy', '1em')
-					.attr('text-anchor', 'left')
+					.attr('text-anchor', 'start')
 			}
 			if (app.meta.xAxisLabel){
 				labels.append('text')
