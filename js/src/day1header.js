@@ -1,9 +1,7 @@
-var boot = require('bootstrap.js');
-import 'swiper';
+
 // import inView from 'in-view';
 import * as d3 from 'd3';
 import CookCountyMap from './fairness.js';
-import barChart from 'bar-chart.js';
 
 // https://github.com/fivethirtyeight/d3-pre
 import Prerender from 'd3-pre';
@@ -140,77 +138,6 @@ function instructions(id, headerMap) {
 window.onload = function(){
     prerender.start();
 
-    // Make the two bar charts for later in the process
-    const race = new barChart({
-        root_url:window.ROOT_URL,
-        chartType:'filled-line',
-        container:document.getElementById('race'),
-        dataset:raceData,
-        xAttribute:'pctWhite',
-        yAttribute:'effectiveTaxRate',
-        transitionTime:150,
-        innerMargins:{top:10,right:0,bottom:40,left:60},
-        barPadding: 0.01,
-        barFill:'trib_orange',
-        barLabels:false,
-        yMin:.0013,
-        lineWeight:5,
-        formatStrings: {
-            yAxis: ".2%",
-            xAxis: ".0%"
-        },
-        maxYValue:false,
-        showYAxis:true,
-        ticks:{
-            yAxis:5,
-            // xAxis:2
-        },
-        meta:{
-            // headline:'White Population vs. Effective Tax Rate',
-            xAxisLabel: "Percentage white, non-hispanic",
-            yAxisLabel: "Effective tax rate",
-            // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
-            // credit: "ChiTribGraphics"
-        }
-    });
-
-    const income = new barChart({
-        root_url:window.ROOT_URL,
-        chartType:'filled-line',
-        container:document.getElementById('income'),
-        dataset:incomeData,
-        xAttribute:'medianIncome',
-        yAttribute:'effectiveTaxRate',
-        transitionTime:150,
-        innerMargins:{top:10,right:0,bottom:40,left:60},
-        barPadding: 0.01,
-        barFill:'trib_orange',
-        barLabels:false,
-        lineWeight:5,
-        yMin:.0013,
-        formatStrings: {
-            yAxis: ".2%",
-            xAxis: "$.3s"
-        },
-        maxYValue:false,
-        showYAxis:true,
-        ticks:{
-            yAxis:5,
-            // xAxis:2
-        },
-        meta:{
-            // headline:'Income vs. Effective Tax Rate',
-            xAxisLabel: "Median household income",
-            yAxisLabel: "Effective tax rate",
-            // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
-            // credit: "ChiTribGraphics"
-        }
-    });
-
-
-
-
-
     d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
         // console.log(data);
         const transitionDuration = 400;
@@ -219,41 +146,5 @@ window.onload = function(){
             data: data,
             transitionDuration: transitionDuration
         });    
-     
-        const mySwiper = new Swiper ('.swiper-container', {
-            // Optional parameters
-            direction: 'vertical',
-            speed:200,
-            loop: false,
-            // effect:'flip',
-            // fade:{
-            //     crossfade:true
-            // },
-
-            // If we need pagination
-            // pagination: '.swiper-pagination',
-            // paginationType:'progress',
-
-            // Navigation arrows
-            nextButton: '.swiper-button--next',
-            prevButton: '.swiper-button--prev',
-            paginationClickable: true,
-            keyboardControl:true,
-            onSlideChangeStart: function(){
-                const   activeSlide = document.querySelector('.swiper-slide-active'),
-                        activeID = parseInt(activeSlide.id.replace('blurb', ''));
-                
-                instructions(activeID, headerMap);
-                if (mySwiper.isEnd){
-                    document.querySelector('body').dataset.fixedHeader = "false"
-                }
-
-            },
-            // mousewheelControl:true,
-            // mousewheelForceToAxis:true
-
-            // And if we need scrollbar
-            // scrollbar: '.swiper-scrollbar',
-        }); 
     });  
 }

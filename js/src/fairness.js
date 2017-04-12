@@ -1,13 +1,14 @@
 import * as d3 from 'd3';
 import getTribColors from'./getTribColors.js';
 var queue = require('d3-queue').queue;
+import * as topojson from 'topojson';
 
 // https://github.com/fivethirtyeight/d3-pre
 // import Prerender from 'd3-pre';
 // const  prerender = Prerender(d3);
 
-const 	aboveOneColor = getTribColors('trib-red2'),
-		otherColor = 'rgba(255,255,255,.45)',
+const 	aboveOneColor = getTribColors('trib-blue2'),
+		otherColor = 'black',
 		belowOneColor = getTribColors('trib-blue4');
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
@@ -15,35 +16,6 @@ const 	aboveOneColor = getTribColors('trib-red2'),
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
-function buildErateLegend(ramp, containerID){
-	// Accepts an array of containers (as selection strings). It builds inside the first container
-	// then dupes the legend into the others.
-
-	// Select the first container, and append the wrapper div and list
-	const container = d3.select(containerID)
-		.append('div')
-		.classed('effective-tax-rate-legend', true)
-			.append('ul')
-			.classed('effective-tax-rate-legend__list', true)
-
-	// For each color in the provided ramp, append a list item that is exactly as wide as 100% / buckets
-	ramp.forEach((color, index) => {
-		const bucket = container.append('li')
-			.classed('effective-tax-rate-legend__bucket', true)
-			.attr('style',`background-color:${color};width:${100 / ramp.length}%`)
-			
-			// If it is the first or last, append the proper text.
-			if (index == 0){
-				bucket.append('span')
-					.classed('effective-tax-rate-legend__text', true)
-					.html("&laquo; Lower rate");
-			} else if (index == (ramp.length - 1)){
-				bucket.append('span')
-					.classed('effective-tax-rate-legend__text', true)
-					.html("Higher rate &raquo;");
-			}
-	})
-}
 
 function valueMapScale(ratio){
 	// This is a super-simple custom scale. If the value is greater than 1, return a color. If it
@@ -57,13 +29,13 @@ function valueMapScale(ratio){
 	return otherColor;
 }
 
-function valueMapAbove1(ratio){
-	return ratio > 1 ? aboveOneColor : otherColor;
-}
+// function valueMapAbove1(ratio){
+// 	return ratio > 1 ? aboveOneColor : otherColor;
+// }
 
-function valueMapBelow1(ratio){
-	return ratio < 1 ? belowOneColor : otherColor;
-}
+// function valueMapBelow1(ratio){
+// 	return ratio < 1 ? belowOneColor : otherColor;
+// }
 
 class CookCountyMap{
 	constructor(options){
@@ -72,7 +44,7 @@ class CookCountyMap{
 		 app.options = options;
 		 app.mapContainer = options.mapContainer;
 		 app.data = options.data;
-
+		 console.log(app.data);
 		// define the layers of map data I want
 		// Source of map base layers: http://code.highcharts.com/mapdata/
 		 app.mapLayers =[
@@ -95,7 +67,7 @@ class CookCountyMap{
 		app.erateScale = d3.scaleQuantile()
 			.domain(app.data.features.map(d => d.properties.erate))
 			.range(erateColorRamp);
-		buildErateLegend(erateColorRamp, '#day1-header-display');
+		// buildErateLegend(erateColorRamp, '#day1-header-display');
 	}
 
 	drawMap(error){
@@ -109,16 +81,16 @@ class CookCountyMap{
 		// Nudge the map down to the center if we are one "desktop mode", which is 
 		// when the window is wider than the map-wrapper's maximum width, which, 
 		// at the time of this writing, is 600px;
-		const 	mapWrapper = app.mapContainer.node().parentElement,
-				mapMaxWidth = 600;
+		// const 	mapWrapper = app.mapContainer.node().parentElement,
+		// 		mapMaxWidth = 600;
 		
-		if (window.innerWidth >= mapMaxWidth){
-			// console.log('desktop');
-			mapWrapper.style.top = '50%';
-			mapWrapper.style.marginTop = `${height / -2}px`;
-		} else {
-			// console.log('mobile');
-		}
+		// if (window.innerWidth >= mapMaxWidth){
+		// 	// console.log('desktop');
+		// 	mapWrapper.style.top = '50%';
+		// 	mapWrapper.style.marginTop = `${height / -2}px`;
+		// } else {
+		// 	// console.log('mobile');
+		// }
 		// d3.select(mapWrapper).attr('style', `top: ${top}px;`);
 		// console.log(height / -2, marginTop, mapWrapper);	
 		
@@ -166,7 +138,7 @@ class CookCountyMap{
 				.attr('data-name', d => d.properties.TRACT)
 				.attr('class', 'tract')
 				.attr( "d", geoPath)
-				.style('fill', otherColor);
+				.style('fill', d => valueMapScale(d.properties.ratio));
 		
 		svg.append('g')
 			.classed('chicago', true)
@@ -176,9 +148,8 @@ class CookCountyMap{
 				.append( "path" )
 				.attr( "d", geoPath)
 				.style('fill', 'transparent')
-				.style('stroke', getTribColors('trib-gray4'))
-				.style('stroke-width', 3);
-
+				.style('stroke', 'black')
+				.style('stroke-width', 2);
 	}
 
 	highlightTracts(attribute, value){
