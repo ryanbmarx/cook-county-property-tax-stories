@@ -138,7 +138,7 @@ function instructions(id, headerMap) {
 window.onload = function(){
     prerender.start();
 
-    d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
+    d3.json(`http://${window.ROOT_URL}/data/data-topo-quant.json`, (err, data) =>{
         // console.log(data);
         const transitionDuration = 400;
         const headerMap = new CookCountyMap({

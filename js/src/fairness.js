@@ -62,11 +62,11 @@ class CookCountyMap{
 		mapDataQueue.awaitAll(app.drawMap.bind(app));
 
 		// Generate a scale for the effective tax rate.
-		const erateExtent = d3.extent(app.data.features, d => d.properties.erate);
-		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
-		app.erateScale = d3.scaleQuantile()
-			.domain(app.data.features.map(d => d.properties.erate))
-			.range(erateColorRamp);
+		// const erateExtent = d3.extent(app.data.features, d => d.properties.erate);
+		// const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
+		// app.erateScale = d3.scaleQuantile()
+		// 	.domain(app.data.features.map(d => d.properties.erate))
+		// 	.range(erateColorRamp);
 		// buildErateLegend(erateColorRamp, '#day1-header-display');
 	}
 
@@ -114,7 +114,8 @@ class CookCountyMap{
 		const geoPath = d3.geoPath().projection(projection);
 
 		// Compute the bounds of a feature of interest, then derive scale & translate.
-		var bounds = geoPath.bounds(app.data),
+		// topojson.mesh takes the topo and converts it to geojson, which is used to make the projection.
+		var bounds = geoPath.bounds(topojson.mesh(app.data, app.data.objects.day1header)),
 			dx = bounds[1][0] - bounds[0][0],
 			dy = bounds[1][1] - bounds[0][1],
 			x = (bounds[0][0] + bounds[1][0]) / 2,
@@ -131,7 +132,10 @@ class CookCountyMap{
 		const tracts = svg.append('g')
 			.classed('tracts', true)
 			.selectAll('.tracts')
-			.data( app.data.features, d => d.properties.ratio);
+			// topojson.feature, per the docs, returns the GeoJSON Feature or FeatureCollection 
+			// for the specified object in the given topology. In this case, it's a collection,
+			// which is why we call the features attribute after it.
+			.data( topojson.feature(app.data, app.data.objects.day1header).features);
 
 		tracts.enter()
 			.append( "path" )

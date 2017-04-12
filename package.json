@@ -35,6 +35,7 @@
     "html-entities": "^1.2.0",
     "minifyify": "^7.3.3",
     "request": "^2.81.0",
+    "topojson": "^3.0.0",
     "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/"
   },
   "browserify": {

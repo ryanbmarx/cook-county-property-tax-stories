@@ -2,6 +2,11 @@
 
 A [Tarbell](http://tarbell.io) project.
 
+TOPOJSON
+--------
+[https://medium.com/@mbostock/command-line-cartography-part-3-1158e4c55a1e](https://medium.com/@mbostock/command-line-cartography-part-3-1158e4c55a1e)
+I processed the data.geojson first by geo2topo, then topoquantize
+
 Assumptions
 -----------
 
