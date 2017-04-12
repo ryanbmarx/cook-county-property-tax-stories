@@ -295,11 +295,20 @@ body[data-fixed-header=true]{
 
 	.text__blurb{ font-size:27px; }
 
-	#blurb120.animate .text__blurb{
-		@include enlarge(60s);
-		font-size: 50px;
-		line-height: 1.3em;
-		// transform: scale(.5);
+	#blurb120.animate {
+		.text__blurb{
+			@include enlarge(60s);
+			font-size: 50px;
+			line-height: 1.3em;
+			// transform: scale(.5);
+			margin-bottom:7px;
+		}
+
+		.fa-arrow-down{
+			@include bounce(3s);
+			width: 100%;
+			display: block;
+		}
 	}
 
 	.effective-tax-rate-legend{
