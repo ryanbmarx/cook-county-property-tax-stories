@@ -5,6 +5,26 @@
 $day1header_max_width: 700px;
 $undervalued_color:$trib-orange;
 $overvalued_color:$trib-red2;
+$close-prologue-color:$trib-gray2;
+
+.close-prologue{
+	color: $close-prologue-color;
+	position:fixed;
+	top: $nav_height + 10px;
+	right: $nav_height + 10px;
+	display:none;
+	cursor:pointer;
+	font-size: 30px;
+	    padding: 5px;
+    border-radius: 50%;
+    line-height: 0.89em;
+    z-index: 1100;
+
+	&:hover{
+		color:black;
+		background: $close-prologue-color;
+	}
+}
 
 // ---- SWIPER SWIPER SWIPER ---------------------------------------------
 
@@ -14,6 +34,8 @@ $overvalued_color:$trib-red2;
 	margin-bottom:50px;
 	padding-bottom:50px;
 	margin-top:#{0 - $nav_height};
+	max-height: 1000vh;
+	transition:max-height 400ms ease;
 }
 
 .day1-header-display{
@@ -237,7 +259,8 @@ $overvalued_color:$trib-red2;
 
 body[data-fixed-header=true]{
     overflow: hidden;
-
+	
+	.close-prologue{ display:block; }
 	.swiper-button{
 		display:block;
 	}

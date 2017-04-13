@@ -146,42 +146,50 @@ function instructions(id, headerMap) {
     }
 }
 
+document.getElementById('close-prologue').addEventListener('click', function(e){
+    console.log('skipping');
+    document.querySelector('body').dataset.fixedHeader = false;
+    document.querySelector('.day1-header-background').style.maxHeight = 0;
+    document.querySelector('.day1-header-background').style.overflow = 'hidden';
+
+});
+
 window.onload = function(){
     prerender.start();
 
     // Make the two bar charts for later in the process
-    const race = new barChart({
-        root_url:window.ROOT_URL,
-        chartType:'filled-line',
-        container:document.getElementById('race'),
-        dataset:raceData,
-        xAttribute:'pctWhite',
-        yAttribute:'effectiveTaxRate',
-        transitionTime:150,
-        innerMargins:{top:10,right:0,bottom:40,left:60},
-        barPadding: 0.01,
-        barFill:'trib_orange',
-        barLabels:false,
-        yMin:.0013,
-        lineWeight:5,
-        formatStrings: {
-            yAxis: ".2%",
-            xAxis: ".0%"
-        },
-        maxYValue:false,
-        showYAxis:true,
-        ticks:{
-            yAxis:5,
-            // xAxis:2
-        },
-        meta:{
-            // headline:'White Population vs. Effective Tax Rate',
-            xAxisLabel: "Percentage white, non-hispanic",
-            yAxisLabel: "Effective tax rate",
-            // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
-            // credit: "ChiTribGraphics"
-        }
-    });
+    // const race = new barChart({
+    //     root_url:window.ROOT_URL,
+    //     chartType:'filled-line',
+    //     container:document.getElementById('race'),
+    //     dataset:raceData,
+    //     xAttribute:'pctWhite',
+    //     yAttribute:'effectiveTaxRate',
+    //     transitionTime:150,
+    //     innerMargins:{top:10,right:0,bottom:40,left:60},
+    //     barPadding: 0.01,
+    //     barFill:'trib_orange',
+    //     barLabels:false,
+    //     yMin:.0013,
+    //     lineWeight:5,
+    //     formatStrings: {
+    //         yAxis: ".2%",
+    //         xAxis: ".0%"
+    //     },
+    //     maxYValue:false,
+    //     showYAxis:true,
+    //     ticks:{
+    //         yAxis:5,
+    //         // xAxis:2
+    //     },
+    //     meta:{
+    //         // headline:'White Population vs. Effective Tax Rate',
+    //         xAxisLabel: "Percentage white, non-hispanic",
+    //         yAxisLabel: "Effective tax rate",
+    //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
+    //         // credit: "ChiTribGraphics"
+    //     }
+    // });
 
     // const income = new barChart({
     //     root_url:window.ROOT_URL,
@@ -234,7 +242,7 @@ window.onload = function(){
             direction: 'vertical',
             speed:200,
             loop: false,
-            
+
             // effect:'flip',
             // fade:{
             //     crossfade:true
