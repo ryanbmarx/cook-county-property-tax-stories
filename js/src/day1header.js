@@ -86,11 +86,11 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function instructions(id, headerMap) {
     
-    const   raceChart = document.querySelector('#race'), 
-            incomeChart = document.querySelector('#race'),
-            mapWrapper = document.querySelector('.map-wrapper'),
-            erateLegend = document.querySelector('.effective-tax-rate-legend');
-
+    // const   raceChart = document.querySelector('#race'), 
+    //         incomeChart = document.querySelector('#race'),
+    //         mapWrapper = document.querySelector('.map-wrapper'),
+    //         erateLegend = document.querySelector('.effective-tax-rate-legend');
+    const mapWrapper = document.querySelector('.map-wrapper');
     if (id == 10){
         // headerMap.highlightTracts('ratio', 'none');
         
@@ -108,7 +108,7 @@ function instructions(id, headerMap) {
         
         headerMap.highlightTracts('ratio', 'under1');
     } else if (id == 60){
-        erateLegend.classList.remove('effective-tax-rate-legend--visible');
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
         headerMap.highlightTracts('ratio', 'all');
     } else if (id == 70){
         mapWrapper.classList.add('map-wrapper--visible');
@@ -122,27 +122,27 @@ function instructions(id, headerMap) {
         mapWrapper.classList.add('map-wrapper--visible');
         // erateLegend.classList.add('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
-        raceChart.classList.remove('header-chart--visible');
-        incomeChart.classList.remove('header-chart--visible');
+        // raceChart.classList.remove('header-chart--visible');
+        // incomeChart.classList.remove('header-chart--visible');
     } else if (id == 100){
 
         // first hide the map
         mapWrapper.classList.remove('map-wrapper--visible');
-        erateLegend.classList.remove('effective-tax-rate-legend--visible');
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
         
         // Then fade in the income chart
-        raceChart.classList.remove('header-chart--visible');
-        incomeChart.classList.add('header-chart--visible');
+        // raceChart.classList.remove('header-chart--visible');
+        // incomeChart.classList.add('header-chart--visible');
 
     } else if (id == 110){
-        erateLegend.classList.remove('effective-tax-rate-legend--visible');
-        mapWrapper.classList.remove('map-wrapper--visible');
-        incomeChart.classList.remove('header-chart--visible');
-        raceChart.classList.add('header-chart--visible');
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
+        // mapWrapper.classList.remove('map-wrapper--visible');
+        // incomeChart.classList.remove('header-chart--visible');
+        // raceChart.classList.add('header-chart--visible');
     } else if (id == 120){
-        document.querySelector('#blurb120').classList.add('animate');
-        mapWrapper.classList.remove('map-wrapper--visible');
-        raceChart.classList.add('header-chart--visible');
+        // document.querySelector('#blurb120').classList.add('animate');
+        // mapWrapper.classList.remove('map-wrapper--visible');
+        // raceChart.classList.add('header-chart--visible');
     }
 }
 

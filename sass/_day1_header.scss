@@ -5,13 +5,13 @@
 $day1header_max_width: 700px;
 $undervalued_color:$trib-orange;
 $overvalued_color:$trib-red2;
-$close-prologue-color:$trib-gray2;
+$close-prologue-color:#3a3a3a;
 
 .close-prologue{
 	color: $close-prologue-color;
 	position:fixed;
 	top: $nav_height + 10px;
-	right: $nav_height + 10px;
+	right:10px;
 	display:none;
 	cursor:pointer;
 	font-size: 30px;
@@ -46,6 +46,7 @@ $close-prologue-color:$trib-gray2;
 	position:relative;
 	height: 90vh; // fallback
 	height: calc(100vh - #{$nav_height});
+	overflow:hidden;
 
 
 }
@@ -320,7 +321,8 @@ body[data-fixed-header=true]{
 
 
 @media all and (min-width:#{$map-width}){
-
+	.close-prologue{ right: $nav_height + 10px; }
+	
 	.header-chart{
 		left:calc(50% - #{$map-width / 2});
 	}
