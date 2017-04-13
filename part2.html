@@ -12,6 +12,10 @@
         <div class="col-md-12">
             <div class='river--narrow' itemprop="articleBody">
                 {% for s in stories[part] %}
+                    {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
+                        </div>
+                    {% endif %}
+
                     {% set type = s.type %}
                     {% if type == "text" %}
                         {{ s.content|markdown }}
@@ -46,9 +50,11 @@
                         {% endif %}
                         {{ pullquote(s.quote_text, s.quote_attribution, quote_attribution_secondary) }}
                     {% endif %}
+                    
+                    {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
+                        <div class='river--narrow'>
+                    {% endif %}
                 {% endfor %}
-                <hr>
-                {{ stories[part]|tojson }}
            </div>
        </div>
     </div>
