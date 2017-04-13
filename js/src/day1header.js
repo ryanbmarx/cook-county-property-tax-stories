@@ -84,6 +84,11 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function instructions(id, headerMap) {
     
+    // const   raceChart = document.querySelector('#race'), 
+    //         incomeChart = document.querySelector('#race'),
+    //         mapWrapper = document.querySelector('.map-wrapper'),
+    //         erateLegend = document.querySelector('.effective-tax-rate-legend');
+    const mapWrapper = document.querySelector('.map-wrapper');
     if (id == 10){
         // headerMap.highlightTracts('ratio', 'none');
         
@@ -101,44 +106,127 @@ function instructions(id, headerMap) {
         
         headerMap.highlightTracts('ratio', 'under1');
     } else if (id == 60){
-        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
         headerMap.highlightTracts('ratio', 'all');
     } else if (id == 70){
-        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
-        headerMap.highlightTracts('erate', 'whiz-bang-boom');
+        mapWrapper.classList.add('map-wrapper--visible');
+        headerMap.highlightTracts('ratio', 'all');
+        // erateLegend.classList.add('effective-tax-rate-legend--visible')
+        // headerMap.highlightTracts('erate', 'whiz-bang-boom');
     } else if (id == 80){
         
 
     } else if (id == 90){
-        document.querySelector('.map-wrapper').classList.add('map-wrapper--visible');
-        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
+        mapWrapper.classList.add('map-wrapper--visible');
+        // erateLegend.classList.add('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
-        document.querySelector('#race').classList.remove('header-chart--visible');
-        document.querySelector('#income').classList.remove('header-chart--visible');
+        // raceChart.classList.remove('header-chart--visible');
+        // incomeChart.classList.remove('header-chart--visible');
     } else if (id == 100){
 
         // first hide the map
-        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
+        mapWrapper.classList.remove('map-wrapper--visible');
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
         
         // Then fade in the income chart
-        document.querySelector('#race').classList.remove('header-chart--visible');
-        document.querySelector('#income').classList.add('header-chart--visible');
+        // raceChart.classList.remove('header-chart--visible');
+        // incomeChart.classList.add('header-chart--visible');
 
     } else if (id == 110){
-        document.querySelector('#income').classList.remove('header-chart--visible');
-        document.querySelector('#race').classList.add('header-chart--visible');
+        // erateLegend.classList.remove('effective-tax-rate-legend--visible');
+        // mapWrapper.classList.remove('map-wrapper--visible');
+        // incomeChart.classList.remove('header-chart--visible');
+        // raceChart.classList.add('header-chart--visible');
     } else if (id == 120){
-        document.querySelector('#blurb120').classList.add('animate');
-        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-        document.querySelector('#race').classList.add('header-chart--visible');
+        // document.querySelector('#blurb120').classList.add('animate');
+        // mapWrapper.classList.remove('map-wrapper--visible');
+        // raceChart.classList.add('header-chart--visible');
     }
 }
+
+document.getElementById('close-prologue').addEventListener('click', function(e){
+    console.log('skipping');
+    document.querySelector('body').dataset.fixedHeader = false;
+    document.querySelector('.day1-header-background').style.maxHeight = 0;
+    document.querySelector('.day1-header-background').style.overflow = 'hidden';
+
+});
 
 window.onload = function(){
     prerender.start();
 
-    d3.json(`http://${window.ROOT_URL}/data/data-topo-quant.json`, (err, data) =>{
+    // Make the two bar charts for later in the process
+    // const race = new barChart({
+    //     root_url:window.ROOT_URL,
+    //     chartType:'filled-line',
+    //     container:document.getElementById('race'),
+    //     dataset:raceData,
+    //     xAttribute:'pctWhite',
+    //     yAttribute:'effectiveTaxRate',
+    //     transitionTime:150,
+    //     innerMargins:{top:10,right:0,bottom:40,left:60},
+    //     barPadding: 0.01,
+    //     barFill:'trib_orange',
+    //     barLabels:false,
+    //     yMin:.0013,
+    //     lineWeight:5,
+    //     formatStrings: {
+    //         yAxis: ".2%",
+    //         xAxis: ".0%"
+    //     },
+    //     maxYValue:false,
+    //     showYAxis:true,
+    //     ticks:{
+    //         yAxis:5,
+    //         // xAxis:2
+    //     },
+    //     meta:{
+    //         // headline:'White Population vs. Effective Tax Rate',
+    //         xAxisLabel: "Percentage white, non-hispanic",
+    //         yAxisLabel: "Effective tax rate",
+    //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
+    //         // credit: "ChiTribGraphics"
+    //     }
+    // });
+
+    // const income = new barChart({
+    //     root_url:window.ROOT_URL,
+    //     chartType:'filled-line',
+    //     container:document.getElementById('income'),
+    //     dataset:incomeData,
+    //     xAttribute:'medianIncome',
+    //     yAttribute:'effectiveTaxRate',
+    //     transitionTime:150,
+    //     innerMargins:{top:10,right:0,bottom:40,left:60},
+    //     barPadding: 0.01,
+    //     barFill:'trib_orange',
+    //     barLabels:false,
+    //     lineWeight:5,
+    //     yMin:.0013,
+    //     formatStrings: {
+    //         yAxis: ".2%",
+    //         xAxis: "$.3s"
+    //     },
+    //     maxYValue:false,
+    //     showYAxis:true,
+    //     ticks:{
+    //         yAxis:5,
+    //         // xAxis:2
+    //     },
+    //     meta:{
+    //         // headline:'Income vs. Effective Tax Rate',
+    //         xAxisLabel: "Median household income",
+    //         yAxisLabel: "Effective tax rate",
+    //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
+    //         // credit: "ChiTribGraphics"
+    //     }
+    // });
+
+
+
+
+
+    d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
         // console.log(data);
         const transitionDuration = 400;
         const headerMap = new CookCountyMap({
@@ -146,5 +234,42 @@ window.onload = function(){
             data: data,
             transitionDuration: transitionDuration
         });    
+     
+        const mySwiper = new Swiper ('.swiper-container', {
+            // Optional parameters
+            direction: 'vertical',
+            speed:200,
+            loop: false,
+
+            // effect:'flip',
+            // fade:{
+            //     crossfade:true
+            // },
+
+            // If we need pagination
+            // pagination: '.swiper-pagination',
+            // paginationType:'progress',
+
+            // Navigation arrows
+            nextButton: '.swiper-button--next',
+            prevButton: '.swiper-button--prev',
+            paginationClickable: true,
+            keyboardControl:true,
+            onSlideChangeStart: function(){
+                const   activeSlide = document.querySelector('.swiper-slide-active'),
+                        activeID = parseInt(activeSlide.id.replace('blurb', ''));
+                
+                instructions(activeID, headerMap);
+                if (mySwiper.isEnd){
+                    document.querySelector('body').dataset.fixedHeader = "false"
+                }
+
+            },
+            // mousewheelControl:true,
+            // mousewheelForceToAxis:true
+
+            // And if we need scrollbar
+            // scrollbar: '.swiper-scrollbar',
+        }); 
     });  
 }

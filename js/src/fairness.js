@@ -7,15 +7,44 @@ import * as topojson from 'topojson';
 // import Prerender from 'd3-pre';
 // const  prerender = Prerender(d3);
 
-const 	aboveOneColor = getTribColors('trib-blue2'),
-		otherColor = 'black',
-		belowOneColor = getTribColors('trib-blue4');
+const 	aboveOneColor = getTribColors('trib-red2'),
+		otherColor = 'rgba(255,255,255,.3)',
+		belowOneColor = getTribColors('trib-orange');
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
+function buildErateLegend(ramp, containerID){
+	// Accepts an array of containers (as selection strings). It builds inside the first container
+	// then dupes the legend into the others.
+
+	// Select the first container, and append the wrapper div and list
+	const container = d3.select(containerID)
+		.append('div')
+		.classed('effective-tax-rate-legend', true)
+			.append('ul')
+			.classed('effective-tax-rate-legend__list', true)
+
+	// For each color in the provided ramp, append a list item that is exactly as wide as 100% / buckets
+	ramp.forEach((color, index) => {
+		const bucket = container.append('li')
+			.classed('effective-tax-rate-legend__bucket', true)
+			.attr('style',`background-color:${color};width:${100 / ramp.length}%`)
+			
+			// If it is the first or last, append the proper text.
+			if (index == 0){
+				bucket.append('span')
+					.classed('effective-tax-rate-legend__text', true)
+					.html("&laquo; Lower tax rate");
+			} else if (index == (ramp.length - 1)){
+				bucket.append('span')
+					.classed('effective-tax-rate-legend__text', true)
+					.html("Higher tax rate &raquo;");
+			}
+	})
+}
 
 function valueMapScale(ratio){
 	// This is a super-simple custom scale. If the value is greater than 1, return a color. If it
@@ -29,13 +58,13 @@ function valueMapScale(ratio){
 	return otherColor;
 }
 
-// function valueMapAbove1(ratio){
-// 	return ratio > 1 ? aboveOneColor : otherColor;
-// }
+function valueMapAbove1(ratio){
+	return ratio > 1 ? aboveOneColor : 'rgba(255,255,255,.9)';
+}
 
-// function valueMapBelow1(ratio){
-// 	return ratio < 1 ? belowOneColor : otherColor;
-// }
+function valueMapBelow1(ratio){
+	return ratio < 1 ? belowOneColor : 'rgba(255,255,255,.9)';
+}
 
 class CookCountyMap{
 	constructor(options){
@@ -153,7 +182,8 @@ class CookCountyMap{
 				.attr( "d", geoPath)
 				.style('fill', 'transparent')
 				.style('stroke', 'black')
-				.style('stroke-width', 2);
+				.style('stroke-width', 3);
+
 	}
 
 	highlightTracts(attribute, value){
