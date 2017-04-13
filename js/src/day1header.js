@@ -86,6 +86,11 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function instructions(id, headerMap) {
     
+    const   raceChart = document.querySelector('#race'), 
+            incomeChart = document.querySelector('#race'),
+            mapWrapper = document.querySelector('.map-wrapper'),
+            erateLegend = document.querySelector('.effective-tax-rate-legend');
+
     if (id == 10){
         // headerMap.highlightTracts('ratio', 'none');
         
@@ -103,37 +108,41 @@ function instructions(id, headerMap) {
         
         headerMap.highlightTracts('ratio', 'under1');
     } else if (id == 60){
-        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
+        erateLegend.classList.remove('effective-tax-rate-legend--visible');
         headerMap.highlightTracts('ratio', 'all');
     } else if (id == 70){
-        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
-        headerMap.highlightTracts('erate', 'whiz-bang-boom');
+        mapWrapper.classList.add('map-wrapper--visible');
+        headerMap.highlightTracts('ratio', 'all');
+        // erateLegend.classList.add('effective-tax-rate-legend--visible')
+        // headerMap.highlightTracts('erate', 'whiz-bang-boom');
     } else if (id == 80){
         
 
     } else if (id == 90){
-        document.querySelector('.map-wrapper').classList.add('map-wrapper--visible');
-        document.querySelector('.effective-tax-rate-legend').classList.add('effective-tax-rate-legend--visible')
+        mapWrapper.classList.add('map-wrapper--visible');
+        // erateLegend.classList.add('effective-tax-rate-legend--visible')
         headerMap.highlightTracts('erate', 'whiz-bang-boom');
-        document.querySelector('#race').classList.remove('header-chart--visible');
-        document.querySelector('#income').classList.remove('header-chart--visible');
+        raceChart.classList.remove('header-chart--visible');
+        incomeChart.classList.remove('header-chart--visible');
     } else if (id == 100){
 
         // first hide the map
-        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-        document.querySelector('.effective-tax-rate-legend').classList.remove('effective-tax-rate-legend--visible')
+        mapWrapper.classList.remove('map-wrapper--visible');
+        erateLegend.classList.remove('effective-tax-rate-legend--visible');
         
         // Then fade in the income chart
-        document.querySelector('#race').classList.remove('header-chart--visible');
-        document.querySelector('#income').classList.add('header-chart--visible');
+        raceChart.classList.remove('header-chart--visible');
+        incomeChart.classList.add('header-chart--visible');
 
     } else if (id == 110){
-        document.querySelector('#income').classList.remove('header-chart--visible');
-        document.querySelector('#race').classList.add('header-chart--visible');
+        erateLegend.classList.remove('effective-tax-rate-legend--visible');
+        mapWrapper.classList.remove('map-wrapper--visible');
+        incomeChart.classList.remove('header-chart--visible');
+        raceChart.classList.add('header-chart--visible');
     } else if (id == 120){
         document.querySelector('#blurb120').classList.add('animate');
-        document.querySelector('.map-wrapper').classList.remove('map-wrapper--visible');
-        document.querySelector('#race').classList.add('header-chart--visible');
+        mapWrapper.classList.remove('map-wrapper--visible');
+        raceChart.classList.add('header-chart--visible');
     }
 }
 
@@ -174,38 +183,38 @@ window.onload = function(){
         }
     });
 
-    const income = new barChart({
-        root_url:window.ROOT_URL,
-        chartType:'filled-line',
-        container:document.getElementById('income'),
-        dataset:incomeData,
-        xAttribute:'medianIncome',
-        yAttribute:'effectiveTaxRate',
-        transitionTime:150,
-        innerMargins:{top:10,right:0,bottom:40,left:60},
-        barPadding: 0.01,
-        barFill:'trib_orange',
-        barLabels:false,
-        lineWeight:5,
-        yMin:.0013,
-        formatStrings: {
-            yAxis: ".2%",
-            xAxis: "$.3s"
-        },
-        maxYValue:false,
-        showYAxis:true,
-        ticks:{
-            yAxis:5,
-            // xAxis:2
-        },
-        meta:{
-            // headline:'Income vs. Effective Tax Rate',
-            xAxisLabel: "Median household income",
-            yAxisLabel: "Effective tax rate",
-            // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
-            // credit: "ChiTribGraphics"
-        }
-    });
+    // const income = new barChart({
+    //     root_url:window.ROOT_URL,
+    //     chartType:'filled-line',
+    //     container:document.getElementById('income'),
+    //     dataset:incomeData,
+    //     xAttribute:'medianIncome',
+    //     yAttribute:'effectiveTaxRate',
+    //     transitionTime:150,
+    //     innerMargins:{top:10,right:0,bottom:40,left:60},
+    //     barPadding: 0.01,
+    //     barFill:'trib_orange',
+    //     barLabels:false,
+    //     lineWeight:5,
+    //     yMin:.0013,
+    //     formatStrings: {
+    //         yAxis: ".2%",
+    //         xAxis: "$.3s"
+    //     },
+    //     maxYValue:false,
+    //     showYAxis:true,
+    //     ticks:{
+    //         yAxis:5,
+    //         // xAxis:2
+    //     },
+    //     meta:{
+    //         // headline:'Income vs. Effective Tax Rate',
+    //         xAxisLabel: "Median household income",
+    //         yAxisLabel: "Effective tax rate",
+    //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
+    //         // credit: "ChiTribGraphics"
+    //     }
+    // });
 
 
 
@@ -225,6 +234,7 @@ window.onload = function(){
             direction: 'vertical',
             speed:200,
             loop: false,
+            
             // effect:'flip',
             // fade:{
             //     crossfade:true

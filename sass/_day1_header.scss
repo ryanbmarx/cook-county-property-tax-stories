@@ -3,16 +3,17 @@
 
 
 $day1header_max_width: 700px;
-$undervalued_color:$trib-blue2;
+$undervalued_color:$trib-orange;
 $overvalued_color:$trib-red2;
 
 // ---- SWIPER SWIPER SWIPER ---------------------------------------------
 
 .day1-header-background{ 
-	background:$header-bg-color; 
-	background: linear-gradient(to bottom, rgba(239,239,239,1) 0%,rgba(195,195,195,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	background:black; 
+	// background: linear-gradient(to bottom, rgba(239,239,239,1) 0%,rgba(195,195,195,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	margin-bottom:50px;
 	padding-bottom:50px;
+	margin-top:#{0 - $nav_height};
 }
 
 .day1-header-display{
@@ -73,6 +74,22 @@ $overvalued_color:$trib-red2;
 		opacity:1;
 		transition: opacity 400ms ease;
 	}
+
+	.chart-labels, .axis, .annotations {
+		line, circle, path {
+			stroke:white !important; // overriding some inline styles
+			&.domain{
+				stroke:black !important;
+			}
+		}
+
+		
+
+		text{
+			fill:white;
+		}
+	}
+
 }
 
 .swiper-container {
@@ -137,28 +154,32 @@ $overvalued_color:$trib-red2;
 }
 
 
-#blurb0{
-	// The initial keep scrolling icons/instructions
-	i, p { 
-		width: 100%;
-		display: block;
-	}
+// #blurb0{
+// 	// The initial keep scrolling icons/instructions
+// 	i, p { 
+// 		width: 100%;
+// 		display: block;
+// 	}
 	
-	.text__blurb{
-		margin: 0;
-		padding: 9px 0 15px 0;
-		line-height: 1em;
-	}
+// 	.text__blurb{
+// 		margin: 0;
+// 		padding: 9px 0 15px 0;
+// 		line-height: 1em;
+// 	}
+	
+// 	.fa{
+// 		color:white;
+// 	}
 
-	.fa-arrow-up{
-		@include bounce(3s,bounce_reverse);
-	}
+// 	.fa-arrow-up{
+// 		@include bounce(3s,bounce_reverse);
+// 	}
 
-	.fa-arrow-down{
-		@include bounce(3s);
-	}
+// 	.fa-arrow-down{
+// 		@include bounce(3s);
+// 	}
 
-}
+// }
 
 .swiper-button{
 	display:none;
@@ -183,6 +204,7 @@ $overvalued_color:$trib-red2;
 	&__blurb{
 		@include serif-text(18px, 1.4em, normal);
 		@include display_type('serif');
+		color:white;
 		margin:0;
 		z-index: 100;
 		max-width: 90%; // fallback
@@ -202,13 +224,26 @@ $overvalued_color:$trib-red2;
 	}
 }
 
+.instructions{
+	p {
+		@include agate();
+		color:white;
+		margin: 7px 0;
+	}
+	i{
+		color:white;
+	}
+}
+
 body[data-fixed-header=true]{
     overflow: hidden;
+
 	.swiper-button{
 		display:block;
 	}
     .day1-header-background{
         position: fixed;
+        margin-top:0;
         top: 0;
         left: 0;
         width: 100%;
@@ -257,6 +292,9 @@ body[data-fixed-header=true]{
 	    padding: 2px;
     }
 }
+
+
+
 
 @media all and (min-width:#{$map-width}){
 

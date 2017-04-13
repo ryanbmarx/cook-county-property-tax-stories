@@ -7,8 +7,8 @@ var queue = require('d3-queue').queue;
 // const  prerender = Prerender(d3);
 
 const 	aboveOneColor = getTribColors('trib-red2'),
-		otherColor = 'rgba(255,255,255,.45)',
-		belowOneColor = getTribColors('trib-blue4');
+		otherColor = 'rgba(255,255,255,.3)',
+		belowOneColor = getTribColors('trib-orange');
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
 // as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
@@ -36,11 +36,11 @@ function buildErateLegend(ramp, containerID){
 			if (index == 0){
 				bucket.append('span')
 					.classed('effective-tax-rate-legend__text', true)
-					.html("&laquo; Lower rate");
+					.html("&laquo; Lower tax rate");
 			} else if (index == (ramp.length - 1)){
 				bucket.append('span')
 					.classed('effective-tax-rate-legend__text', true)
-					.html("Higher rate &raquo;");
+					.html("Higher tax rate &raquo;");
 			}
 	})
 }
@@ -58,11 +58,11 @@ function valueMapScale(ratio){
 }
 
 function valueMapAbove1(ratio){
-	return ratio > 1 ? aboveOneColor : otherColor;
+	return ratio > 1 ? aboveOneColor : 'rgba(255,255,255,.9)';
 }
 
 function valueMapBelow1(ratio){
-	return ratio < 1 ? belowOneColor : otherColor;
+	return ratio < 1 ? belowOneColor : 'rgba(255,255,255,.9)';
 }
 
 class CookCountyMap{
@@ -176,7 +176,7 @@ class CookCountyMap{
 				.append( "path" )
 				.attr( "d", geoPath)
 				.style('fill', 'transparent')
-				.style('stroke', getTribColors('trib-gray4'))
+				.style('stroke', 'black')
 				.style('stroke-width', 3);
 
 	}
