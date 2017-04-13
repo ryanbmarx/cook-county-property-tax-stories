@@ -1,7 +1,9 @@
-
+var boot = require('bootstrap.js');
+import 'swiper';
 // import inView from 'in-view';
 import * as d3 from 'd3';
 import CookCountyMap from './fairness.js';
+import barChart from 'bar-chart.js';
 
 // https://github.com/fivethirtyeight/d3-pre
 import Prerender from 'd3-pre';

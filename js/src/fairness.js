@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 import getTribColors from'./getTribColors.js';
 var queue = require('d3-queue').queue;
-import * as topojson from 'topojson';
 
 // https://github.com/fivethirtyeight/d3-pre
 // import Prerender from 'd3-pre';
@@ -73,7 +72,7 @@ class CookCountyMap{
 		 app.options = options;
 		 app.mapContainer = options.mapContainer;
 		 app.data = options.data;
-		 console.log(app.data);
+
 		// define the layers of map data I want
 		// Source of map base layers: http://code.highcharts.com/mapdata/
 		 app.mapLayers =[
@@ -91,12 +90,12 @@ class CookCountyMap{
 		mapDataQueue.awaitAll(app.drawMap.bind(app));
 
 		// Generate a scale for the effective tax rate.
-		// const erateExtent = d3.extent(app.data.features, d => d.properties.erate);
-		// const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
-		// app.erateScale = d3.scaleQuantile()
-		// 	.domain(app.data.features.map(d => d.properties.erate))
-		// 	.range(erateColorRamp);
-		// buildErateLegend(erateColorRamp, '#day1-header-display');
+		const erateExtent = d3.extent(app.data.features, d => d.properties.erate);
+		const erateColorRamp=['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000'];
+		app.erateScale = d3.scaleQuantile()
+			.domain(app.data.features.map(d => d.properties.erate))
+			.range(erateColorRamp);
+		buildErateLegend(erateColorRamp, '#day1-header-display');
 	}
 
 	drawMap(error){
@@ -110,16 +109,16 @@ class CookCountyMap{
 		// Nudge the map down to the center if we are one "desktop mode", which is 
 		// when the window is wider than the map-wrapper's maximum width, which, 
 		// at the time of this writing, is 600px;
-		// const 	mapWrapper = app.mapContainer.node().parentElement,
-		// 		mapMaxWidth = 600;
+		const 	mapWrapper = app.mapContainer.node().parentElement,
+				mapMaxWidth = 600;
 		
-		// if (window.innerWidth >= mapMaxWidth){
-		// 	// console.log('desktop');
-		// 	mapWrapper.style.top = '50%';
-		// 	mapWrapper.style.marginTop = `${height / -2}px`;
-		// } else {
-		// 	// console.log('mobile');
-		// }
+		if (window.innerWidth >= mapMaxWidth){
+			// console.log('desktop');
+			mapWrapper.style.top = '50%';
+			mapWrapper.style.marginTop = `${height / -2}px`;
+		} else {
+			// console.log('mobile');
+		}
 		// d3.select(mapWrapper).attr('style', `top: ${top}px;`);
 		// console.log(height / -2, marginTop, mapWrapper);	
 		
@@ -143,8 +142,7 @@ class CookCountyMap{
 		const geoPath = d3.geoPath().projection(projection);
 
 		// Compute the bounds of a feature of interest, then derive scale & translate.
-		// topojson.mesh takes the topo and converts it to geojson, which is used to make the projection.
-		var bounds = geoPath.bounds(topojson.mesh(app.data, app.data.objects.day1header)),
+		var bounds = geoPath.bounds(app.data),
 			dx = bounds[1][0] - bounds[0][0],
 			dy = bounds[1][1] - bounds[0][1],
 			x = (bounds[0][0] + bounds[1][0]) / 2,
@@ -161,17 +159,14 @@ class CookCountyMap{
 		const tracts = svg.append('g')
 			.classed('tracts', true)
 			.selectAll('.tracts')
-			// topojson.feature, per the docs, returns the GeoJSON Feature or FeatureCollection 
-			// for the specified object in the given topology. In this case, it's a collection,
-			// which is why we call the features attribute after it.
-			.data( topojson.feature(app.data, app.data.objects.day1header).features);
+			.data( app.data.features, d => d.properties.ratio);
 
 		tracts.enter()
 			.append( "path" )
 				.attr('data-name', d => d.properties.TRACT)
 				.attr('class', 'tract')
 				.attr( "d", geoPath)
-				.style('fill', d => valueMapScale(d.properties.ratio));
+				.style('fill', otherColor);
 		
 		svg.append('g')
 			.classed('chicago', true)

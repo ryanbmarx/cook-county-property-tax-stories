@@ -39,7 +39,7 @@ $close-prologue-color:#3a3a3a;
 
 .day1-header-display{
 	// This contains all the header content;
-	// top: $nav_height;
+	top: $nav_height;
 	max-width: $map-width;
 	margin:0 auto;
 	position:relative;
@@ -47,33 +47,7 @@ $close-prologue-color:#3a3a3a;
 	height: calc(100vh - #{$nav_height});
 	overflow:hidden;
 
-}
 
-.blurb{
-	position:absolute;
-	top:35%;
-	left:0;
-	z-index: 100;
-	max-width: 260px;
-
-	p{
-		@include serif-text(23px, 1.4em, normal);
-		@include display_type('serif');
-		color:white;
-		padding:0;
-		margin:0 0 10px 0;		
-	}
-}
-
-.legend{
-	@include trib-legend();
-	color:white;
-	&__box{
-		@include trib-legend__box(0);
-		border:none;
-		&--under{ background: $undervalued_color; }
-		&--over{ background: $overvalued_color; }
-	}
 }
 
 // ---- JUST THE MAP ---------------------------------------------
@@ -82,16 +56,17 @@ $close-prologue-color:#3a3a3a;
 .map-wrapper{
 	width: 100%;
 	max-width: $map-width;
-	// position:absolute;
-	// top:auto;
- //    bottom: 20px;
-	// left:0;
-	// opacity:0; 
+	position:absolute;
+	top:auto;
+    bottom: 20px;
+	left:0;
+	opacity:0; 
 	transition: opacity 700ms ease;
-	// &.map-wrapper--visible{
-	// 	opacity:1; 
-	// 	transition: opacity 700ms ease;
-	// }
+
+	&.map-wrapper--visible{
+		opacity:1; 
+		transition: opacity 700ms ease;
+	}
 
 	#map{
 		width: 100%;
@@ -103,13 +78,13 @@ $close-prologue-color:#3a3a3a;
 
 
 // Mobile chart sizing and placement
-// .header-chart{
-// 	width:100%;
-// 	max-width:$map-width;
-// 	height: 45vh; // fallback
-// 	height: calc(45vh - #{$nav_height / 2});
-// 	opacity:0;
-// 	transition: opacity 400ms ease;
+.header-chart{
+	width:100%;
+	max-width:$map-width;
+	height: 45vh; // fallback
+	height: calc(45vh - #{$nav_height / 2});
+	opacity:0;
+	transition: opacity 400ms ease;
 	
 	position:absolute;
 	top:auto;
@@ -317,17 +292,17 @@ body[data-fixed-header=true]{
 		}
 	}
 	
-	// #blurb80 .text__blurb{
-	// 	@include text_stroke($stroke_blur:3px);
-	// 	background: rgba(white,.5);
-	// 	padding: 15px;
-	// }
+	#blurb80 .text__blurb{
+		@include text_stroke($stroke_blur:3px);
+		background: rgba(white,.5);
+		padding: 15px;
+	}
 
-	// .map-wrapper{
-	// 	left:calc(50% - #{$map-width / 2});
-	// 	top:$nav_height + 10px;
-	// 	bottom:auto;
-	// }
+	.map-wrapper{
+		left:calc(50% - #{$map-width / 2});
+		top:$nav_height + 10px;
+		bottom:auto;
+	}
 
 	.text__blurb{ font-size:27px; }
 
