@@ -1,11 +1,11 @@
-// TODO: Why does last chart drop on slider end?
-
-
-
 $day1header_max_width: 700px;
 $undervalued_color:$trib-orange;
 $overvalued_color:$trib-red2;
 $close-prologue-color:#3a3a3a;
+
+.fa-arrow-down{
+	@include bounce(3s);
+}
 
 .close-prologue{
 	color: $close-prologue-color;
@@ -30,7 +30,6 @@ $close-prologue-color:#3a3a3a;
 
 .day1-header-background{ 
 	background:black; 
-	// background: linear-gradient(to bottom, rgba(239,239,239,1) 0%,rgba(195,195,195,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	margin-bottom:50px;
 	padding-bottom:50px;
 	margin-top:#{0 - $nav_height};
@@ -116,27 +115,10 @@ $close-prologue-color:#3a3a3a;
 }
 
 .swiper-container {
-	// max-width:600px;
 	margin:0 auto;
 	width: 100%;
     height: 100vh; // fallback
     height: calc(100vh - #{$nav_height});
-
-	// .swiper-pagination{
-	//     position: absolute;
-	//     top: 51px;
-	//     right: auto;
-	//     left: 101%;
-	//     height: 100%; // fallback
- //        height: calc(100vh - #{$nav_height});
-	//     display: flex;
-	//     align-items: center;
-	//     align-content: center;
-	//     width: 10px;
-	//     justify-content: center;
-	//     transform: none;
-	//     flex-wrap: wrap;
-	// }
 }
 .swiper-slide{
 	&__inner{
@@ -147,62 +129,28 @@ $close-prologue-color:#3a3a3a;
 		justify-content: center;
 		text-align: center;
 		flex-wrap:wrap;
-		// border:1px solid black;
 	}
 
 	&.swiper-slide--notch{
 		.swiper-slide__inner{
-			// justify-content: flex-start;
 			align-items:flex-end;
 			align-content:flex-end;
 		    height: 19%;
 
 			.text__blurb{
-				// max-width: 46%;
 				margin-top:20px;
 			}
 		}
 	}
 
-	&.swiper-slide--chart{
-		// justify-content: flex-start;
-		// height:50vh; // fallback
-		// height: calc(50vh - #{$nav_height / 2});
-		.swiper-slide__inner{
-			height: 45%;
-			align-items:flex-end;
-			align-content:flex-end;
-		}
-	}
+	// &.swiper-slide--chart{
+	// 	.swiper-slide__inner{
+	// 		height: 45%;
+	// 		align-items:flex-end;
+	// 		align-content:flex-end;
+	// 	}
+	// }
 }
-
-
-// #blurb0{
-// 	// The initial keep scrolling icons/instructions
-// 	i, p { 
-// 		width: 100%;
-// 		display: block;
-// 	}
-	
-// 	.text__blurb{
-// 		margin: 0;
-// 		padding: 9px 0 15px 0;
-// 		line-height: 1em;
-// 	}
-	
-// 	.fa{
-// 		color:white;
-// 	}
-
-// 	.fa-arrow-up{
-// 		@include bounce(3s,bounce_reverse);
-// 	}
-
-// 	.fa-arrow-down{
-// 		@include bounce(3s);
-// 	}
-
-// }
 
 .swiper-button{
 	display:none;
@@ -333,11 +281,11 @@ body[data-fixed-header=true]{
 			justify-content: flex-start;
 			align-items:center;
 			align-content:center;
-		    height: 100%;
+		    height: 92%;
 
 
 				.text__blurb{ 
-					max-width: 46%; 
+					max-width: 44%; 
 					margin-top:0;
 				}
 			}
@@ -373,21 +321,11 @@ body[data-fixed-header=true]{
 			display: block;
 		}
 	}
-
-	.effective-tax-rate-legend{
-		max-width: 250px;
-		width:100%;
-	    top: 340px;
-	    left: 50%;
-	    margin: 10px 0 0 #{($map-width / -2) + 20px};
-
-	    &__list{
-
-	    }
-	    &__text{
-	    	// top: 100%;
-	    	// padding:5px;
-	    }
+	
+	#blurb110 .instructions{
+		position: absolute;
+		left: calc(50% - 350px + 128px);
+		top: 65%;
 	}
 }
 
