@@ -8,22 +8,47 @@ $close-prologue-color:#3a3a3a;
 }
 
 .close-prologue{
-	color: $close-prologue-color;
 	position:fixed;
 	top: $nav_height + 10px;
 	right:10px;
+	z-index: 1100;
 	display:none;
+	width:115px;
 	cursor:pointer;
-	font-size: 30px;
-	    padding: 5px;
-    border-radius: 50%;
-    line-height: 0.89em;
-    z-index: 1100;
+	justify-content: space-between;
+    align-items: center;
+	
+	&__icon{
+		color: $close-prologue-color;
+		font-size: 30px;
+		padding: 5px;
+		border-radius: 50%;
+		line-height: 0.89em;
+	    // display: block;
+	    // text-align: center;		
+	}
+
+	&__text{
+		@include sans-serif();
+		text-align:center;
+		font-weight: bold;
+		color:$close-prologue-color;
+		margin:0;
+		padding:0;
+	}
 
 	&:hover{
-		color:black;
-		background: $close-prologue-color;
+		// background: $close-prologue-color;
+		.close-prologue__icon{
+			color:black;
+			background: $close-prologue-color;
+		}
+		.close-prologue__text{
+			// color:black;
+			// background: $close-prologue-color;
+		}
 	}
+
 }
 
 // ---- SWIPER SWIPER SWIPER ---------------------------------------------
@@ -58,7 +83,7 @@ $close-prologue-color:#3a3a3a;
 	max-width: $map-width;
 	position:absolute;
 	top:auto;
-    bottom: 20px;
+	bottom: 20px;
 	left:0;
 	opacity:0; 
 	transition: opacity 700ms ease;
@@ -135,7 +160,7 @@ $close-prologue-color:#3a3a3a;
 		.swiper-slide__inner{
 			align-items:flex-end;
 			align-content:flex-end;
-		    height: 19%;
+			height: 19%;
 
 			.text__blurb{
 				margin-top:20px;
@@ -207,39 +232,39 @@ $close-prologue-color:#3a3a3a;
 }
 
 body[data-fixed-header=true]{
-    overflow: hidden;
+	overflow: hidden;
 	
-	.close-prologue{ display:block; }
+	.close-prologue{ display:flex; }
 	.swiper-button{
 		display:block;
 	}
-    .day1-header-background{
-        position: fixed;
-        margin-top:0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1000;
-    }
+	.day1-header-background{
+		position: fixed;
+		margin-top:0;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+	}
 }
 .effective-tax-rate-legend{
 	width:90%;
 	position: fixed;
-    top:155px;
-    left:0;
-    margin:0 5%;
-    opacity:0;
+	top:155px;
+	left:0;
+	margin:0 5%;
+	opacity:0;
 	transition: opacity 400ms ease;
 
-    &--visible{
-    	opacity:1;
-    	transition: opacity 400ms ease;
-    }
+	&--visible{
+		opacity:1;
+		transition: opacity 400ms ease;
+	}
 
-    &__list{
-    	position:relative;
-    	list-style-type:none;
+	&__list{
+		position:relative;
+		list-style-type:none;
 		display: flex;
 		width:100%;
 		justify-content: flex-start;
@@ -256,13 +281,13 @@ body[data-fixed-header=true]{
 			text-align:right;
 			color:white;
 		}
-    }
-    &__text{
-    	@include agate();
-    	position:absolute;
-    	top:0;
-	    padding: 2px;
-    }
+	}
+	&__text{
+		@include agate();
+		position:absolute;
+		top:0;
+		padding: 2px;
+	}
 }
 
 
@@ -278,10 +303,10 @@ body[data-fixed-header=true]{
 	.swiper-slide{
 		&.swiper-slide--notch{
 			.swiper-slide__inner{
-			justify-content: flex-start;
-			align-items:center;
-			align-content:center;
-		    height: 92%;
+				justify-content: flex-start;
+				align-items:center;
+				align-content:center;
+				height: 92%;
 
 
 				.text__blurb{ 
