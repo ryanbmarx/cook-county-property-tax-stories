@@ -156,6 +156,20 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
 
 window.onload = function(){
     prerender.start();
+    
+    //for row in glossary spreadsheet
+    //if term string exists on page
+    //place corresponding modal in the margin of parent element
+    function findString(){
+        var targetString = (document.documentElement.textContent).indexOf('Coefficient of Dispersion');
+        if (
+            (targetString) > -1) {
+                console.log('This function is working.');
+                $('.river--narrow').css('background-color','pink');
+                //$(#modal).css('display','block');
+            }
+    }
+    findString();
 
     // Make the two bar charts for later in the process
     // const race = new barChart({
@@ -223,8 +237,6 @@ window.onload = function(){
     //         // credit: "ChiTribGraphics"
     //     }
     // });
-
-
 
 
 
