@@ -31,8 +31,8 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
     
-  {# {% set page_url = 'http://' + ROOT_URL + '/' + PATH %} #}
-  {% set page_url = '#' %}
+  {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
+  {# {% set page_url = '#' %} #}
     <figure class="trib-pullquote">
         <ul class="social-menu">
             <li>
@@ -113,20 +113,45 @@
     </div>
 {% endmacro %}
 
+{% macro add_author(name, email) %}
+  <a itemprop="author" {% if email %}href="mailto:{{- email -}}?subject=Regarding: {{ overall_project_title }}"{% endif %}>{{- name -}}</a>
+{% endmacro%}
 
 {% block nav scoped %}
   {% set part = part %}
   {% include '_nav.html' %}
 {% endblock nav %}
 
-{# {% block bodyattrs %}
-    {{ super() }}
-    This data attribute on the body tag will toggle the fixed state of the map and day1 story header 
-    data-fixed-header=false
-{% endblock bodyattrs %} #}
-
 {% block content %}
-  
+    {{ ad('leaderboard', false) }}
+    {% block story_header scoped %}
+      {% set part = part %}
+      <section class='story-header story-header--{{ part }}'>
+        <div class='story-header__display'>
+          <h1 class='story-header__headline' itemprop="headline">
+            {% block headline %}{% endblock headline %}
+          </h1>
+          <h2 class='story-header__subheadline'>
+            {% block dek %}{% endblock dek %}
+          </h2>
+          <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
+        </div>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <div class='river--narrow'>
+                {% include '_subtemplates/_social-row.html' %}
+                <div class='byline'>
+                  <p class='byline-name'>{% block byline %}{% endblock byline%}</p>
+                  <p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
+                  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endblock story_header %}
     {% block story %}
         {# ################ #}
         {# Story content will go here #}

@@ -1,3 +1,5 @@
+{% from '_tax-base.html' import add_author as add_author %}
+
 <section id='day1-header'>
 	<div class='day1-header-background'>
 		<div id='day1-header-display' class='day1-header-display'>
@@ -62,7 +64,9 @@
 				<h1 class='main-headline'>{{ part1_headline|process_text() }}</h1>
 				<h2 class='main-subheadline'>{{ part1_dek|process_text() }}</h2>				
 				<div class='byline'>
-					<p class='byline-name'><a itemprop="author" href="mailto:jgrotto@chicagotribune.com?subject=Regarding: {{ overall_project_title }}">Jason Grotto</a></p>
+					<p class='byline-name'>
+						{{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}, {{ add_author("John Chase", "jchase@chicagotribune.com") }}, {{ add_author("David Kidwell") }}
+					</p>
 					<p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
 					<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime }}</time>
 				</div>

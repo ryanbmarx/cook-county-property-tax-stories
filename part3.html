@@ -2,63 +2,25 @@
 
 {% set part = 'part3' %}
 
+
+{% block headline %}{{ part3_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ part3_dek|process_text() }}{% endblock dek %}
+
+{% block byline %}
+    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
+{% endblock byline%}
+
 {% block story %}
-{# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
-        <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
-{% include '_subtemplates/part3/_header-part3.html' %}
-        {# <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
-        <div class="container">
+    <div class="container">
         <div class="row">
-                <div class="col-md-12">
-                    <div class='river--narrow' itemprop="articleBody">
-                        <p>
-                            <span class='text--exploded'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                        </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio sapiente nulla molestias tempora dolores ipsam, facere adipisci doloribus architecto similique numquam voluptate, veniam quia? Animi voluptate aspernatur ipsam ullam, id.</p>
-
-                        {{ ad("cube", 'right') }}
-                        {{ lorem|markdown }}
-                        {% set quote = "\"Outside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\"" %}
-                        {{ pullquote(quote, "Groucho Marx", "A very funny chap") }}
-                        {{ lorem|markdown }}
-                    </div>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-12">
+                <div class='river--narrow' itemprop="articleBody">
+                    {% for story in stories[part] %}
+                        {% set s = story %}
+                        {% include '_subtemplates/_story-loop.html' %}
+                    {% endfor %}
+               </div>
+           </div>
         </div>
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class='river--narrow'>
-                    {{ add_chart('assessment-levels', false, 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/assessment-levels.html') }}
-                        {{ lorem|markdown }}
-                        <figure class='image'>
-                            <img src='http://www.trbimg.com/img-585dab02/turbine/ct-rahm-emanuel-emails-tribune-dold-met-20161223' alt='dd'/>
-                            <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                            </figcaption>
-                        </figure>
-                        {{ lorem|markdown }}
-                        {{ ad("cube", 'right') }}
-                        {{ lorem|markdown }}
-                        {{ lorem|markdown }}
-                        {{ add_chart('appeals-demographics', 'chart--right', 'http://apps.beta.tribapps.com/property_tax_assessments_cook_county/appealsdemographics.html') }}
-
-                        {{ lorem|markdown }}
-                            <figure class='image image--right'>
-                            <img src='http://www.trbimg.com/img-553fa242/turbine/chi-110517-mayor-rahm-emanuel-pictures/650/650x366' alt='dd'/>
-                            <figcaption>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio delectus sunt sapiente, odit aliquam error ipsum accusantium minima facere velit laborum, perferendis esse impedit nam ab. Id assumenda, est in! (Photographer here)
-                            </figcaption>
-                        </figure>
-                        {{ ad("cube", 'right') }}
-                        {{ lorem|markdown }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 {% endblock %}
