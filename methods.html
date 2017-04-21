@@ -1,0 +1,26 @@
+{% extends "_tax-base.html" %}
+
+{% set part = 'methods' %}
+
+
+{% block headline %}{{ methods_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ methods_dek|process_text() }}{% endblock dek %}
+
+{% block byline %}
+    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
+{% endblock byline%}
+
+{% block story %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class='river--narrow' itemprop="articleBody">
+                    {% for story in stories[part] %}
+                        {% set s = story %}
+                        {% include '_subtemplates/_story-loop.html' %}
+                    {% endfor %}
+               </div>
+           </div>
+        </div>
+    </div>
+{% endblock %}
