@@ -31,7 +31,8 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
     
-  {% set page_url = 'http://' + ROOT_URL + '/' + PATH %}
+  {# {% set page_url = 'http://' + ROOT_URL + '/' + PATH %} #}
+  {% set page_url = '#' %}
     <figure class="trib-pullquote">
         <ul class="social-menu">
             <li>
@@ -198,8 +199,9 @@
 <script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js' defer async></script>
 
 {# For comments #}
-<script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
-<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script>
+{# Removed on recommendation from Andrew Baltazar. #}
+{# <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
+<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script> #}
 
 {# For some of the JS I wrote, I need this. #}
 <script type="text/javascript">
