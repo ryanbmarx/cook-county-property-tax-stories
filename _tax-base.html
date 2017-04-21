@@ -1,11 +1,23 @@
 {% extends "_base.html" %}
 
 {% macro add_photo(url, add_class, caption, alt) %}
-
   <figure class='image {{ add_class }}'>
     <img src='{{ url }}' alt='{{ alt }}'/>
     <figcaption> {{ caption }}</figcaption>
 </figure>
+{% endmacro %}
+
+{% macro add_p2p_photo(slug, add_class, width) %}
+  {% set photo = get_p2p_content_item(slug) %}
+
+  {% if photo|check_if_is_okay_to_publish %}
+      <figure class='image {{ add_class }}'>
+        <img src='{{ photo.photo_services_url }}/{{ width }}' alt='{{ photo.title }} title='{{ photo.title }}'/>
+        <figcaption> {{ photo.caption|process_text }}</figcaption>
+      </figure>
+    {% else %}
+      <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
+    {% endif %}
 {% endmacro %}
 
 {% macro ad(type, alignment) %}

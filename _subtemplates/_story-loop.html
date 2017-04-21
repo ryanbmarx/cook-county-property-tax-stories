@@ -2,9 +2,12 @@
 
 {% from '_tax-base.html' import add_chart as add_chart with context%}
 {% from '_tax-base.html' import add_photo as add_photo with context %}
+{% from '_tax-base.html' import add_p2p_photo as add_p2p_photo with context %}
 {% from '_tax-base.html' import ad as ad  with context%}
 {% from '_tax-base.html' import add_video as add_video with context %}
 {% from '_tax-base.html' import pullquote as pullquote  with context%}
+
+
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
     </div>
@@ -43,6 +46,18 @@
         {% set quote_attribution_secondary = "" %}
     {% endif %}
     {{ pullquote(s.quote_text, s.quote_attribution, quote_attribution_secondary) }}
+{% elif type == "p2p_photo" and s.slug %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+    {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
+        {% set width = 1200 %}
+    {% else %}
+        {% set width = 650 %}
+    {% endif %}
+    {{ add_p2p_photo(s.slug, s.add_class, width) }}
 {% endif %}
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
