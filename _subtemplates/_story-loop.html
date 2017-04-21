@@ -1,0 +1,50 @@
+{# {% extends "_tax-base.html" %} #}
+
+{% from '_tax-base.html' import add_chart as add_chart %}
+{% from '_tax-base.html' import add_photo as add_photo %}
+{% from '_tax-base.html' import ad as ad %}
+{% from '_tax-base.html' import add_video as add_video %}
+{% from '_tax-base.html' import pullquote as pullquote %}
+
+{% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
+    </div>
+{% endif %}
+
+{% set type = s.type %}
+{% if type == "text" %}
+    {{ s.content|markdown }}
+{% elif type == "graphic" and s.graphic_id and s.url %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+    {{ add_chart(s.url, s.add_class, s.url) }}
+{% elif type == "photo" and s.url and s.caption and s.alt %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+    {{ add_photo(s.url, s.add_class, s.caption, s.alt)}}
+{% elif type == "advert" and s.ad_type and s.ad_alignment %}
+    {{ ad(s.ad_type, s.ad_alignment) }}
+{% elif type == "video" and s.id and s.link_base_url %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+    {{ add_video(s.id, s.link_base_url, add_class) }}
+{% elif type == "pullquote" and s.quote_text and s.quote_attribution %}
+    {% if s.quote_attribution_secondary %}
+        {% set quote_attribution_secondary = s.quote_attribution_secondary %}
+    {% else %}
+        {% set quote_attribution_secondary = "" %}
+    {% endif %}
+    {{ pullquote(s.quote_text, s.quote_attribution, quote_attribution_secondary) }}
+{% endif %}
+
+{% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
+    <div class='river--narrow'>
+{% endif %}
