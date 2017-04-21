@@ -126,6 +126,7 @@
     {{ ad('leaderboard', false) }}
     {% block story_header scoped %}
       {% set part = part %}
+      {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
         <div class='story-header__display'>
           <h1 class='story-header__headline' itemprop="headline">
