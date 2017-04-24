@@ -2,6 +2,16 @@
 
 {% set part = 'part1' %}
 
+{% block headline %}{{ part1_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ part1_dek|process_text() }}{% endblock dek %}
+
+{% block byline %}
+    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}, {{ add_author("David Kidwell") }}, {{ add_author("John Chase", "jchase@chicagotribune.com") }}
+{% endblock byline%}
+
+
+
+
 {% block bodyattrs %}
     {{ super() }}
     {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
@@ -10,12 +20,6 @@
 
 
 {% block story %}
-
-{#
-{% for phrase in glossary %}
-    <span onclick=findPhrase({{ phrase|safe }});>{{ phrase }}</span>
-{% endfor %}
-#}
 
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
         <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
@@ -82,10 +86,23 @@
                         {{ lorem|markdown }}
                         </div>
                     </div>
+
+    {# {% include '_subtemplates/part1/_header-part1.html' %} #}
+    <div class="container" itemprop="articleBody">
+    <div class="row">
+            <div class="col-md-12">
+                <div class='river--narrow'>
+                {% for story in stories[part] %}
+                    {% set s = story %}
+                    {% include '_subtemplates/_story-loop.html' %}
+                {% endfor %}
+
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
+
 {% block library_scripts %}
     {{ super() }}
     <script src="js/vendor.min.js"></script>

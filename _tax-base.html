@@ -1,11 +1,23 @@
 {% extends "_base.html" %}
 
 {% macro add_photo(url, add_class, caption, alt) %}
-
   <figure class='image {{ add_class }}'>
     <img src='{{ url }}' alt='{{ alt }}'/>
     <figcaption> {{ caption }}</figcaption>
 </figure>
+{% endmacro %}
+
+{% macro add_p2p_photo(slug, add_class, width) %}
+  {% set photo = get_p2p_content_item(slug) %}
+
+  {% if photo|check_if_is_okay_to_publish %}
+      <figure class='image {{ add_class }}'>
+        <img src='{{ photo.photo_services_url }}/{{ width }}' alt='{{ photo.title }} title='{{ photo.title }}'/>
+        <figcaption> {{ photo.caption|process_text }}</figcaption>
+      </figure>
+    {% else %}
+      <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
+    {% endif %}
 {% endmacro %}
 
 {% macro ad(type, alignment) %}
@@ -31,7 +43,8 @@
 
 {% macro pullquote(quote_text, quote_attribution, quote_attribution_secondary) %}
     
-  {% set page_url = 'http://' + ROOT_URL + '/' + PATH %}
+  {% set page_url = "http://" + ROOT_URL + "/" + PATH %}
+  {# {% set page_url = '#' %} #}
     <figure class="trib-pullquote">
         <ul class="social-menu">
             <li>
@@ -112,20 +125,46 @@
     </div>
 {% endmacro %}
 
+{% macro add_author(name, email) %}
+  <a itemprop="author" {% if email %}href="mailto:{{- email -}}?subject=Regarding: {{ overall_project_title }}"{% endif %}>{{- name -}}</a>
+{% endmacro%}
 
 {% block nav scoped %}
   {% set part = part %}
   {% include '_nav.html' %}
 {% endblock nav %}
 
-{# {% block bodyattrs %}
-    {{ super() }}
-    This data attribute on the body tag will toggle the fixed state of the map and day1 story header 
-    data-fixed-header=false
-{% endblock bodyattrs %} #}
-
 {% block content %}
-  
+    {{ ad('leaderboard', false) }}
+    {% block story_header scoped %}
+      {% set part = part %}
+      {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
+      <section class='story-header story-header--{{ part }}'>
+        <div class='story-header__display'>
+          <h1 class='story-header__headline' itemprop="headline">
+            {% block headline %}{% endblock headline %}
+          </h1>
+          <h2 class='story-header__subheadline'>
+            {% block dek %}{% endblock dek %}
+          </h2>
+          <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
+        </div>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <div class='river--narrow'>
+                {% include '_subtemplates/_social-row.html' %}
+                <div class='byline'>
+                  <p class='byline-name'>{% block byline %}{% endblock byline%}</p>
+                  <p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
+                  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endblock story_header %}
     {% block story %}
         {# ################ #}
         {# Story content will go here #}
@@ -198,8 +237,9 @@
 <script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js' defer async></script>
 
 {# For comments #}
-<script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
-<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script>
+{# Removed on recommendation from Andrew Baltazar. #}
+{# <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
+<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script> #}
 
 {# For some of the JS I wrote, I need this. #}
 <script type="text/javascript">

@@ -6,8 +6,10 @@
 			</div>
 			{# <div id='income' class='header-chart'></div> #}
 			{# <div id='race' class='header-chart'></div> #}
-			<i id='close-prologue' class="fa fa-times-circle-o close-prologue" aria-hidden="true"></i>
-
+			<div id='close-prologue' class='close-prologue'>
+				<i class="fa fa-times-circle-o close-prologue__icon" aria-hidden="true"></i>
+				<p class='close-prologue__text'>Skip intro</p>
+			</div>
 			<!-- Slider main container -->
 			<div class="swiper-container">
 				{# {{ keep_scrolling_icon() }} #}
@@ -53,23 +55,4 @@
 			</div>
 		</div>
 	</div>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-xs-12'>
-				{% include '_subtemplates/_social-row.html' %}
-				<h1 class='main-headline'>{{ part1_headline|process_text() }}</h1>
-				<h2 class='main-subheadline'>{{ part1_dek|process_text() }}</h2>				
-				<div class='byline'>
-					<p class='byline-name'><a itemprop="author" href="mailto:jgrotto@chicagotribune.com?subject=Regarding: {{ overall_project_title }}">Jason Grotto</a></p>
-					<p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
-					<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime }}</time>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
-
-
-
-
-

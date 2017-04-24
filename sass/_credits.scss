@@ -100,6 +100,9 @@ $column_width: 280px;
 		border-top:none;
 	}
 
+	.credits__column--links { margin-right: 25px; }
+
+
 	.story-link{
 		@include clearfix();
 		position:relative;

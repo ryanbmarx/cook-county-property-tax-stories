@@ -9,6 +9,7 @@ import datetime
 # import xlrd.xldate
 import xlrd
 import random
+import jinja2
 
 
 # imports bc copied blueprint functions #
@@ -427,6 +428,17 @@ def get_up_next(parts, current_part):
                 retval['next'] = False
                 retval['rest'] = parts
     return retval
+
+
+@blueprint.app_template_filter('check_if_is_okay_to_publish')
+# @jinja2.contextfilter
+def check_if_is_okay_to_publish(photo):
+    """
+    Takes a p2p data dict and determines if it is okay to publish this content item. It will return true
+    in all cases except when the content is not set to Live and the publish url is the production bucket
+    """
+    return True
+
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
