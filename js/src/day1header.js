@@ -52,6 +52,8 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
     console.log('skipping');
     document.querySelector('body').dataset.fixedHeader = false;
     document.querySelector('.day1-header-background').style.maxHeight = 0;
+    document.querySelector('.day1-header-background').style.padding = 0;
+    document.querySelector('.day1-header-background').style.margin = 0;
     document.querySelector('.day1-header-background').style.overflow = 'hidden';
 
 });
