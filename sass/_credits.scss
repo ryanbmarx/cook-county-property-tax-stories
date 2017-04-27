@@ -1,4 +1,5 @@
 $column_width: 280px;
+$credit_padding: 15px;
 
 @keyframes border_blink {
     0% { 
@@ -39,6 +40,13 @@ $column_width: 280px;
 
 .credits__column{
 	width:$column_width;
+
+	// &__people{
+	// 	width:$column_width - (2 * $credit_padding) - 2px;
+	// 	padding: $credit_padding;
+	// 	border: 1px solid $trib-blue2;
+	// }
+
 }
 
 
@@ -49,6 +57,7 @@ $column_width: 280px;
 	border-top:1px solid $trib-blue2;
 	width:100%;
 	text-align:center;
+
 
 	dt{
 		@include agate();
@@ -100,7 +109,19 @@ $column_width: 280px;
 		border-top:none;
 	}
 
-	.credits__column--links { margin-right: 25px; }
+
+	.credits__column{
+		&--links { margin-right: 25px; }
+		
+		&--people{
+			width:$column_width - (2 * $credit_padding) - 2px;
+			padding: $credit_padding;
+			border: 1px solid $trib-blue2;
+		}
+
+	}
+
+	
 
 
 	.story-link{
@@ -120,15 +141,7 @@ $column_width: 280px;
 				text-decoration:none !important; // Using important here b/c I don't have time to mess around with bootstrap scaffolding at the moment.
 			}
 		}
-		// &__blinking-border{
-		// 	position: absolute;
-		// 	left: 0;
-		// 	top: 0;
-		// 	width: 100%;
-		// 	height:100%;
-		// 	background: red;
-		// 	z-index: 10;
-		// }
+
 		&--next{
 			background:white;
 		    border-left: 5px solid $trib-blue2;
