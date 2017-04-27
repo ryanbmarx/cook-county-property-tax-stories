@@ -58,6 +58,8 @@
         {% set width = 650 %}
     {% endif %}
     {{ add_p2p_photo(s.slug, s.add_class, width) }}
+{% elif type == "html" %}
+    {{ s.html_content|process_text }}
 {% endif %}
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
