@@ -482,7 +482,7 @@ DEFAULT_CONTEXT = {
                     'subsubsection': '',
                     'type': 'dataproject'},
     'name': 'property-taxes-cook-county',
-    'title': 'Finding the faultlines of inequality in taxes'
+    'title': 'Label TK'
 }
 
 # HOOKS = (
