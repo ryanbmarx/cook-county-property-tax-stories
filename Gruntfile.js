@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     'd3',
     'd3-pre',
     'd3-queue',
-    'd3-svg-annotation',
+    // 'd3-svg-annotation',
     'textures',
     'swiper'
   ];
