@@ -66,8 +66,8 @@
 		position:absolute;
 		left:calc(50% - 100px);
 		width:200px;
-		top: 90vh;
-		top: calc(90vh - #{$nav_height)};
+		top: 99vh;
+		top: calc(99vh - #{$nav_height)};
 		text-align: center;
 		span{
 			@include agate();
