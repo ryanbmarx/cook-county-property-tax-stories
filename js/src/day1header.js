@@ -20,12 +20,6 @@ function instructions(id, headerMap) {
     const mapWrapper = document.querySelector('.map-wrapper');
     if (id == 10){
         headerMap.highlightTracts('ratio', 'none');
-    // } else if (id == 20){
-        
-    //     headerMap.highlightTracts('ratio', 'none');        
-    // } else if (id == 30){
-        
-    //     headerMap.highlightTracts('ratio', 'none');
     } else if (id == 40){        
         headerMap.highlightTracts('ratio', 'over1');
     } else if (id == 50){
@@ -33,18 +27,6 @@ function instructions(id, headerMap) {
     } else if (id == 70){
         mapWrapper.classList.add('map-wrapper--visible');
         headerMap.highlightTracts('ratio', 'all');
-    // } else if (id == 80){
-
-    // } else if (id == 90){
-    //     mapWrapper.classList.add('map-wrapper--visible');
-    //     headerMap.highlightTracts('erate', 'whiz-bang-boom');
-    // } else if (id == 100){
-
-    //     // first hide the map
-    //     mapWrapper.classList.remove('map-wrapper--visible');
-
-    // } else if (id == 110){
-
     }
 }
 
@@ -87,11 +69,12 @@ window.onload = function(){
                 
                 instructions(activeID, headerMap);
                 if (mySwiper.isEnd){
+                    console.log('isEnd')
                     document.querySelector('body').dataset.fixedHeader = "false"
                 }
 
             },
-            mousewheelControl:true,
+            // mousewheelControl:true,
             mousewheelForceToAxis:true
 
             // And if we need scrollbar
