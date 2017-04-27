@@ -95,8 +95,7 @@
     {# Randomstring for an id. #}
     {% set id = id|generate_id %}
     {% set video_player_ref = link_base_url|get_video_ref %}
-    
-    <div class='video {{ class }}'>
+   <div class='video {{ class }}'>
         <object id='{{ id }}' class='BrightcoveExperience'>
           <param name='bgcolor' value='#FFFFFF' />
           <param name='wmode' value='transparent' />
