@@ -20,6 +20,12 @@
 
 
 {% block story %}
+
+    {% for phrase in glossary %}
+        <!-- modal is not displayed until term shows up on page -->
+        <div class="modal"><p>{{ phrase.definition|markup }}</p></div>
+    {% endfor %}
+
     {# {% include '_subtemplates/part1/_header-part1.html' %} #}
     <div class="container" itemprop="articleBody">
     <div class="row">
@@ -43,4 +49,15 @@
 {% block scripts %}
     {{ super() }}
     <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
+
+    <!-- puts glossary data into a json -->
+    <script>
+        (function(document, window) {
+        var $ = require('jquery');
+        var termsJson = {{ glossary|tojson|safe }};
+        $(function(){
+            window.org.init(termsJson,"//{{ ROOT_URL }}/");
+        });
+        })(document, window);
+    </script>
 {% endblock %}

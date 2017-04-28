@@ -87,6 +87,17 @@ $header-bg-color:$trib-gray4;
 	@include river_narrow($narrow-river-max-width);
 }
 
+.modal {
+	display: none;
+	background-color: #ccc;
+	width: 100%;
+	height: 100px;
+	overflow: scroll;
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .video{
 	@include responsive_embed(16, 9, 0);
 	margin:0 0 25px 0;

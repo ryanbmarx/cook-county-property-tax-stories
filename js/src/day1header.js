@@ -8,6 +8,7 @@ import CookCountyMap from './fairness.js';
 // https://github.com/fivethirtyeight/d3-pre
 import Prerender from 'd3-pre';
 const  prerender = Prerender(d3);
+import $ from "jquery";
 
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
@@ -56,8 +57,36 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
 
 });
 
+window.org = {
+
+    init:function(data, ROOT_URL){
+        this._ROOT_URL = ROOT_URL;
+        this._data = data;
+    }
+},
+
 window.onload = function(){
     prerender.start();
+
+    //for term in json
+    //if term exists on current view of page,
+    //highlight string
+    //place a modal in the margin
+    //when term disappears from current view of page
+    //remove modal
+    function findString(termsJson){
+        console.log(termsJson);
+        $.each(termsJson, function(key, value) {
+            console.log(key);
+            var targetString = (document.documentElement.textContent).indexOf(key);
+            if ((targetString) > -1) {
+                $('.modal').css('display','block');
+            }
+        });
+    }
+    findString();  
+
+
 
     d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
         // console.log(data);
