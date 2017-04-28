@@ -60,8 +60,17 @@
     {{ add_p2p_photo(s.slug, s.add_class, width) }}
 {% elif type == "html" %}
     {{ s.html_content|process_text }}
+{% elif type|upper == "METHODS" %}
+    <aside class='methods-refer'>
+        <a href='methods.html'>
+            <h4>{{ methods_refer_header|process_text }}</h4>
+            <p>{{ methods_refer_text|process_text }}</p>
+            <p>CLICK HERE</p>
+        </a>
+    </aside>
 {% endif %}
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
     <div class='river--narrow'>
 {% endif %}
+
