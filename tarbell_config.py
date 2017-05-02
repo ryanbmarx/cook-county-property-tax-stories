@@ -245,15 +245,6 @@ CONTENT_ITEMS_WORKSHEET = 'p2p_content_items'
 # Google document key for the stories
 DOC_KEY = '1HlDz84N-29l7lUqatSAQIcWOjOwCOs6jyKYrEQnze-4'
 
-
-# @blueprint.app_template_filter()
-# def get_data():
-#     glossary = {
-#         "phrase": "term",
-#         "definition": "definition"
-#     }
-#     return render_template('index.html', data=json.dumps(glossary))
-
 def get_drive_api_stuff():
     service = get_drive_api()
     try:

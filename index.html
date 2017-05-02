@@ -21,17 +21,18 @@
 
 {% block story %}
 
-    {% for phrase in glossary %}
-        <!-- modal is not displayed until term shows up on page -->
-        <div class="modal"><p>{{ phrase.definition|markup }}</p></div>
-    {% endfor %}
-
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
         <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
 
         {# <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
         {% include '_subtemplates/part1/_header-part1.html' %}
         <div class="container" itemprop="articleBody">
+
+            {% for phrase in glossary %}
+                <!-- modal is not displayed until term shows up on page -->
+                <div class="modal"><p>{{ phrase.definition|markup }}</p></div>
+            {% endfor %}
+
         <div class="row">
                 <div class="col-md-12">
                     <div class='river--narrow'>
@@ -120,11 +121,10 @@
     <!-- puts glossary data into a json -->
     <script>
         (function(document, window) {
-        var $ = require('jquery');
-        var termsJson = {{ glossary|tojson|safe }};
-        $(function(){
-            window.org.init(termsJson,"//{{ ROOT_URL }}/");
-        });
+            var termsJson = {{ glossary|tojson|safe }};
+            $(function(){
+                window.org.init(termsJson,"//{{ ROOT_URL }}/");
+            });
         })(document, window);
     </script>
 {% endblock %}

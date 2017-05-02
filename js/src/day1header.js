@@ -59,28 +59,44 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
 
 window.org = {
 
-    init:function(data, ROOT_URL){
+    init:function(termsJson, ROOT_URL){
+        console.log(termsJson);
         this._ROOT_URL = ROOT_URL;
-        this._data = data;
+        var term = (termsJson[Object[0].term]);
+
+        $.each(termsJson, function(term) {
+            console.log(term);
+            var targetString = (document.documentElement.textContent).indexOf(term);
+            if ((targetString) > -1) {
+                $('.modal').css('display','block');
+            }
+        });
     }
+
+    // findString: function(termsJson, data, ROOT_URL){
+    //     console.log(termsJson);
+    // }
 },
 
 window.onload = function(){
     prerender.start();
-    
-    //for row in glossary spreadsheet
-    //if term string exists on page
-    //place corresponding modal in the margin of parent element
-    function findString(){
-        var targetString = (document.documentElement.textContent).indexOf('Coefficient of Dispersion');
-        if (
-            (targetString) > -1) {
-                console.log('This function is working.');
-                $('.river--narrow').css('background-color','pink');
-                //$(#modal).css('display','block');
-            }
-    }
-    findString();
+
+    //for term in json
+    //if term exists on current view of page,
+    //highlight string
+    //place a modal in the margin
+    //when term disappears from current view of page
+    //remove modal
+    // function findString(termsJson){
+        
+    //     $.each(termsJson, function(key, value) {
+    //         var targetString = (document.documentElement.textContent).indexOf(key);
+    //         if ((targetString) > -1) {
+    //             $('.modal').css('display','block');
+    //         }
+    //     });
+    // }findString(); 
+
 
     // Make the two bar charts for later in the process
     // const race = new barChart({
@@ -147,28 +163,7 @@ window.onload = function(){
     //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
     //         // credit: "ChiTribGraphics"
     //     }
-    // });
-
-
-
-
-    //for term in json
-    //if term exists on current view of page,
-    //highlight string
-    //place a modal in the margin
-    //when term disappears from current view of page
-    //remove modal
-    function findString(termsJson){
-        console.log(termsJson);
-        $.each(termsJson, function(key, value) {
-            console.log(key);
-            var targetString = (document.documentElement.textContent).indexOf(key);
-            if ((targetString) > -1) {
-                $('.modal').css('display','block');
-            }
-        });
-    }
-    findString();  
+    // }); 
 
 
 
