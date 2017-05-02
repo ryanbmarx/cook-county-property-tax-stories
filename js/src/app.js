@@ -47,7 +47,6 @@ function embedGraphics(){
 
 // Init/activate comments
 document.getElementById('comments-button').addEventListener('click', function(e){
-    console.log('show me the comments');
     document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
     (window.registration || (registration = [])).push('solidopinion');
 }, false);
@@ -74,7 +73,6 @@ function playVideo(video){
 window.addEventListener('load', function() {  
     // Init the pym stuff
     embedGraphics(); 
-    console.log('main app.js window is loaded', isMobile(), document.createElement('video').canPlayType('video/mp4'));
 
     if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != ""){
         // Prep the pause button, if video is supported and we are not on mobile.
@@ -111,7 +109,6 @@ for (var link of returnToChartLinks){
         e.preventDefault();
         const   scrollTarget = document.querySelector(`#${e.target.href.split('#')[1]}`),
                 box = scrollTarget.offsetParent.getBoundingClientRect();
-        console.log(scrollTarget, scrollTarget.offsetParent, box);
         let newTop = window.scrollY + box.top - 100; // this gets up past the navbar
         window.scroll({ top: newTop, left: 0, behavior: 'smooth' });
 
