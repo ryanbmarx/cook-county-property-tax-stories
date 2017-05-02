@@ -90,14 +90,16 @@
 
 	.story-header__scrolling-icon{
 		@include bounce(2s);
+		z-index:1000;
 		display:block;
 		color:white;
 		position:absolute;
 		left:calc(50% - 100px);
 		width:200px;
-		top: 99vh;
-		top: calc(99vh - #{$nav_height)};
+		// top: 99vh;
+		// top: calc(99vh - #{$nav_height)};
 		text-align: center;
+		bottom:25px;
 		span{
 			@include agate();
 			font-weight:bold;
