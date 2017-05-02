@@ -30,31 +30,31 @@
 	}
 
 	&__video-texture{
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100%;
-	    height: 100%;
-	    background: black url(../img/video-texture.svg);
-	    background-size: 3px;
-	    opacity: .5;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: black url(../img/video-texture.svg);
+		background-size: 3px;
+		opacity: .5;
 	}
 
 	&__headline{
-		@include serif-text(52px, 0.9em);
+		@include serif-text(60px, 0.9em);
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
-	    z-index: 1000;
+		z-index: 1000;
 		// color:white;
 	}
 
 	&__subheadline{
-		@include serif-text(30px, 1.5em);
+		@include serif-text(25px, 1.5em);
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
-	    z-index: 1000;
+		z-index: 1000;
 		// color:white;
 	}
 	&__scrolling-icon{ display:none; }
@@ -80,33 +80,17 @@
 		&__display{
 			// height: 100vh;
 			// height: calc(100vh - #{$nav_height} - #{$ad_leaderboard_height});
-			// NOTE: Since we're dealing with video, it would seem easier to have a known height, sted the variable VH height.
-			height: 500px;
 		}
 		&__headline{
 			font-size:70px;
 		}
-	}
 
-	.story-header__scrolling-icon{
-		@include bounce(2s);
-		z-index:1000;
-		display:block;
-		color:white;
-		position:absolute;
-		left:calc(50% - 100px);
-		width:200px;
-		// top: 99vh;
-		// top: calc(99vh - #{$nav_height)};
-		text-align: center;
-		bottom:25px;
-		span{
-			@include agate();
-			font-weight:bold;
-			color:white;
-			display:block;
+		&__subheadline{
+			// font-size:70px;
 		}
 	}
+
+
 }
 
 
@@ -140,8 +124,16 @@
 	}
 	.story-header {
 
+		&__display{
+			// NOTE: Since we're dealing with video, it would seem easier to have a known height, sted the variable VH height.
+			height: 500px;
+		}
 		&__headline{
 			font-size:80px;
+		}
+
+		&__subheadline{
+			font-size:30px;
 		}
 		
 		&__video{
@@ -161,7 +153,27 @@
 			display:block;
 		}
 
-		.social-menu{
+		.story-header__scrolling-icon{
+			@include bounce(2s);
+			z-index:1000;
+			display:block;
+			color:white;
+			position:absolute;
+			left:calc(50% - 100px);
+			width:200px;
+		// top: 99vh;
+		// top: calc(99vh - #{$nav_height)};
+		text-align: center;
+		bottom:25px;
+		span{
+			@include agate();
+			font-weight:bold;
+			color:white;
+			display:block;
+		}
+	}
+
+	.social-menu{
 			// Give the overall social shares a little different look on desktop. 
 			// These styles are extensions of the standard social shares, as seen 
 			// in pullquotes
