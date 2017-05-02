@@ -8,11 +8,16 @@ font-family: 'Suranna', serif;
 */
 
 
-p:not(.met-promo p){
+p {
 	@include serif();
-	// @include serif-text(15px, 1.6em);
-	// margin: 0 0 18px 0;
 }
+
+.met-promo p{
+	// Tweak to correct the metering modal
+	@include sans-serif();
+}
+
+
 
 
 
