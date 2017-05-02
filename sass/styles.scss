@@ -84,6 +84,29 @@ $header-bg-color:$trib-gray4;
 	margin:0;
 }
 
+// EDITS
+
+.byline{
+	text-align:center;
+	border-top: 1px solid white;
+	padding-top:20px;
+}
+.byline-name{
+	color:white;
+	margin-bottom: 5px;
+
+	a{
+		color:$trib-blue4;
+		// background: rgba($trib-blue4, .5);
+	}
+}
+
+.byline-publish-date{
+	color:white;
+}
+
+
+
 .river--narrow{
 	@include river_narrow($narrow-river-max-width);
 }

@@ -140,10 +140,7 @@
       <section class='story-header story-header--{{ part }}'>
         <div style='background-size:cover;background:url(img/posters/{{ self.video_poster() }}) center center no-repeat' class='story-header__display'>
           <div class='story-header__video'>
-            <video id='background-video' 
-              autoplay
-              muted 
-              loop 
+            <video id='background-video'  autoplay muted loop 
               poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
               style='width:100%;'>
               {# There are several different sources. Each day should use the same filename #}
@@ -168,6 +165,13 @@
           <h2 class='story-header__subheadline'>
             {% block dek %}{% endblock dek %}
           </h2>
+          <div class='byline'>
+            <p class='byline-name'>
+              A <span itemprop='publisher'>Chicago Tribune</span> Investigation By {% block byline %}{% endblock byline%}
+            </p>
+            <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
+          </div>
+
           <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
         </div>
         <div class='container'>
@@ -175,12 +179,12 @@
             <div class='col-xs-12'>
               <div class='river--narrow'>
                 {% include '_subtemplates/_social-row.html' %}
-                <div class='byline'>
+{#                 <div class='byline'>
                   <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
                   <p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
                   <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
                 </div>
-              </div>
+ #}              </div>
             </div>
           </div>
         </div>
