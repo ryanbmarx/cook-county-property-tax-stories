@@ -58,6 +58,17 @@ document.getElementById('mobile-nav-toggle').addEventListener('click', function(
 	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
 }, false);
 
+function pauseVideo(video){
+    pause.classList.toggle('video-control--visible');
+    play.classList.toggle('video-control--visible');
+    video.pause();
+}
+
+function playVideo(video){
+    pause.classList.toggle('video-control--visible');
+    play.classList.toggle('video-control--visible');
+    video.play();
+}
 
 // Listen for the loaded event 
 window.addEventListener('load', function() {  
@@ -76,18 +87,18 @@ window.addEventListener('load', function() {
     
         const controlButtons = document.querySelectorAll('.video-control');
         for (var button of controlButtons){
-            button.addEventListener('click', function(e){
-                // Toggle the visibility of buttons
-                pause.classList.toggle('video-control--visible');
-                play.classList.toggle('video-control--visible');
-    
+            button.addEventListener('click', function(e){    
                 if (e.target.id == "play"){
-                    video.play();
+                    playVideo(video)
                 } else {
-                    video.pause();
+                    pauseVideo(video)
                 }
             })
         }
+    // Also, let's kill the video after 45 seconds.
+    var videoKill = setTimeout(function(){
+        pauseVideo(video)
+    }, 4500);
     }
 }, false);
 
