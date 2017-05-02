@@ -138,7 +138,7 @@
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
-        <div style='background-size:cover;background:url(img/posters/{{ self.video_poster() }}) center center no-repeat' class='story-header__display'>
+        <div style='background:url(img/posters/{{ self.video_poster() }}) center center no-repeat;background-size:cover;' class='story-header__display'>
           <div class='story-header__video'>
             <video id='background-video'  autoplay muted loop 
               poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
