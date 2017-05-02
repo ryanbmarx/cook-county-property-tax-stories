@@ -1,7 +1,15 @@
 {% extends "_tax-base.html" %}
 
+
+{# THIS MATTERS MOST. IT CHANGES WHICH STUFF GETS PULLED IN #}
 {% set part = 'part1' %}
 
+{# VIDEO BLOCKS #}
+{% block video_poster %}houses.jpg{% endblock video_poster %}
+{% block video_file_name %}houses{% endblock video_file_name %}
+{% block mobile_image_alt_text %}Houses in cook county{% endblock mobile_image_alt_text %}
+
+{# TEXT BLOCKS  #}
 {% block headline %}{{ part1_headline|process_text() }}{% endblock headline %}
 {% block dek %}{{ part1_dek|process_text() }}{% endblock dek %}
 
@@ -12,13 +20,13 @@
 
 
 
-{% block bodyattrs %}
+{# {% block bodyattrs %}
     {{ super() }}
-    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
+    This data attribute on the body tag will toggle the fixed state of the map and day1 story header 
     data-fixed-header=true
 {% endblock bodyattrs %}
-
-
+ #}
+{#  #}
 {% block story %}
     {# {% include '_subtemplates/part1/_header-part1.html' %} #}
     <div class="container" itemprop="articleBody">
@@ -40,7 +48,7 @@
     <script src="js/vendor.min.js"></script>
 {% endblock library_scripts %}
 
-{% block scripts %}
+{# {% block scripts %}
     {{ super() }}
     <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
-{% endblock %}
+{% endblock %} #}

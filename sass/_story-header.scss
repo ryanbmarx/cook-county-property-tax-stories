@@ -1,8 +1,8 @@
 .story-header{
-	border-top: 4px solid $trib-blue2;
+	// border-top: 4px solid $trib-blue2;
 	
 	&__display{
-		background: url(http://fillmurray.com/1000/1000) center center no-repeat;
+		// background: url(http://fillmurray.com/1000/1000) center center no-repeat;
 		background-size:cover;	
 		margin-bottom:25px;
 		box-shadow: 0 -2px 5px rgba(black, .25);
@@ -11,6 +11,33 @@
 		align-content:center;
 		align-items:center;
 		padding:25px;
+		position:relative;
+		overflow:hidden;
+	}
+
+	&__video{
+		// position: absolute;
+		// top:0;
+		// left:0;
+		// width:100%;
+		// height:100%;
+		display:none;
+	}
+	
+	&__video-controls{
+		display:none;
+		z-index: 1000;
+	}
+
+	&__video-texture{
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: black url(../img/video-texture.svg);
+	    background-size: 3px;
+	    opacity: .5;
 	}
 
 	&__headline{
@@ -18,6 +45,7 @@
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
+	    z-index: 1000;
 		// color:white;
 	}
 
@@ -26,6 +54,7 @@
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
+	    z-index: 1000;
 		// color:white;
 	}
 	&__scrolling-icon{ display:none; }
@@ -49,10 +78,10 @@
 	
 	.story-header{
 		&__display{
-			background: url(http://fillmurray.com/1000/1000) center center no-repeat;
-			background-size:cover;
-			height: 100vh;
-			height: calc(100vh - #{$nav_height} - #{$ad_leaderboard_height});
+			// height: 100vh;
+			// height: calc(100vh - #{$nav_height} - #{$ad_leaderboard_height});
+			// NOTE: Since we're dealing with video, it would seem easier to have a known height, sted the variable VH height.
+			height: 500px;
 		}
 		&__headline{
 			font-size:70px;
@@ -80,12 +109,56 @@
 
 
 @media all and (min-width: $desktop-min-width){
-	#day1-header, .story-header {
+
+	.video-controls{
+		// padding: 15px;
+		.video-control{
+			display:none;
+			border:none;
+			padding: 5px;
+			background: rgba(white, .3);
+			margin: 5px;
+			border-radius: 3px;
+			transition: background 200ms;
+			cursor:pointer;
+
+			&:hover, &:focus{
+				background: rgba(white, .9);
+				transition: background 200ms;
+			}
+			
+			&--visible{
+				display:block;
+			}
+
+			&--pause{}
+			
+			&--play{}
+		}
+	}
+	.story-header {
 
 		&__headline{
 			font-size:80px;
 		}
 		
+		&__video{
+			display:block;
+			position: absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+		}
+
+		&__video-controls{
+			// display:block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			display:block;
+		}
+
 		.social-menu{
 			// Give the overall social shares a little different look on desktop. 
 			// These styles are extensions of the standard social shares, as seen 

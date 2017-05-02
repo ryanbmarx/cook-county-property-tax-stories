@@ -1,7 +1,14 @@
 {% extends "_tax-base.html" %}
 
+{# THIS MATTERS MOST. IT CHANGES WHICH STUFF GETS PULLED IN #}
 {% set part = 'part2' %}
 
+{# VIDEO BLOCKS #}
+{% block video_poster %}houses.jpg{% endblock video_poster %}
+{% block video_file_name %}houses{% endblock video_file_name %}
+{% block mobile_image_alt_text %}Houses in cook county{% endblock mobile_image_alt_text %}
+
+{# TEXT BLOCKS  #}
 
 {% block headline %}{{ part2_headline|process_text() }}{% endblock headline %}
 {% block dek %}{{ part2_dek|process_text() }}{% endblock dek %}
@@ -11,7 +18,7 @@
 {% endblock byline%}
 
 
-
+{# THE STORY #}
 {% block story %}
 <div class="container">
     <div class="row">

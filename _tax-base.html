@@ -138,7 +138,30 @@
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
-        <div class='story-header__display'>
+        <div style='background-size:cover;background:url(img/posters/{{ self.video_poster() }}) center center no-repeat' class='story-header__display'>
+          <div class='story-header__video'>
+            <video id='background-video' 
+              autoplay
+              muted 
+              loop 
+              poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
+              style='width:100%;'>
+              {# There are several different sources. Each day should use the same filename #}
+              <source src="/img/videos/{% block video_file_name %}{% endblock video_file_name %}.mp4" type="video/mp4">
+            </video>
+            <div class='story-header__video-controls video-controls'>
+              <button id='pause' class='video-control video-control--pause video-control--visible'>
+                <i class="fa fa-pause-circle" aria-hidden="true"></i>
+                Pause
+              </button>
+              <button id='play' class='video-control video-control--play'>
+                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                Resume
+              </button>
+            </div>
+          </div>
+          <div class='story-header__video-texture'></div>
+          {# <img class='story-header__mobile-image' src='img/posters/{{ self.video_poster() }}' alt='{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %}' /> #}
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>
@@ -153,7 +176,7 @@
               <div class='river--narrow'>
                 {% include '_subtemplates/_social-row.html' %}
                 <div class='byline'>
-                  <p class='byline-name'>{% block byline %}{% endblock byline%}</p>
+                  <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
                   <p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
                   <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
                 </div>

@@ -15,6 +15,15 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 // TODO: Lazyload pym
 
+function isMobile(){
+    // returns true if I think we're on mobile.
+    if(window.innerWidth < 850){
+        return true;
+    }
+    return false;
+}
+
+
 function removeSpinner(id){
     const spinner = document.querySelector(`#${id} + .chart__spinner`);
     spinner.parentNode.removeChild(spinner);
@@ -49,8 +58,38 @@ document.getElementById('mobile-nav-toggle').addEventListener('click', function(
 	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
 }, false);
 
-// Listen for the loaded event then run the pym stuff.
-window.addEventListener('load', function() {  embedGraphics(); }, false);
+
+// Listen for the loaded event 
+window.addEventListener('load', function() {  
+    // Init the pym stuff
+    embedGraphics(); 
+    console.log('main app.js window is loaded', isMobile(), document.createElement('video').canPlayType('video/mp4'));
+
+    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != ""){
+        // Prep the pause button, if video is supported and we are not on mobile.
+        const   play = document.getElementById('play'),
+                pause = document.getElementById('pause'),
+                video = document.getElementById('background-video');
+        
+        // // make the pause button appear
+        pause.classList.add('video-control--visible');
+    
+        const controlButtons = document.querySelectorAll('.video-control');
+        for (var button of controlButtons){
+            button.addEventListener('click', function(e){
+                // Toggle the visibility of buttons
+                pause.classList.toggle('video-control--visible');
+                play.classList.toggle('video-control--visible');
+    
+                if (e.target.id == "play"){
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            })
+        }
+    }
+}, false);
 
 
 // This make a smooth scroll between the charts and their methodologies (and back)
