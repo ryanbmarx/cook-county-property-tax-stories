@@ -36,7 +36,7 @@ $header-bg-color:$trib-gray4;
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
 // @import 'trib-buttons';
-// @import 'trib-colors';
+@import 'trib-colors';
 // @import 'trib-images-charts';
 // @import 'trib-legends';
 // @import 'trib-skeleton';
@@ -90,12 +90,24 @@ $header-bg-color:$trib-gray4;
 .modal {
 	display: none;
 	background-color: #ccc;
-	width: 100%;
+	width: 40%;
 	height: 100px;
 	overflow: scroll;
+	border-radius: 25px;
+	border: $trib_blue2 2px;
+	border-top: $trib_blue2 4px;
+	padding: 3px;
 	position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 5;
+}
+.append-here {
+	overflow: scroll;
+	color: black;
+}
+.target-term {
+	background-color: pink;
+	cursor: pointer;
 }
 
 .video{

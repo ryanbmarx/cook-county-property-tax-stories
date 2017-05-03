@@ -60,42 +60,49 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
 window.org = {
 
     init:function(termsJson, ROOT_URL){
-        console.log(termsJson);
         this._ROOT_URL = ROOT_URL;
-        var term = (termsJson[Object[0].term]);
+        // var term = termsJson[0].term;
 
-        $.each(termsJson, function(term) {
-            console.log(term);
-            var targetString = (document.documentElement.textContent).indexOf(term);
-            if ((targetString) > -1) {
-                $('.modal').css('display','block');
-            }
-        });
+        var termAppears = function(termsJson){
+                
+            $('.target-term').click(function(){
+                var correctTerm = $('.target-term').html();
+
+                if ((correctTerm) !== 'undefined' in termsJson)
+
+                $(correctTerm).appendTo('.append-here');
+                $('.modal').toggle();
+            });
+        };
+
+        termAppears();
+
+        // for (var i = 0; i < termsJson.length; i++) {
+            
+        //     var findString = function(term, termID){
+                
+        //         $('.target-term').mouseenter(function(){
+        //             $(this).css('background-color','pink');
+        //             $('.modal').css('display','block');
+        //         });
+
+        //         var targetString = (document.documentElement.textContent).indexOf(term);
+        //         if ((targetString) !== -1) {
+        //             console.log(termID);
+        //             console.log(term);
+        //             $(term).css('background-color','pink');
+        //             $('.modal').attr('id','termID').css('display','block');
+        //         }
+        //     };
+
+        //     findString(termsJson[i].term, termsJson[i].ID);
+        // }
+
     }
-
-    // findString: function(termsJson, data, ROOT_URL){
-    //     console.log(termsJson);
-    // }
 },
 
 window.onload = function(){
     prerender.start();
-
-    //for term in json
-    //if term exists on current view of page,
-    //highlight string
-    //place a modal in the margin
-    //when term disappears from current view of page
-    //remove modal
-    // function findString(termsJson){
-        
-    //     $.each(termsJson, function(key, value) {
-    //         var targetString = (document.documentElement.textContent).indexOf(key);
-    //         if ((targetString) > -1) {
-    //             $('.modal').css('display','block');
-    //         }
-    //     });
-    // }findString(); 
 
 
     // Make the two bar charts for later in the process
