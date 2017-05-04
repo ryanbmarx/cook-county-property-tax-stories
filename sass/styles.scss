@@ -89,23 +89,24 @@ $header-bg-color:$trib-gray4;
 
 .modal {
 	display: none;
-	width: 20%;
+	background-color: black;
+	width: 40%;
 	height: auto;
-	overflow: scroll;
 	border-radius: 25px;
 	padding: 8px;
 	position: fixed;
-    bottom: 30%;
-    left: 5px;
+    bottom: 0;
+    left: 30%;
+    z-index: 10000000;
 }
 .append-here {
-	overflow: scroll;
-	background-color: black;
-	color: white;
 	text-align: center;
 }
+.append-here p {
+	color: white;
+}
 .target-term {
-	background-color: pink;
+	background-color: $trib_blue4;
 	cursor: pointer;
 }
 
@@ -230,6 +231,17 @@ $header-bg-color:$trib-gray4;
 	// }
 }
 
-@media all and (min-width: $desktop-min-width){
-	
+@media all and (max-width: 600px) {
+	.modal {
+		display: none;
+		color: white;
+		width: 100%;
+		height: auto;
+		border-radius: 25px;
+		padding: 8px;
+		position: fixed;
+    	bottom: 0;
+    	left: 0;
+    	z-index: 10000000;
+	}
 }

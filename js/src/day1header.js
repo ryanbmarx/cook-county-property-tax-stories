@@ -64,18 +64,22 @@ window.org = {
 
         var termAppears = function(){
 
-            $('.target-term').click(function(e){
-                var termID = e.target.dataset.term;
-
-                for (var i = 0; i < termsJson.length; i++) {
-                    if (termsJson[i].ID == termID) {
-                        var termDef = ('<p>'+ termsJson[termID].definition + '<p>');
-                        $('.append-here').empty();
-                        $(termDef).appendTo('.append-here');
-                        $('.modal').slideToggle();
+            const buttons = document.querySelectorAll('.target-term');
+            
+            for (var button of buttons){
+                button.addEventListener('click', function(e){
+                    var termID = e.target.dataset.term;
+                    
+                    for (var i = 0; i < termsJson.length; i++) {
+                        if (termsJson[i].ID == termID) {
+                            var termDef = ('<p>'+ termsJson[termID].definition + '<p>');
+                            $('.append-here').empty();
+                            $(termDef).appendTo('.append-here');
+                            $('.modal').slideToggle();
+                        }
                     }
-                }
-            });
+                })
+            }
         };
         
         termAppears(termsJson);
