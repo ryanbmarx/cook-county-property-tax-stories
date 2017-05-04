@@ -61,42 +61,24 @@ window.org = {
 
     init:function(termsJson, ROOT_URL){
         this._ROOT_URL = ROOT_URL;
-        // var term = termsJson[0].term;
 
-        var termAppears = function(termsJson){
-                
-            $('.target-term').click(function(){
-                var correctTerm = $('.target-term').html();
+        var termAppears = function(){
 
-                if ((correctTerm) !== 'undefined' in termsJson)
+            $('.target-term').click(function(e){
+                var termID = e.target.dataset.term;
 
-                $(correctTerm).appendTo('.append-here');
-                $('.modal').toggle();
+                for (var i = 0; i < termsJson.length; i++) {
+                    if (termsJson[i].ID == termID) {
+                        var termDef = ('<p>'+ termsJson[termID].definition + '<p>');
+                        $('.append-here').empty();
+                        $(termDef).appendTo('.append-here');
+                        $('.modal').slideToggle();
+                    }
+                }
             });
         };
-
-        termAppears();
-
-        // for (var i = 0; i < termsJson.length; i++) {
-            
-        //     var findString = function(term, termID){
-                
-        //         $('.target-term').mouseenter(function(){
-        //             $(this).css('background-color','pink');
-        //             $('.modal').css('display','block');
-        //         });
-
-        //         var targetString = (document.documentElement.textContent).indexOf(term);
-        //         if ((targetString) !== -1) {
-        //             console.log(termID);
-        //             console.log(term);
-        //             $(term).css('background-color','pink');
-        //             $('.modal').attr('id','termID').css('display','block');
-        //         }
-        //     };
-
-        //     findString(termsJson[i].term, termsJson[i].ID);
-        // }
+        
+        termAppears(termsJson);
 
     }
 },
