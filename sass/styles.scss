@@ -124,7 +124,7 @@ $header-bg-color:$trib-gray4;
 }
 
 .methods-refer{
-	max-width: 230px;
+	max-width: 170px;
 	float: right;
 	margin: 15px 0 15px 15px;
 	padding: 15px;
@@ -150,7 +150,7 @@ $header-bg-color:$trib-gray4;
 	}
 
 	h4{
-		@include label5();
+		@include serif-text(22px, 1.4em, bold);
 		@include display_type(serif);
 		margin: 0 0 10px 0;
 	}
@@ -257,13 +257,11 @@ $header-bg-color:$trib-gray4;
 		@include river_narrow($narrow-river-max-width-desktop);
 		margin-bottom:25px;
 	}
+
+
 }
 
-@media all and (min-width:#{$map-width}){
-	// #map{
-	// 	width: $map-width;
-	// }
-}
+
 
 @media all and (min-width: $desktop-min-width){
 	
