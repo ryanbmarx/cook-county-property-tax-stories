@@ -144,7 +144,8 @@
               poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
               style='width:100%;'>
               {# There are several different sources. Each day should use the same filename #}
-              <source src="/img/videos/{% block video_file_name %}{% endblock video_file_name %}.mp4" type="video/mp4">
+              <source src="http://{{ ROOT_URL }}/img/videos/{% block video_file_name %}{% endblock video_file_name %}.webm" type="video/webm">
+              <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.mp4" type="video/mp4">
             </video>
             <div class='story-header__video-controls video-controls'>
               <button id='pause' class='video-control video-control--pause video-control--visible'>
@@ -159,6 +160,7 @@
           </div>
           <div class='story-header__video-texture'></div>
           {# <img class='story-header__mobile-image' src='img/posters/{{ self.video_poster() }}' alt='{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %}' /> #}
+          <p>{{ title }}</p>
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>
@@ -178,6 +180,7 @@
           <div class='row'>
             <div class='col-xs-12'>
               <div class='river--narrow'>
+                {# TODO: Reduce this markup #}
                 {% include '_subtemplates/_social-row.html' %}
 {#                 <div class='byline'>
                   <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
