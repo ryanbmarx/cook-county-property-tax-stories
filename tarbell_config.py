@@ -482,7 +482,7 @@ DEFAULT_CONTEXT = {
                     'subsubsection': '',
                     'type': 'dataproject'},
     'name': 'property-taxes-cook-county',
-    'title': 'Label TK'
+    'title': 'This is the title'
 }
 
 # HOOKS = (
