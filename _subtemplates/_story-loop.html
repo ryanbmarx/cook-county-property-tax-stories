@@ -22,7 +22,7 @@
     {% else %}
         {% set add_class = "" %}
     {% endif %}
-    {{ add_chart(s.url, s.add_class, s.url) }}
+    {{ add_chart(s.graphic_id, s.add_class, s.url) }}
 {% elif type == "photo" and s.url and s.caption and s.alt %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}
