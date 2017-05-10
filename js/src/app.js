@@ -82,7 +82,7 @@ window.addEventListener('load', function() {
     let pymParents = {};
 
     // Let's lazyload the pym
-    inView('.graphic-embed')
+    inView('.graphic-embed--lazy')
         .on('enter', el =>{
             console.log('loading', el);
             const   pymId = el.id,
