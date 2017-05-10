@@ -160,7 +160,9 @@
           </div>
           <div class='story-header__video-texture'></div>
           {# <img class='story-header__mobile-image' src='img/posters/{{ self.video_poster() }}' alt='{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %}' /> #}
-          <p>{{ title }}</p>
+          <div class='story-header__project-title'>
+            <p>{{ title }} | A <span itemprop='publisher'>Chicago Tribune</span> Investigation</p>
+          </div>
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>
@@ -168,9 +170,7 @@
             {% block dek %}{% endblock dek %}
           </h2>
           <div class='byline'>
-            <p class='byline-name'>
-              A <span itemprop='publisher'>Chicago Tribune</span> Investigation By {% block byline %}{% endblock byline%}
-            </p>
+            <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
             <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
           </div>
 

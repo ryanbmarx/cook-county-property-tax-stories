@@ -1,6 +1,23 @@
 .story-header{
 	// border-top: 4px solid $trib-blue2;
 	
+	&__project-title{
+		position: absolute;
+		top:0;
+		left:0;
+		z-index: 1000;
+		width: 100%;
+		text-align: center;
+		p{
+    		@include sans-serif-text(12pt, 1em)
+    		background: rgba(white, .85);
+    		margin: 0 auto 10px auto;
+		    text-transform: uppercase;
+		    padding: 3px 10px;
+		    display:inline;
+		}	
+	}
+
 	&__display{
 		// background: url(http://fillmurray.com/1000/1000) center center no-repeat;
 		background-size:cover;	
