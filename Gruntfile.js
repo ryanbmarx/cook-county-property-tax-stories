@@ -14,7 +14,9 @@ module.exports = function(grunt) {
     'd3-queue',
     // 'd3-svg-annotation',
     'textures',
-    'swiper'
+    // 'swiper',
+    // 'in-view'
+
   ];
 
   config.browserify = {
@@ -45,28 +47,29 @@ module.exports = function(grunt) {
           ]
         ]
       }
-    },
-    day1header: {
-      src: ['js/src/day1header.js'],
-      dest: 'js/day1header.min.js',
-      options: {
-        plugin: [
-          [
-            'minifyify', {
-              map: 'day1header.min.js.map',
-              output: './js/day1header.min.js.map'
-            }
-          ]
-        ],
-        transform: [
-          [
-            'babelify', {
-              presets: ['es2015']
-            }
-          ]
-        ]
-      }
     }
+    // },
+    // day1header: {
+    //   src: ['js/src/day1header.js'],
+    //   dest: 'js/day1header.min.js',
+    //   options: {
+    //     plugin: [
+    //       [
+    //         'minifyify', {
+    //           map: 'day1header.min.js.map',
+    //           output: './js/day1header.min.js.map'
+    //         }
+    //       ]
+    //     ],
+    //     transform: [
+    //       [
+    //         'babelify', {
+    //           presets: ['es2015']
+    //         }
+    //       ]
+    //     ]
+    //   }
+    // }
   };
 
   // Check if there are vendor libraries and build a vendor bundle if needed

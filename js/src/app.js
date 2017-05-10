@@ -1,3 +1,4 @@
+const inView = require('in-view');
 const pym = require('pym.js');
 // const boot = require('bootstrap.js');
 
@@ -29,21 +30,21 @@ function removeSpinner(id){
     spinner.parentNode.removeChild(spinner);
 }   
 
-function embedGraphics(){
-    // Enable all the pym graphics by collecting all the containers, then 
-    // instantiating each one after plucking the necessary details from the 
-    // element's metadata
-    const pymContainers = document.querySelectorAll('.graphic-embed');
-    let pymParents = [];
-    for (var container of pymContainers){
-        const   pymId = container.id,
-                pymUrl = container.dataset.iframeUrl;
+// function embedGraphics(){
+//     // Enable all the pym graphics by collecting all the containers, then 
+//     // instantiating each one after plucking the necessary details from the 
+//     // element's metadata
+//     const pymContainers = document.querySelectorAll('.graphic-embed');
+//     let pymParents = [];
+//     for (var container of pymContainers){
+//         const   pymId = container.id,
+//                 pymUrl = container.dataset.iframeUrl;
 
-        let temp = new pym.Parent(pymId, pymUrl, {});
-        // temp.onMessage('childLoaded', removeSpinner(pymId) )
-        pymParents.push(temp);
-    }
-}
+//         let temp = new pym.Parent(pymId, pymUrl, {});
+//         // temp.onMessage('childLoaded', removeSpinner(pymId) )
+//         pymParents.push(temp);
+//     }
+// }
 
 // Init/activate comments
 document.getElementById('comments-button').addEventListener('click', function(e){
@@ -71,8 +72,26 @@ function playVideo(video){
 
 // Listen for the loaded event 
 window.addEventListener('load', function() {  
-    // Init the pym stuff
-    embedGraphics(); 
+    
+    
+    // embedGraphics(); 
+
+    // Let's set our lazyload offset to 200px. The iframe should be loaded once it's 200px frmo being seen.
+    inView.offset(-500);
+    
+    let pymParents = {};
+
+    // Let's lazyload the pym
+    inView('.graphic-embed')
+        .on('enter', el =>{
+            console.log('loading', el);
+            const   pymId = el.id,
+                    pymUrl = el.dataset.iframeUrl;
+            if (!pymParents[pymId]){
+                pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+            }
+        })
+
 
     if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != ""){
         // Prep the pause button, if video is supported and we are not on mobile.
