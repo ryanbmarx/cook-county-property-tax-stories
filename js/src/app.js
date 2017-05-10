@@ -1,5 +1,5 @@
 const pym = require('pym.js');
-const boot = require('bootstrap.js');
+// const boot = require('bootstrap.js');
 
 // http://iamdustan.com/smoothscroll/
 require('smoothscroll-polyfill').polyfill();
@@ -93,10 +93,10 @@ window.addEventListener('load', function() {
                 }
             })
         }
-    // Also, let's kill the video after 45 seconds.
+    // Also, let's kill the video after 30 seconds.
     var videoKill = setTimeout(function(){
         pauseVideo(video)
-    }, 4500);
+    }, 30000);
     }
 }, false);
 
