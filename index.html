@@ -28,9 +28,7 @@
         {% include '_subtemplates/part1/_header-part1.html' %}
         <div class="container" itemprop="articleBody">
 
-            {% for phrase in glossary %}
-                <div class="modal append-here"></div>
-            {% endfor %}
+        <div id="append-here" class="modal active"></div>
 
         <div class="row">
                 <div class="col-md-12">
@@ -116,7 +114,7 @@
     {{ super() }}
     <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
 
-    <!-- puts glossary data into a json -->
+    <!-- puts glossary spreadsheet data into a json called termsJson -->
     <script>
         (function(document, window) {
             var termsJson = {{ glossary|tojson|safe }};

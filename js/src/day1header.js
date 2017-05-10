@@ -8,7 +8,6 @@ import CookCountyMap from './fairness.js';
 // https://github.com/fivethirtyeight/d3-pre
 import Prerender from 'd3-pre';
 const  prerender = Prerender(d3);
-import $ from "jquery";
 
 
 // This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
@@ -59,6 +58,8 @@ document.getElementById('close-prologue').addEventListener('click', function(e){
 
 window.org = {
 
+    //when first term appears on page, modal gets the class hidden for the rest of the story
+
     init:function(termsJson, ROOT_URL){
         this._ROOT_URL = ROOT_URL;
 
@@ -69,14 +70,21 @@ window.org = {
             for (var button of buttons){
                 button.addEventListener('click', function(e){
                     const termID = e.target.dataset.term;
+                    let modals = (document.getElementById("append-here"));
+                    let modalSelect = modals.classList[1];
                     
+                    //loops through termsJson and adds appropriate definition into modal div
                     for (let i = 0; i < termsJson.length; i++) {
                         if (termsJson[i].ID == termID) {
                             let termDef = ('<p>'+ termsJson[termID].definition + '<p>');
-                            $('.append-here').empty();
-                            $(termDef).appendTo('.append-here');
-                            $('.modal').slideToggle();
+                            document.getElementById("append-here").innerHTML = "";
+                            document.getElementById("append-here").innerHTML = termDef;
                         }
+                        //moves modal div into view -- sliding in doesn't work yet
+                        if (modalSelect == "hidden")
+                            modalSelect = "active";
+                        else (modalSelect = "hidden");
+                        
                     }
                 })
             }
@@ -156,8 +164,7 @@ window.onload = function(){
     //         // sources: "Source: City of Chicago Wastewater Management and Reclamation District",
     //         // credit: "ChiTribGraphics"
     //     }
-    // }); 
-
+    // });
 
 
     d3.json(`http://${window.ROOT_URL}/data/day1header.geojson`, (err, data) =>{
@@ -196,5 +203,5 @@ window.onload = function(){
             // And if we need scrollbar
             // scrollbar: '.swiper-scrollbar',
         }); 
-    });  
+    });   
 }

@@ -87,22 +87,35 @@ $header-bg-color:$trib-gray4;
 	@include river_narrow($narrow-river-max-width);
 }
 
-.modal {
-	display: none;
-	background-color: black;
+.modal.active {
+	background-color: $trib_blue4;
 	width: 40%;
 	height: auto;
 	border-radius: 25px;
 	padding: 8px;
+    z-index: 10000000;
 	position: fixed;
     bottom: 0;
     left: 30%;
+}
+.modal.inactive {
+	display: none;
+}
+.modal.hidden {
+	background-color: $trib_blue4;
+	width: 40%;
+	height: auto;
+	border-radius: 25px;
+	padding: 8px;
     z-index: 10000000;
+	position: fixed;
+    bottom: 30%;
+    left: -5%;
 }
 .append-here {
 	text-align: center;
 }
-.append-here p {
+#append-here p {
 	color: white;
 }
 .target-term {
