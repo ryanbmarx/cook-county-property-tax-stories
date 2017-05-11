@@ -68,7 +68,14 @@
             <p>CLICK HERE</p>
         </a>
     </aside>
+{% elif type|upper == "SUBSCRIBE" %}
+    <aside class='subscribe {% if s.add_class %} {{ s.add_class }}{% endif %}'>
+        <h3 class='subscribe__headline'>{{ subscribe_headline }}</h3>
+        <p class='subscribe__blurb'>{{ subscribe_text }}</p>
+        <a class='subscribe__button' href='http://ad.chicagotribune.com/land-subscribe-alt-2/?int=CookCountyPropertyTaxInvestigation' target="_blank">{{ subscribe_button_text }}</a>
+    </aside>
 {% endif %}
+
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
     <div class='river--narrow'>

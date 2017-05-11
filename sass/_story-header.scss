@@ -18,6 +18,13 @@
 		}	
 	}
 
+	&__title{
+		font-family:"Arial", sans-serif;
+		text-transform: uppercase;
+		font-size:16px;
+		color:$trib-blue4;
+	}
+
 	&__display{
 		// background: url(http://fillmurray.com/1000/1000) center center no-repeat;
 		background-size:cover;	

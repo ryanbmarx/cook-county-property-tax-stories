@@ -60,7 +60,7 @@ $header-bg-color:$trib-gray4;
 @import 'social-menu';
 @import 'credits';
 @import 'graphic-embed';
-@import 'day1_header';
+// @import 'day1_header';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
@@ -122,6 +122,56 @@ $header-bg-color:$trib-gray4;
 		width:100%;
 	}
 }
+
+// --------------------------------------------
+// -------------- SUBSCRIBE CALL TO ACTION ----
+// --------------------------------------------
+
+.subscribe{
+	padding: 15px;
+	background-color: rgba($trib-blue2, .2);
+	    background-image: url(../img/grid_background.svg);
+    background-size: 7px;
+    margin: 25px 0;
+	text-align:center;
+	&__headline{
+		margin:0 0 7px 0;
+	}
+
+	&__button{
+		@include sans-serif();
+		text-align: center;
+		max-width:280px;
+		display:block;
+		padding:15px 0;
+		background:lighten($trib-orange, 5%);
+		transition: background-color 150ms ease;
+		color:white;
+		cursor:pointer;
+		margin: 0 auto;
+
+		&:hover, &:focus{
+			color:white;
+			text-decoration: none;
+			background:$trib-orange;			
+			transition: background-color 150ms ease;
+		}
+
+	}
+
+	&.subscribe--right{
+		text-align:left;
+		max-width: 280px;
+		float:right;
+		margin: 25px 0 25px 25px;
+	}
+
+}
+
+
+// --------------------------------------------
+// -------------- METHODOLOGIES REFER ---------
+// --------------------------------------------
 
 .methods-refer{
 	max-width: 170px;

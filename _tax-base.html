@@ -26,9 +26,9 @@
     {% endif %}
 
     {% if type == "cube" %}
-        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
+        {# <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div> #}
     {% elif type == "leaderboard" %}
-        <div class="advert" data-ad-type="leaderboard"></div>
+        {# <div class="advert" data-ad-type="leaderboard"></div> #}
     {% endif %}
 {% endmacro %}
 
@@ -158,9 +158,9 @@
           </div>
           <div class='story-header__video-texture'></div>
           {# <img class='story-header__mobile-image' src='img/posters/{{ self.video_poster() }}' alt='{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %}' /> #}
-          <div class='story-header__project-title'>
+   {#        <div class='story-header__project-title'>
             <p>{{ title }} | A <span itemprop='publisher'>Chicago Tribune</span> Investigation</p>
-          </div>
+          </div> #}
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>
@@ -180,12 +180,7 @@
               <div class='river--narrow'>
                 {# TODO: Reduce this markup #}
                 {% include '_subtemplates/_social-row.html' %}
-{#                 <div class='byline'>
-                  <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
-                  <p class='byline-publisher'  itemprop='publisher'>Chicago Tribune</p>
-                  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
-                </div>
- #}              </div>
+              </div>
             </div>
           </div>
         </div>
