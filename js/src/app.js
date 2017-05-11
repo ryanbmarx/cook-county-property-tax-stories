@@ -26,7 +26,7 @@ function isMobile(){
 
 
 function removeSpinner(id){
-    const spinner = document.querySelector(`#${id} + .chart__spinner`);
+    const spinner = document.querySelector(`#${id} + .spinner`);
     spinner.parentNode.removeChild(spinner);
 }   
 
@@ -84,6 +84,7 @@ window.addEventListener('load', function() {
                 pymUrl = graphic.dataset.iframeUrl;
 
         pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+        pymParents[pymId].onMessage('childLoaded', graphic.parentNode.querySelector('.spinner').style.display = 'none');
     }
     
     // Let's set our lazyload offset to 200px. The iframe should be loaded once it's 200px frmo being seen.
@@ -99,6 +100,7 @@ window.addEventListener('load', function() {
                     pymUrl = chartContainer.dataset.iframeUrl;
             if (!pymParents[pymId]){
                 pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+                pymParents[pymId].onMessage('childLoaded', el.querySelector('.spinner').style.display = 'none');
             }
         })
 
