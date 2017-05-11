@@ -73,20 +73,30 @@ function playVideo(video){
 // Listen for the loaded event 
 window.addEventListener('load', function() {  
     
-    
-    // embedGraphics(); 
+    // First, let's load the not lazy graphics
+    let pymParents = {};
 
+    const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
+    console.log(graphics);
+    
+    for (var graphic of graphics){
+        const   pymId = graphic.id,
+                pymUrl = graphic.dataset.iframeUrl;
+
+        pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
+    }
+    
     // Let's set our lazyload offset to 200px. The iframe should be loaded once it's 200px frmo being seen.
     inView.offset(-500);
     
-    let pymParents = {};
 
     // Let's lazyload the pym
-    inView('.graphic-embed--lazy')
+    inView('.chart--lazy')
         .on('enter', el =>{
             console.log('loading', el);
-            const   pymId = el.id,
-                    pymUrl = el.dataset.iframeUrl;
+            const   chartContainer = el.querySelector('.graphic-embed'),
+                    pymId = chartContainer.id,
+                    pymUrl = chartContainer.dataset.iframeUrl;
             if (!pymParents[pymId]){
                 pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
             }
