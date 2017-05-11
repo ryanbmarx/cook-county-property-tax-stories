@@ -145,6 +145,7 @@
               style='width:100%;'>
               {# There are several different sources. Each day should use the same filename #}
               <source src="http://{{ ROOT_URL }}/img/videos/{% block video_file_name %}{% endblock video_file_name %}.webm" type="video/webm">
+              <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.ogv" type="video/ogg">
               <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.mp4" type="video/mp4">
             </video>
             <div class='story-header__video-controls video-controls'>
