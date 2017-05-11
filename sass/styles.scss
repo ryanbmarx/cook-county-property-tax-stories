@@ -159,12 +159,12 @@ $header-bg-color:$trib-gray4;
 
 	}
 
-	&.subscribe--right{
-		text-align:left;
-		max-width: 280px;
-		float:right;
-		margin: 25px 0 25px 25px;
-	}
+	// &.subscribe--right{
+	// 	text-align:left;
+	// 	max-width: 280px;
+	// 	float:right;
+	// 	margin: 25px 0 25px 25px;
+	// }
 
 }
 
@@ -299,6 +299,14 @@ $header-bg-color:$trib-gray4;
 }
 
 @media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
+	.subscribe.subscribe--right{
+		text-align:left;
+		max-width: 280px;
+		float:right;
+		margin: 25px 0 25px 25px;
+	}
+
+
 	.river--narrow{
 		@include river_narrow($narrow-river-max-width-desktop);
 	}
