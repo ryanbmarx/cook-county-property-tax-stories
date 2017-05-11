@@ -38,7 +38,16 @@
 		position:relative;
 		overflow:hidden;
 	}
-
+	&__caption{
+		@include agate();
+		color:white;
+		position: absolute;
+		bottom:0;
+		right:0;
+		z-index: 1000;
+		padding: 0 10px 10px 0;
+		margin:0;
+	}
 	&__video{
 		// position: absolute;
 		// top:0;
