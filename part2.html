@@ -20,16 +20,8 @@
 
 {# THE STORY #}
 {% block story %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class='river--narrow' itemprop="articleBody">
-                {% for story in stories[part] %}
-                    {% set s = story %}
-                    {% include '_subtemplates/_story-loop.html' %}
-                {% endfor %}
-           </div>
-       </div>
-    </div>
-</div>
+    {% for story in stories[part] %}
+        {% set s = story %}
+        {% include '_subtemplates/_story-loop.html' %}
+    {% endfor %}           
 {% endblock %}

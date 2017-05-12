@@ -28,19 +28,10 @@
  #}
 {#  #}
 {% block story %}
-    {# {% include '_subtemplates/part1/_header-part1.html' %} #}
-    <div class="container" itemprop="articleBody">
-    <div class="row">
-            <div class="col-md-12">
-                <div class='river--narrow'>
-                {% for story in stories[part] %}
-                    {% set s = story %}
-                    {% include '_subtemplates/_story-loop.html' %}
-                {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+    {% for story in stories[part] %}
+        {% set s = story %}
+        {% include '_subtemplates/_story-loop.html' %}
+    {% endfor %}
 {% endblock %}
 
 {% block library_scripts %}

@@ -187,11 +187,17 @@
         </div>
       </section>
     {% endblock story_header %}
-    {% block story %}
-        {# ################ #}
-        {# Story content will go here #}
-        {# ################ #}
-    {% endblock story %}
+    
+        <div class="container" itemprop="articleBody">
+          <div class="row">
+            <div class="col-md-12">
+              <div class='river--narrow'>
+              {% block story %}{% endblock story %}
+              </div>
+            </div>
+          </div>
+        </div>
+    
     {% block credits scoped %}
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
