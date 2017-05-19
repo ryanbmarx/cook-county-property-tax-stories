@@ -11,21 +11,21 @@
 
 
 
-
+{# 
 {% block bodyattrs %}
     {{ super() }}
-    {# This data attribute on the body tag will toggle the fixed state of the map and day1 story header  #}
+    This data attribute on the body tag will toggle the fixed state of the map and day1 story header 
     data-fixed-header=true
 {% endblock bodyattrs %}
 
-
+ #}
 {% block story %}
 
 {# <div class="advert col-xs-12 col-sm-4" data-ad-type="shrinky-cube"></div>
         <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
 
         {# <div class="advert top-ad" data-ad-type="leaderboard"></div> #}
-        {% include '_subtemplates/part1/_header-part1.html' %}
+        {# {% include '_subtemplates/part1/_header-part1.html' %} #}
         <div class="container" itemprop="articleBody">
 
         <div id="append-here" class="modal active"></div>
@@ -112,7 +112,7 @@
 
 {% block scripts %}
     {{ super() }}
-    <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
+    {# <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script> #}
 
     <!-- puts glossary spreadsheet data into a json called termsJson -->
     <script>
