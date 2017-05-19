@@ -9,10 +9,7 @@
     bottom: 0;
     left: 30%;
 }
-.modal.inactive {
-	display: none;
-}
-.modal.hidden {
+.modal.hide-this {
 	background-color: $trib_blue4;
 	width: 40%;
 	height: auto;
@@ -20,8 +17,17 @@
 	padding: 8px;
     z-index: 10000000;
 	position: fixed;
-    bottom: 30%;
-    left: -5%;
+    bottom: -5%;
+    left: 30%;
+}
+#exit-button {
+	text-align: right;
+	font-weight: bold;
+	color: black;
+	cursor: pointer;
+}
+.modal.inactive {
+	display: none;
 }
 .append-here {
 	text-align: center;
