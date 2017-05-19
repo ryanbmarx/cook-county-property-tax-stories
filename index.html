@@ -129,10 +129,11 @@
 
     <!-- puts glossary spreadsheet data into a json called termsJson -->
     <script>
+    window.termsJson = {{ glossary|tojson|safe }};
         (function(document, window) {
-            var termsJson = {{ glossary|tojson|safe }};
+            
             $(function(){
-                window.org.init(termsJson,"//{{ ROOT_URL }}/");
+                // window.org.init(termsJson,"//{{ ROOT_URL }}/");
             });
         })(document, window);
     </script>
