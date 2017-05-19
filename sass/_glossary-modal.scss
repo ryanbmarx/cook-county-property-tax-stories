@@ -1,5 +1,6 @@
 $modal-hide-depth: 2000px;
 $modal-transition-speed: 250ms;
+$modal-padding: 15px;
 
 // modal modal--active
 
@@ -44,18 +45,29 @@ $modal-transition-speed: 250ms;
 
 	&__inner{
 		background-color: $trib_blue4;
-		padding:15px;
+		padding:$modal-padding;
 		max-width: 480px;
 		margin: 0 auto;
+		position:relative;
 	}
 
+	&__exit-button{
+		position:absolute;
+		top: $modal-padding;
+		right: $modal-padding;
+		cursor:pointer;
 
+		&:hover{
+			color:white;
+		}
 
-	#term{
+	}
+
+	&__term{
 		@include label7();
 	}
 
-	#definition{
+	&__definition{
 		@include sans-serif-text(14px, 1.5em, normal);
 		margin:0;
 	}
