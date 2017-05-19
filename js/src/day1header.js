@@ -70,7 +70,7 @@ window.org = {
             for (var button of buttons){
                 button.addEventListener('click', function(e){
                     const termID = e.target.dataset.term;
-                    let modals = (document.getElementById("append-here"));
+                    let modals = (document.getElementById("modal"));
                     let modalSelect = modals.classList[1];
                     
                     //loops through termsJson and adds appropriate definition into modal div
@@ -79,14 +79,20 @@ window.org = {
                             let termDef = ('<p>'+ termsJson[termID].definition + '<p>');
                             document.getElementById("append-here").innerHTML = "";
                             document.getElementById("append-here").innerHTML = termDef;
+                            modals.classList.remove("hide-this");
+                            modals.classList.add("active");
                         }
-                        //moves modal div into view -- sliding in doesn't work yet
-                        if (modalSelect == "hidden")
-                            modalSelect = "active";
-                        else (modalSelect = "hidden");
-                        
                     }
-                })
+                    
+                    //exit button re-adds hide-this class
+                    document.getElementById('exit-button').addEventListener('click', function(){
+                        document.getElementById("append-here").innerHTML = "";
+                        modals.classList.remove("active");
+                        modals.classList.add("hide-this");
+                    })
+
+                });
+
             }
         };
         
