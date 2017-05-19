@@ -5,7 +5,6 @@ $modal-padding: 15px;
 // modal modal--active
 
 .modal{
-	
 	&--active{
 		// The active state
 		
@@ -35,7 +34,7 @@ $modal-padding: 15px;
 		position: fixed;
 		bottom: 0 ;
 		left: 0;
-	    width: 100%;
+		width: 100%;
 		z-index:1000;
 		transform:translate(0,$modal-hide-depth);
 		transition: all $modal-transition-speed ease;
@@ -80,42 +79,30 @@ $modal-padding: 15px;
 	}
 
 }
-
-
-// #exit-button {
-// 	text-align: right;
-// 	font-weight: bold;
-// 	color: black;
-// 	cursor: pointer;
-// }
-
-// .append-here {
-// 	text-align: center;
-// }
-// #append-here p {
-// 	color: white;
-// }
-.target-term {
-	display:inline-block;
-	background-color: rgba($trib_blue4, .15);
-	padding: 0 2px 0 3px;
-	cursor: pointer;
-	border: 1px solid transparent;
-	transition:all 200ms ease;
-
-	&:hover, &:focus{
+body.glossary{
+	// Without this body class, which is added with the javascript, nothing will look different. 
+	// That way, if the JS fails or fails to load for some reason, it will be transparent.
+	.target-term {
+		display:inline-block;
+		background-color: rgba($trib_blue4, .15);
+		padding: 0 2px 0 3px;
+		cursor: pointer;
+		border: 1px solid transparent;
 		transition:all 200ms ease;
-		border-color: $trib-blue2;
-	}
 
-	&:before{
-		content:'\f02d';
-		font-family: 'FontAwesome';
-		color: $trib-blue2;
-		font-size: 0.7em;
+		&:hover, &:focus{
+			transition:all 200ms ease;
+			border-color: $trib-blue2;
+		}
+
+		&:before{
+			content:'\f02d';
+			font-family: 'FontAwesome';
+			color: $trib-blue2;
+			font-size: 0.7em;
+		}
 	}
 }
-
 @media all and (min-width: $tablet-min-width){
 	.modal{
 		&__positioning{
