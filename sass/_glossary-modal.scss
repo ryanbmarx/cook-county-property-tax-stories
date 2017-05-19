@@ -106,7 +106,9 @@ body.glossary{
 @media all and (min-width: $tablet-min-width){
 	.modal{
 		&__positioning{
-			bottom:25px;
+			// bottom:25px;
+		    background: linear-gradient(rgba(black,0), rgba(black,.3));
+	    	padding: 45px 0 25px 0;
 		}
 		&__inner{
 			box-shadow: 1px 1px 6px rgba(0,0,0,.35);
