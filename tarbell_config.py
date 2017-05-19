@@ -36,204 +36,6 @@ from subprocess import call
 # imports from blueprint #
 ##########################
 
-# from blueprint import MissingP2PContentItemFieldError
-# class MissingP2PContentItemFieldError(KeyError):
-#     """Exception for when a P2P content item doesn't have the required fields"""
-
-#     def __init__(self, field_name):
-#         msg = "P2P content item is missing field {0}".format(field_name)
-#         super(MissingP2PContentItemFieldError, self).__init__(msg)
-#         self.field_name = field_name
-
-# # from blueprint import p2p_publish_htmlstory
-# def p2p_publish_htmlstory(htmlstory, site, s3):
-#     content = render_p2p_content_item(htmlstory, site)
-
-#     content_item = {
-#         'content_item_type_code': 'htmlstory',
-#         'body': content,
-#         'custom_param_data': {},
-#     }
-
-#     # TODO: The logic for renaming and transforming fields from the
-#     # spreadsheet to the content item data sent in the API request
-#     # could be refactored into a separate function and standardized
-#     # between the blurb and htmlstory publishing functions.
-#     required_fields = (
-#         ('p2p_slug', 'slug'),
-#         ('title', 'title'),
-#         ('byline', 'byline'),
-#         ('seotitle', 'seotitle'),
-#         ('seodescription', 'seodescription'),
-#         ('keywords', 'seo_keyphrase'),
-#     )
-#     for spreadsheet_field_name, content_item_field_name in required_fields:
-#         try:
-#             content_item[content_item_field_name] = htmlstory[spreadsheet_field_name]
-#         except KeyError:
-#             raise MissingP2PContentItemFieldError(spreadsheet_field_name)
-
-#     try:
-#         content_item['custom_param_data']['story-summary'] = markdown.markdown(htmlstory['story_summary'])
-#     except KeyError:
-#         raise MissingP2PContentItemFieldError('story_summary')
-
-#     try:
-#         context = site.get_context()
-#         base_url = "http://{0}/".format(context['ROOT_URL'])
-#         content_item['original_thumbnail_url'] = base_url + htmlstory['thumbnail']
-#         content_item['thumbnail_source_code'] = 'chicagotribune'
-#     except KeyError:
-#         # `thumbnail` value not found in data from spreadsheet
-#         raise MissingP2PContentItemFieldError('thumbnail')
-
-#     try:
-#         p2p_conn = p2p.get_connection()
-
-#         created, response = p2p_conn.create_or_update_content_item(content_item)
-#         if created:
-#             # If we just created the item, set its state to 'working'
-#             p2p_conn.update_content_item({
-#                 'slug': htmlstory['p2p_slug'],
-#                 'content_item_state_code': 'working',
-#                 'kicker_id': P2P_DATA_KICKER_ID,
-#             })
-
-#     except JSONDecodeError:
-#         # HACK: Something is borked with either python-p2p or the P2P content services
-#         # API itself. It's ok to ignore this error
-#         puts("\n" + colored.yellow(
-#              "JSONDecodeError! when publishing to P2P. This is probably OK"))
-
-#     puts("\n" + colored.green(
-#         "Published to HTML story to P2P with slug {}".format(htmlstory['p2p_slug'])))
-
-# # from blueprint import get_deprecated_htmlstory_config
-# def get_deprecated_htmlstory_config(context):
-#     """
-#     Get the P2P properties from the values worksheet.
-
-#     This makes the blueprint backward compatible with how we used to get
-#     the P2P content item properties from the `values` worksheet of the
-#     Tarbell spreadsheet.
-
-#     We now read this from rows of the `p2p_content_items` worksheet of the
-#     Tarbell spreadsheet in order to support publishing multiple content
-#     items from one Tarbell project.
-
-
-#     Args:
-#         context (dict): Tarbell site context.
-
-#     Returns:
-#         Dictionary that can be passed to `p2p_publish_htmlstory`
-#         to construct a request to the P2P API
-#         to create or update an HTML story content item.
-
-#     Raises:
-#         KeyError if the keys aren't defined.
-
-#     """
-
-#     htmlstory = {}
-
-#     required_fieldnames = (
-#             ('p2p_slug', 'p2p_slug'),
-#     )
-
-#     optional_fieldnames = (
-#             ('headline', 'title'),
-#             ('seotitle', 'seotitle'),
-#             ('seodescription', 'seodescription'),
-#             ('keywords', 'keywords'),
-#             ('byline', 'byline'),
-#             ('story_summary', 'story_summary'),
-#     )
-
-#     for spreadsheet_field_name, output_field_name in required_fieldnames:
-#         htmlstory[output_field_name] = context[spreadsheet_field_name]
-
-#     for spreadsheet_field_name, output_field_name in optional_fieldnames:
-#         htmlstory[output_field_name] = context.get(spreadsheet_field_name, '')
-
-#     return htmlstory
-
-# # from blueprint import render_p2p_content_item
-# def render_p2p_content_item(content_item, site):
-#     """
-#     Render a P2P content item using Flask
-
-#     Args:
-#         content_item (dict): P2P content item metadata from your project's
-#             p2p_content_items worksheet.
-#         site (TarbellSite): Tarbell site instance.
-
-#     Returns:
-#         String containing rendered HTML.
-
-#     """
-#     # Use the technique from Frozen-Flask to use our local preview views
-#     # to render our templates
-#     # See
-#     # https://github.com/Frozen-Flask/Frozen-Flask/blob/master/flask_frozen/__init__.py#L267
-
-#     # First, get the URL path for the content item based on the slug
-#     content_type = content_item['content_type']
-#     if content_type == 'htmlstory':
-#         # We use the `raw` view because we don't want to mock
-#         # page chrome
-#         path = '/htmlstories/{p2p_slug}/raw'.format(
-#             p2p_slug=content_item['p2p_slug'])
-#     elif content_type == 'blurb':
-#         path = '/blurbs/{p2p_slug}'.format(
-#             p2p_slug=content_item['p2p_slug'])
-#     else:
-#         raise ValueError("Unknown P2P content type '{0}'".format(
-#             content_type))
-
-
-#     # Now request our view using the text client
-#     client = site.app.test_client()
-#     base_url = site.app.config['FREEZER_BASE_URL']
-#     response = client.get(path, base_url=base_url)
-
-#     if response.status_code != 200:
-#         raise ValueError("Unexpected status {0} on path {1}".format(
-#             response.status_code, path))
-
-#     rendered = response.data
-
-#     if u'“' in rendered or u'”' in rendered:
-#             # HACK: Work around P2P API's weird handling of curly quotes where it
-#             # converts the first set to HTML entities and converts the rest to
-#             # upside down quotes
-#             msg = ("Removing curly quotes because it appears that the P2P API does "
-#                    "not handle them correctly.")
-#             puts("\n" + colored.red(msg))
-#             rendered = ftfy.fix_text(rendered, uncurl_quotes=True)
-
-#     return rendered
-
-# # from blueprint import is_production_bucket
-# def is_production_bucket(bucket_url, buckets):
-#     """
-#     Returns True if bucket_url represents the production bucket
-
-#     Args:
-#         bucket_url (str): URL to S3 bucket
-#         buckets (list): List of bucket configurations, from the Tarbell site's
-#             config
-
-#     Returns:
-#         True if bucket_url represents the production bucket.
-
-#     """
-#     for name, url in buckets.items():
-#         if url == bucket_url and name == 'production':
-#             return True
-
-#     return False
-
 
 """
 Tarbell project configuration
@@ -440,6 +242,73 @@ def check_if_is_okay_to_publish(photo):
     """
     return True
 
+
+"""
+
+@blueprint.app_template_filter()
+@jinja2.contextfilter
+def game_stats(context, game):
+    try:
+        key = 'game_{0}'.format(game["num"])
+        return context[key]
+    except KeyError:
+        return []
+
+"""
+
+@blueprint.app_template_filter('apply_glossary_tags')
+@jinja2.contextfilter
+def apply_glossary_tags(context, text_blob):
+    """
+    Testing, for the moment, whether we can programattially add glossary tags to things.
+    """
+
+    term_lookup = context["glossary"]
+
+    retval = text_blob
+    
+    for term in term_lookup:
+        #  We're cycling through our lookup dictionary.
+        search_term = term["term"]
+
+        print "###################################"
+        print "Looking for {0}".format(search_term)
+        print term
+
+        if search_term.upper() in retval.upper():
+            # If the desired term/substr is found in the blob of story text, then process.
+            search_term_id = term["ID"]
+            search_term_length = len(search_term)
+            search_term_starting_index = retval.upper().find(search_term.upper())
+            retval = insert_glossary_tags(retval, search_term_starting_index, search_term_length, search_term_id)
+
+            # Now, let's turn our attention to the potential alternate forms.
+            try: 
+                alternate_terms = term["alt_forms"].split(",")
+                for alt in alternate_terms:
+                    search_term = alt.strip()
+                    print "###################################"
+                    print "Looking for {0}".format(search_term)
+
+                    if search_term.upper() in retval.upper():
+                        # If the alternate form appears in the blob
+                        search_term_length = len(search_term)
+                        search_term_starting_index = retval.upper().find(search_term.upper())
+                        retval = insert_glossary_tags(retval, search_term_starting_index, search_term_length, search_term_id)
+            except KeyError:
+                print term["term"], "has *NO* alternate forms"
+    return retval
+
+def insert_glossary_tags(retval, search_term_starting_index, search_term_length, search_term_id):
+    """
+    Takes a string (of HTML, in this use case) and wraps a specific substring in some project-specific <span> tags
+    """
+    pre_string = retval[0:search_term_starting_index]
+    plucked_string = retval[search_term_starting_index:search_term_starting_index + search_term_length]
+    post_string = retval[search_term_starting_index + search_term_length:]
+    retval = "{0}<span class='target-term' data-term='{1}'>{2}</span>{3}".format(pre_string, search_term_id, plucked_string, post_string)
+
+    return retval
 
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
