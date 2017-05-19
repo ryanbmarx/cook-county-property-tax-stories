@@ -44,11 +44,13 @@ $modal-padding: 15px;
 
 
 	&__inner{
-		background-color: $trib_blue4;
+		// background-color: $trib_blue4;
+		background-color: rgba(lighten($trib_blue4, 20%), .95);
 		padding:$modal-padding;
 		max-width: 480px;
 		margin: 0 auto;
 		position:relative;
+		box-shadow: 0px -3px 6px rgba(0,0,0,.35);
 	}
 
 	&__exit-button{
@@ -71,24 +73,28 @@ $modal-padding: 15px;
 		@include sans-serif-text(14px, 1.5em, normal);
 		margin:0;
 	}
-
+	
+	dl{
+		margin:0;
+		padding:0;
+	}
 
 }
 
 
-#exit-button {
-	text-align: right;
-	font-weight: bold;
-	color: black;
-	cursor: pointer;
-}
+// #exit-button {
+// 	text-align: right;
+// 	font-weight: bold;
+// 	color: black;
+// 	cursor: pointer;
+// }
 
-.append-here {
-	text-align: center;
-}
-#append-here p {
-	color: white;
-}
+// .append-here {
+// 	text-align: center;
+// }
+// #append-here p {
+// 	color: white;
+// }
 .target-term {
 	display:inline-block;
 	background-color: rgba($trib_blue4, .15);
@@ -112,6 +118,11 @@ $modal-padding: 15px;
 
 @media all and (min-width: $tablet-min-width){
 	.modal{
-		bottom:25px;
+		&__positioning{
+			bottom:25px;
+		}
+		&__inner{
+			box-shadow: 1px 1px 6px rgba(0,0,0,.35);
+		}
 	}
 }
