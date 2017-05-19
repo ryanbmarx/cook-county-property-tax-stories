@@ -61,6 +61,7 @@ $header-bg-color:$trib-gray4;
 @import 'credits';
 @import 'graphic-embed';
 @import 'day1_header';
+@import 'glossary-modal';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
@@ -87,41 +88,6 @@ $header-bg-color:$trib-gray4;
 	@include river_narrow($narrow-river-max-width);
 }
 
-.modal.active {
-	background-color: $trib_blue4;
-	width: 40%;
-	height: auto;
-	border-radius: 25px;
-	padding: 8px;
-    z-index: 10000000;
-	position: fixed;
-    bottom: 0;
-    left: 30%;
-}
-.modal.inactive {
-	display: none;
-}
-.modal.hidden {
-	background-color: $trib_blue4;
-	width: 40%;
-	height: auto;
-	border-radius: 25px;
-	padding: 8px;
-    z-index: 10000000;
-	position: fixed;
-    bottom: 30%;
-    left: -5%;
-}
-.append-here {
-	text-align: center;
-}
-#append-here p {
-	color: white;
-}
-.target-term {
-	background-color: $trib_blue4;
-	cursor: pointer;
-}
 
 .video{
 	@include responsive_embed(16, 9, 0);

@@ -1,0 +1,51 @@
+.modal.active {
+	background-color: $trib_blue4;
+	width: 40%;
+	height: auto;
+	border-radius: 25px;
+	padding: 8px;
+    z-index: 10000000;
+	position: fixed;
+    bottom: 0;
+    left: 30%;
+}
+.modal.inactive {
+	display: none;
+}
+.modal.hidden {
+	background-color: $trib_blue4;
+	width: 40%;
+	height: auto;
+	border-radius: 25px;
+	padding: 8px;
+    z-index: 10000000;
+	position: fixed;
+    bottom: 30%;
+    left: -5%;
+}
+.append-here {
+	text-align: center;
+}
+#append-here p {
+	color: white;
+}
+.target-term {
+	display:inline-block;
+	background-color: rgba($trib_blue4, .15);
+	padding: 0 2px 0 3px;
+	cursor: pointer;
+	border: 1px solid transparent;
+	transition:all 200ms ease;
+
+	&:hover, &:focus{
+		transition:all 200ms ease;
+		border-color: $trib-blue2;
+	}
+
+	&:before{
+		content:'\f02d';
+		font-family: 'FontAwesome';
+		color: $trib-blue2;
+		font-size: 0.7em;
+	}
+}
