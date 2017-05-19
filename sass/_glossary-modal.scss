@@ -4,19 +4,41 @@ $modal-transition-speed: 250ms;
 // modal modal--active
 
 .modal{
-	position: fixed;
-	bottom: 25px;
-	left: 0;
-    width: 100%;
-	z-index:10000000;
-	transform:translate(0,$modal-hide-depth);
-	transition: all $modal-transition-speed ease;
-	border-radius: 5px;
-
-
+	
 	&--active{
-		transform:translate(0,0);
+		// The active state
+		
+		.modal__positioning{
+			transform:translate(0,0);
+			transition: all $modal-transition-speed ease;
+		}
+
+		.modal__exit{
+			display:block;
+		}
+	}
+
+	&__exit{
+		height: 100%;
+		width: 100%;
+		background:transparent;
+		opacity:0;
+		position: fixed;
+		top:0;
+		right:0;
+		z-index:999;
+		display:none;
+	}
+
+	&__positioning{
+		position: fixed;
+		bottom: 0 ;
+		left: 0;
+	    width: 100%;
+		z-index:1000;
+		transform:translate(0,$modal-hide-depth);
 		transition: all $modal-transition-speed ease;
+		border-radius: 5px;
 	}
 
 
@@ -27,6 +49,8 @@ $modal-transition-speed: 250ms;
 		margin: 0 auto;
 	}
 
+
+
 	#term{
 		@include label7();
 	}
@@ -36,27 +60,6 @@ $modal-transition-speed: 250ms;
 		margin:0;
 	}
 
-	// &.active {
-	// 	background-color: $trib_blue4;
-	// 	width: 40%;
-	// 	height: auto;
-	// 	border-radius: 25px;
-	// 	padding: 8px;
-	// }
-	// &.hide-this {
-	// 	background-color: $trib_blue4;
-	// 	width: 40%;
-	// 	height: auto;
-	// 	border-radius: 25px;
-	// 	padding: 8px;
-	// 	z-index: 10000000;
-	// 	position: fixed;
-	// 	bottom: -5%;
-	// 	left: 30%;
-	// }
-	// &.inactive {
-	// 	display: none;
-	// }
 
 }
 
@@ -92,5 +95,11 @@ $modal-transition-speed: 250ms;
 		font-family: 'FontAwesome';
 		color: $trib-blue2;
 		font-size: 0.7em;
+	}
+}
+
+@media all and (min-width: $tablet-min-width){
+	.modal{
+		bottom:25px;
 	}
 }

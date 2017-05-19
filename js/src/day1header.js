@@ -29,10 +29,10 @@ window.org = {
                     }
                     
                     //exit button re-adds hide-this class
-                    document.getElementById('exit-button').addEventListener('click', function(){
-                        document.getElementById("append-here").innerHTML = "";
-                        modals.classList.remove("active");
-                        modals.classList.add("hide-this");
+                    document.querySelector('.modal__exit, #modal').addEventListener('click', function(){
+                        console.log('exiting');
+                        modals.classList.remove("modal--active");
+
                     })
                 });
 
