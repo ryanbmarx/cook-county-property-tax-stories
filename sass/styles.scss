@@ -15,8 +15,8 @@ $nav_height: 51px;
 $narrow-river-max-width-desktop: 650px;
 $narrow-river-max-width: 450px;
 $map-width: 600px;
-$notched_width: 450px;
-
+$notched_width: 350px;
+$notched_video_add_on: 100px;
 $header-bg-color:$trib-gray4;
 
 
@@ -113,15 +113,24 @@ $header-bg-color:$trib-gray4;
 }
 
 .video{
-	@include responsive_embed(16, 9, 0);
 	margin:0 0 25px 0;
-	
-	object{
-		position: absolute;
-		top:0;
-		left:0;
-		height:100%;
-		width:100%;
+	width: 100%;
+
+	&__headline{
+		@include label7();
+		margin: 0 0 10px 0;
+	}
+
+	&__wrapper{
+		@include responsive_embed(16, 9, 0);
+		background: #eee;
+		object{
+			position: absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+		}
 	}
 }
 
@@ -359,16 +368,18 @@ $header-bg-color:$trib-gray4;
 	
 
 	.video.video--right{
-	    width: $notched_width;
+		width: $notched_width + $notched_video_add_on;
 	    float: right;
-	    margin: 0 -100px 25px 25px;
-	    height: $notched_width * .5625;
-	    padding:0;
+	    margin: 0 #{ 0 - $notched_video_add_on } 25px 25px;
+
+    	.video__wrapper{
+			height: ($notched_width + $notched_video_add_on) * .5625;
+			width: $notched_width + $notched_video_add_on;
+			padding:0;	
+		}
 	}
 
 }
-
-
 
 @media all and (min-width: $desktop-min-width){
 	

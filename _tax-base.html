@@ -93,7 +93,7 @@
     </div>
 {% endmacro %}
 
-{% macro add_video(id, link_base_url, addon_class="") %}
+{% macro add_video(id, link_base_url, addon_class="", header) %}
 
     {% if addon_class %}
         {% set class = addon_class %}
@@ -103,7 +103,12 @@
     {# Randomstring for an id. #}
     {% set id = id|generate_id %}
     {% set video_player_ref = link_base_url|get_video_ref %}
+
    <div class='video {{ class }}'>
+        {% if header %}
+       <h4 class='video__headline'>{{ header }}</h4>
+       {% endif %}
+       <div class='video__wrapper'>
         <object id='{{ id }}' class='BrightcoveExperience'>
           <param name='bgcolor' value='#FFFFFF' />
           <param name='wmode' value='transparent' />
@@ -128,6 +133,7 @@
           <param name='secureHTMLConnections' value='true' />
           <param name='@videoPlayer' value='ref:{{ video_player_ref }}' />
         </object>
+    </div>
     </div>
 {% endmacro %}
 

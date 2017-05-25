@@ -37,7 +37,14 @@
     {% else %}
         {% set add_class = "" %}
     {% endif %}
-    {{ add_video(s.id, s.link_base_url, add_class) }}
+
+    {% if s.header %}
+        {% set header = s.header %}
+    {% else %}
+        {% set header = False %}
+    {% endif %}
+
+    {{ add_video(s.id, s.link_base_url, add_class, header) }}
 {% elif type == "pullquote" and s.quote_text and s.quote_attribution %}
     {% if s.quote_attribution_secondary %}
         {% set quote_attribution_secondary = s.quote_attribution_secondary %}
