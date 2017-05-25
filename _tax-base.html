@@ -1,5 +1,16 @@
 {% extends "_base.html" %}
 
+{% macro aside(aside_type, add_class) %}
+    <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
+        <h3 class='refer__headline'>{{ refers[aside_type + "_headline"]['text'] }}</h3>
+        <p class='refer__blurb'>{{ refers[aside_type + "_text"]['text'] }}</p>
+        {% if  refers[aside_type + "_url"] and refers[aside_type + "_button_text"] %}
+            <a class='refer__button' href='{{ refers[aside_type + "_url"]['text'] }}' target="_blank">{{ refers[aside_type + "_button_text"]["text"] }}</a>
+        {% endif %}
+    </aside>
+{% endmacro %}
+
+
 {% macro add_photo(url, add_class, caption, alt) %}
   <figure class='image {{ add_class }}'>
     <img src='{{ url }}' alt='{{ alt }}'/>
