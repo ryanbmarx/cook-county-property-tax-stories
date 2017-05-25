@@ -50,13 +50,13 @@ $chart-margin:25px;
 
 @media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
 	.chart--right{
-		width: 260px;
+		width: 260px; //  this is different than the noteched width b/c some charts are built to this exact width on mobile.
 		float: right;
 		margin: $chart-margin 0 $chart-margin $chart-margin;
 	}
 
 	.image--right{
-		max-width: 350px;
+		max-width: $notched_width;
 		float: right;
 		margin: 3px 0 $chart-margin $chart-margin; // Gives it a little nudge from the margin-top to align with <p>
 	}
