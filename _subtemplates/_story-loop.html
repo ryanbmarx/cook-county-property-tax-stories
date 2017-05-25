@@ -7,7 +7,15 @@
 {% from '_tax-base.html' import add_video as add_video with context %}
 {% from '_tax-base.html' import pullquote as pullquote  with context%}
 
-
+{% macro aside(aside_type, add_class) %}
+    <aside class='refer refer--{{ aside_type }} {% if add_class %} {{ add_class }} {% endif %}'>
+        <h3 class='refer__headline'>{{ refers[aside_type + "_headline"]['text'] }}</h3>
+        <p class='refer__blurb'>{{ refers[aside_type + "_text"]['text'] }}</p>
+        {% if  refers[aside_type + "_url"] and refers[aside_type + "_button_text"] %}
+            <a class='refer__button' href='{{ refers[aside_type + "_url"]['text'] }}' target="_blank">{{ refers[aside_type + "_button_text"]["text"] }}</a>
+        {% endif %}
+    </aside>
+{% endmacro %}
 
 {% if s.close_river|upper == TRUE or s.close_river|upper == "TRUE" %}
     </div>
@@ -60,20 +68,13 @@
     {{ add_p2p_photo(s.slug, s.add_class, width) }}
 {% elif type == "html" %}
     {{ s.html_content|process_text }}
-{% elif type|upper == "METHODS" %}
-    <aside class='methods-refer'>
-        <a href='methods.html'>
-            <h4>{{ methods_refer_header|process_text }}</h4>
-            <p>{{ methods_refer_text|process_text }}</p>
-            <p>CLICK HERE</p>
-        </a>
-    </aside>
-{% elif type|upper == "SUBSCRIBE" %}
-    <aside class='subscribe {% if s.add_class %} {{ s.add_class }}{% endif %}'>
-        <h3 class='subscribe__headline'>{{ subscribe_headline }}</h3>
-        <p class='subscribe__blurb'>{{ subscribe_text }}</p>
-        <a class='subscribe__button' href='http://ad.chicagotribune.com/land-subscribe-alt-2/?int=CookCountyPropertyTaxInvestigation' target="_blank">{{ subscribe_button_text }}</a>
-    </aside>
+{% elif type|upper == "REFER" %}
+    {% if s.add_class %}
+        {% set add_class = s.add_class %}
+    {% else %}
+        {% set add_class = "" %}
+    {% endif %}
+    {{ aside(s.content, add_class) }}
 {% endif %}
 
 
