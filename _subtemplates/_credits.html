@@ -33,9 +33,18 @@
 	</div>
 	<div class='credits__column credits__column--people'>
 		<dl class='credits__people'>
-		{%- for role in ['Reporting', 'Photos', 'Graphics', 'Videos', 'Design'] -%}
-			<dt>{{ role|upper }}</dt>	
-			<dd>{{ add_people(role|upper) }}</dd>
+	{% set roles = [
+		{"label":'Reporting', "id":"reporting"}, 
+		{"label":'Editing', "id":"editing"}, 
+		{"label":'Photos', "id":"photos"}, 
+		{"label":'Graphics', "id":"graphics"}, 
+		{"label":'Videos', "id":"videos"}, 
+		{"label":'Copy Editing', "id":"copy"}, 
+		{"label":'Design', "id":"design"}
+	] %}
+		{%- for role in roles -%}
+			<dt>{{ role.label|upper }}</dt>	
+			<dd>{{ add_people(role.id|upper) }}</dd>
 		{%- endfor -%}
 		</dl>
 	</div>
