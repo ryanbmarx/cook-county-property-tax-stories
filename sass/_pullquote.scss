@@ -7,7 +7,7 @@
 
 
 	blockquote{
-		@include serif-text(30px, 1.3em, normal);
+		@include serif-text(20px, 1.3em, normal);
 		@include display-type('serif');
 		font-weight: 700;
 		margin:0 0 10px 0;
@@ -29,13 +29,13 @@
 
 @media all and (min-width: $tablet-min-width){
 	.trib-pullquote{
-		blockquote{ font-size: 35px; }
+		blockquote{ font-size: 25px; }
 	}
 }
 
 
 @media all and (min-width: $desktop-min-width){
 	.trib-pullquote{
-		blockquote{ font-size: 40px; }
+		blockquote{ font-size: 30px; }
 	}
 }
