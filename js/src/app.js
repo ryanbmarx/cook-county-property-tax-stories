@@ -93,14 +93,17 @@ window.addEventListener('load', function() {
 
     // Let's lazyload the pym
     inView('.chart--lazy')
-        .on('enter', el =>{
+        .on('enter', el => {
             console.log('loading', el);
             const   chartContainer = el.querySelector('.graphic-embed'),
                     pymId = chartContainer.id,
                     pymUrl = chartContainer.dataset.iframeUrl;
             if (!pymParents[pymId]){
+                console.log('loading ', pymId);
                 pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
-                pymParents[pymId].onMessage('childLoaded', el.querySelector('.spinner').style.display = 'none');
+                pymParents[pymId].onMessage('childLoaded', function() {
+                    el.querySelector('.spinner').style.display = 'none'
+                });
             }
         })
 
