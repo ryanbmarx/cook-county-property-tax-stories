@@ -22,7 +22,7 @@ $chart-margin:25px;
 }
 
 .spinner{
-	display: flex;
+	display: none;
 	justify-content:center;
 	align-items:center;
 
@@ -58,7 +58,7 @@ $chart-margin:25px;
 	.image--right{
 		max-width: 350px;
 		float: right;
-		margin: $chart-margin 0 $chart-margin $chart-margin;
+		margin: 3px 0 $chart-margin $chart-margin; // Gives it a little nudge from the margin-top to align with <p>
 	}
 }
 
