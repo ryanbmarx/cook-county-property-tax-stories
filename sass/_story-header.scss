@@ -1,25 +1,25 @@
 .story-header{
 	// border-top: 4px solid $trib-blue2;
-	
+
 	&__project-title{
-		// position: absolute;
-		// top:0;
-		// left:0;
-		z-index: 1000;
-		width: 100%;
-		text-align: center;
-		margin: 20px 0;
-		
-		p{
-			@include sans-serif-text(14pt, 1em);
-			@include display_type('serif');
-			// @include text_stroke(white, black, 2px, .3, 7px);
-			background: rgba(white, .85);
-			margin: 0 auto 10px auto;
-			text-transform: uppercase;
-			padding: 3px 10px;
-			display:inline;
-			color:black;
+	// position: absolute;
+	// top:0;
+	// left:0;
+	z-index: 1000;
+	width: 100%;
+	text-align: center;
+	margin: 20px 0;
+
+	p{
+		@include sans-serif-text(14pt, 1em);
+		@include display_type('serif');
+		// @include text_stroke(white, black, 2px, .3, 7px);
+		background: rgba(white, .85);
+		margin: 0 auto 10px auto;
+		text-transform: uppercase;
+		padding: 3px 10px;
+		display:inline;
+		color:black;
 
 		}	
 	}
@@ -32,7 +32,6 @@
 	}
 
 	&__display{
-		// background: url(http://fillmurray.com/1000/1000) center center no-repeat;
 		background-size:cover;	
 		margin-bottom:25px;
 		box-shadow: 0 -2px 5px rgba(black, .25);
@@ -42,29 +41,28 @@
 		align-items:center;
 		padding:25px;
 		position:relative;
-		overflow:hidden;
+		overflow: visible;
+		margin-bottom: 45px;
 	}
+
 	&__caption{
 		@include agate();
-		color:white;
 		position: absolute;
-		bottom:0;
 		right:0;
 		z-index: 1000;
-		padding: 0 10px 10px 0;
 		margin:0;
-		max-width: 200px;
 		text-align: right; 
-	}
-	&__video{
-		// position: absolute;
-		// top:0;
-		// left:0;
-		// width:100%;
-		// height:100%;
-		display:none;
+		color: black;
+		top: 100%;
+		bottom:auto;
+		max-width: none;
+		padding: 10px;
 	}
 	
+	&__video{
+		display:none;
+	}
+
 	&__video-controls{
 		display:none;
 		z-index: 1000;
@@ -87,7 +85,6 @@
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
 		z-index: 1000;
-		// color:white;
 	}
 
 	&__subheadline{
@@ -96,37 +93,34 @@
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
 		z-index: 1000;
-		// color:white;
 	}
-	&__scrolling-icon{ display:none; }
+	// &__scrolling-icon{ display:none; }
 
 	.social-menu{
 		// This will stick the social buttons across the whitespace from the byline on mobile.
-		// position:absolute;
-		// top: 0;
-		// right: 30px;
-		// justify-content:flex-end;
 		margin: 15px 0;	
 	}
 
 
 	.byline{
-		// @include river_narrow($narrow-river-max-width);
 		margin-bottom:25px;
 		z-index:1000;
 	}
+	
 	.byline-name{
 		@include serif-text(18px, 1.3em, normal);
 		margin: 0 0 5px 0;
 
 		a{
-		color:$trib-blue2;
+			color:$trib-blue2;
 		}
 	}
+
 	.byline-publisher{
 		@include sans-serif();
 		margin: 0 0 15px 0;
 	}
+	
 	.byline-publish-date{
 		@include agate();
 		text-transform: uppercase;
@@ -163,7 +157,7 @@
 				color:black;
 			}
 		}
-		
+
 
 		.byline-publish-date{
 			color:black;
@@ -172,22 +166,22 @@
 }
 
 @media all and (min-width: $tablet-min-width){
-	
+
 	.story-header{
 		&__display{
-			// height: 100vh;
-			// height: calc(100vh - #{$nav_height} - #{$ad_leaderboard_height});
+		// height: 100vh;
+		// height: calc(100vh - #{$nav_height} - #{$ad_leaderboard_height});
 		}
+
 		&__headline{
 			font-size:70px;
 		}
 
-		&__subheadline{
-			// font-size:70px;
+		&__caption br{
+			// This hides the break between the videographer's name and video caption
+			display:none;
 		}
 	}
-
-
 }
 
 
@@ -209,22 +203,33 @@
 				background: rgba(white, .9);
 				transition: background 200ms;
 			}
-			
+
 			&--visible{
 				display:block;
 			}
 
 			&--pause{}
-			
+
 			&--play{}
 		}
 	}
+	
 	.story-header {
 
 		&__display{
 			// NOTE: Since we're dealing with video, it would seem easier to have a known height, sted the variable VH height.
 			height: 500px;
+			overflow:hidden;
+			margin-bottom:25px;
 		}
+
+		&__caption{
+			color: white;
+			bottom: 0;
+			top: auto;
+			max-width: 300px;
+		}
+
 		&__headline{
 			font-size:80px;
 		}
@@ -232,7 +237,7 @@
 		&__subheadline{
 			font-size:30px;
 		}
-		
+
 		&__video{
 			display:block;
 			position: absolute;
@@ -243,79 +248,57 @@
 		}
 
 		&__video-controls{
-			// display:block;
-			position: absolute;
-			top: 0;
-			right: 0;
-			display:block;
-		}
-
-		.story-header__scrolling-icon{
-			@include bounce(2s);
-			z-index:1000;
-			display:block;
-			color:white;
-			position:absolute;
-			left:calc(50% - 100px);
-			width:200px;
-		// top: 99vh;
-		// top: calc(99vh - #{$nav_height)};
-		text-align: center;
-		bottom:25px;
-		span{
-			@include agate();
-			font-weight:bold;
-			color:white;
-			display:block;
+		// display:block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		display:block;
 		}
 	}
-	
+
 	.social-menu{
-			// Give the overall social shares a little different look on desktop. 
-			// These styles are extensions of the standard social shares, as seen 
-			// in pullquotes
-			max-width: 40px;
-			justify-content: center;
-			position: absolute;
-			top: 100%;
-			right: 50%;
-			right: calc(50% + 345px);
-			z-index: 900;
-			justify-content:flex-start;
-			
-			li{
-				// display: flex;
-				// justify-content: center;
-				// align-items: center;
-				cursor:pointer;
+		// Give the overall social shares a little different look on desktop. 
+		// These styles are extensions of the standard social shares, as seen 
+		// in pullquotes
+		max-width: 40px;
+		justify-content: center;
+		position: absolute;
+		top: 100%;
+		right: 50%;
+		right: calc(50% + 345px);
+		z-index: 900;
+		justify-content:flex-start;
+
+		li{
+			cursor:pointer;
+
+			margin-right: 0;
+			margin-bottom: 15px;
+			width: 100%;
+
+			i{
+				opacity:.8
 				
-				margin-right: 0;
-				margin-bottom: 15px;
-				width: 100%;
-				// height:40px;
-
-				i{
-					opacity:.8
-					&:hover, &:focus{
-						opacity:1;
-					}
+				&:hover, &:focus{
+					opacity:1;
 				}
 			}
 		}
 	}
+}
 
-		// These tweaks remove the video header from the sidebars and modify the design
-		.story-header {
-			&--methods, &--assessor_response, &--appeals_methods{
-				.story-header__headline {
-					font-size: 70px;
-					max-width: 500px;
-					margin: 0 auto 10px auto;
-				}
+// These tweaks remove the video header from the sidebars and modify the design
+.story-header {
+	&--methods, &--assessor_response, &--appeals_methods {
+		.story-header__headline {
+			font-size: 70px;
+			max-width: 500px;
+			margin: 0 auto 10px auto;
+		}
 
-				.story-header__subheadline {
-					font-size: 23px;
-				}
-			}
+		.story-header__subheadline {
+			font-size: 23px;
 		}
 	}
+}
+
