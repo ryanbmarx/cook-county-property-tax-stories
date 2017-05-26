@@ -19,8 +19,9 @@
 {% endblock byline%}
 
 {% block opengraph_story_specific scoped %}
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:description" content="{{ og_description }}" />
+    <meta property="og:title" content="{{ title }} | {{ assessments_headline }}" />
+    <meta property="og:description" content="{{ assessments_seo_description }}" />
+    <meta name="description" content="{{ assessments_seo_description }}" />
     <meta name="keywords" content="{{ keywords }}">
 {% endblock opengraph_story_specific %}
 

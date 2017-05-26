@@ -15,9 +15,10 @@
 
 
 {% block opengraph_story_specific scoped %}
-<meta property="og:title" content="{{ title }}" />
-<meta property="og:description" content="{{ og_description }}" />
-<meta name="keywords" content="{{ keywords }}">
+    <meta property="og:title" content="{{ title }} | {{ houlihan_headline }}" />
+    <meta property="og:description" content="{{ houlihan_seo_description }}" />
+    <meta name="description" content="{{ houlihan_seo_description }}" />
+    <meta name="keywords" content="{{ keywords }}">
 {% endblock opengraph_story_specific %}
 
 {% block byline %}
