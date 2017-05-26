@@ -1,0 +1,18 @@
+{% extends "_tax-base.html" %}
+
+{% set part = 'assessor_response' %}
+
+{# Clear out the video backgorund block #}
+{% block video_background %}{% endblock video_background %}
+
+{% block headline %}{{ assessor_response_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ assessor_response_dek|process_text() }}{% endblock dek %}
+
+{% block byline %}{# No byline per GP and KT #}{% endblock byline%}
+
+{% block story %}
+    {% for story in stories[part] %}
+        {% set s = story %}
+        {% include '_subtemplates/_story-loop.html' %}
+    {% endfor %}
+{% endblock %}

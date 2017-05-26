@@ -1,12 +1,12 @@
 {% extends "_tax-base.html" %}
 
-{% set part = 'response' %}
+{% set part = 'appeals_methods' %}
 
 {# Clear out the video backgorund block #}
 {% block video_background %}{% endblock video_background %}
 
-{% block headline %}{{ methods_headline|process_text() }}{% endblock headline %}
-{% block dek %}{{ methods_dek|process_text() }}{% endblock dek %}
+{% block headline %}{{ appeals_methods_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ appeals_methods_dek|process_text() }}{% endblock dek %}
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}

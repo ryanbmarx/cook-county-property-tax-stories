@@ -109,7 +109,7 @@
 
 // These tweaks remove the video header from the sidebars and modify the design
 .story-header {
-	&--methods, &--response{
+	&--methods, &--assessor_response, &--appeals_methods{
 		padding: 40px 25px 0 25px;
 		background-color: rgba($trib-blue2, .15);
 		background-image: url(../img/grid_background.svg);
@@ -276,7 +276,7 @@
 
 		// These tweaks remove the video header from the sidebars and modify the design
 	.story-header {
-		&--methods, &--response{
+		&--methods, &--assessor_response, &--appeals_methods{
 			.story-header__headline {
 			    font-size: 70px;
 				max-width: 500px;
