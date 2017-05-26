@@ -65,47 +65,6 @@ $header-bg-color:$trib-gray4;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
-.byline{
-	@include river_narrow($narrow-river-max-width);
-	margin-bottom:25px;
-	z-index:1000;
-}
-.byline-name{
-	@include serif-text(18px, 1.3em, normal);
-	margin:0;
-}
-.byline-publisher{
-	@include sans-serif();
-	margin: 0 0 15px 0;
-}
-.byline-publish-date{
-	@include agate();
-	text-transform: uppercase;
-	display:block;
-	margin:0;
-}
-
-// EDITS
-
-.byline{
-	text-align:center;
-	border-top: 1px solid white;
-	padding-top:20px;
-}
-.byline-name{
-	color:white;
-	margin-bottom: 5px;
-
-	a{
-		color:$trib-blue4;
-		// background: rgba($trib-blue4, .5);
-	}
-}
-
-.byline-publish-date{
-	color:white;
-}
-
 
 
 .river--narrow{

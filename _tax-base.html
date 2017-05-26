@@ -70,7 +70,7 @@
                 </a>
             </li>
         </ul>
-        <blockquote>{{ quote_text }}</blockquote>
+        <blockquote>{{ quote_text|process_text() }}</blockquote>
         {% if quote_attribution %}
             <figcaption>
                 {{ quote_attribution|process_text() }}
@@ -184,7 +184,7 @@
             </div>
             <div class='story-header__video-texture'></div>
             <p class='story-header__caption'>{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %} ({% block video_credit %}{% endblock video_credit %})</p>
-            <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
+            {# <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i> #}
           {% endblock video_background %}
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
@@ -192,16 +192,24 @@
           <h2 class='story-header__subheadline'>
             {% block dek %}{% endblock dek %}
           </h2>
-          <div class='byline'>
+                    <div class='story-header__project-title'>
+            <p>Tribune watchdog: {{ title }}</p>
+          </div>
+
+{#           <div class='byline'>
             <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
             <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
           </div>
-        </div>
+ #}        </div>
         <div class='container'>
           <div class='row'>
             <div class='col-xs-12'>
               <div class='river--narrow'>
                 {% include '_subtemplates/_social-row.html' %}
+                <div class='byline'>
+                  <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
+                  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
+                </div>
               </div>
             </div>
           </div>
