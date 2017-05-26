@@ -115,6 +115,9 @@
 		background-image: url(../img/grid_background.svg);
 		background-size: 8px;
 		margin-bottom: 25px;
+
+		.story-header__scrolling-icon{ display:none; }
+
 		.story-header__headline{
 			@include text_stroke(black, black, 2px, .07, 5px);
 
@@ -135,9 +138,6 @@
 		.byline-publish-date{
 			color:black;
 		}
-
-		.story-header__scrolling-icon{ display:none; }
-
 	}
 }
 
@@ -278,11 +278,13 @@
 	.story-header {
 		&--methods, &--response{
 			.story-header__headline {
-				font-size: 65px;
+			    font-size: 70px;
+				max-width: 500px;
+				margin: 0 auto 10px auto;
 			}
 
 			.story-header__subheadline {
-				font-size: 20px;
+				font-size: 23px;
 			}
 		}
 	}

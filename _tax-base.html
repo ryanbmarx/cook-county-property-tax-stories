@@ -178,7 +178,9 @@
               </div>
             </div>
             <div class='story-header__video-texture'></div>
-          {% endblock video_background%}
+            <p class='story-header__caption'>{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %} ({% block video_credit %}{% endblock video_credit %})</p>
+            <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
+          {% endblock video_background %}
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>
@@ -189,15 +191,11 @@
             <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
             <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
           </div>
-
-          <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i>
-          <p class='story-header__caption'>{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %} ({% block video_credit %}{% endblock video_credit %})</p>
         </div>
         <div class='container'>
           <div class='row'>
             <div class='col-xs-12'>
               <div class='river--narrow'>
-                {# TODO: Reduce this markup #}
                 {% include '_subtemplates/_social-row.html' %}
               </div>
             </div>
@@ -208,11 +206,11 @@
     
         <div class="container" itemprop="articleBody">
           <div class="row">
-            <div class="col-md-12">
+            {# <div class="col-md-12"> #}
               <div class='river--narrow'>
               {% block story %}{% endblock story %}
               </div>
-            </div>
+            {# </div> #}
           </div>
         </div>
     
