@@ -23,7 +23,7 @@
   {% if photo|check_if_is_okay_to_publish %}
       <figure class='image {{ add_class }}'>
         <img src='{{ photo.photo_services_url }}/{{ width }}' alt='{{ photo.title }} title='{{ photo.title }}'/>
-        <figcaption> {{ photo.caption|striptags }} ({{ photo.credit|striptags }})</figcaption>
+        <figcaption> {{ photo.caption|striptags }}</figcaption>
       </figure>
     {% else %}
       <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
@@ -155,28 +155,30 @@
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
-        <div style='background:url(img/posters/{{ self.video_poster() }}) center center no-repeat;background-size:cover;' class='story-header__display'>
-          <div class='story-header__video'>
-            <video id='background-video'  autoplay muted loop 
-              poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
-              style='width:100%;'>
-              {# There are several different sources. Each day should use the same filename #}
-              <source src="http://{{ ROOT_URL }}/img/videos/{% block video_file_name %}{% endblock video_file_name %}.webm" type="video/webm">
-              <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.ogv" type="video/ogg">
-              <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.mp4" type="video/mp4">
-            </video>
-            <div class='story-header__video-controls video-controls'>
-              <button id='pause' class='video-control video-control--pause video-control--visible'>
-                <i class="fa fa-pause-circle" aria-hidden="true"></i>
-                Pause
-              </button>
-              <button id='play' class='video-control video-control--play'>
-                <i class="fa fa-play-circle" aria-hidden="true"></i>
-                Resume
-              </button>
+        {% block video_background %}
+          <div style='background:url(img/posters/{{ self.video_poster() }}) center center no-repeat;background-size:cover;' class='story-header__display'>
+            <div class='story-header__video'>
+              <video id='background-video'  autoplay muted loop 
+                poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
+                style='width:100%;'>
+                {# There are several different sources. Each day should use the same filename #}
+                <source src="http://{{ ROOT_URL }}/img/videos/{% block video_file_name %}{% endblock video_file_name %}.webm" type="video/webm">
+                <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.ogv" type="video/ogg">
+                <source src="http://{{ ROOT_URL }}/img/videos/{{ self.video_file_name() }}.mp4" type="video/mp4">
+              </video>
+              <div class='story-header__video-controls video-controls'>
+                <button id='pause' class='video-control video-control--pause video-control--visible'>
+                  <i class="fa fa-pause-circle" aria-hidden="true"></i>
+                  Pause
+                </button>
+                <button id='play' class='video-control video-control--play'>
+                  <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  Resume
+                </button>
+              </div>
             </div>
-          </div>
-          <div class='story-header__video-texture'></div>
+            <div class='story-header__video-texture'></div>
+          {% endblock video_background%}
           <h1 class='story-header__headline' itemprop="headline">
             {% block headline %}{% endblock headline %}
           </h1>

@@ -9,12 +9,12 @@
 		width: 100%;
 		text-align: center;
 		p{
-    		@include sans-serif-text(12pt, 1em)
-    		background: rgba(white, .85);
-    		margin: 0 auto 10px auto;
-		    text-transform: uppercase;
-		    padding: 3px 10px;
-		    display:inline;
+			@include sans-serif-text(12pt, 1em)
+			background: rgba(white, .85);
+			margin: 0 auto 10px auto;
+			text-transform: uppercase;
+			padding: 3px 10px;
+			display:inline;
 		}	
 	}
 
@@ -107,8 +107,39 @@
 }
 
 
+// These tweaks remove the video header from the sidebars and modify the design
+.story-header {
+	&--methods, &--response{
+		padding: 40px 25px 0 25px;
+		background-color: rgba($trib-blue2, .15);
+		background-image: url(../img/grid_background.svg);
+		background-size: 8px;
+		margin-bottom: 25px;
+		.story-header__headline{
+			@include text_stroke(black, black, 2px, .07, 5px);
 
+		}
+		.story-header__subheadline{
+			@include text_stroke(black, black, 2px, .07, 5px);
+		}
+		.byline{
+			padding-top: 0;
+			border-top: none;
 
+			&-name{
+				color:black;
+			}
+		}
+		
+
+		.byline-publish-date{
+			color:black;
+		}
+
+		.story-header__scrolling-icon{ display:none; }
+
+	}
+}
 
 @media all and (min-width: $tablet-min-width){
 	
@@ -208,7 +239,7 @@
 			display:block;
 		}
 	}
-
+	
 	.social-menu{
 			// Give the overall social shares a little different look on desktop. 
 			// These styles are extensions of the standard social shares, as seen 
@@ -239,6 +270,19 @@
 						opacity:1;
 					}
 				}
+			}
+		}
+	}
+
+		// These tweaks remove the video header from the sidebars and modify the design
+	.story-header {
+		&--methods, &--response{
+			.story-header__headline {
+				font-size: 65px;
+			}
+
+			.story-header__subheadline {
+				font-size: 20px;
 			}
 		}
 	}
