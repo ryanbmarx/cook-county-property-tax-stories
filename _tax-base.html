@@ -199,14 +199,10 @@
             {% block dek %}{% endblock dek %}
           </h2>
                     <div class='story-header__project-title'>
-            <p>Tribune watchdog: {{ title }}</p>
+            <p>Tribune watchdog: <br />{{ title }}</p>
           </div>
 
-{#           <div class='byline'>
-            <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
-            <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
-          </div>
- #}        </div>
+     </div>
         <div class='container'>
           <div class='row'>
             <div class='col-xs-12'>

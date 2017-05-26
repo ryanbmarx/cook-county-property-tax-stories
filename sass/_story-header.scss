@@ -7,17 +7,20 @@
 	// left:0;
 	z-index: 1000;
 	width: 100%;
+	max-width:370px;
 	text-align: center;
-	margin: 20px 0;
-
+	margin: 20px auto;
+	padding: 5px;
+	background: rgba(white, .85);
+	
 	p{
 		@include sans-serif-text(14pt, 1em);
 		@include display_type('serif');
 		// @include text_stroke(white, black, 2px, .3, 7px);
-		background: rgba(white, .85);
+
 		margin: 0 auto 10px auto;
 		text-transform: uppercase;
-		padding: 3px 10px;
+		
 		display:inline;
 		color:black;
 
@@ -179,6 +182,10 @@
 
 		&__caption br{
 			// This hides the break between the videographer's name and video caption
+			display:none;
+		}
+
+		&__project-title br{
 			display:none;
 		}
 	}
