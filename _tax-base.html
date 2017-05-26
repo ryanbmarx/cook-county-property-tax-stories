@@ -146,6 +146,11 @@
   {% include '_nav.html' %}
 {% endblock nav %}
 
+{% block opengraph %}
+  {{ super() }}
+  <meta name="keywords" content="{{ keywords }}">
+{% endblock %}
+
 {% block content %}
     {# 
     Remove ad per convo with Kaarin, JB and Kurt.
