@@ -37,9 +37,9 @@
     {% endif %}
 
     {% if type == "cube" %}
-        {# <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div> #}
+        <div class="advert {{ class }}" data-ad-type="shrinky-cube"></div>
     {% elif type == "leaderboard" %}
-        {# <div class="advert" data-ad-type="leaderboard"></div> #}
+        <div class="advert" data-ad-type="leaderboard"></div>
     {% endif %}
 {% endmacro %}
 
@@ -147,7 +147,10 @@
 {% endblock nav %}
 
 {% block content %}
-    {{ ad('leaderboard', false) }}
+    {# 
+    Remove ad per convo with Kaarin, JB and Kurt.
+    {{ ad('leaderboard', false) }} 
+    #}
     {% block story_header scoped %}
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
