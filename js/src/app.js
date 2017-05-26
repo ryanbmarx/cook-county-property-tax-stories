@@ -77,7 +77,6 @@ window.addEventListener('load', function() {
     let pymParents = {};
 
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
-    console.log(graphics);
     
     for (var graphic of graphics){
         const   pymId = graphic.id,
@@ -107,8 +106,7 @@ window.addEventListener('load', function() {
             }
         })
 
-
-    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != ""){
+    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.getElementById('background-video') != null){
         // Prep the pause button, if video is supported and we are not on mobile.
         const   play = document.getElementById('play'),
                 pause = document.getElementById('pause'),
