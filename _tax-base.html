@@ -146,9 +146,15 @@
   {% include '_nav.html' %}
 {% endblock nav %}
 
-{% block opengraph %}
-  {{ super() }}
-  <meta name="keywords" content="{{ keywords }}">
+{% block opengraph scoped %}
+  {% set part = part %}
+  <meta property="og:url" content="http://{{ ROOT_URL }}/{{ PATH }}" />
+  <meta property="og:image" content="{{ og_image }}" />
+  {% block opengraph_story_specific scoped %}
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ og_description }}" />
+    <meta name="keywords" content="{{ keywords }}">
+  {% endblock opengraph_story_specific %}
 {% endblock %}
 
 {% block content %}
@@ -183,7 +189,7 @@
               </div>
             </div>
             <div class='story-header__video-texture'></div>
-            <p class='story-header__caption'>{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %} ({% block video_credit %}{% endblock video_credit %})</p>
+            <p class='story-header__caption'>{% block mobile_image_alt_text %}{% endblock mobile_image_alt_text %} <br />({% block video_credit %}{% endblock video_credit %})</p>
             {# <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i> #}
           {% endblock video_background %}
           <h1 class='story-header__headline' itemprop="headline">

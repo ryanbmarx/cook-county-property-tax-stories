@@ -4,15 +4,22 @@
 {% set part = 'appeals' %}
 
 {# VIDEO BLOCKS #}
-{% block video_poster %}part2.jpg{% endblock video_poster %}
-{% block video_file_name %}part2{% endblock video_file_name %}
-{% block mobile_image_alt_text %}{{ part2_video_header_caption }}{% endblock mobile_image_alt_text %}
-{% block video_credit %}{{ part2_video_header_credit }}{% endblock video_credit %}
+{% block video_poster %}{{part}}.jpg{% endblock video_poster %}
+{% block video_file_name %}{{part}}{% endblock video_file_name %}
+{% block mobile_image_alt_text %}{{ appeals_video_header_caption }}{% endblock mobile_image_alt_text %}
+{% block video_credit %}{{ appeals_video_header_credit }}{% endblock video_credit %}
 
 {# TEXT BLOCKS  #}
 
-{% block headline %}{{ part2_headline|process_text() }}{% endblock headline %}
-{% block dek %}{{ part2_dek|process_text() }}{% endblock dek %}
+{% block headline %}{{ appeals_headline|process_text() }}{% endblock headline %}
+{% block dek %}{{ appeals_dek|process_text() }}{% endblock dek %}
+
+
+{% block opengraph_story_specific scoped %}
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:description" content="{{ og_description }}" />
+<meta name="keywords" content="{{ keywords }}">
+{% endblock opengraph_story_specific %}
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
