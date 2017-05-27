@@ -1,10 +1,8 @@
 .story-header{
-	// border-top: 4px solid $trib-blue2;
+	
+	position:relative;
 
 	&__project-title{
-	// position: absolute;
-	// top:0;
-	// left:0;
 	z-index: 1000;
 	width: 100%;
 	max-width:370px;
@@ -143,15 +141,15 @@
 		background-size: 8px;
 		margin-bottom: 25px;
 
-		.story-header__scrolling-icon{ display:none; }
-
 		.story-header__headline{
+			font-size: 36px;
+			line-height:1.3em;
+			text-transform: none;
 			@include text_stroke(black, black, 2px, .07, 5px);
 
 		}
-		.story-header__subheadline{
-			@include text_stroke(black, black, 2px, .07, 5px);
-		}
+		.story-header__subheadline{ display:none; }
+
 		.byline{
 			padding-top: 0;
 			border-top: none;
@@ -187,6 +185,14 @@
 
 		&__project-title br{
 			display:none;
+		}
+	}
+
+	.story-header {
+		&--methods, &--assessor_response, &--appeals_methods {
+			.story-header__headline {
+				font-size: 45px;
+			}
 		}
 	}
 }
@@ -263,7 +269,7 @@
 		}
 	}
 
-	.social-menu{
+	.story-header .social-menu{
 		// Give the overall social shares a little different look on desktop. 
 		// These styles are extensions of the standard social shares, as seen 
 		// in pullquotes
@@ -292,19 +298,19 @@
 			}
 		}
 	}
-}
 
-// These tweaks remove the video header from the sidebars and modify the design
-.story-header {
-	&--methods, &--assessor_response, &--appeals_methods {
-		.story-header__headline {
-			font-size: 70px;
-			max-width: 500px;
-			margin: 0 auto 10px auto;
-		}
+	// These tweaks remove the video header from the sidebars and modify the design
+	.story-header {
+		&--methods, &--assessor_response, &--appeals_methods {
+			.story-header__headline {
+				font-size: 55px;
+				// max-width: 500px;
+				margin: 0 auto 10px auto;
+			}
 
-		.story-header__subheadline {
-			font-size: 23px;
+			.story-header__subheadline {
+				font-size: 23px;
+			}
 		}
 	}
 }
