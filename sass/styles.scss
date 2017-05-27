@@ -33,6 +33,7 @@ $header-bg-color:$trib-gray4;
 
 @import 'bootstrap_custom';
 
+
 // ---- TRIB CLASSES, UNCOMMENT THE ONES YOU WANT ---------------------------------------------
 // @import 'ngux-visibility-toggles';
 // @import 'trib-bulletbox';
@@ -50,7 +51,7 @@ $header-bg-color:$trib-gray4;
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 
 // SWIPER
-@import '../node_modules/swiper/dist/css/swiper.min';
+// @import '../node_modules/swiper/dist/css/swiper.min';
 
 
 @import 'adverts';
@@ -65,7 +66,10 @@ $header-bg-color:$trib-gray4;
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
-
+.hidden{
+	// pickup from bootstrap sass module no longer being used
+	display:none !important;
+}
 
 .river--narrow{
 	@include river_narrow($narrow-river-max-width);
@@ -137,83 +141,6 @@ $header-bg-color:$trib-gray4;
 		margin: 3px 0 25px 25px;
 	}
 }
-
-// --------------------------------------------
-// -------------- SUBSCRIBE CALL TO ACTION ----
-// --------------------------------------------
-
-// .subscribe{
-// 	padding: 15px;
-// 	background-color: rgba($trib-blue2, .2);
-// 	    background-image: url(../img/grid_background.svg);
-//     background-size: 7px;
-//     margin: 25px 0;
-// 	text-align:center;
-// 	&__headline{
-// 		margin:0 0 7px 0;
-// 	}
-
-// 	&__button{
-// 		@include sans-serif();
-// 		text-align: center;
-// 		max-width:280px;
-// 		display:block;
-// 		padding:15px 0;
-// 		background:lighten($trib-orange, 5%);
-// 		transition: background-color 150ms ease;
-// 		color:white;
-// 		cursor:pointer;
-// 		margin: 0 auto;
-
-// 		&:hover, &:focus{
-// 			color:white;
-// 			text-decoration: none;
-// 			background:$trib-orange;			
-// 			transition: background-color 150ms ease;
-// 		}
-
-// 	}
-
-
-// }
-
-
-// // --------------------------------------------
-// // -------------- METHODOLOGIES REFER ---------
-// // --------------------------------------------
-
-// .methods-refer{
-// 	max-width: 170px;
-// 	float: right;
-// 	margin: 15px 0 15px 15px;
-// 	padding: 15px;
-// 	border-left: 3px solid $trib-blue2;
-// 	background-color: rgba($trib-blue2, .2);
-// 	    background-image: url(../img/grid_background.svg);
-//     background-size: 7px;
-
-// 	a{
-// 		display:block;
-// 		text-decoration:none;
-// 		color:black;
-
-// 		&:hover{
-// 			text-decoration:none;
-// 			color:black;
-// 		}
-// 	}
-
-// 	p{
-// 		@include sans-serif();
-// 		margin: 0;
-// 	}
-
-// 	h4{
-// 		@include serif-text(22px, 1.4em, bold);
-// 		@include display_type(serif);
-// 		margin: 0 0 10px 0;
-// 	}
-// }
 
 .methodologies{
 	margin-top:25px;

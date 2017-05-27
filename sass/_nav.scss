@@ -8,6 +8,10 @@ body{
 .navbar{
 	background: rgba($trib-blue2, .92);
 	box-shadow: 0 2px 6px rgba(black, .35);
+
+	.navbar-toggle{
+		display:block;
+	}
 }
 
 // Adjustments to the logo
@@ -90,6 +94,11 @@ nav.navbar {min-height: $nav_height;}
 
 @media all and (min-width: $desktop-min-width){
 	
+	.navbar .navbar-toggle{
+		display:none;
+	}
+
+
 	.nav-buttons-wrapper{
 		position:static;
 		opacity:1;
