@@ -103,11 +103,11 @@ window.addEventListener('load', function() {
             }
         })
 
-    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.getElementById('background-video') != null){
+    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.querySelectorAll('.header-video') != null){
         // Prep the pause button, if video is supported and we are not on mobile.
         const   play = document.getElementById('play'),
                 pause = document.getElementById('pause'),
-                video = document.getElementById('background-video');
+                video = window.innerWidth > 1100 ? document.querySelector('.header-video--large') : document.querySelector('.header-video--small');
         
         // // make the pause button appear
         pause.classList.add('video-control--visible');
