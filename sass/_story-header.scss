@@ -40,10 +40,10 @@
 		flex-wrap:wrap;
 		align-content:center;
 		align-items:center;
-		padding:25px;
 		position:relative;
 		overflow: visible;
 		margin-bottom: 45px;
+	    padding: 65px 25px;
 	}
 
 	&__caption{
@@ -234,6 +234,7 @@
 			height: 500px;
 			overflow:hidden;
 			margin-bottom:25px;
+			padding: 25px;
 		}
 
 		&__caption{
