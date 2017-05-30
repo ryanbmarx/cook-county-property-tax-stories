@@ -85,6 +85,7 @@
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
+		text-transform:uppercase;
 		z-index: 1000;
 	}
 
@@ -94,6 +95,7 @@
 		@include text_stroke(white, black, 2px, .3, 7px);
 		width:100%;
 		z-index: 1000;
+		text-transform:none;
 	}
 	// &__scrolling-icon{ display:none; }
 
@@ -141,19 +143,20 @@
 		background-size: 8px;
 		margin-bottom: 25px;
 
-		.story-header__headline{
+		.story-header__subheadline{
 			font-size: 36px;
 			line-height:1.3em;
 			text-transform: none;
 			@include text_stroke(black, black, 2px, .07, 5px);
 
 		}
-		.story-header__subheadline{ display:none; }
+		.story-header__headline{ display:none; }
 
 		.byline{
 			padding-top: 0;
 			border-top: none;
-
+			text-align: center;
+			margin-top: 10px;
 			&-name{
 				color:black;
 			}
@@ -301,15 +304,15 @@
 	// These tweaks remove the video header from the sidebars and modify the design
 	.story-header {
 		&--methods, &--assessor_response, &--appeals_methods {
-			.story-header__headline {
+			.story-header__subheadline {
 				font-size: 55px;
 				// max-width: 500px;
 				margin: 0 auto 10px auto;
 			}
 
-			.story-header__subheadline {
-				font-size: 23px;
-			}
+			// .story-header__subheadline {
+			// 	font-size: 23px;
+			// }
 		}
 	}
 }

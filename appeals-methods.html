@@ -5,8 +5,8 @@
 {# Clear out the video backgorund block #}
 {% block video_background %}{% endblock video_background %}
 
-{%- block headline %}{{- appeals_methods_headline|process_text() -}}{% endblock headline -%}
-{% block dek %}{% endblock dek %}
+{%- block headline %}{% endblock headline -%}
+{% block dek %}{{- appeals_methods_headline|process_text() -}}{% endblock dek %}
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}

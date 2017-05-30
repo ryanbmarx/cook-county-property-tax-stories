@@ -199,12 +199,12 @@
             <p>Tribune watchdog: <br />{{ title }}</p>
           </div>
 
-          <h1 class='story-header__headline' itemprop="headline">
+          <h2 class='story-header__headline'>
             {% block headline %}{% endblock headline %}
-          </h1>
-          <h2 class='story-header__subheadline'>
-            {% block dek %}{% endblock dek %}
           </h2>
+          <h1 class='story-header__subheadline' itemprop="headline">
+            {% block dek %}{% endblock dek %}
+          </h1>
      </div>
         <div class='container'>
           {# <div class='row'> #}
