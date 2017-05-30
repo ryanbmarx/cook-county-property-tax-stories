@@ -189,16 +189,21 @@ $header-bg-color:$trib-gray4;
 	background:$trib-blue2;
 
 	.nav {
+		list-style-type: none;
 		max-width:90%;
 		margin:0 auto;
+		padding:0;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		& > li > a{
-			color:rgba(white, .9);
-			&:hover, &:focus {
-			    text-decoration: underline;
-			    background-color: transparent;
+		& > li {
+			 margin:0 20px 5px 0;
+			& > a{
+				color:rgba(white, .9);
+				&:hover, &:focus {
+				    text-decoration: underline;
+				    background-color: transparent;
+				}
 			}
 		}
 	}
