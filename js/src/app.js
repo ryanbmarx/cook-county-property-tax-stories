@@ -27,22 +27,6 @@ function removeSpinner(id){
     spinner.parentNode.removeChild(spinner);
 }   
 
-// function embedGraphics(){
-//     // Enable all the pym graphics by collecting all the containers, then 
-//     // instantiating each one after plucking the necessary details from the 
-//     // element's metadata
-//     const pymContainers = document.querySelectorAll('.graphic-embed');
-//     let pymParents = [];
-//     for (var container of pymContainers){
-//         const   pymId = container.id,
-//                 pymUrl = container.dataset.iframeUrl;
-
-//         let temp = new pym.Parent(pymId, pymUrl, {});
-//         // temp.onMessage('childLoaded', removeSpinner(pymId) )
-//         pymParents.push(temp);
-//     }
-// }
-
 // Init/activate comments
 document.getElementById('comments-button').addEventListener('click', function(e){
     document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
