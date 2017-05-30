@@ -236,18 +236,18 @@
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
+    {% block solid_opinion_comments %}
     {% include '_subtemplates/_solid-opinion-comments.html'%}
    {#  {% block methods scoped %}
       {% set part = part %}
       {% include '_subtemplates/_methodologies.html' %}      
     {% endblock methods %} #}
     <div data-trb-thirdpartynav></div>
+    {% endblock solid_opinion_comments %}
 {% endblock content %}
 
 
-{% block comments %}
-      
-  {% endblock comments %}
+{% block comments %}{% endblock comments %}
 
 
 {% block library_css %}

@@ -1,5 +1,22 @@
 {% extends "_tax-base.html" %}
 
+{% block css %}
+	{{ super() }}
+	<style type="text/css">
+		.byline-name{
+			display:none;
+		}
+		.byline-publish-date{
+			text-align: center;
+		}
+		.social-menu {
+			-webkit-justify-content: center;
+			justify-content: center;
+		}
+	</style>
+{% endblock css %}
+
+
 {% set part = 'assessor_response' %}
 
 {# Clear out the video backgorund block #}
@@ -8,7 +25,7 @@
 {% block headline %}{{ assessor_response_headline|process_text() }}{% endblock headline %}
 {% block dek %}{% endblock dek %}
 
-{% block byline %}{# No byline per GP and KT #}{% endblock byline%}
+{% block byline %}{% endblock byline %}
 
 {% block story %}
     {% for story in stories[part] %}
@@ -16,3 +33,5 @@
         {% include '_subtemplates/_story-loop.html' %}
     {% endfor %}
 {% endblock %}
+
+{# {% block solid_opinion_comments %}{% endblock solid_opinion_comments %} #}
