@@ -27,11 +27,14 @@ function removeSpinner(id){
     spinner.parentNode.removeChild(spinner);
 }   
 
-// Init/activate comments
-document.getElementById('comments-button').addEventListener('click', function(e){
-    document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
-    (window.registration || (registration = [])).push('solidopinion');
-}, false);
+if (document.getElementById('comments-button')){
+    // If there is a comments button, then init comments on click. Otherwise, skip it. the sidebars 
+    // have no comments thus no comments button.
+    document.getElementById('comments-button').addEventListener('click', function(e){
+        document.querySelector(`.trb_cm_so[data-role="cm_container"]`).style.maxHeight = "10000000vh";
+        (window.registration || (registration = [])).push('solidopinion');
+    }, false);
+}
 
 // Hide/show the mobile navigation menu
 document.getElementById('mobile-nav-toggle').addEventListener('click', function(e){
