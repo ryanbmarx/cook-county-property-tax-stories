@@ -98,9 +98,15 @@ $header-bg-color:$trib-gray4;
 	}
 }
 
+#lookup iframe{
+	// iframe is cutting off the very bottom of lookup. This visual hack smooths over that wrinkle.
+	border-bottom:1px solid black;
+}
+
 // --------------------------------------------
 // -------------- REFER ASIDES UNIVERSAL STYLES ----
 // --------------------------------------------
+
 
 .refer{
 	padding: 15px;
@@ -137,9 +143,13 @@ $header-bg-color:$trib-gray4;
 
 	&.refer--right{
 		text-align:left;
-	    max-width: 180px;
+	    max-width: none;
 		float:right;
-		margin: 3px 0 25px 25px;
+		margin: 25px 0;
+
+		.refer__blurb{
+			@include sans-serif-text(14px, 1.3em);
+		}
 	}
 }
 
@@ -236,15 +246,20 @@ $header-bg-color:$trib-gray4;
 }
 
 @media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
-	.subscribe.subscribe--right{
-		text-align:left;
-		max-width: 280px;
-		float:right;
-		margin: 25px 0 25px 25px;
-	}
+	// .subscribe.subscribe--right{
+	// 	text-align:left;
+	// 	max-width: 280px;
+	// 	float:right;
+	// 	margin: 25px 0 25px 25px;
+	// }
 
 	.refer.refer--right{
 	    max-width: 210px;
+		margin: 3px 0 25px 25px;
+	    
+	    .refer__blurb{
+			@include serif-text(16px, 1.5em);
+	    }
 	}
 
 
