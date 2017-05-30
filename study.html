@@ -1,0 +1,20 @@
+{% extends "_tax-base.html" %}
+
+{% set part = 'study' %}
+
+{# Clear out the video backgorund block #}
+{% block video_background %}{% endblock video_background %}
+
+{% block headline %}{% endblock headline %}
+{% block dek %}{% endblock dek %}
+
+{% block byline %}
+    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
+{% endblock byline%}
+
+{% block content %}
+	{% include "_subtemplates/_study.html" %}
+{% endblock %}
+
+{# No comments #}
+{# {% block solid_opinion_comments %}{% endblock solid_opinion_comments %} #}
