@@ -16,10 +16,15 @@
 
 {% block opengraph_story_specific scoped %}
     <meta property="og:title" content="{{ title }} | {{ houlihan_headline }}" />
-    <meta property="og:description" content="{{ houlihan_seo_description }}" />
+    <meta property="og:description" content="{{ houlihan_og_description }}" />
     <meta name="description" content="{{ houlihan_seo_description }}" />
     <meta name="keywords" content="{{ keywords }}">
 {% endblock opengraph_story_specific %}
+
+{# SOCIAL MEDIA BUTTONS #}
+{% block tweet %}{{ houlihan_twitter|urlencode }}{% endblock tweet %}
+{% block facebook %}{{ houlihan_og_description|urlencode }}{% endblock facebook %}
+
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}

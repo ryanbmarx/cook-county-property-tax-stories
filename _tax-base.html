@@ -210,7 +210,20 @@
           {# <div class='row'> #}
             {# <div class='col-xs-12'> #}
               <div class='river--narrow'>
-                {% include '_subtemplates/_social-row.html' %}
+                {# SOCIAL MEDIA BUTTONS  #}
+                {% set page_url =  "http://" + ROOT_URL + "/" + PATH %}
+                <ul class="social-menu">
+                    <li>
+                        <a target="_blank" href="https://twitter.com/share?url={{ page_url }}&text={% block tweet %}{{ twitter_description|urlencode }}{% endblock tweet%}">
+                            <i class="fa fa-twitter fa-2x"></i> <span class="hidden">Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/sharer.php?u={{ page_url }}&t={% block facebook %}{{ og_description|urlencode }}{% endblock facebook %}">
+                            <i class="fa fa-facebook fa-2x"></i> <span class="hidden">Facebook</span>
+                        </a>
+                    </li>
+                </ul>
                 <div class='byline'>
                   <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
                   <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
