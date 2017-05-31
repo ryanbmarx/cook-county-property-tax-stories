@@ -93,8 +93,11 @@
     </div>
 {% endmacro %}
 
-{% macro add_video(id, link_base_url, addon_class="", header) %}
+{% macro add_video(id, link_base_url, addon_class="", header, video_slug) %}
 
+    {% set video = get_p2p_content_item(video_slug) %}
+    {# {{ video }} #}
+    {# <img src="{{ photo['alt_thumbnail_url']|format_video_thumb }}" /> #}
     {% if addon_class %}
         {% set class = addon_class %}
     {% else %}
@@ -109,7 +112,19 @@
        <h4 class='video__headline'>{{ header }}</h4>
        {% endif %}
        <div class='video__wrapper'>
-        <object id='{{ id }}' class='BrightcoveExperience'>
+       {# <img class='video__thumb' src="{{ video['alt_thumbnail_url']|format_video_thumb }}" /> #}
+{#        <button class='video__play-icon'>
+          <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+       </button> #}
+        <div class='video__object-wrapper'>
+        <video data-account="3690581440001"
+            data-player="BylPHnG8"
+            data-embed="default"
+            data-video-id="ref:{{ video['id'] }}"
+            data-application-id
+            class="video-js"
+            controls></video>
+        {# <object id='{{ id }}' class='BrightcoveExperience'>
           <param name='bgcolor' value='#FFFFFF' />
           <param name='wmode' value='transparent' />
           <param name='autoStart' value='false' />
@@ -117,8 +132,6 @@
           <param name='contentItemType' value ='embed' />
           <param name='omnitureServer' value='' />
           <param name='omnitureAcct' value='' />
-          {# <param name='width' value='500' /> #}
-          {# <param name='height' value='300' /> #}
           <param name='playerID' value='3688749019001' />
           <param name='playerKey' value='AQ~~,AAADW0fLtgE~,MIfKkt0NgAvSglhcwVIGmENcE3304kfQ' />
           <param name='adServerURL' value='' />
@@ -127,12 +140,14 @@
           <param name='linkBaseURL' value='{{ link_base_url }}' />
           <param name='isVid' value='true' />
           <param name='isUI' value='true' />
+          <param name='swliveconnect' value='true' />
           <param name='dynamicStreaming' value='true' />
           <param name='showNoContentMessage' value='true' />
           <param name='secureConnections' value='true' />
           <param name='secureHTMLConnections' value='true' />
           <param name='@videoPlayer' value='ref:{{ video_player_ref }}' />
-        </object>
+        </object> #}
+    </div>
     </div>
     </div>
 {% endmacro %}
@@ -280,7 +295,7 @@
 
 {% block scripts %}
     <script src="http://{{ ROOT_URL }}/js/app.min.js"></script>
-    <script>brightcove.createExperiences();</script>
+    {# <script>brightcove.createExperiences();</script> #}
 {% endblock scripts %}
 
 {% block chartbeat %}
@@ -290,6 +305,8 @@
 {% block omniture_scripts %}
     {{ super() }}
     {# <script src="http://www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script> #}
+        <script src="//players.brightcove.net/3690581438001/BylPHnG8_default/index.min.js"></script>
+
 {% endblock omniture_scripts %}
 
 
@@ -309,7 +326,7 @@
 <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js" defer async></script>
 
 {# For videos #}
-<script language='JavaScript' type='text/javascript' src='https://sadmin.brightcove.com/js/BrightcoveExperiences.js' defer async></script>
+
 
 {# For comments #}
 {# Removed on recommendation from Andrew Baltazar. #}

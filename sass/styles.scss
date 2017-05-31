@@ -63,6 +63,7 @@ $header-bg-color:$trib-gray4;
 @import 'credits';
 @import 'graphic-embed';
 @import 'header-video';
+@import 'videos';
 // @import 'day1_header';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
@@ -76,27 +77,7 @@ $header-bg-color:$trib-gray4;
 	@include river_narrow($narrow-river-max-width);
 }
 
-.video{
-	margin:0 0 25px 0;
-	width: 100%;
 
-	&__headline{
-		@include label7();
-		margin: 0 0 10px 0;
-	}
-
-	&__wrapper{
-		@include responsive_embed(16, 9, 0);
-		background: #eee;
-		object{
-			position: absolute;
-			top:0;
-			left:0;
-			height:100%;
-			width:100%;
-		}
-	}
-}
 
 #lookup iframe{
 	// iframe is cutting off the very bottom of lookup. This visual hack smooths over that wrinkle.
@@ -277,18 +258,6 @@ $header-bg-color:$trib-gray4;
 		margin-bottom:25px;
 	}
 	
-
-	.video.video--right{
-		width: $notched_width + $notched_video_add_on;
-	    float: right;
-	    margin: 0 #{ 0 - $notched_video_add_on } 25px 25px;
-
-    	.video__wrapper{
-			height: ($notched_width + $notched_video_add_on) * .5625;
-			width: $notched_width + $notched_video_add_on;
-			padding:0;	
-		}
-	}
 
 }
 

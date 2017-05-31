@@ -44,7 +44,7 @@
         {% set header = False %}
     {% endif %}
 
-    {{ add_video(s.id, s.link_base_url, add_class, header) }}
+    {{ add_video(s.id, s.link_base_url, add_class, header, s.video_slug) }}
 {% elif type == "pullquote" and s.quote_text and s.quote_attribution %}
     {% if s.quote_attribution_secondary %}
         {% set quote_attribution_secondary = s.quote_attribution_secondary %}
