@@ -54,6 +54,21 @@ function playVideo(video){
     video.play();
 }
 
+// // ACtivate brightcove videos
+// const embeddedVideos = document.querySelectorAll(".video");
+// for (const video of embeddedVideos){
+//     video.addEventListener('click', function(e){
+//         e.preventDefault();
+//         e.stopPropagation();
+
+//         this.querySelector('.video__thumb').style.display = 'none';
+//         this.querySelector('.video__play-icon').style.display = 'none';
+//         this.querySelector('.video__object-wrapper').style.display = 'block';
+        
+//     }, false)
+// }
+
+
 // Listen for the loaded event 
 window.addEventListener('load', function() {  
     
