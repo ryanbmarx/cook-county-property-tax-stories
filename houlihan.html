@@ -33,8 +33,8 @@
 
 {# THE STORY #}
 {% block story %}
-    {% for story in stories[part] %}
+    {%- for story in stories[part] %}
         {% set s = story %}
         {% include '_subtemplates/_story-loop.html' %}
-    {% endfor %}
+    {% endfor -%}
 {% endblock %}
