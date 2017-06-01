@@ -11,8 +11,8 @@
 {% block video_credit %}{{ assessments_video_header_credit }}{% endblock video_credit %}
 
 {# TEXT BLOCKS  #}
-{% block headline %}{{ assessments_headline|process_text() }}{% endblock headline %}
-{% block dek %}{{ assessments_dek|process_text() }}{% endblock dek %}
+{% block headline %}{{ assessments_headline|dumb_to_smart_quotes|process_text() }}{% endblock headline %}
+{% block dek %}{{ assessments_dek|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}

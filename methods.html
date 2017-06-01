@@ -6,7 +6,7 @@
 {% block video_background %}{% endblock video_background %}
 
 {% block headline %}{% endblock headline %}
-{% block dek %}{{ methods_headline|process_text() }}{% endblock dek %}
+{% block dek %}{{ methods_headline|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}

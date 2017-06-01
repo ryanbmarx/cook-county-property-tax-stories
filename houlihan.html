@@ -10,8 +10,8 @@
 {% block video_credit %}{{ houlihan_video_header_credit }}{% endblock video_credit %}
 
 {# TEXT BLOCKS  #}
-{% block headline %}{{ houlihan_headline|process_text() }}{% endblock headline %}
-{% block dek %}{{ houlihan_dek|process_text() }}{% endblock dek %}
+{% block headline %}{{ houlihan_headline|dumb_to_smart_quotes|process_text() }}{% endblock headline %}
+{% block dek %}{{ houlihan_dek|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 
 {% block opengraph_story_specific scoped %}

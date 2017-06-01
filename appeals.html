@@ -11,8 +11,8 @@
 
 {# TEXT BLOCKS  #}
 
-{% block headline %}{{ appeals_headline|process_text() }}{% endblock headline %}
-{% block dek %}{{ appeals_dek|process_text() }}{% endblock dek %}
+{% block headline %}{{ appeals_headline|dumb_to_smart_quotes|process_text() }}{% endblock headline %}
+{% block dek %}{{ appeals_dek|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 
 {% block opengraph_story_specific scoped %}

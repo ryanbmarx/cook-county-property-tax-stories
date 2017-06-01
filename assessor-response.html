@@ -25,7 +25,7 @@
 {% block video_background %}{% endblock video_background %}
 
 {% block headline %}{% endblock headline %}
-{% block dek %}{{ assessor_response_headline|process_text() }}{% endblock dek %}
+{% block dek %}{{ assessor_response_headline|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 {% block byline %}{% endblock byline %}
 

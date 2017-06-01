@@ -14,7 +14,7 @@
 
 {% set type = s.type %}
 {% if type == "text" %}
-    {{ s.content|markdown }}
+    {{ s.content|dumb_to_smart_quotes|markdown }}
 {% elif type == "graphic" and s.graphic_id and s.url %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}
