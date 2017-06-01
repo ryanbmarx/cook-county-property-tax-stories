@@ -439,6 +439,14 @@ def check_if_is_okay_to_publish(photo):
     """
     return True
 
+@blueprint.app_template_filter('strip_whitespace')
+# @jinja2.contextfilter
+def strip_whitespace(text):
+    """
+    Removes leading and trailing whitespace 
+    """
+    return text.strip()
+
 
 
 # Google spreadsheet key

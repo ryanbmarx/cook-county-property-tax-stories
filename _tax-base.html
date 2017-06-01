@@ -23,7 +23,7 @@
   {% if photo|check_if_is_okay_to_publish %}
       <figure class='image {{ add_class }}'>
         <img src='{{ photo.photo_services_url }}/{{ width }}' alt='{{ photo.title }} title='{{ photo.title }}'/>
-        <figcaption> {{ photo.caption|striptags }} ({{ photo.credit }})</figcaption>
+        <figcaption> {{ photo.caption|striptags }} ({{- photo.credit|strip_whitespace -}})</figcaption>
       </figure>
     {% else %}
       <p style='padding:20px;background:red; color:yellow'>Photo (slug: {{ slug }}) is not set to "live"</p>  
@@ -117,14 +117,25 @@
           <i class="fa fa-play-circle-o" aria-hidden="true"></i>
        </button> #}
         <div class='video__object-wrapper'>
+
+
+
         <video data-account="3690581440001"
             data-player="BylPHnG8"
             data-embed="default"
             data-video-id="ref:{{ video['id'] }}"
             data-application-id
+            tabindex="-1" 
             class="video-js"
             controls></video>
-        {# <object id='{{ id }}' class='BrightcoveExperience'>
+        {# 
+
+
+
+<video autoplay="" class="vjs-tech" id="trb_mediamanager_93449722_html5_api" data-embed="default" data-account="3690581440001" data-video-id="ref:93449722" data-player="HyGaz3iJeZ" tabindex="-1" preload="auto" src="blob:http://www.chicagotribune.com/bec5ad6e-6156-4f0f-9876-722f14faf3ed"></video>
+
+
+        <object id='{{ id }}' class='BrightcoveExperience'>
           <param name='bgcolor' value='#FFFFFF' />
           <param name='wmode' value='transparent' />
           <param name='autoStart' value='false' />
