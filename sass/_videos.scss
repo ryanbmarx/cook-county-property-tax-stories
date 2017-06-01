@@ -24,34 +24,10 @@
 			width:100%;
 		}
 	}
-
-	// &__play-icon{
-	// 	display:none;
-	// 	position: absolute;
-	// 	top: 50%;
-	// 	left: 50%;
-	// 	margin: -45px 0 0 -45px;
-	// 	border:none;
-	// 	background:none;
-		
-	// 	i{
-	// 		font-size: 90px;
-	// 		color:$trib-blue2;
-	// 		opacity:.8;
-	// 		transition: opacity 150ms  ease;
-
-	// 		&:hover{
-	// 			transition: opacity 150ms  ease;
-	// 			opacity: 1;
-	// 		}
-	// 	}
-	// }
-	// &__object-wrapper{
-	// 	// display:none;
-	// }
-	// &__thumb{
-	// 	width:100%;
-	// }
+	.vjs-overlay-bottom-right{
+		// This should hide the LAT logo on the player
+		display:none;
+	}
 }
 
 @media all and (min-width: #{$narrow-river-max-width-desktop + 60px}){
