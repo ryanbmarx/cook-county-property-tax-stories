@@ -29,8 +29,8 @@
   {% if display_credit %}
     {% set caption = caption + " (" + photo.credit|striptags|strip_whitespace + ")" %}
   {% endif %}
-      <figure class='image {{ add_class }}'>
-        <img src='{{ photo.photo_services_url }}/{{ width }}' alt='{{ photo.title }} title='{{ photo.title }}'/>
+      <figure class='image image--lazy {{ add_class }}'>
+        <img data-full-res-src='{{ photo.photo_services_url }}/{{ width }}' src='{{ photo.photo_services_url }}/10' alt='{{ photo.title }} title='{{ photo.title }}'/>
         <figcaption>{{ caption }}</figcaption>
       </figure>
     {% else %}

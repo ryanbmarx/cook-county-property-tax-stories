@@ -104,6 +104,13 @@ window.addEventListener('load', function() {
                 });
             }
         })
+    // Also, let's lazyload the images
+    inView('.image--lazy img')
+        .on('enter', el => {
+            const src = el.dataset.fullResSrc;
+            console.log(el.dataset);
+            el.setAttribute('src', src);
+        });
 
     if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.querySelectorAll('.header-video') != null){
         // Prep the pause button, if video is supported and we are not on mobile.
