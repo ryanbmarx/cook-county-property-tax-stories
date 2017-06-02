@@ -13,7 +13,12 @@
 {% endblock byline%}
 
 {% block content %}
-	{% include "_subtemplates/_study.html" %}
+
+	{# {% set url = "http://" + ROOT_URL + "/study-iframe.html" %}
+	{{ add_chart('study', false, url) }}
+ #}
+
+ {% include '_subtemplates/_study.html' %}
 {% endblock %}
 
 {# No comments #}
