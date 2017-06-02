@@ -198,9 +198,19 @@
 
 {% block opengraph scoped %}
   {% set part = part %}
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@chicagotribune" />
+
   <meta property="og:url" content="http://{{ ROOT_URL }}/{{ PATH }}" />
   <meta name="keywords" content="{{ keywords }}">
   {% block opengraph_story_specific scoped %}
+
+    <meta name="twitter:title" content="A Chicago Tribune Investigation" />
+    <meta name="twitter:description" content="{{ og_description }}" />
+    <meta name="twitter:image" content="{{ og_image }}" />
+    <meta name="twitter:image:alt" content="{{ og_image }}" />
+
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:description" content="{{ og_description }}" />
     <meta name="keywords" content="{{ keywords }}">
