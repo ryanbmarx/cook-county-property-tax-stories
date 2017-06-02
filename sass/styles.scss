@@ -168,7 +168,7 @@ $header-bg-color:$trib-gray4;
 .page-footer{
 	@include agate();
 	background:$trib-blue2;
-
+    padding: 10px 0;
 	.nav {
 		list-style-type: none;
 		max-width:90%;
