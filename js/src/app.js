@@ -15,10 +15,7 @@ HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 function isMobile(){
     // returns true if I think we're on mobile.
-    if(window.innerWidth < 850){
-        return true;
-    }
-    return false;
+    return window.innerWidth < 850 ? true : false;
 }
 
 
@@ -109,8 +106,8 @@ window.addEventListener('load', function() {
             el.setAttribute('src', src);
         });
 
-    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.querySelectorAll('.header-video') != null){
-        // Prep the pause button, if video is supported and we are not on mobile.
+    if (!isMobile() && document.createElement('video').canPlayType('video/mp4') != "" && document.querySelectorAll('.header-video').length > 0){
+        // Prep the pause button, if video is supported and we are not on mobile and there is a video header on the page.
         const   play = document.getElementById('play'),
                 pause = document.getElementById('pause'),
                 video = window.innerWidth > 1100 ? document.querySelector('.header-video--large') : document.querySelector('.header-video--small');
@@ -128,9 +125,9 @@ window.addEventListener('load', function() {
                 }
             })
         }
-    // Also, let's kill the video after 30 seconds.
-    var videoKill = setTimeout(function(){
-        pauseVideo(video)
-    }, 30000);
+        // Also, let's kill the video after 30 seconds.
+        var videoKill = setTimeout(function(){
+            pauseVideo(video)
+        }, 30000);
     }
 }, false);
