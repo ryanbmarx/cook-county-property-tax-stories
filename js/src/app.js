@@ -92,12 +92,10 @@ window.addEventListener('load', function() {
     // Let's lazyload the pym
     inView('.chart--lazy')
         .on('enter', el => {
-            console.log('loading', el);
             const   chartContainer = el.querySelector('.graphic-embed'),
                     pymId = chartContainer.id,
                     pymUrl = chartContainer.dataset.iframeUrl;
             if (!pymParents[pymId]){
-                console.log('loading ', pymId);
                 pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
                 pymParents[pymId].onMessage('childLoaded', function() {
                     el.querySelector('.spinner').style.display = 'none'
@@ -108,7 +106,6 @@ window.addEventListener('load', function() {
     inView('.image--lazy img')
         .on('enter', el => {
             const src = el.dataset.fullResSrc;
-            console.log(el.dataset);
             el.setAttribute('src', src);
         });
 
