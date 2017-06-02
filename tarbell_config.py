@@ -446,6 +446,15 @@ def strip_whitespace(text):
     Removes leading and trailing whitespace 
     """
     return text.strip()
+
+@blueprint.app_template_filter('find_inline_link')
+def find_inline_link(words):
+    """
+    Looks for '{{ ROOT URL }}' and return the actual root url
+    """
+    return words.replace('{{ ROOT_URL }}', DEFAULT_CONTEXT['ROOT_URL'])
+
+
 @blueprint.app_template_filter('dumb_to_smart_quotes')
 def dumb_to_smart_quotes(string):
     """
@@ -475,7 +484,7 @@ def dumb_to_smart_quotes(string):
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
 
 # Exclude these files from publication
-EXCLUDES = ['_subtemplates', 'node_scripts', '_storage','storage', '*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
+EXCLUDES = ['out_parsed.txt','out_drive.html','tarbell_config.*', '_subtemplates', 'node_scripts', '_storage','storage', '*.md', 'requirements.txt', 'node_modules', 'sass', 'js/src', 'package.json', 'Gruntfile.js']
 
 # Spreadsheet cache lifetime in seconds. (Default: 4)
 # SPREADSHEET_CACHE_TTL = 4

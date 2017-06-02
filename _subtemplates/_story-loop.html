@@ -14,7 +14,14 @@
 
 {% set type = s.type %}
 {% if type == "text" %}
-    {{ s.content|dumb_to_smart_quotes|markdown }}
+    {% if s.has_inline_link or s.has_inline_link|upper == "TRUE"  %}
+        {% set content = s.content|find_inline_link %}
+    {% else %} 
+        {% set content = s.content %}
+    {% endif %}
+    
+    {{ content|dumb_to_smart_quotes|markdown }}
+    
 {% elif type == "graphic" and s.graphic_id and s.url %}
     {% if s.add_class %}
         {% set add_class = s.add_class %}
