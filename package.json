@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt",
     "watch": "grunt watch",
-    "publish": "tarbell publish",
+    "publish": "tarbell publish"
   },
   "repository": {
     "type": "git",

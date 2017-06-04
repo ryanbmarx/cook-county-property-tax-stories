@@ -5,19 +5,7 @@ module.exports = function(grunt) {
   // etc.
   // You'll also have to install them using a command similar to:
   //     npm install --save jquery
-  var VENDOR_LIBRARIES = [
-    // 'jquery',
-    // 'pym.js',
-    // 'in-view',
-    'd3',
-    'd3-pre',
-    'd3-queue',
-    // 'd3-svg-annotation',
-    'textures',
-    // 'swiper',
-    // 'in-view'
-
-  ];
+  var VENDOR_LIBRARIES = [];
 
   config.browserify = {
     options: {
