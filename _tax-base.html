@@ -229,12 +229,12 @@
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
         {% block video_background %}
-          <div style='background:url(img/posters/{{ self.video_poster() }}) center center no-repeat;background-size:cover;' class='story-header__display'>
+          <div style='background:url(img/posters/{{ self.video_poster() }}--small.jpg) center center no-repeat;background-size:cover;' class='story-header__display'>
             <div class='story-header__video'>
             {% for size in ["small", "large"] %}
               {# Two sizes so larger screens can get larger displays #}
               <video class='header-video header-video--{{ size }}' autoplay muted loop 
-                poster='img/posters/{% block video_poster %}{% endblock video_poster %}'
+                poster='img/posters/{% block video_poster %}{% endblock video_poster %}--{{ size }}.jpg'
                 style='width:100%;'>
                 {# There are several different sources. Each day should use the same filename #}
                 <source src="http://{{ ROOT_URL }}/img/videos/{% block video_file_name %}{% endblock video_file_name %}--{{ size }}.webm" type="video/webm">
