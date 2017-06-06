@@ -25,7 +25,8 @@ module.exports = function(grunt) {
               map: 'app.min.js.map',
               output: './js/app.min.js.map'
             }
-          ]
+          ],
+          ["babel-plugin-transform-object-assign"]
         ],
         transform: [
           [

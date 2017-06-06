@@ -1,3 +1,4 @@
+import "babel-polyfill";
 const inView = require('in-view');
 const pym = require('pym.js');
 // const boot = require('bootstrap.js');
