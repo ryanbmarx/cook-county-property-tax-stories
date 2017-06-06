@@ -118,7 +118,7 @@
 {% endmacro %}
 
 {% macro add_video(id, link_base_url, addon_class="", header, video_slug) %}
-
+  
     {% set video = get_p2p_content_item(video_slug) %}
     {# {{ video }} #}
     {# <img src="{{ photo['alt_thumbnail_url']|format_video_thumb }}" /> #}
