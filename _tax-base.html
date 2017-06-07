@@ -113,7 +113,7 @@
     {% endif %}
     <div class='chart chart--{{ id }} {{ class }}'>      
         <div id='{{ id }}' class='graphic-embed' data-iframe-url='{{ url }}'></div>
-        {% include "_subtemplates/_loading-spinner.html" %}
+        {# {% include "_subtemplates/_loading-spinner.html" %} #}
     </div>
 {% endmacro %}
 
@@ -310,13 +310,14 @@
       {% set part = part %}
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
-    {% block solid_opinion_comments %}
-    {% include '_subtemplates/_solid-opinion-comments.html'%}
-   {#  {% block methods scoped %}
-      {% set part = part %}
-      {% include '_subtemplates/_methodologies.html' %}      
-    {% endblock methods %} #}
-    <div data-trb-thirdpartynav></div>
+    {% block solid_opinion_comments scoped %}
+      {% if part != "assessments" %}
+        {% set part = part + "--tax-comments" %}
+        {% else %}
+        {% set part = "very-important-story" %}
+      {% endif %}
+      {% include '_subtemplates/_solid-opinion-comments.html'%}
+      <div data-trb-thirdpartynav></div>
     {% endblock solid_opinion_comments %}
 {% endblock content %}
 
@@ -335,8 +336,8 @@
 
 {% block meta %}
     {{ super() }}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-{% endblock meta %}
+{#     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+ #}{% endblock meta %}
 
 
 
@@ -352,7 +353,7 @@
 {% block omniture_scripts %}
     {{ super() }}
     {# <script src="http://www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script> #}
-        <script src="//players.brightcove.net/3690581438001/BylPHnG8_default/index.min.js"></script>
+    <script src="//players.brightcove.net/3690581438001/BylPHnG8_default/index.min.js"></script>
 
 {% endblock omniture_scripts %}
 
@@ -362,6 +363,7 @@
 
 {% block library_scripts %}
   {% include '_subtemplates/_omniture_header_scripts.html' %}
+
   {# <script src="//media.apps.chicagotribune.com/bootstrap/v3.1.1/js/bootstrap.min.js"></script> #}
   {# <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> #}
   {# <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> #}
@@ -377,8 +379,8 @@
 
 {# For comments #}
 {# Removed on recommendation from Andrew Baltazar. #}
-{# <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script>
-<script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script> #}
+{# <script type="text/javascript" src="//ssor.tribdss.com/reg/tribune/chinews-static.min.js" defer async></script> #}
+{# <script type="text/javascript" src="//www.tribdss.com/meter/ctcngux.min.js" defer async></script> #}
 
 {# For some of the JS I wrote, I need this. #}
 <script type="text/javascript">
@@ -389,3 +391,7 @@
 
 {% block shim %}{% endblock shim %}
 
+{% block paywall %}
+<script src="http://ssor.tribdss.com/reg/tribune/chinews-apps.min.js"></script>
+{# <script src="http://www.tribdss.com/meter/chinews-apps.min.js"></script> #}
+{% endblock paywall %}
