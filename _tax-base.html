@@ -295,15 +295,8 @@
         </div>
       </section>
     {% endblock story_header %}
-    
         <div class="container" itemprop="articleBody">
-          {# <div class="row"> #}
-            {# <div class="col-md-12"> #}
-              <div class='river--narrow'>
-              {% block story %}{% endblock story %}
-              </div>
-            {# </div> #}
-          {# </div> #}
+          <div class='river--narrow'>{% block story %}{% endblock story %}</div>
         </div>
         </article>
     {% block credits scoped %}
@@ -311,6 +304,10 @@
       {% include '_subtemplates/_credits.html' %}      
     {% endblock credits %}
     {% block solid_opinion_comments scoped %}
+      {#  The comments require a unique id in the data-attribute, so we'll fashion one 
+          using the part variable, but since we launched with the FPO "very important story" for all installments, we'll leave it in place for part1. That way the comments already posted are 
+          preserved there.
+      #}
       {% if part != "assessments" %}
         {% set part = part + "--tax-comments" %}
         {% else %}
