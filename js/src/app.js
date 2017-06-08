@@ -1,4 +1,4 @@
-import "babel-polyfill";
+// import "babel-polyfill";
 const inView = require('in-view');
 const pym = require('pym.js');
 // const boot = require('bootstrap.js');
@@ -7,23 +7,12 @@ const pym = require('pym.js');
 // THIS APP.JS ONLY IS FOR CODE NEEDED FOR ALL STORIES!
 // -------------------------------------------------------------------
 
-// This allows iteration over an HTMLCollection (as I've done in setting the checkbutton event listeners,
-// as outlined in this Stack Overflow question: http://stackoverflow.com/questions/22754315/foreach-loop-for-htmlcollection-elements
-NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-HTMLCollection.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-
-// TODO: Lazyload pym
 
 function isMobile(){
     // returns true if I think we're on mobile.
     return window.innerWidth < 850 ? true : false;
 }
 
-
-function removeSpinner(id){
-    const spinner = document.querySelector(`#${id} + .spinner`);
-    spinner.parentNode.removeChild(spinner);
-}   
 
 if (document.getElementById('comments-button')){
     // If there is a comments button, then init comments on click. Otherwise, skip it. the sidebars 
@@ -52,35 +41,32 @@ function playVideo(video){
     video.play();
 }
 
-// // ACtivate brightcove videos
-// const embeddedVideos = document.querySelectorAll(".video");
-// for (const video of embeddedVideos){
-//     video.addEventListener('click', function(e){
-//         e.preventDefault();
-//         e.stopPropagation();
-
-//         this.querySelector('.video__thumb').style.display = 'none';
-//         this.querySelector('.video__play-icon').style.display = 'none';
-//         this.querySelector('.video__object-wrapper').style.display = 'block';
-        
-//     }, false)
-// }
-
-
 // Listen for the loaded event 
 window.addEventListener('load', function() {  
     
+    // Start by working around the dumb chrome bug that doesn't allow you to link to an ID on the page.
+    // https://stackoverflow.com/questions/38588346/anchor-a-tags-not-working-in-chrome-when-using
+    
+        const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if (window.location.hash && isChrome) {
+            setTimeout(function () {
+                var hash = window.location.hash;
+                window.location.hash = "";
+                window.location.hash = hash;
+            }, 300);
+        }
+
     // First, let's load the not lazy graphics
     let pymParents = {};
 
     const graphics = document.querySelectorAll(".chart:not(.chart--lazy) .graphic-embed");
     
-    for (var graphic of graphics){
-        const   pymId = graphic.id,
+    for (var graphicCounter = 0; graphicCounter < graphics.length; graphicCounter++){
+        const   graphic = graphics[graphicCounter],
+                pymId = graphic.id,
                 pymUrl = graphic.dataset.iframeUrl;
-
-        pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
-        pymParents[pymId].onMessage('childLoaded', graphic.parentNode.querySelector('.spinner').style.display = 'none');
+        
+            pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
     }
     
     // Let's set our lazyload offset to 200px. The iframe should be loaded once it's 200px frmo being seen.
@@ -95,9 +81,6 @@ window.addEventListener('load', function() {
                     pymUrl = chartContainer.dataset.iframeUrl;
             if (!pymParents[pymId]){
                 pymParents[pymId] = new pym.Parent(pymId, pymUrl, {});
-                pymParents[pymId].onMessage('childLoaded', function() {
-                    el.querySelector('.spinner').style.display = 'none'
-                });
             }
         })
     // Also, let's lazyload the images
@@ -117,7 +100,8 @@ window.addEventListener('load', function() {
         pause.classList.add('video-control--visible');
     
         const controlButtons = document.querySelectorAll('.video-control');
-        for (var button of controlButtons){
+        for (var buttonCounter= 0; buttonCounter < controlButtons.length; buttonCounter++){
+            let button = controlButtons[buttonCounter];
             button.addEventListener('click', function(e){    
                 if (e.target.id == "play"){
                     playVideo(video)
