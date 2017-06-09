@@ -171,6 +171,25 @@ AML Example:
     close_river: <True/False> (optional)
 
 
+HOW DO I ADD STORIES?
+---------------------
+
+As mentioned before, the content is organized by using a variable/label/part name. For isntance all content related to part 1 uses the keyword "assessments." This is how the story is pulled from the archieml. This is how the headlines, seo descriptions and other sundry items are pulled from the spreadsheet, and this is part of the story's url. It's also what creates a new batch of comments. Therefore, the first thing you should do is pick the part name. 
+
+The name should be very representative to the content of the story. Next, copy the template from one of the existing stories and rename it `<part>.html`, where `<part>` is the name you just chose. 
+
+Next, add the story text to the ArchieML. You can follow the patterns demonstrated in the previous stories for the various assets, but the first thing you will need is a header `[stories.<part>]` to create the new installment inside the ArchieML.
+
+When you open up the template, you'll see a line that says `{% set part = "XXX" %}`. Set it to your chosen `<part>`. You'll also need to, for each new story, do these things:
+    
+    - Put properly-named video files and poster image into the img folder for the scrolling header.
+    - Create, in the spreadsheet, entries for the poster image alt text and scrolling video caption/credits.
+    - Create entries in the spreadsheet for headline, dek, og_descriptions (facebook, etc.), seo description, tweets and the desired social media thumbnail for the project (paste a tribimg.com url for the photo into the spreadsheet.) It would be good to look at the collection of text for previous stories to see what is needed.
+    - Each of these items has corresponding entries on the story template. Be sure that the part name matches in each variable used.
+    - Update the byline by using the `add_author()` macro. It takes the author's name and email address as arguments. Multiple authors should be seperated by commas.
+    - Update the nav elements in the "navbar_elements" tab in the spreadsheet. This will populate both the sticky nav bar at the top and the larger box at the end of each story.
+    - To reiterate, you don't need to do anything to pull in the story content besides loading it into the Google Doc (not spreadsheet) and setting the part variable.
+
 Assumptions
 -----------
 
