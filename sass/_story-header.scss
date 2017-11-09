@@ -214,6 +214,10 @@
 			border-radius: 3px;
 			transition: background 200ms;
 			cursor:pointer;
+			
+		    box-sizing: border-box;
+			min-width: 90px;
+			text-align: center;
 
 			&:hover, &:focus{
 				background: rgba(white, .9);
@@ -237,7 +241,8 @@
 			height: 500px;
 			overflow:hidden;
 			margin-bottom:25px;
-			padding: 25px;
+			padding: 50px;
+			box-sizing: border-box;
 		}
 
 		&__caption{
@@ -267,8 +272,8 @@
 		&__video-controls{
 		// display:block;
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 15px;
+		right: 15px;
 		display:block;
 		}
 	}
@@ -309,10 +314,6 @@
 				// max-width: 500px;
 				margin: 0 auto 10px auto;
 			}
-
-			// .story-header__subheadline {
-			// 	font-size: 23px;
-			// }
 		}
 	}
 }
