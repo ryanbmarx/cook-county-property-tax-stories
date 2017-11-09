@@ -2,7 +2,7 @@
 
 
 {# THIS MATTERS MOST. IT CHANGES WHICH STUFF GETS PULLED IN #}
-{% set part = 'commercial' %}
+{% set part = 'assessments' %}
 
 {# VIDEO BLOCKS #}
 {% block video_poster %}{{ part }}{% endblock video_poster %}
@@ -13,25 +13,26 @@
 {# TEXT BLOCKS  #}
 {% block headline %}{{ assessments_headline|dumb_to_smart_quotes|process_text() }}{% endblock headline %}
 {% block dek %}{{ assessments_dek|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
+
 {% block byline %}
     {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
 {% endblock byline%}
 
 {% block opengraph_story_specific scoped %}
-    <meta property="og:title" content="{{ title }} | {{ commercial_headline }}" />
-    <meta property="og:description" content="{{ commercial_og_description }}" />
-    <meta property="og:image" content="{{ commercial_thumb }}" />
-    <meta name="description" content="{{ commercial_seo_description }}" />
+    <meta property="og:title" content="{{ title }} | {{ assessments_headline }}" />
+    <meta property="og:description" content="{{ assessments_og_description }}" />
+    <meta property="og:image" content="{{ assessments_thumb }}" />
+    <meta name="description" content="{{ assessments_seo_description }}" />
 
-    <meta name="twitter:title" content="{{ title }} | {{ commercial_headline }}" />
-    <meta name="twitter:description" content="{{ commercial_og_description }}" />
-    <meta name="twitter:image" content="{{ commercial_thumb }}" />
-    <meta name="twitter:image:alt" content="{{ commercial_thumb_alt_text }}" />
+    <meta name="twitter:title" content="{{ title }} | {{ assessments_headline }}" />
+    <meta name="twitter:description" content="{{ assessments_og_description }}" />
+    <meta name="twitter:image" content="{{ assessments_thumb }}" />
+    <meta name="twitter:image:alt" content="{{ assessments_thumb_alt_text }}" />
 {% endblock opengraph_story_specific %}
 
 {# SOCIAL MEDIA BUTTONS #}
-{% block tweet %}{{ commercial_twitter|urlencode }}{% endblock tweet %}
-{% block facebook %}{{ commercial_og_description|urlencode }}{% endblock facebook %}
+{% block tweet %}{{ assessments_twitter|urlencode }}{% endblock tweet %}
+{% block facebook %}{{ assessments_og_description|urlencode }}{% endblock facebook %}
 
 {% block story %}
     {%- for story in stories[part] %}
