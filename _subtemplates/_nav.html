@@ -17,7 +17,7 @@
             {% set highlight_class = '' %}
           {% endif %}
           <li>
-            <a href='{{ element.url }}' class='nav-button {{ highlight_class }}'>{{ element.prefix }}</a>
+            <a href='{{ element.url }}' class='nav-button {{ highlight_class }}'>{{ element.prefix }}: {{ element.headline }}</a>
           </li>
         {% endfor %}
         </ul>         
@@ -26,7 +26,7 @@
         {# <p class="navbar__title" >{{ title }}</p> #}
         {% for element in navbar_elements|sort(attribute='order') if element.show_in_navbar == 1 and element.part == part%}
             {% set highlight_class = 'navbar__top-button--highlight'%}
-            <li class='navbar__top-button {{ highlight_class }}'>{{ element.prefix }}</li>
+            <li class='navbar__top-button {{ highlight_class }}'>{{ element.prefix }}: {{ element.headline }}</li>
         {% endfor %}
     </ul>
     <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
