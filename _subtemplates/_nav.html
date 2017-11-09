@@ -22,15 +22,15 @@
         {% endfor %}
         </ul>         
     </div>
-    <ul class='navbar__top-buttons'>
+    {# <ul class='navbar__top-buttons'> #}
         {# <p class="navbar__title" >{{ title }}</p> #}
         {% for element in navbar_elements|sort(attribute='order') if element.show_in_navbar == 1 and element.part == part%}
-            {% set highlight_class = 'navbar__top-button--highlight'%}
-            <li class='navbar__top-button {{ highlight_class }}'>
+            
+            <button class='navbar__top-button navbar__top-button--highlight'>
               <span class='navbar__prefix'>{{ element.prefix }}</span>{{ element.headline }}
-            </li>
+            </button>
         {% endfor %}
-    </ul>
+    {# </ul> #}
     <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
       <a class="navbar__logo" href="http://www.chicagotribune.com" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
         <img src="img/chicago-tribune-logo.svg" title="Chicago Tribune" alt="Chicago Tribune" />
