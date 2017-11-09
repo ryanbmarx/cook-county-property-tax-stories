@@ -28,6 +28,10 @@
 	}
 }
 
+@mixin display-text($type){
+	@include display-type($type);
+}
+
 @keyframes bounce {
     0% { transform: translate(0,0); }
     50% { transform: translate(0,-0.2em); }

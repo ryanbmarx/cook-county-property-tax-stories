@@ -11,7 +11,7 @@ $tablet-min-width:450px;
 $desktop-min-width:850px;
 
 $ad_leaderboard_height: 95px + 15px + 15px; // Just measured div height, margins
-$nav_height: 51px;
+// $nav_height: 51px;
 $narrow-river-max-width-desktop: 650px;
 $narrow-river-max-width: 450px;
 $map-width: 600px;
@@ -19,6 +19,14 @@ $notched_width: 350px;
 $notched_video_add_on: 100px;
 $header-bg-color:$trib-gray4;
 
+
+// NAVBAR CONFIG
+$nav_height: 40px;
+$nav_padding_v: 10px;
+$nav_padding_h: 25px;
+$space_between_mobile_buttons: 15px;
+$logo_width: 170px;
+$nav_background_color:$trib-blue2;
 
 // ---- ADD MORE VARIABLES HERE ---------------------------------------------
 
