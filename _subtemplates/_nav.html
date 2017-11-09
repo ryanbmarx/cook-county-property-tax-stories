@@ -26,7 +26,9 @@
         {# <p class="navbar__title" >{{ title }}</p> #}
         {% for element in navbar_elements|sort(attribute='order') if element.show_in_navbar == 1 and element.part == part%}
             {% set highlight_class = 'navbar__top-button--highlight'%}
-            <li class='navbar__top-button {{ highlight_class }}'>{{ element.prefix }}: {{ element.headline }}</li>
+            <li class='navbar__top-button {{ highlight_class }}'>
+              <span class='navbar__prefix'>{{ element.prefix }}</span>{{ element.headline }}
+            </li>
         {% endfor %}
     </ul>
     <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">

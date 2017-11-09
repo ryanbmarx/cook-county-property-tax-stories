@@ -31,6 +31,15 @@
 		box-sizing:border-box;
 
 	}
+	
+	&__prefix{
+	    font-family: "Arial", sans-serif;
+	    font-size: 0.7em;
+	    padding: 0 10px 0 0;
+	    margin: 0 10px 0 0;
+	    display: inline-block;
+	    border-right: 1px solid white;
+	}
 
 	&__highlight{
 		display:none;
@@ -231,13 +240,16 @@
 	.navbar__top-button{
 		@include display_text(serif);
 		font-size: 20px;
-		display:block;
+		// display:block;
 		// padding: 10px;
 		text-decoration: none;
 		text-align:center;
 		color:white;
 		flex: 1;
 
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 }
