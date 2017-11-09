@@ -139,7 +139,7 @@
 
     position: absolute;
     left: -400px;
-    top: $nav_height + $nav_padding_v * 2;
+    top: $nav_height + $nav_padding_v;
     
 	background:$nav_background_color;
 	opacity:0;
@@ -153,7 +153,7 @@
 
 }
 
-.nav-buttons-wrapper--visible{
+.nav-buttons-wrapper--active{
 	left:0;
 	opacity:1;
 	transition:opacity 400ms ease, left 400ms ease;		
@@ -196,6 +196,14 @@
 		padding: 25px 0;
 		border-radius: 5px;
 		text-decoration:none;
+		transition: all 150ms ease;
+
+		&:hover, &:focus{
+			color:white;
+			text-decoration:none;
+			transition: all 150ms ease;
+			background: rgba(white,.5);
+		}
 	}
 
 

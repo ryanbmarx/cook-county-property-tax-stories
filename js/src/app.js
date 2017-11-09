@@ -25,6 +25,7 @@ if (document.getElementById('comments-button')){
 
 // Hide/show the mobile navigation menu
 document.getElementById('mobile-nav-toggle').addEventListener('click', function(e){
+    console.log('mobile nav click');
 	const mobileNavButton = document.getElementById('nav-buttons-wrapper');
 	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
 }, false);
