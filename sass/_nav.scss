@@ -12,6 +12,13 @@
 	left: 0;
 	width: 100%;
     z-index: 10000;
+    box-sizing:border-box;
+
+	height: $nav_height;
+	border: none;
+	padding: 0;
+	margin: 0;
+
 
 	&__inner{
 		padding: $nav_padding_v $nav_padding_h;
@@ -20,7 +27,8 @@
 		justify-content: flex-start;
 		max-width: 1500px;
 		margin: 0 auto;
-		height: $nav_height;
+		height: 100%;
+		box-sizing:border-box;
 
 	}
 
@@ -221,36 +229,17 @@
 	}
 
 	.navbar__top-button{
+		@include display_text(serif);
+		font-size: 20px;
 		display:block;
-		max-width: 150px;
-		text-align: center;
-		background: rgba(white, .4);
-		margin: 0 15px 0 0;
-		padding: 10px;
-	
-		&:last-child{
-			margin: 0;
-		}
-
-		a{
-			@include sans-serif-text(14px, 1em, normal);
-			text-decoration: none;
-			color:white;
-		}
-
-		&--highlight{
-			background: white;
-			color:black;
-
-					a{
-			// @include sans-serif-text(14px, 1em, normal);
-			// text-decoration: none;
-			color:$nav_background_color;
-		}
-		}
-
+		// padding: 10px;
+		text-decoration: none;
+		text-align:center;
+		color:white;
+		flex: 1;
 
 	}
+
 }
 
 @media all and (min-width: 1000px){
