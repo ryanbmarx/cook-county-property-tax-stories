@@ -40,10 +40,8 @@
     {% endfor -%}
 {% endblock %}
 
-{# {% block library_scripts %}
-{% endblock library_scripts %}
- #}
-{# {% block scripts %}
+{% block scripts %}
     {{ super() }}
-    <script src="http://{{ ROOT_URL }}/js/day1header.min.js"></script>
-{% endblock %} #}
+    {# ProPublica’s [PixelPing](https://www.propublica.org/pixelping) is a small snippet of javascript code that we ask publishers to include in the stories we publish together (or that they republish under our Creative Commons license) to let us know how much traffic our story has received.  #}
+    <script type="text/javascript" src="https://pixel.propublica.org/pixel.js" async="true"></script>
+{% endblock scripts %}
