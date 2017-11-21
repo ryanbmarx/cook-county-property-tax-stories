@@ -281,6 +281,18 @@ def dumb_to_smart_quotes(string):
     string = re.sub(r'=&#8216;(.*?)&#8217;', r"='\1'", string)
     return string
 
+
+@blueprint.app_template_filter('show_note')
+@jinja2.contextfilter
+def show_note(context, part):
+    # Pull content from the spreadsheet by concatenating it's key using "part"
+    try:
+        return context[part + '_credits_note']
+    except KeyError:
+        return False
+    # print(part, context['appeals_credits_note'], type(context['appeals_credits_note']))
+
+
 # Google spreadsheet key
 SPREADSHEET_KEY = "1CDBifEOKDp5wc-uZjRDJlYTuiSvNE2pdbDNd2OPusyY"
 

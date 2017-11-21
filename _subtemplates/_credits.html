@@ -8,9 +8,11 @@
 		{% endif %}
 	{%- endfor -%}
 {% endmacro %}
-
 <section id='credits' class='credits'>
-	<h2 class='credits__header'>{{ title }}</h2>	
+	<h2 class='credits__header'>{{ title }}</h2>
+	
+	{% set credits_note = part|show_note %}
+	{% if credits_note %}<p class='credits__note'>{{ credits_note }}</p>{% endif %}
 	<div class='credits__column credits__column--links'>
 		<ul class='credits__story-links'>
 			{% set this_is_up_next = False %}
@@ -47,6 +49,10 @@
 			<dt>{{ role.label|upper }}</dt>	
 			<dd>{{ add_people(role.id|upper) }}</dd>
 		{%- endfor -%}
+		{% if credits_note %}
+			<dt>{{ pro_publica_name }}</dt>	
+			<dd>{{ add_people("PRO_PUBLICA") }}</dd>
+		{% endif %}
 		</dl>
 	</div>
 </section>

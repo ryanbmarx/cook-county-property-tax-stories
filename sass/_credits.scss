@@ -27,7 +27,16 @@ $credit_padding: 15px;
 	display:flex;
 	flex-wrap:wrap;
 	justify-content:center;
+	
 
+	&__note{
+		font-style: italic;
+		text-align:center;
+		font-size: 14px;
+		width: 100%;
+	    padding: 0 calc(50% - 300px);
+	    box-sizing: border-box;
+	}
 }
 
 .credits__header{
@@ -63,6 +72,7 @@ $credit_padding: 15px;
 		@include agate();
 		font-weight: bold;
 		margin: 0 0 5px 0;
+		text-transform: uppercase;
 	}
 
 	dd{
