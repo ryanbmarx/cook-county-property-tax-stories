@@ -290,7 +290,15 @@ def show_note(context, part):
         return context[part + '_credits_note']
     except KeyError:
         return False
-    # print(part, context['appeals_credits_note'], type(context['appeals_credits_note']))
+
+@blueprint.app_template_filter('fetch_keywords')
+@jinja2.contextfilter
+def fetch_keywords(context, part):
+    # Pull content from the spreadsheet by concatenating it's key using "part"
+    try:
+        return context[part + '_seo_keywords']
+    except KeyError:
+        return context['default_seo_keywords']
 
 
 # Google spreadsheet key

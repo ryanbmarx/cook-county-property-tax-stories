@@ -169,6 +169,7 @@
   <meta name="twitter:creator" content="@jasongrotto" />
 
   <meta property="og:url" content="http://{{ ROOT_URL }}/{{ PATH }}" />
+  {% set keywords = part|fetch_keywords %}
   <meta name="keywords" content="{{ keywords }}">
   {% block opengraph_story_specific scoped %}
 
