@@ -252,7 +252,7 @@
                     </li>
                 </ul>
                 <div class='byline'>
-                  <p class='byline-name'>By {% block byline %}{% endblock byline%}</p>
+                  {% block byline %}{% endblock byline%}
                   <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %d, %Y") }}</time>
                 </div>
               </div>
@@ -309,7 +309,7 @@
     {# <script>brightcove.createExperiences();</script> #}
 {% endblock scripts %}
 
-{% block chartbeat %}
+{% block chartbeat scoped%}
     <script type='text/javascript'>
     var _sf_async_config = _sf_async_config || {};
     /** CONFIGURATION START **/
@@ -349,10 +349,11 @@
 {% block omniture %}
 {% endblock omniture %}
 
-{% block library_scripts %}
+{% block library_scripts scoped%}
+
   <script type="text/javascript">
     ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
-            pageName: 'ct:apps:news:cook-county-property-taxes:articleproject.',
+            pageName: 'ct:apps:news:cook-county-property-taxes-{{ part }}:articleproject.',
             channel: 'news',
             server: 'apps.chicagotribune.com',
             hier1: 'chicagotribune:news',
