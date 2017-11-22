@@ -110,6 +110,22 @@
 		z-index:1000;
 	}
 	
+	.author{
+		&__name{
+			@include serif-text(18px, 1.3em, normal);
+			margin: 0 0 5px 0;
+		}
+		[itemprop='author']{
+			color:$trib-blue2;
+		}
+
+		&__tag{
+			@include sans-serif();
+			margin: 0 0 15px 0;
+		}
+
+	}
+
 	.byline-name{
 		@include serif-text(18px, 1.3em, normal);
 		margin: 0 0 5px 0;
@@ -129,6 +145,7 @@
 		text-transform: uppercase;
 		display:block;
 		margin:0;
+		color: $trib-gray3;
 	}
 
 }

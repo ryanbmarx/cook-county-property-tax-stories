@@ -1,6 +1,22 @@
 {% extends "_tax-base.html" %}
 
 
+{# 
+
+{% macro add_author(name, email) %}
+  <a itemprop="author" {% if email %}href="mailto:{{- email -}}?subject=Regarding: {{ overall_project_title }}"{% endif %}>{{- name -}}</a>
+{% endmacro%}
+ #}
+
+{% macro add_propub_author(prefix, name, email, tag) %}
+    {% set subject = "Regarding: The Tax Divide" %}
+    <div class='author'>
+  <p class='author__name'>{{ prefix }} <a itemprop="author" {% if email %}href="mailto:{{- email -}}?subject={{ subject|urlencode }}"{% endif %}>{{- name -}}</a></p>
+    <p class='author__tag'>{{ tag }}</p>
+</div>
+{% endmacro %}
+
+
 {# THIS MATTERS MOST. IT CHANGES WHICH STUFF GETS PULLED IN #}
 {% set part = 'commercial' %}
 
@@ -14,7 +30,18 @@
 {% block headline %}{{ commercial_headline|dumb_to_smart_quotes|process_text() }}{% endblock headline %}
 {% block dek %}{{ commercial_dek|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 {% block byline %}
-    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com")|trim }}
+{# 
+Reported and written by Jason Grotto
+Chicago Tribune/ProPublica Illinois
+ 
+With data reporting by Sandhya Kambhampati
+ProPublica Illinois #}
+    
+    {{ add_propub_author("Reported and written by", "Jason Grotto", "jason.grotto@propublica.org", "Chicago Tribune/ProPublica Illinois")|trim }}
+
+
+    {{ add_propub_author("With data reporting by", "Sandhya Kambhampati", "sandhya@propublica.org", "ProPublica Illinois")|trim }}
+
 {% endblock byline%}
 
 {% block opengraph_story_specific scoped %}
