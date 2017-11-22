@@ -136,52 +136,17 @@
        <h4 class='video__headline'>{{ header }}</h4>
        {% endif %}
        <div class='video__wrapper'>
-       {# <img class='video__thumb' src="{{ video['alt_thumbnail_url']|format_video_thumb }}" /> #}
-{#        <button class='video__play-icon'>
-          <i class="fa fa-play-circle-o" aria-hidden="true"></i>
-       </button> #}
+
         <div class='video__object-wrapper'>
 
-
-
         <video data-account="3690581440001"
-            data-player="BylPHnG8"
+            data-player="S1vBkbMfe"
             data-embed="default"
             data-video-id="ref:{{ video['id'] }}"
             data-application-id
             tabindex="-1" 
             class="video-js"
             controls></video>
-        {# 
-
-
-
-<video autoplay="" class="vjs-tech" id="trb_mediamanager_93449722_html5_api" data-embed="default" data-account="3690581440001" data-video-id="ref:93449722" data-player="HyGaz3iJeZ" tabindex="-1" preload="auto" src="blob:http://www.chicagotribune.com/bec5ad6e-6156-4f0f-9876-722f14faf3ed"></video>
-
-
-        <object id='{{ id }}' class='BrightcoveExperience'>
-          <param name='bgcolor' value='#FFFFFF' />
-          <param name='wmode' value='transparent' />
-          <param name='autoStart' value='false' />
-          <param name='sectionName' value ='/news/watchdog' />
-          <param name='contentItemType' value ='embed' />
-          <param name='omnitureServer' value='' />
-          <param name='omnitureAcct' value='' />
-          <param name='playerID' value='3688749019001' />
-          <param name='playerKey' value='AQ~~,AAADW0fLtgE~,MIfKkt0NgAvSglhcwVIGmENcE3304kfQ' />
-          <param name='adServerURL' value='' />
-          <param name='additionalAdTargetingParams' value='' />
-          <param name='externalAds' value='true' />
-          <param name='linkBaseURL' value='{{ link_base_url }}' />
-          <param name='isVid' value='true' />
-          <param name='isUI' value='true' />
-          <param name='swliveconnect' value='true' />
-          <param name='dynamicStreaming' value='true' />
-          <param name='showNoContentMessage' value='true' />
-          <param name='secureConnections' value='true' />
-          <param name='secureHTMLConnections' value='true' />
-          <param name='@videoPlayer' value='ref:{{ video_player_ref }}' />
-        </object> #}
     </div>
     </div>
     </div>
@@ -374,7 +339,8 @@
 {% block omniture_scripts %}
     {{ super() }}
     {# <script src="http://www.chicagotribune.com/thirdpartyservice?disablenav=true" async></script> #}
-    <script src="//players.brightcove.net/3690581438001/BylPHnG8_default/index.min.js"></script>
+    <script src="//players.brightcove.net/3690581440001/S1vBkbMfe_default/index.min.js"></script>
+
 
 {% endblock omniture_scripts %}
 
@@ -412,8 +378,6 @@
 
 {# For the adverts #}
 <script src="//media.apps.chicagotribune.com/ads/v2.1.4/ads.min.js" defer async></script>
-
-{# For videos #}
 
 
 {# For comments #}
