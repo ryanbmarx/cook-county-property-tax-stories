@@ -1,0 +1,24 @@
+{% extends "_tax-base.html" %}
+
+{% set part = 'methods_commercial' %}
+
+{# Clear out the video backgorund block #}
+{% block video_background %}{% endblock video_background %}
+
+{% block headline %}{% endblock headline %}
+{% block dek %}{{ methods_commercial_headline|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
+
+{% block byline %}
+    {{ add_author("TKTKTKTKTKTKT", "jgrotto@chicagotribune.com") }}
+{% endblock byline%}
+
+{% block story %}
+    {%- for story in stories[part] %}
+        {% set s = story %}
+        {% include '_subtemplates/_story-loop.html' %}
+    {% endfor -%}
+
+{% endblock %}
+
+{# No comments #}
+{% block solid_opinion_comments %}{% endblock solid_opinion_comments %}
