@@ -29,11 +29,15 @@ document.getElementById('mobile-nav-toggle').addEventListener('click', function(
 	mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
 }, false);
 
-// Hide/show the mobile navigation menu
-document.querySelector('.navbar__top-button').addEventListener('click', function(e){
-    const mobileNavButton = document.getElementById('nav-buttons-wrapper');
-    mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
-}, false);
+// Hide/show the mobile navigation menu.
+// We need to check if there is a top button, first.
+const navbarTopButton = document.querySelector('.navbar__top-button');
+if (navbarTopButton != null){
+    document.querySelector('.navbar__top-button').addEventListener('click', function(e){
+        const mobileNavButton = document.getElementById('nav-buttons-wrapper');
+        mobileNavButton.classList.toggle('nav-buttons-wrapper--active');
+    }, false);
+}
 
 
 function pauseVideo(video){
