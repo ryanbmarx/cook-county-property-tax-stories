@@ -9,11 +9,18 @@
     background-image: url(../img/grid_background.svg);
     background-size: 7px;
     margin: 25px 0;
-	text-align:center;
+	// text-align:center;
 	position: relative;
 	
 	&__headline{
 		margin:0 0 7px 0;
+		text-align:center;
+		font-size: 23px;
+	}
+
+	&__blurb{
+		@include serif-text(15px, 1.5em);
+		text-align:center;
 	}
 
 	&__button{
@@ -44,7 +51,7 @@
 		margin: 25px 0;
 
 		.refer__blurb{
-			@include sans-serif-text(14px, 1.3em);
+			// @include serif-text(14px, 1.3em);
 		}
 	}
 }
@@ -105,11 +112,16 @@
 	.refer.refer--right{
 	    max-width: 210px;
 		margin: 3px 0 25px 25px;
-	    
-	    .refer__blurb{
-			@include serif-text(16px, 1.5em);
-	    }
 	}
+
+	
+	.refer__headline{
+		font-size: 30px;
+    }
+
+	.refer__blurb{
+		font-size: 18px;
+    }
 	
 	.refer.refer--steps:after{
 		height: 120%;
