@@ -49,6 +49,15 @@
 	}
 }
 
+.refer.refer--methods_commercial{
+	background-color: rgba($trib-blue2, .05);
+    background-image: none;
+
+	border: 1px solid rgba($trib-blue2, .2);
+	border-radius: 10px;
+
+	.refer__headline{ font-size: 25px;}
+}
 
 
 @media all and (min-width: $tablet-min-width){
