@@ -9,8 +9,12 @@
 {% block dek %}{{ steps_headline|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 {% block byline %}
-    {{ add_author("Jemal R. Brinson", "jbrinson@chicagotribune.com") }}
-    {{ add_author("TKTKTKTKTKTKT", "jgrotto@chicagotribune.com") }}
+    <div class='author'>
+        <p class='author__name'>By <a href="mailto:sandhya@propublica.org?subject='The Tax Divide'">Sandhya Kambhampati</a></p>
+        <p class='author__tag'>ProPublica Illinois</p>
+        <p class='author__name'>and <a href="mailto:jbrinson@chicagotribune.com?subject='The Tax Divide'">Jemal R. Brinson</a></p>
+        <p class='author__tag'>Chicago Tribune</p>
+    </div>
 {% endblock byline%}
 
 {% block story %}
