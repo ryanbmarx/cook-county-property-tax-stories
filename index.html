@@ -19,6 +19,8 @@
         </p>
         <p class='author__tag'>A Chicago Tribune/ProPublica Illinois collaboration</p>
     </div>
+  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
+
 {% endblock byline%}
 
 {% block opengraph_story_specific scoped %}

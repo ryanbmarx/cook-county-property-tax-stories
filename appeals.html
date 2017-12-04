@@ -35,7 +35,8 @@
 
 
 {% block byline %}
-    {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }}
+    {# {{ add_author("Jason Grotto", "jgrotto@chicagotribune.com") }} #}
+    {% include '_subtemplates/_jason-byline.html' %}
 {% endblock byline%}
 
 
