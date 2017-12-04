@@ -224,7 +224,13 @@
             {# <i class="fa fa-arrow-circle-down fa-2x story-header__scrolling-icon" aria-hidden="true"></i> #}
           {% endblock video_background %}
           <div class='story-header__project-title'>
-            <p>Tribune watchdog: <br />{{ title }}</p>
+            
+            {% if part != "commercial" %}
+              {% set title_prefix = "Tribune watchdog: <br />" %}
+            {% else %}
+              {% set title_prefix = "" %}
+            {% endif %}
+            <p>{{ title_prefix|process_text() }}{{ title }}</p>
           </div>
 
           <h2 class='story-header__headline'>
