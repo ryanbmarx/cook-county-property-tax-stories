@@ -169,10 +169,11 @@
   <meta name="twitter:creator" content="@jasongrotto" />
 
   <meta property="og:url" content="http://{{ ROOT_URL }}/{{ PATH }}" />
+  <meta property="og:type" content="article" /> 
   {% set keywords = part|fetch_keywords %}
   <meta name="keywords" content="{{ keywords }}">
   {% block opengraph_story_specific scoped %}
-
+  {# These are generic fallbacks. They can be customized on the story template #}
     <meta name="twitter:title" content="{{ title }}" />
     <meta name="twitter:description" content="{{ og_description }}" />
     <meta name="twitter:image" content="{{ og_image }}" />
