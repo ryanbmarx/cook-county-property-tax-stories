@@ -47,7 +47,11 @@ $credit_padding: 15px;
 	text-align:center;
 }
 
-.credits__column{ width:$column_width; }
+.credits__column{ 
+	// width:$column_width; 
+
+
+}
 
 
 .credits__people{
@@ -112,12 +116,25 @@ $credit_padding: 15px;
 
 
 	.credits__column{
-		&--links { margin-right: 25px; }
+		
+		// The following accounts for when the credits box (not the credits nav) is removed.
+		flex: 1;
+		flex-basis: $column_width; 
+		max-width: 400px;
+
+		// &:first-child + .credits__column{
+		// 	// This targets a `.credits__column` which immediately follows a credits column that is the first child.
+		// 	background: red;
+		// }
+
+		// &--links { margin-right: 25px; }
 		
 		&--people{
-			width:$column_width - (2 * $credit_padding) - 2px;
+			// width:$column_width - (2 * $credit_padding) - 2px;
+			box-sizing:border-box;
 			padding: $credit_padding;
 			border: 1px solid $trib-blue2;
+			margin-left: 25px;
 		}
 
 	}

@@ -33,6 +33,7 @@
 			{%- endfor -%}
 		</ul>
 	</div>
+	{% if not credits_note %}
 	<div class='credits__column credits__column--people'>
 		<dl class='credits__people'>
 	{% set roles = [
@@ -49,10 +50,11 @@
 			<dt>{{ role.label|upper }}</dt>	
 			<dd>{{ add_people(role.id|upper) }}</dd>
 		{%- endfor -%}
-		{% if credits_note %}
+{# 		{% if credits_note %}
 			<dt>{{ pro_publica_name }}</dt>	
 			<dd>{{ add_people("PRO_PUBLICA") }}</dd>
-		{% endif %}
+		{% endif %} #}
 		</dl>
 	</div>
+	{% endif %}
 </section>
