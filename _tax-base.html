@@ -233,7 +233,9 @@
             {% else %}
               {% set title_prefix = "Tribune watchdog: <br />" %}
             {% endif %}
-            <p>{{ title_prefix|process_text() }}{{ title }}</p>
+            <span class='story-header__project-title-inner'>
+              <p>{{ title_prefix|process_text() }}{{ title }}</p>
+            </span>
           </div>
 
           <h2 class='story-header__headline'>
