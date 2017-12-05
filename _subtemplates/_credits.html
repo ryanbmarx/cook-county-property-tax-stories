@@ -34,27 +34,27 @@
 		</ul>
 	</div>
 	{% if not credits_note %}
-	<div class='credits__column credits__column--people'>
-		<dl class='credits__people'>
-	{% set roles = [
-		{"label":'Reporting', "id":"reporting"}, 
-		{"label":'Editing', "id":"editing"}, 
-		{"label":'Photo/Video Editing', "id":"photo_ed"},
-		{"label":'Photos', "id":"photos"}, 
-		{"label":'Graphics', "id":"graphics"}, 
-		{"label":'Videos', "id":"videos"}, 
-		{"label":'Copy Editing', "id":"copy"}, 
-		{"label":'Design', "id":"design"}
-	] %}
-		{%- for role in roles -%}
-			<dt>{{ role.label|upper }}</dt>	
-			<dd>{{ add_people(role.id|upper) }}</dd>
-		{%- endfor -%}
-{# 		{% if credits_note %}
-			<dt>{{ pro_publica_name }}</dt>	
-			<dd>{{ add_people("PRO_PUBLICA") }}</dd>
-		{% endif %} #}
-		</dl>
-	</div>
+		<div class='credits__column credits__column--people'>
+			<dl class='credits__people'>
+		{% set roles = [
+			{"label":'Reporting', "id":"reporting"}, 
+			{"label":'Editing', "id":"editing"}, 
+			{"label":'Photo/Video Editing', "id":"photo_ed"},
+			{"label":'Photos', "id":"photos"}, 
+			{"label":'Graphics', "id":"graphics"}, 
+			{"label":'Videos', "id":"videos"}, 
+			{"label":'Copy Editing', "id":"copy"}, 
+			{"label":'Design', "id":"design"}
+		] %}
+			{%- for role in roles -%}
+				<dt>{{ role.label|upper }}</dt>	
+				<dd>{{ add_people(role.id|upper) }}</dd>
+			{%- endfor -%}
+	{# 		{% if credits_note %}
+				<dt>{{ pro_publica_name }}</dt>	
+				<dd>{{ add_people("PRO_PUBLICA") }}</dd>
+			{% endif %} #}
+			</dl>
+		</div>
 	{% endif %}
 </section>
