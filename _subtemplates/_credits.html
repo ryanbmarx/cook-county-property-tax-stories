@@ -13,26 +13,6 @@
 	
 	{% set credits_note = part|show_note %}
 	{% if credits_note %}<p class='credits__note'>{{ credits_note }}</p>{% endif %}
-	<div class='credits__column credits__column--links'>
-		<ul class='credits__story-links'>
-			{% set this_is_up_next = False %}
-			{%- for story in navbar_elements|sort(attribute='order') -%}
-				{% if this_is_up_next %}
-					{% set class = 'story-link--next' %}
-					{% set this_is_up_next = False %}
-				{% else %}
-					{% set class = '' %}
-				{% endif %}
-
-				<li class='story-link {{ class }}'>
-					{% include '_subtemplates/_credits-list-item.html' %}
-				</li>
-				{% if story.part == part %}
-					{% set this_is_up_next = True %}
-				{% endif %}
-			{%- endfor -%}
-		</ul>
-	</div>
 	{% if not credits_note %}
 		<div class='credits__column credits__column--people'>
 			<dl class='credits__people'>
@@ -57,4 +37,24 @@
 			</dl>
 		</div>
 	{% endif %}
+	<div class='credits__column credits__column--links'>
+		<ul class='credits__story-links'>
+			{% set this_is_up_next = False %}
+			{%- for story in navbar_elements|sort(attribute='order') -%}
+				{% if this_is_up_next %}
+					{% set class = 'story-link--next' %}
+					{% set this_is_up_next = False %}
+				{% else %}
+					{% set class = '' %}
+				{% endif %}
+
+				<li class='story-link {{ class }}'>
+					{% include '_subtemplates/_credits-list-item.html' %}
+				</li>
+				{% if story.part == part %}
+					{% set this_is_up_next = True %}
+				{% endif %}
+			{%- endfor -%}
+		</ul>
+	</div>
 </section>

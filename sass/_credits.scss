@@ -28,6 +28,14 @@ $credit_padding: 15px;
 	flex-wrap:wrap;
 	justify-content:center;
 	
+	&__header{
+		@include label5();
+		@include display-type('serif');
+		width:100%;
+		margin:0 15px 15px 0;
+		text-align:center;
+		order:1;
+	}
 
 	&__note{
 		font-style: italic;
@@ -36,23 +44,9 @@ $credit_padding: 15px;
 		width: 100%;
 	    padding: 0 calc(50% - 300px);
 	    box-sizing: border-box;
+	    order:2;
 	}
 }
-
-.credits__header{
-	@include label5();
-	@include display-type('serif');
-	width:100%;
-	margin:0 15px 15px 0;
-	text-align:center;
-}
-
-.credits__column{ 
-	// width:$column_width; 
-
-
-}
-
 
 .credits__people{
 
@@ -82,6 +76,7 @@ $credit_padding: 15px;
 	width:100%;
 	margin:0;
 	padding:0;
+	text-align: center;
 }
 
 .story-link{
@@ -114,32 +109,27 @@ $credit_padding: 15px;
 		border-top:none;
 	}
 
-
 	.credits__column{
 		
 		// The following accounts for when the credits box (not the credits nav) is removed.
 		flex: 1;
 		flex-basis: $column_width; 
 		max-width: 400px;
-
-		// &:first-child + .credits__column{
-		// 	// This targets a `.credits__column` which immediately follows a credits column that is the first child.
-		// 	background: red;
-		// }
-
-		// &--links { margin-right: 25px; }
 		
+		&--links{
+			order:3;
+		}
+
 		&--people{
 			// width:$column_width - (2 * $credit_padding) - 2px;
 			box-sizing:border-box;
 			padding: $credit_padding;
 			border: 1px solid $trib-blue2;
 			margin-left: 25px;
+			order:4;
 		}
 
-	}
-
-	
+	}	
 
 
 	.story-link{
@@ -168,7 +158,7 @@ $credit_padding: 15px;
 				display: block;
 				font-family:'Arial', sans-serif;
 				font-size:14px;
-				text-align:left;
+				text-align:center;
 				margin-bottom:5px;
 			}
 			.story-link__prefix{
@@ -182,6 +172,12 @@ $credit_padding: 15px;
 			}
 		}
 	}
+	
+	.credits__column--people ~ .credits__column--links{
+	 	// This will left-align the text when the two components are present;
+	 	.story-link--next:before, .credits__story-links{ text-align: left; }
+	}
+
 }
 
 
