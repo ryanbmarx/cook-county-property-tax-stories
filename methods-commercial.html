@@ -9,7 +9,13 @@
 {% block dek %}{{ methods_commercial_headline|dumb_to_smart_quotes|process_text() }}{% endblock dek %}
 
 {% block byline %}
-    {{ add_author("TKTKTKTKTKTKT", "jgrotto@chicagotribune.com") }}
+    <div class='author'>
+        <p class='author__name'>
+            By <a href="mailto:jason.grotto@propublica.org?subject='The Tax Divide'">Jason Grotto</a> and <a href="mailto:sandhya@propublica.org?subject='The Tax Divide'">Sandhya Kambhampati</a>
+        </p>
+        <p class='author__tag'>A Chicago Tribune/ProPublica Illinois collaboration</p>
+    </div>
+	<time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
 {% endblock byline%}
 
 {% block story %}
