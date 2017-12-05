@@ -47,6 +47,10 @@ h3{
 	margin: 0 0 25px 0;
 }
 
+h4{
+	@include label6();
+}
+
 @media all and (min-width: $tablet-min-width){
 	p{
 		@include serif-text(18px, 1.5em);
