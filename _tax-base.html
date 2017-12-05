@@ -226,10 +226,12 @@
           <div class='story-header__project-title'>
             
             {# Editors want to hide the "tribune watchdog" label from all collaborative parts #}
-            {% if part != "commercial" and part != "methods-commercial" and part != "steps" %}
-              {% set title_prefix = "Tribune watchdog: <br />" %}
-            {% else %}
+            {% set credits_note = part|show_note %}
+
+            {% if credits_note %}
               {% set title_prefix = "" %}
+            {% else %}
+              {% set title_prefix = "Tribune watchdog: <br />" %}
             {% endif %}
             <p>{{ title_prefix|process_text() }}{{ title }}</p>
           </div>
