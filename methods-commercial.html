@@ -28,3 +28,20 @@
 
 {# No comments #}
 {% block solid_opinion_comments %}{% endblock solid_opinion_comments %}
+
+{% block opengraph_story_specific scoped %}
+    <meta property="og:title" content="{{ title }} | {{ methods_commercial_headline }}" />
+    <meta property="og:description" content="{{ methods_commercial_og_description }}" />
+    <meta property="og:image" content="{{ methods_commercial_thumb }}" />
+    <meta name="description" content="{{ methods_commercial_seo_description }}" />
+    <meta name="og:image:alt" content="{{ methods_commercial_thumb_alt_text }}" />
+
+    <meta name="twitter:creator" content="@sandhya__k" />
+    <meta name="twitter:creator" content="@jasongrotto" />
+    <meta name="twitter:creator" content="@propublicail" />
+    <meta name="twitter:title" content="{{ title }} | {{ methods_commercial_headline }}" />
+    <meta name="twitter:description" content="{{ methods_commercial_og_description }}" />
+    <meta name="twitter:image" content="{{ methods_commercial_thumb }}" />
+    <meta name="twitter:image:alt" content="{{ methods_commercial_thumb_alt_text }}" />
+    <meta name="twitter:creator" content="@propublicail" />
+{% endblock opengraph_story_specific %}

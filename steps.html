@@ -17,6 +17,24 @@
     </div>
 {% endblock byline%}
 
+{% block opengraph_story_specific scoped %}
+    <meta property="og:title" content="{{ title }} | {{ steps_headline }}" />
+    <meta property="og:description" content="{{ steps_og_description }}" />
+    <meta property="og:image" content="{{ steps_thumb }}" />
+    <meta name="description" content="{{ steps_seo_description }}" />
+    <meta name="og:image:alt" content="{{ steps_thumb_alt_text }}" />
+
+
+    <meta name="twitter:title" content="{{ title }} | {{ steps_headline }}" />
+    <meta name="twitter:description" content="{{ steps_og_description }}" />
+    <meta name="twitter:image" content="{{ steps_thumb }}" />
+    <meta name="twitter:image:alt" content="{{ steps_thumb_alt_text }}" />
+    <meta name="twitter:creator" content="@propublicail" />
+    <meta name="twitter:creator" content="@jemalbrins" />
+    <meta name="twitter:creator" content="@sandhya__k" />
+
+{% endblock opengraph_story_specific %}
+
 {% block story %}
     {%- for story in stories[part] %}
         {% set s = story %}
