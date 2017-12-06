@@ -48,6 +48,10 @@ $credit_padding: 15px;
 	}
 }
 
+// Keep things in the proper order, using flex
+.credits__column.credits__column--people{order: 4}
+.credits__column.credits__column--links{order: 3}
+
 .credits__people{
 
 	margin:30px 0 0 0; // This margin aligns it with the links padding spelled out below
@@ -116,9 +120,9 @@ $credit_padding: 15px;
 		flex-basis: $column_width; 
 		max-width: 400px;
 		
-		&--links{
-			order:3;
-		}
+		// &--links{
+		// 	order:3;
+		// }
 
 		&--people{
 			// width:$column_width - (2 * $credit_padding) - 2px;
@@ -126,7 +130,7 @@ $credit_padding: 15px;
 			padding: $credit_padding;
 			border: 1px solid $trib-blue2;
 			margin-left: 25px;
-			order:4;
+			// order:4;
 		}
 
 	}	
