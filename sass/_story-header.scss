@@ -161,6 +161,10 @@
 		background-size: 8px;
 		margin-bottom: 25px;
 
+
+		// Keep social icons centered
+		.social-menu{ justify-content:center; }
+
 		.story-header__subheadline{
 			font-size: 36px;
 			line-height:1.3em;
@@ -306,6 +310,7 @@
 		top: 100%;
 		right: 50%;
 		right: calc(50% + 345px);
+		margin:0;
 		z-index: 900;
 		justify-content:flex-start;
 
@@ -329,9 +334,10 @@
 		&--methods, &--assessor_response, &--appeals_methods, &--methods_commercial {
 			.story-header__subheadline {
 				font-size: 55px;
-				// max-width: 500px;
 				margin: 0 auto 10px auto;
 			}
+
+			.social-menu{ margin-top: 25px; }
 		}
 	}
 }
