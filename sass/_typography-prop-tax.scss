@@ -22,7 +22,7 @@ p {
 
 
 h1{
-	// Should only be used once per page and only should be used as the main, hammerheadline
+	// Should only be used once per page and only should be used as the dek, subhed
 	@include serif-text(50px, .9em, 700);
 	@include display_type('serif');
 	text-transform:uppercase;
@@ -31,7 +31,7 @@ h1{
 }
 
 h2{
-	// Should only be used once per page and only should be used as the dek/subheadline
+	// Should only be used once per page and only should be used as the main/hammerhed
 	@include serif-text(23px, 1.3em, normal);
 	@include display_type('serif');
 	text-align:center;
