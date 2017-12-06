@@ -66,6 +66,32 @@
 	.refer__headline{ font-size: 25px;}
 }
 
+// SPecial styles for the data store refer
+.refer.refer--datastore{
+	background-image:none;
+	background-color:transparent;
+	box-sizing:border-box;
+	border: 1px solid rgba($trib-blue2, .2);
+	padding: 25px;
+
+	&:before{
+		content:"";
+		display:block;
+		height: 40px;
+		width: 100%;
+		background: url(../img/data-store-badge.png) left center no-repeat;
+		background-size: contain;
+		margin: 0 0 10px 0;
+	}
+
+	.refer__blurb{ 
+		text-align:left; 
+		margin-bottom:0;
+	}
+
+	.refer__headline, .refer__button{ display:none;}
+}
+
 
 @media all and (min-width: $tablet-min-width){
 
