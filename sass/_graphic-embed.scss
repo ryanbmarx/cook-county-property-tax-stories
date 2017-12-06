@@ -16,6 +16,10 @@ $chart-margin:25px;
 .image{
 	@include trib-image();
 
+	img{
+		width: 100%;
+	}
+
 	figcaption p{
 		@include agate();
 	}
