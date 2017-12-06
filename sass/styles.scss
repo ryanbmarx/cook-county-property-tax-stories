@@ -12,12 +12,19 @@ $desktop-min-width:850px;
 
 $ad_leaderboard_height: 95px + 15px + 15px; // Just measured div height, margins
 // $nav_height: 51px;
-$narrow-river-max-width-desktop: 650px;
-$narrow-river-max-width: 450px;
+// $narrow-river-max-width-desktop: 650px;
+// $narrow-river-max-width: 450px;
 $map-width: 600px;
 $notched_width: 350px;
 $notched_video_add_on: 100px;
 $header-bg-color:$trib-gray4;
+
+// DESIGN CHOICES
+$narrow-river-max-width-desktop: 650px;
+$narrow-river-max-width: 450px;
+$container_max_width: 1200px;
+$container_padding_h: 15px;
+
 
 
 // NAVBAR CONFIG
@@ -137,7 +144,7 @@ $nav_background_color:$trib-blue2;
 
 .comments-wrapper{
 	border-bottom: 4px solid $trib-blue2;
-	padding-top: 15px;
+	padding-top: $container_padding_h;
 	// padding:30px 0 15px 0;
 }
 
