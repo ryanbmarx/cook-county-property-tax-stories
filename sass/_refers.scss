@@ -92,26 +92,49 @@
 	.refer__headline, .refer__button{ display:none;}
 }
 
+.refer.refer--steps{
+	text-align:left;
+	
+	margin: 25px 0;
+	padding: 25px 0;
+	border-top: 1px solid $trib-gray4;
+	border-bottom: 1px solid $trib-gray4;
+
+	background:none;
+
+
+	// .refer__button{ margin-left: auto;margin-right: auto;}
+
+	// &:after{
+	// 	content: "";
+	// 	display:block;
+	// 	background: url(../img/step-icon.png) center center no-repeat;
+	// 	background-size:contain;
+	// 	height: 100%;
+	// 	width: 40%;
+
+	// 	position:absolute;
+	// 	top: 50%;
+	// 	right:0;
+	// 	transform: translate(0, -50%);
+	// }
+
+	.refer__button{
+		margin: 0 auto;
+	}
+}
+
 
 @media all and (min-width: $tablet-min-width){
 
 // This is a hack to get a diff style. So sorry!
 
 	.refer.refer--steps{
-		text-align:left;
-		
-		margin: 25px 0;
-		padding: 25px 0;
-		border-top: 1px solid $trib-gray4;
-		border-bottom: 1px solid $trib-gray4;
-
-		background:none;
-
-
 		.refer__headline, .refer__blurb, .refer__button{
 			max-width: 60%;
-
 		}
+
+		.refer__button{ margin: 0; }
 
 		&:after{
 			content: "";
@@ -125,10 +148,6 @@
 			top: 50%;
 			right:0;
 			transform: translate(0, -50%);
-		}
-
-		.refer__button{
-			margin-left: 0;
 		}
 	}
 }
