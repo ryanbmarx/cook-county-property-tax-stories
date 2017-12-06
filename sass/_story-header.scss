@@ -77,7 +77,7 @@
 		height: 100%;
 		background: black url(../img/video-texture.svg);
 		background-size: 3px;
-		opacity: .25;
+		opacity: .45;
 	}
 
 	&__headline{
@@ -211,6 +211,8 @@
 		&__project-title br{
 			display:none;
 		}
+
+		&__video-texture{ opacity: .25; }
 	}
 
 	.story-header {
