@@ -163,6 +163,8 @@
 
 {% block opengraph scoped %}
   {% set part = part %}
+  
+  <link rel="canonical" href="http://{{ ROOT_URL }}/{{ PATH }}" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@chicagotribune" />
@@ -191,7 +193,7 @@
     {{ ad('leaderboard', false) }} 
     #}
     {% block story_header scoped %}
-    <article>
+    <article itemprop="mainEntityOfPage">
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
@@ -322,15 +324,20 @@
 {% endblock scripts %}
 
 {% block chartbeat scoped%}
+    {% set part = part %}
     <script type='text/javascript'>
     var _sf_async_config = _sf_async_config || {};
-    /** CONFIGURATION START **/
-    _sf_async_config.uid = 25745 /* TRONC USER ID */
-    _sf_async_config.domain = 'chicagotribune.com'; /* Should this just be chicagotribune.com */
+    
+
+    var pageTitle = "The Tax Divide ({{ part }})";
+
+    _sf_async_config.uid = 25745 
+    _sf_async_config.domain = 'chicagotribune.com'; 
     _sf_async_config.useCanonical = true;
-    _sf_async_config.sections = 'Watchdog'; //CHANGE THIS
-    _sf_async_config.authors = 'Tribune Staff, ProPublica Illinois, Jason Grotto'; //CHANGE THIS
-    /** CONFIGURATION END **/
+    _sf_async_config.sections = 'Watchdog, Tax Divide'; 
+    _sf_async_config.authors = 'Tribune Staff, ProPublica Illinois, Jason Grotto';
+    _sf_async_config.title = pageTitle;
+    
     (function() {
         function loadChartbeat() {
             var e = document.createElement('script');
