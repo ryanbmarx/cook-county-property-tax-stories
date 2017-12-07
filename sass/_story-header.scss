@@ -81,7 +81,7 @@
 	}
 
 	&__headline{
-		@include serif-text(60px, 0.9em);
+		@include serif-text(60px, 0.9em, 700);
 		@include display_type('serif');
 		@include text_stroke(white, black, 2px, .3, 7px);
 		@include responsive-font(10vw, $min:40px, $max:80px);
@@ -200,7 +200,7 @@
 		}
 
 		&__headline{
-			// font-size:70px;
+			font-weight:400;
 		}
 
 		&__caption br{
