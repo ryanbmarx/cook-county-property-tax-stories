@@ -15,11 +15,11 @@
 {% block byline %}
     <div class='author'>
         <p class='author__name'>
-            By <a href="mailto:jason.grotto@propublica.org?subject='The Tax Divide'">Jason Grotto</a> and <a href="mailto:sandhya@propublica.org?subject='The Tax Divide'">Sandhya Kambhampati</a>
+            By <a href="mailto:jason.grotto@propublica.org?subject='The Tax Divide'" rel="author">Jason Grotto</a> and <a href="mailto:sandhya@propublica.org?subject='The Tax Divide'" rel="author">Sandhya Kambhampati</a>
         </p>
         <p class='author__tag'>A Chicago Tribune/ProPublica Illinois collaboration</p>
     </div>
-  <time class='byline-publish-date' itemprop="datePublished">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
+  <time class='byline-publish-date' itemprop="datePublished dateModified">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
 
 {% endblock byline%}
 
