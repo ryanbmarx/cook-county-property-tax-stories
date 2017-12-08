@@ -15,11 +15,13 @@
 {% block byline %}
     <div class='author'>
         <p class='author__name'>
-            By <a href="mailto:jason.grotto@propublica.org?subject='The Tax Divide'" rel="author">Jason Grotto</a> and <a href="mailto:sandhya@propublica.org?subject='The Tax Divide'" rel="author">Sandhya Kambhampati</a>
+            By <span itemprop="author"><a href="mailto:jason.grotto@propublica.org?subject='The Tax Divide'"><span itemprop="name">Jason Grotto</span></a></span> and <span itemprop="author"><a href="mailto:sandhya@propublica.org?subject='The Tax Divide'"> <span itemprop="name">Sandhya Kambhampati</span></a></span>
         </p>
         <p class='author__tag'>A Chicago Tribune/ProPublica Illinois collaboration</p>
     </div>
-  <time class='byline-publish-date' itemprop="datePublished dateModified">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
+    {# Original pub date #}
+    <meta itemprop="datePublished" content="2017-6-10T05:40:51-06:00">
+    <time class='byline-publish-date' itemprop="dateModified" content="2017-12-07T17:45:51-06:00">Published: {{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}</time>
 
 {% endblock byline%}
 
@@ -30,6 +32,9 @@
     <meta name="description" content="{{ commercial_seo_description }}" />
     <meta name="og:image:alt" content="{{ commercial_thumb_alt_text }}" />
     
+    <meta property="article:published_time" content="{{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}" />
+    <meta property="article:modified_time" content="{{ publish_date|xldate_to_datetime|format_date("%B %-d, %Y") }}" />
+
     <meta name="twitter:title" content="{{ title }} | {{ commercial_headline }}" />
     <meta name="twitter:description" content="{{ commercial_og_description }}" />
     <meta name="twitter:image" content="{{ commercial_thumb }}" />
@@ -37,6 +42,7 @@
     <meta name="twitter:creator" content="@sandhya__k" />
     <meta name="twitter:creator" content="@jasongrotto" />
     <meta name="twitter:creator" content="@propublicail" />
+
 {% endblock opengraph_story_specific %}
 
 {# SOCIAL MEDIA BUTTONS #}

@@ -197,6 +197,9 @@
       {% set part = part %}
       {% include '_subtemplates/' + part + '/_header-supplement.html' ignore missing %}
       <section class='story-header story-header--{{ part }}'>
+        {# The main image, required by google #}
+        <meta itemprop="image" content="http://{{ ROOT_URL }}/img/posters/{{ self.video_poster() }}--large.jpg"></meta>
+
         {% block video_background %}
           <div style='background:url(img/posters/{{ self.video_poster() }}--small.jpg) center center no-repeat;background-size:cover;' class='story-header__display'>
             <div class='story-header__video'>
