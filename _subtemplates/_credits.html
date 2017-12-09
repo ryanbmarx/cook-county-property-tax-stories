@@ -12,7 +12,7 @@
 	<h2 class='credits__header'>{{ title }}</h2>
 	
 	{% set credits_note = part|show_note %}
-	{% if credits_note %}<p class='credits__note'>{{ credits_note }}</p>{% endif %}
+	{% if credits_note %}<p class='credits__note'>{{ credits_note|process_text }}</p>{% endif %}
 	{% if not credits_note %}
 		<div class='credits__column credits__column--people'>
 			<dl class='credits__people'>
